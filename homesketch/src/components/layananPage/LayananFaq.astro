@@ -1,0 +1,33 @@
+---
+import Container from '../base/Container.astro';
+import SectionHeader from '../base/SectionHeader.astro';
+import { layananFaqData } from './LayananFaq.data.js';
+---
+
+<section class="py-20 lg:py-28 border-b border-[var(--color-border-hairline)] bg-[var(--color-canvas-light)]">
+  <Container size="xl" as="div" class="flex flex-col gap-14 lg:gap-16">
+    <!-- Header -->
+    <SectionHeader
+      title={layananFaqData.heading}
+      subtitle={layananFaqData.subheading}
+      level="h2"
+    />
+
+    <!-- FAQ Accordions (Pure Semantic details/summary) -->
+    <div class="flex flex-col divide-y divide-[var(--color-border-hairline)] border-y border-[var(--color-border-hairline)] max-w-4xl">
+      {layananFaqData.faqs.map((faq) => (
+        <details class="group py-6 cursor-pointer">
+          <summary class="list-none flex items-center justify-between gap-4 font-serif text-lg font-semibold text-[var(--color-ink-primary)] group-hover:text-[var(--color-accent-terracotta)] transition-colors">
+            <span>{faq.q}</span>
+            <span class="text-xl text-[var(--color-ink-muted)] group-open:rotate-45 transition-transform duration-200 shrink-0">
+              +
+            </span>
+          </summary>
+          <p class="pt-4 text-sm sm:text-base text-[var(--color-ink-muted)] leading-relaxed max-w-[65ch]">
+            {faq.a}
+          </p>
+        </details>
+      ))}
+    </div>
+  </Container>
+</section>

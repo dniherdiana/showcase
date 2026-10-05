@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import CalculatorHero from '../components/kalkulator/CalculatorHero.astro';
+import MultiStepCalculator from '../components/kalkulator/MultiStepCalculator.astro';
+import MaterialSpecs from '../components/MaterialSpecs.astro';
+import CalculatorGuide from '../components/kalkulator/CalculatorGuide.astro';
+import ContactForm from '../components/ContactForm.astro';
+import Footer from '../components/Footer.astro';
+import { siteConfig } from '../data/site.js';
+---
+
+<Layout 
+  title={`Kalkulator Simulasi Biaya & Tonase Pabrik | ${siteConfig.name}`}
+  description="Hitung perkiraan kebutuhan tonase baja WF/H-Beam dan kisaran anggaran pembangunan pabrik atau gudang industri secara transparan dan akurat."
+  canonicalPath="/kalkulator"
+>
+  <Navbar />
+  <main class="pt-20" id="main-content">
+    <CalculatorHero />
+    <MultiStepCalculator />
+    <MaterialSpecs />
+    <CalculatorGuide />
+    <ContactForm />
+  </main>
+  <Footer />
+</Layout>

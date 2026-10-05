@@ -1,0 +1,119 @@
+---
+import { Image } from 'astro:assets';
+import { ArrowRight, ShieldCheck, CheckCircle2, Building2 } from 'lucide-astro';
+import { homeContent } from '../../data/home.js';
+
+const { hero } = homeContent;
+---
+
+<section class="relative pt-36 pb-24 lg:pt-44 lg:pb-32 overflow-hidden border-b border-theme-border bg-theme-bg">
+  <!-- Subtle High-Contrast Geometric Background Accent -->
+  <div class="absolute -top-24 -right-24 w-96 h-96 bg-theme-accent/15 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="editorial-container relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+
+      <!-- Copy (7 cols) -->
+      <div class="lg:col-span-7 space-y-8">
+
+        <!-- Preheader Context Badge (Bold Industrial Badge) -->
+        <div class="inline-flex items-center gap-2.5 px-4 py-2 rounded-sm bg-theme-accent-bg border border-theme-accent/40 text-theme-accent text-xs font-extrabold uppercase tracking-widest shadow-sm">
+          <Building2 class="w-4 h-4 text-theme-accent shrink-0 stroke-[2.5]" />
+          <span>{hero.preheader}</span>
+        </div>
+
+        <!-- High Impact H1 Headline -->
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold uppercase tracking-tight text-theme-primary leading-[1.15]">
+          {hero.title}
+        </h1>
+
+        <!-- Subheading -->
+        <p class="text-base sm:text-lg text-theme-secondary font-normal leading-[1.7] max-w-2xl">
+          {hero.subheading}
+        </p>
+
+        <!-- High-Impact Dual CTAs -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+          <a href={hero.primaryCtaHref} class="btn-primary py-3.5 px-6 text-sm font-bold uppercase tracking-wider shadow-lg group">
+            <span>{hero.primaryCta}</span>
+            <ArrowRight class="w-4 h-4 shrink-0 group-hover:translate-x-1 transition-transform stroke-[2.5]" />
+          </a>
+
+          <a href={hero.secondaryCtaHref} class="btn-secondary py-3.5 px-6 text-sm font-bold uppercase tracking-wider">
+            <span>{hero.secondaryCta}</span>
+            <ArrowRight class="w-4 h-4 shrink-0 stroke-[2.5]" />
+          </a>
+        </div>
+
+        <!-- Differentiators Metrics Bar (Bold Golden Boxes) -->
+        <div class="pt-8 border-t border-theme-border grid grid-cols-3 gap-4 sm:gap-6">
+          {hero.differentiators.map(diff => (
+            <div class="p-4 rounded-sm bg-theme-surface border border-theme-border space-y-1 hover:border-theme-accent/60 transition-colors">
+              <div class="text-2xl sm:text-3xl font-bold font-serif text-theme-accent">{diff.value}</div>
+              <div class="text-xs text-theme-secondary font-semibold leading-normal uppercase tracking-wider">{diff.label}</div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+
+      <!-- Bold Industrial Showcase Card (5 cols) -->
+      <div class="lg:col-span-5">
+        <div class="bold-card group">
+
+          <!-- Card Header Bar -->
+          <div class="bg-theme-surface-elevated px-4 py-3 border-b border-theme-border flex items-center justify-between">
+            <div class="flex items-center gap-2 text-xs font-bold text-theme-accent uppercase tracking-wider">
+              <ShieldCheck class="w-4 h-4 text-theme-accent" />
+              <span>DOKUMENTASI STRUKTUR UTAMA</span>
+            </div>
+            <span class="text-[10px] font-mono font-bold text-theme-accent px-2 py-0.5 rounded-sm bg-theme-bg border border-theme-accent/40">
+              SNI WF 400
+            </span>
+          </div>
+
+          <div class="relative aspect-video overflow-hidden bg-theme-surface">
+            <Image
+              src={hero.card.image}
+              alt={hero.card.imageAlt}
+              width={1200}
+              height={675}
+              widths={[634, 1200]}
+              sizes="(min-width: 1024px) 634px, 100vw"
+              quality={80}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+              loading="eager"
+              fetchpriority="high"
+            />
+            <div class="absolute inset-0 bg-linear-to-t from-black/90 via-transparent to-transparent opacity-80"></div>
+
+            <div class="absolute top-3 left-3">
+              <span class="px-3 py-1 rounded-sm bg-black/90 border border-theme-accent/40 text-theme-accent text-xs font-extrabold uppercase tracking-wider shadow-md">
+                {hero.card.badge}
+              </span>
+            </div>
+          </div>
+
+          <div class="p-6 space-y-3 bg-theme-surface">
+            <h2 class="text-xl font-bold font-serif text-theme-primary group-hover:text-theme-accent transition-colors">
+              {hero.card.title}
+            </h2>
+            <p class="text-xs text-theme-secondary leading-relaxed">
+              {hero.card.description}
+            </p>
+
+            <div class="pt-3 border-t border-theme-border flex items-center justify-between text-xs text-theme-secondary font-mono">
+              <span class="flex items-center gap-1 text-theme-accent font-bold">
+                <CheckCircle2 class="w-3.5 h-3.5" />
+                <span>INSPEKSI SNI LOLOS</span>
+              </span>
+              <span class="text-theme-accent font-bold">12 BULAN GARANSI</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

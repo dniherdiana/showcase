@@ -1,0 +1,66 @@
+---
+import { Image } from "astro:assets";
+const { intro_2, src } = Astro.props;
+---
+
+<section class="mx-auto">
+	<article
+		class="flex flex-col-reverse lg:flex-row lg:max-w-full max-w-5xl overflow-hidden bg-surface-soft border border-border/20 mx-auto"
+	>
+		<div
+			class="relative flex flex-col justify-center p-8 lg:p-12 lg:pr-10 lg:w-1/2 bg-linear-to-l from-surface-soft via-primary-active to-surface"
+		>
+			<div
+				class="absolute top-6 left-6 w-4 h-4 border-t-2 border-l-2 border-heading/30"
+			>
+			</div>
+			<div
+				class="absolute bottom-6 right-6 w-4 h-4 border-b-2 border-r-2 border-heading/30"
+			>
+			</div>
+			<p
+				class="text-base lg:text-lg block text-text font-light leading-relaxed tracking-wide p-2 lg:p-0"
+			>
+				{intro_2}
+			</p>
+		</div>
+
+		<div class="relative lg:w-1/2 overflow-hidden">
+			<figure class="py-16 bg-[#C3C7CA]">
+				<Image
+					src={src}
+					alt="Naskah Siksa Kandang Karesian (codex L 630, koleksi Perpustakaan Nasional)"
+					class="object-cover w-full h-auto transition-transform duration-500 hover:scale-102"
+					widths={[360, 540]}
+					sizes="362px"
+					format="webp"
+					quality="85"
+					loading="lazy"
+					fetchpriority="low"
+				/>
+
+				<div
+					class="absolute bottom-4 left-4 z-10 flex items-center gap-1 text-heading/80 bg-text-dark/40 p-1"
+				>
+					<div class="w-1 h-1 rounded-full bg-current opacity-60"></div>
+
+					<h2
+						class="uppercase text-[8px] lg:text-[10px] tracking-wider lg:tracking-widest font-light"
+					>
+						Naskah Siksa Kandang Karesian
+					</h2>
+				</div>
+			</figure>
+
+			<div
+				class="absolute inset-3 border border-border/40 pointer-events-none hidden lg:block"
+			>
+			</div>
+
+			<div
+				class="absolute inset-0 bg-linear-to-t from-surface/20 to-transparent lg:hidden"
+			>
+			</div>
+		</div>
+	</article>
+</section>

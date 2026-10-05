@@ -1,0 +1,100 @@
+---
+const navLinks = [
+  { id: { text: 'Beranda', href: '/' }, en: { text: 'Home', href: '/' } },
+  { id: { text: 'Solusi', href: '/solutions' }, en: { text: 'Solutions', href: '/solutions' } },
+  { id: { text: 'Perusahaan', href: '/about' }, en: { text: 'Company', href: '/about' } },
+  { id: { text: 'Demo', href: '/contact' }, en: { text: 'Demo', href: '/contact' } },
+];
+---
+
+<nav class="fixed top-0 left-0 right-0 z-[var(--z-nav)] mix-blend-normal" id="main-nav">
+  <div class="relative">
+    <!-- Nav backdrop - subtle steel blur -->
+    <div class="absolute inset-0 bg-surface-base/80 backdrop-blur-md border-b border-line-hard/50 transition-all duration-500" id="nav-backdrop"></div>
+
+    <div class="relative flex items-center justify-between px-6 md:px-12 lg:px-16 py-5">
+      <!-- Logo Mark -->
+      <a href="/" class="flex items-center gap-3 group" id="nav-logo">
+        <div class="w-8 h-8 bg-brand-primary flex items-center justify-center">
+          <span class="text-white font-mono text-xs font-bold tracking-tighter">AF</span>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-display font-bold text-sm tracking-tight text-text-primary leading-none">AlurFlow</span>
+          <span class="font-mono text-[0.6rem] text-text-tertiary tracking-[0.15em] uppercase leading-none mt-0.5">Solutions</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex items-center gap-1">
+        {navLinks.map((link, i) => (
+          <a href={link.id.href} class="relative px-4 py-2 font-mono text-xs tracking-[0.08em] uppercase text-text-secondary hover:text-text-primary transition-colors duration-300 group" id={`nav-link-${i}`}>
+            <span data-lang="id">{link.id.text}</span>
+            <span data-lang="en">{link.en.text}</span>
+            <span class="absolute bottom-0 left-4 right-4 h-px bg-brand-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+          </a>
+        ))}
+      </div>
+
+      <!-- Right Actions -->
+      <div class="flex items-center gap-4">
+        <!-- Language Toggle -->
+        <button
+          onclick="toggleLang()"
+          class="font-mono text-[0.65rem] tracking-[0.15em] uppercase text-text-tertiary hover:text-brand-accent border border-line-hard px-3 py-1.5 transition-all duration-300 hover:border-brand-accent/40"
+          id="lang-toggle-btn"
+          data-lang-toggle
+        >
+          EN
+        </button>
+
+        <!-- CTA -->
+        <a href="/contact" class="hidden md:inline-flex btn-primary text-xs py-2.5 px-5" id="nav-cta">
+          <span data-lang="id">Jadwalkan Demo</span>
+          <span data-lang="en">Book Demo</span>
+          <span class="arrow">→</span>
+        </a>
+
+        <!-- Mobile Toggle -->
+        <button class="lg:hidden flex flex-col gap-1.5 p-2" id="mobile-toggle" onclick="document.getElementById('mobile-menu').classList.toggle('translate-x-full')">
+          <span class="w-5 h-px bg-text-primary"></span>
+          <span class="w-3.5 h-px bg-text-primary"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="fixed inset-0 top-0 bg-surface-base/98 backdrop-blur-xl z-[var(--z-modal)] translate-x-full transition-transform duration-500 ease-[var(--ease-out-expo)] lg:hidden">
+    <div class="flex flex-col h-full px-8 pt-24 pb-12">
+      <button class="absolute top-6 right-6 p-2 font-mono text-xs text-text-secondary" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')">
+        CLOSE ×
+      </button>
+
+      <div class="flex flex-col gap-0">
+        {navLinks.map((link, i) => (
+          <a href={link.id.href} class="py-5 border-b border-line-hard/50 group" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')">
+            <span class="font-mono text-[0.6rem] text-text-tertiary tracking-[0.15em] block mb-1">0{i + 1}</span>
+            <span class="font-display text-2xl font-bold text-text-primary group-hover:text-brand-primary transition-colors duration-300">
+              <span data-lang="id">{link.id.text}</span>
+              <span data-lang="en">{link.en.text}</span>
+            </span>
+          </a>
+        ))}
+      </div>
+
+      <div class="mt-auto">
+        <a href="/contact" class="btn-primary w-full justify-center" onclick="document.getElementById('mobile-menu').classList.add('translate-x-full')">
+          <span data-lang="id">Jadwalkan Demo Enterprise</span>
+          <span data-lang="en">Schedule Enterprise Demo</span>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<style>
+  nav {
+    will-change: backdrop-filter;
+  }
+</style>

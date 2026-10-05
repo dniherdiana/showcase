@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/home/Hero.astro';
+import ClientReassurance from '../components/home/ClientReassurance.astro';
+import MechanismTrust from '../components/home/MechanismTrust.astro';
+import MaterialQualityPreview from '../components/home/MaterialQualityPreview.astro';
+import Services from '../components/layanan/Services.astro';
+import ProcessTimeline from '../components/home/ProcessTimeline.astro';
+import Testimonials from '../components/home/Testimonials.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Footer from '../components/Footer.astro';
+import { siteConfig } from '../data/site.js';
+---
+
+<Layout 
+  title={siteConfig.titleDefault}
+  description={siteConfig.descriptionDefault}
+  canonicalPath="/"
+>
+  <Navbar />
+  <main id="main-content">
+    <Hero />
+    <ClientReassurance />
+    <MechanismTrust />
+    <MaterialQualityPreview />
+    <Services />
+    <ProcessTimeline />
+    <Testimonials />
+    <FinalCTA />
+  </main>
+  <Footer />
+</Layout>

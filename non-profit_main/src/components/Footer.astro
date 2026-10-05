@@ -1,0 +1,136 @@
+---
+import ClientDataTag from './ClientDataTag.astro';
+---
+
+<footer class="bg-[#172a21] text-stone-300 pt-16 pb-12 border-t border-stone-800 font-sans">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Top Callout Box -->
+    <div class="bg-gradient-to-r from-emerald-900 to-stone-900 rounded-3xl p-8 md:p-12 mb-16 border border-emerald-800/60 shadow-2xl flex flex-col lg:flex-row items-center justify-between gap-8">
+      <div class="max-w-2xl">
+        <span class="text-xs uppercase tracking-widest font-mono text-amber-400 font-semibold block mb-2">
+          Grassroots Environmental Action Since 2012
+        </span>
+        <h3 class="text-2xl sm:text-3xl font-bold text-white leading-tight">
+          Join 18,000+ Beneficiaries Across 145 Partner Villages in Building Ecological Self-Reliance.
+        </h3>
+        <p class="text-sm text-stone-300 mt-3 leading-relaxed">
+          Every program is co-designed and managed directly alongside local rural communities. 96% of all contributions fund field implementation.
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+        <a 
+          href="/donate" 
+          class="bg-terracotta hover:bg-terracotta-hover text-white font-bold px-7 py-3.5 rounded-full text-center text-sm transition-all shadow-lg shadow-terracotta/20 whitespace-nowrap"
+        >
+          Donate Now (96% Direct Impact)
+        </a>
+        <a 
+          href="/get-involved" 
+          class="bg-stone-800 hover:bg-stone-700 text-white font-bold px-7 py-3.5 rounded-full text-center text-sm border border-stone-700 transition-all whitespace-nowrap"
+        >
+          Become a Volunteer
+        </a>
+      </div>
+    </div>
+
+    <!-- Main Footer Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-16 border-b border-stone-800">
+      
+      <!-- Column 1: Organization Bio -->
+      <div class="lg:col-span-2 space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-emerald-800 text-amber-300 flex items-center justify-center font-serif text-xl font-bold">
+            🌱
+          </div>
+          <div>
+            <h4 class="text-white font-bold text-lg leading-none">Yayasan Bumi Bersama</h4>
+            <span class="text-xs text-emerald-400 font-medium">Non-Profit Foundation</span>
+          </div>
+        </div>
+
+        <p class="text-sm text-stone-400 leading-relaxed max-w-sm">
+          Fostering sustainable rural empowerment by merging ecological conservation, practical education, and community governance across remote Indonesian landscapes.
+        </p>
+
+        <div class="pt-2 flex flex-wrap items-center gap-3 text-xs">
+          <span class="bg-stone-900 border border-stone-800 text-emerald-300 px-3 py-1 rounded-full font-mono">
+            Est. 2012
+          </span>
+          <span class="bg-stone-900 border border-stone-800 text-amber-300 px-3 py-1 rounded-full font-mono">
+            145 Villages
+          </span>
+          <span class="bg-stone-900 border border-stone-800 text-stone-300 px-3 py-1 rounded-full font-mono">
+            320 Active Volunteers
+          </span>
+        </div>
+      </div>
+
+      <!-- Column 2: Quick Links -->
+      <div>
+        <h5 class="text-white text-sm font-bold uppercase tracking-wider mb-4 border-b border-stone-800 pb-2">
+          Navigation
+        </h5>
+        <ul class="space-y-2.5 text-xs text-stone-400 font-medium">
+          <li><a href="/" class="hover:text-emerald-400 transition-colors">Home</a></li>
+          <li><a href="/about" class="hover:text-emerald-400 transition-colors">About Our Journey</a></li>
+          <li><a href="/programs" class="hover:text-emerald-400 transition-colors">Our 5 Core Programs</a></li>
+          <li><a href="/impact-stories" class="hover:text-emerald-400 transition-colors">Documentary Impact Stories</a></li>
+          <li><a href="/get-involved" class="hover:text-emerald-400 transition-colors">Volunteer & Partner</a></li>
+          <li><a href="/news" class="hover:text-emerald-400 transition-colors">News & Annual Reports</a></li>
+          <li><a href="/contact" class="hover:text-emerald-400 transition-colors">Contact Field Stations</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Transparency & Reports -->
+      <div>
+        <h5 class="text-white text-sm font-bold uppercase tracking-wider mb-4 border-b border-stone-800 pb-2">
+          Accountability
+        </h5>
+        <ul class="space-y-2.5 text-xs text-stone-400 font-medium">
+          <li><a href="/donate" class="hover:text-amber-400 transition-colors flex items-center gap-1.5"><span class="text-emerald-400">✓</span> 96% Program Fund Ratio</a></li>
+          <li><a href="/about#transparency" class="hover:text-amber-400 transition-colors">Public Annual Reports</a></li>
+          <li><a href="/about#governance" class="hover:text-amber-400 transition-colors">Community Governance Model</a></li>
+          <li><a href="/contact" class="hover:text-amber-400 transition-colors">Audited Financial Statements</a></li>
+          <li><ClientDataTag text="Nomor Izin Operasional Yayasan" /></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Field Headquarter -->
+      <div>
+        <h5 class="text-white text-sm font-bold uppercase tracking-wider mb-4 border-b border-stone-800 pb-2">
+          Field Secretariat
+        </h5>
+        <div class="space-y-3 text-xs text-stone-400">
+          <p class="leading-relaxed">
+            <strong class="text-stone-200 block mb-0.5">Yayasan Bumi Bersama</strong>
+            <ClientDataTag text="Alamat Kantor Pusat & Field Station" />
+          </p>
+          <p>
+            ✉️ <a href="mailto:info@bumibersama.org" class="hover:text-emerald-400 underline">info@bumibersama.org</a>
+          </p>
+          <p>
+            📞 <a href="tel:+6281234567890" class="hover:text-emerald-400">+62 812-3456-7890</a>
+          </p>
+          <div class="pt-2">
+            <span class="text-[11px] text-stone-500 block mb-1">Tax Identification:</span>
+            <ClientDataTag text="NPWP Yayasan Bumi Bersama" />
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="mt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-stone-500">
+      <p>© 2012–2026 Yayasan Bumi Bersama. All rights reserved. Designed with Humanist Non-Profit DNA.</p>
+      <div class="flex items-center gap-6">
+        <span class="text-emerald-400">WCAG 2.1 AAA Accessibility Compliant</span>
+        <a href="/contact" class="hover:text-stone-300 transition-colors">Privacy Policy</a>
+        <a href="/contact" class="hover:text-stone-300 transition-colors">Terms of Governance</a>
+      </div>
+    </div>
+
+  </div>
+</footer>

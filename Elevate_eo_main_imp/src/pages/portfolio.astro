@@ -1,0 +1,141 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PortfolioFilter from '../components/PortfolioFilter.svelte';
+---
+
+<Layout
+  title="Portfolio & Case Studies — Elevate Event Organizer"
+  description="Lihat dokumentasi portofolio event korporat, gala wedding, exhibition, product launch, dan brand activation skala nasional yang dikerjakan oleh Elevate Event Organizer."
+  currentPath="/portfolio"
+>
+  <!-- HERO PORTFOLIO: Asymmetrical Editorial Left Alignment -->
+  <section class="pt-36 pb-20 bg-neutral-950 border-b border-neutral-900 relative overflow-hidden">
+    <!-- Edge Ambient Background -->
+    <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-amber-900/10 via-transparent to-transparent pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-8 space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-400/10 border border-amber-400/30 text-amber-300 text-xs font-mono uppercase tracking-widest rounded-full">
+          Dokumentasi Rekam Izajah Karya
+        </div>
+
+        <h1 class="font-serif text-4xl sm:text-6xl text-white font-light leading-tight">
+          Studi Kasus & <span class="italic text-amber-300">Rekam Visual</span> Event Terpilih
+        </h1>
+
+        <p class="text-neutral-300 text-sm sm:text-base max-w-2xl leading-relaxed font-light">
+          Setiap proyek bukan sekadar daftar tugas yang selesai, melainkan sebuah narasi atmosfer. Dokumentasi profesional sebagai bagian dari layanan kami menyajikan bukti empiris dari konsep hingga eksekusi panggung.
+        </p>
+      </div>
+
+      <!-- Right Column Visual Proof Badge -->
+      <div class="lg:col-span-4 bg-neutral-900/90 border border-neutral-800 p-6 rounded-2xl space-y-4">
+        <span class="text-xs font-mono text-amber-400 uppercase tracking-widest block">Metrik Keberhasilan</span>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <div class="font-serif text-3xl font-bold text-white">350+</div>
+            <div class="text-[10px] font-mono text-neutral-400 uppercase">Event Diselenggarakan</div>
+          </div>
+          <div>
+            <div class="font-serif text-3xl font-bold text-white">4.9/5</div>
+            <div class="text-[10px] font-mono text-neutral-400 uppercase">Rating Kepuasan Klien</div>
+          </div>
+        </div>
+        <div class="pt-2 border-t border-neutral-800 text-[11px] text-neutral-400">
+          <span class="data-client-badge">
+            [PERLU DATA CLIENT: daftar penghargaan event]
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE FILTERABLE PORTFOLIO ISLAND -->
+  <section class="py-20 bg-neutral-950 relative">
+    <div class="max-w-7xl mx-auto px-6 md:px-12">
+      <PortfolioFilter client:visible />
+    </div>
+  </section>
+
+  <!-- DOCUMENTARY PHOTOGRAPHY STREAM (Full-Bleed Image First Section) -->
+  <section class="py-24 bg-neutral-900 border-t border-neutral-800 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <span class="text-xs font-mono text-amber-400 uppercase tracking-widest">Cinematic Moments</span>
+        <h2 class="font-serif text-3xl sm:text-4xl text-white font-light">
+          Atmosfer Dalam Setiap Detik Tangkapan Kamera
+        </h2>
+        <p class="text-xs text-neutral-400">
+          Galeri fotografi tanpa manipulasi berlebih—merekam emosi nyata audiens, tata cahaya panggung, dan dinamika ruang.
+        </p>
+      </div>
+
+      <!-- Edge-to-Edge Masonry/Mosaic Gallery (Unique Photo URLs) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="relative aspect-[3/4] rounded-xl overflow-hidden group">
+          <img
+            src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80"
+            alt="Lighting Gala Stage"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
+            <span class="text-xs text-amber-300 font-mono">Gala Lighting Production</span>
+          </div>
+        </div>
+
+        <div class="relative aspect-[3/4] rounded-xl overflow-hidden group sm:translate-y-4">
+          <img
+            src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=800&q=80"
+            alt="Wedding Table Setup"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
+            <span class="text-xs text-amber-300 font-mono">Floral Installation & Dining</span>
+          </div>
+        </div>
+
+        <div class="relative aspect-[3/4] rounded-xl overflow-hidden group">
+          <img
+            src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=800&q=80"
+            alt="Audience Summit"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
+            <span class="text-xs text-amber-300 font-mono">1.200+ VIP Delegation</span>
+          </div>
+        </div>
+
+        <div class="relative aspect-[3/4] rounded-xl overflow-hidden group sm:translate-y-4">
+          <img
+            src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=800&q=80"
+            alt="Exhibition Booth Detail"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-4 flex items-end">
+            <span class="text-xs text-amber-300 font-mono">Interactive Booth Architecture</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND FOR PORTFOLIO -->
+  <section class="py-20 bg-neutral-950 border-t border-neutral-800 text-center">
+    <div class="max-w-3xl mx-auto px-6 space-y-6">
+      <h2 class="font-serif text-3xl sm:text-4xl text-white">
+        Ingin Melihat Studi Kasus Konsep Yang Sesuai Industri Anda?
+      </h2>
+      <p class="text-neutral-400 text-sm">
+        Tim kami dapat mempresentasikan dokumen dek portofolio privat lengkap sesuai spesifikasi kebutuhan perusahaan Anda.
+      </p>
+      <div class="pt-2">
+        <a
+          href="/contact"
+          class="inline-block px-8 py-3.5 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-semibold text-xs uppercase tracking-widest rounded-full transition-all shadow-lg"
+        >
+          Minta Proposal & Portfolio Dek
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

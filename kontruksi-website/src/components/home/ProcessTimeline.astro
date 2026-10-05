@@ -1,0 +1,245 @@
+---
+import { MessageSquare, FileText, MapPin, ShieldCheck, CheckCircle2, ArrowRight } from 'lucide-astro';
+import { homeContent } from '../../data/home.js';
+
+const { process } = homeContent;
+
+const iconMap: Record<string, any> = {
+  MessageSquare,
+  FileText,
+  MapPin,
+  ShieldCheck
+};
+---
+
+<section id="tahapan-kerja" class="py-24 lg:py-32 bg-theme-bg border-b border-theme-border">
+  <div class="editorial-container">
+    
+    <!-- Section Header -->
+    <div class="max-w-3xl mb-16 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-sm bg-theme-surface border border-theme-border text-theme-accent text-xs font-semibold tracking-wider">
+        <ShieldCheck class="w-4 h-4" />
+        <span>{process.preheader}</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif text-theme-primary font-normal leading-tight">
+        {process.title}
+      </h2>
+      <p class="text-theme-secondary text-base leading-relaxed">
+        {process.subtitle}
+      </p>
+    </div>
+
+    <!-- Interactive Step Progress Bar & Tab Buttons (NO NUMBERS) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8" id="process-tab-list">
+      {process.steps.map((step, idx) => {
+        const IconComp = iconMap[step.icon] || MessageSquare;
+        const isActive = idx === 0;
+        return (
+          <button
+            type="button"
+            class={`process-tab-btn text-left p-5 rounded-sm surface-card border transition-all cursor-pointer select-none focus:outline-none ${
+              isActive 
+                ? 'active border-theme-accent bg-theme-accent-bg/40 shadow-md ring-1 ring-theme-accent/50' 
+                : 'border-theme-border hover:border-theme-border-hover bg-theme-surface'
+            }`}
+            data-step-index={idx}
+            aria-label={`Pilih ${step.title}`}
+          >
+            <div class="flex items-center justify-between mb-3">
+              <div class={`w-9 h-9 rounded-sm flex items-center justify-center transition-colors ${
+                isActive ? 'bg-theme-accent text-theme-bg' : 'bg-theme-bg text-theme-accent border border-theme-border'
+              } icon-box`}>
+                <IconComp class="w-4 h-4" />
+              </div>
+
+              <span class={`text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-sm transition-colors ${
+                isActive ? 'bg-theme-accent text-theme-bg' : 'bg-theme-bg text-theme-secondary border border-theme-border'
+              } badge-box`}>
+                {step.badge.split(':')[0]}
+              </span>
+            </div>
+
+            <h3 class="text-base font-serif text-theme-primary font-medium line-clamp-2 leading-snug">
+              {step.title}
+            </h3>
+          </button>
+        );
+      })}
+    </div>
+
+    <!-- Active Step Interactive Detail Display Panel -->
+    <div class="surface-card p-8 sm:p-10 rounded-sm border-theme-accent/40 bg-theme-surface space-y-8 relative overflow-hidden">
+      
+      <!-- Top Meta Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-theme-border pb-6">
+        <div class="flex items-center gap-3">
+          <div id="detail-icon-box" class="w-10 h-10 rounded-sm bg-theme-accent text-theme-bg flex items-center justify-center font-bold shadow-sm">
+            <MessageSquare class="w-5 h-5" />
+          </div>
+          <div>
+            <span id="detail-badge" class="text-xs font-semibold text-theme-accent uppercase tracking-wider">
+              {process.steps[0].badge}
+            </span>
+            <h3 id="detail-title" class="text-2xl sm:text-3xl font-serif text-theme-primary font-normal mt-0.5">
+              {process.steps[0].title}
+            </h3>
+          </div>
+        </div>
+
+        <a 
+          id="detail-wa-btn" 
+          href={`https://wa.me/6281234567890?text=Halo%20Moving%20Co.,%20saya%20tertarik%20dengan%20${encodeURIComponent(process.steps[0].title)}`}
+          target="_blank"
+          class="btn-primary text-xs py-2.5 px-5 self-start sm:self-auto"
+        >
+          <span>Konsultasikan Tahap Ini</span>
+          <ArrowRight class="w-4 h-4" />
+        </a>
+      </div>
+
+      <!-- Main Explanation & Bullet Deliverables -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <div class="lg:col-span-6 space-y-4">
+          <h4 class="text-xs font-semibold text-theme-accent uppercase tracking-wider">Penjelasan Proses:</h4>
+          <p id="detail-copy" class="text-theme-secondary text-base leading-relaxed">
+            {process.steps[0].copy}
+          </p>
+        </div>
+
+        <div class="lg:col-span-6 p-6 rounded-sm bg-theme-bg border border-theme-border space-y-4">
+          <h4 class="text-xs font-semibold text-theme-primary uppercase tracking-wider">Jaminan & Output Tahap Ini:</h4>
+          <ul id="detail-list" class="space-y-3 text-sm text-theme-secondary">
+            {process.steps[0].details.map(d => (
+              <li class="flex items-start gap-2.5">
+                <CheckCircle2 class="w-4 h-4 text-theme-success shrink-0 mt-0.5" />
+                <span class="text-theme-primary font-medium">{d}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  interface StepData {
+    id: string;
+    icon: string;
+    badge: string;
+    title: string;
+    copy: string;
+    details: string[];
+  }
+
+  const stepsData: StepData[] = [
+    {
+      id: 'step-1',
+      icon: 'MessageSquare',
+      badge: 'Tahap 1: Konsultasi Pertama',
+      title: 'Diskusi Santai & Pahami Kebutuhan Lahan',
+      copy: 'Ngobrol santai 15 menit via WhatsApp atau telepon. Kami mendengarkan kebutuhan pabrik, ukuran lahan, dan target anggaran Anda secara terbuka.',
+      details: [
+        'Analisis awal luas lahan & rencana alur produksi barang',
+        'Rekomendasi bentang baja WF & eave height yang efisien',
+        '100% Bebas biaya & tanpa keterikatan kontrak di awal'
+      ]
+    },
+    {
+      id: 'step-2',
+      icon: 'FileText',
+      badge: 'Tahap 2: Transparansi Biaya',
+      title: 'Terima Perhitungan Tonase & Draf RAB Dikunci',
+      copy: 'Kami buatkan perkiraan tonase baja WF riil dan draf biaya resmi secara jelas tanpa ada komponen tersembunyi.',
+      details: [
+        'Rincian tonase baja WF/H-Beam riil (kg/m²)',
+        'Estimasi biaya material SNI & upah ereksi alat berat',
+        'Harga dikunci 100% dalam kontrak resmi (Bebas Addendum)'
+      ]
+    },
+    {
+      id: 'step-3',
+      icon: 'MapPin',
+      badge: 'Tahap 3: Validasi Lapangan',
+      title: 'Survei Lokasi & Finalisasi Blueprint CAD',
+      copy: 'Tim insinyur turun langsung mengecek kondisi tanah dan kelayakan sirkulasi alat berat sebelum penandatanganan kesepakatan.',
+      details: [
+        'Pemeriksaan topografi & daya dukung tanah lokasi',
+        'Analisis akses jalan truk kontainer & sirkulasi crane',
+        'Finalisasi blueprint CAD 2D/3D & jadwal kerja Kurva-S'
+      ]
+    },
+    {
+      id: 'step-4',
+      icon: 'ShieldCheck',
+      badge: 'Tahap 4: Pelaksanaan & Purna Jual',
+      title: 'Pembangunan Rangka & Garansi 12 Bulan',
+      copy: 'Proses fabrikasi dikawal ketat hingga serah terima kunci, lalu dilindungi Garansi Pemeliharaan Berkala 12 Bulan gratis.',
+      details: [
+        'Inspeksi QC kekencangan baut torsi HTB Grade 8.8',
+        'Pengujian kedap air pada atap & talang hujan',
+        'Garansi purna jual & inspeksi teknis berkala 3 bulanan'
+      ]
+    }
+  ];
+
+  const tabBtns = document.querySelectorAll('.process-tab-btn');
+  const badgeEl = document.getElementById('detail-badge');
+  const titleEl = document.getElementById('detail-title');
+  const copyEl = document.getElementById('detail-copy');
+  const listEl = document.getElementById('detail-list');
+  const waBtnEl = document.getElementById('detail-wa-btn') as HTMLAnchorElement;
+
+  function renderStepDetail(index: number) {
+    const data = stepsData[index];
+    if (!data) return;
+
+    if (badgeEl) badgeEl.textContent = data.badge;
+    if (titleEl) titleEl.textContent = data.title;
+    if (copyEl) copyEl.textContent = data.copy;
+
+    if (listEl) {
+      listEl.innerHTML = data.details.map(d => `
+        <li class="flex items-start gap-2.5">
+          <svg class="w-4 h-4 text-theme-success shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span class="text-theme-primary font-medium">${d}</span>
+        </li>
+      `).join('');
+    }
+
+    if (waBtnEl) {
+      waBtnEl.href = `https://wa.me/6281234567890?text=Halo%20Moving%20Co.,%20saya%20tertarik%20dengan%20${encodeURIComponent(data.title)}`;
+    }
+
+    tabBtns.forEach((btn, i) => {
+      const iconBox = btn.querySelector('.icon-box');
+      const badgeBox = btn.querySelector('.badge-box');
+
+      if (i === index) {
+        btn.className = 'process-tab-btn active text-left p-5 rounded-sm surface-card border border-theme-accent bg-theme-accent-bg/40 shadow-md ring-1 ring-theme-accent/50 transition-all cursor-pointer select-none focus:outline-none';
+        if (iconBox) iconBox.className = 'w-9 h-9 rounded-sm flex items-center justify-center transition-colors bg-theme-accent text-theme-bg icon-box';
+        if (badgeBox) badgeBox.className = 'text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-sm transition-colors bg-theme-accent text-theme-bg badge-box';
+      } else {
+        btn.className = 'process-tab-btn text-left p-5 rounded-sm surface-card border border-theme-border hover:border-theme-border-hover bg-theme-surface transition-all cursor-pointer select-none focus:outline-none';
+        if (iconBox) iconBox.className = 'w-9 h-9 rounded-sm flex items-center justify-center transition-colors bg-theme-bg text-theme-accent border border-theme-border icon-box';
+        if (badgeBox) badgeBox.className = 'text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-sm transition-colors bg-theme-bg text-theme-secondary border border-theme-border badge-box';
+      }
+    });
+  }
+
+  tabBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const idxStr = btn.getAttribute('data-step-index');
+      if (idxStr !== null) {
+        const idx = parseInt(idxStr, 10);
+        renderStepDetail(idx);
+      }
+    });
+  });
+</script>

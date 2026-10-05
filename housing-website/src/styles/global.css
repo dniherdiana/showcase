@@ -1,0 +1,82 @@
+@import "tailwindcss";
+@import "./scroll-animations.css";
+
+@theme {
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+  --color-canvas-default: #0A0D12;
+  --color-canvas-raised: #10141D;
+  --color-canvas-elevated: #161B26;
+  --color-canvas-subtle: #121620;
+  --color-canvas-deep: #07090D;
+  --color-canvas-ink: #070A0F;
+  --color-canvas-midnight: #090C12;
+  --color-canvas-night: #0C1017;
+  --color-canvas-soft: #0F131D;
+  --color-canvas-panel: #111622;
+  --color-canvas-active: #121722;
+  --color-canvas-featured: #181F2C;
+  --color-canvas-featured-deep: #121622;
+  --color-canvas-lift: #141A26;
+  --color-canvas-hover: #1A202C;
+
+  /* Amber tokens: display for large titles, readable (6.5:1 WCAG contrast) for small text */
+  --color-amber-display: #D4AF37;
+  --color-amber-readable: #FCD34D;
+  --color-warm-amber: #E5C396;
+  --color-warm-sand: #F4EFE6;
+  --color-muted-text: #94A3B8;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--color-canvas-default);
+  color: #E2E8F0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-weight: 400; /* WCAG AAA legibility: never 300 on dark backgrounds */
+}
+
+/* Global Keyboard Accessibility Focus Rings (WCAG 2.1 AA Criterion 2.4.7) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #FCD34D !important;
+  outline-offset: 4px !important;
+  border-radius: 2px !important;
+}
+
+/* Custom ambient radial backgrounds */
+.bg-ambient-radial {
+  background: radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.08) 0%, rgba(10, 13, 18, 0) 65%);
+}
+
+.bg-ambient-glow-left {
+  background: radial-gradient(circle at 10% 50%, rgba(229, 195, 150, 0.07) 0%, rgba(10, 13, 18, 0) 50%);
+}
+
+.bg-ambient-glow-right {
+  background: radial-gradient(circle at 90% 60%, rgba(212, 175, 55, 0.06) 0%, rgba(10, 13, 18, 0) 50%);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0D12;
+}
+::-webkit-scrollbar-thumb {
+  background: #2A3241;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3A4559;
+}

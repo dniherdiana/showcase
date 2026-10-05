@@ -1,0 +1,94 @@
+---
+import { footerContent, socialSvgIcons } from "../../data/shared/footer.js";
+
+const socialIcons: Record<string, string> = socialSvgIcons;
+---
+
+<footer
+	class="bg-canvas-deep border-t border-slate-800/80 text-slate-300 py-16 text-sm"
+>
+	<div class="max-w-7xl mx-auto px-6 lg:px-12 space-y-12">
+		<div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+			<div class="md:col-span-5 space-y-5">
+				<div class="flex items-center gap-3">
+					<div
+						class="w-9 h-9 rounded-sm bg-linear-to-tr from-amber-600 to-amber-300 flex items-center justify-center text-slate-950 font-serif font-medium text-lg"
+					>
+						{footerContent.brand.initial}
+					</div>
+					<span class="font-serif text-xl text-slate-100 font-medium"
+						>{footerContent.brand.name}</span
+					>
+				</div>
+
+				<p class="text-xs text-slate-300 font-normal leading-relaxed max-w-sm">
+					{footerContent.brand.description}
+				</p>
+
+				<div class="pt-2 space-y-2">
+					<span
+						class="block text-[11px] font-mono text-amber-300 uppercase tracking-wider font-semibold"
+						>Ikuti Media Sosial Kami:</span
+					>
+					<div class="flex items-center gap-3 text-slate-300">
+						{
+							footerContent.socialLinks.map((link) => (
+								<a
+									href={link.href}
+									target="_blank"
+									rel="noopener noreferrer"
+									aria-label={link.ariaLabel}
+									class="w-10 h-10 rounded-sm bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-amber-300 hover:border-amber-400/50 transition-colors focus-visible:outline-amber-400"
+								>
+									<span set:html={socialIcons[link.name]} />
+								</a>
+							))
+						}
+					</div>
+				</div>
+			</div>
+
+			<div class="md:col-span-4 space-y-3">
+				<h3 class="font-serif text-slate-200 text-sm font-medium">
+					{footerContent.bankPartners.title}
+				</h3>
+				<p class="text-xs text-slate-300 font-normal leading-relaxed">
+					{footerContent.bankPartners.description}
+				</p>
+				<div class="pt-2 text-[11px] text-amber-300 font-mono">
+					{footerContent.bankPartners.legalNote}
+				</div>
+			</div>
+
+			<div class="md:col-span-3 space-y-3">
+				<h3 class="font-serif text-slate-200 text-sm font-medium">
+					{footerContent.contact.title}
+				</h3>
+				<p class="text-xs text-slate-300 font-normal leading-relaxed">
+					{footerContent.contact.address}
+				</p>
+				<p class="text-xs text-amber-300 font-mono font-medium">
+					{footerContent.contact.hours}
+				</p>
+			</div>
+		</div>
+
+		<div
+			class="pt-8 border-t border-slate-900 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 font-normal gap-4"
+		>
+			<p>{footerContent.copyright}</p>
+			<div class="flex items-center gap-6">
+				<a
+					href="#about"
+					class="py-2.5 hover:text-slate-200 focus-visible:outline-amber-400"
+					>Kebijakan Privasi</a
+				>
+				<a
+					href="#units"
+					class="py-2.5 hover:text-slate-200 focus-visible:outline-amber-400"
+					>Syarat & Ketentuan KPR</a
+				>
+			</div>
+		</div>
+	</div>
+</footer>

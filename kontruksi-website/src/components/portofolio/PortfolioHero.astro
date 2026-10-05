@@ -1,0 +1,36 @@
+---
+import { Layers, CheckCircle2, ShieldCheck } from 'lucide-astro';
+import { portofolioContent } from '../../data/portofolio.js';
+
+const { hero } = portofolioContent;
+---
+
+<section class="py-20 lg:py-28 bg-theme-bg border-b border-theme-border">
+  <div class="editorial-container">
+    <div class="max-w-4xl space-y-6">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-sm bg-theme-surface border border-theme-border text-theme-accent text-xs font-semibold tracking-wider">
+        <Layers class="w-4 h-4" />
+        <span>{hero.preheader}</span>
+      </div>
+
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-serif text-theme-primary font-normal leading-tight">
+        {hero.title}
+      </h1>
+
+      <p class="text-lg sm:text-xl text-theme-secondary font-normal leading-relaxed max-w-3xl">
+        {hero.subheading}
+      </p>
+
+      <div class="flex flex-wrap items-center gap-6 pt-2 text-sm text-theme-secondary">
+        <span class="flex items-center gap-2">
+          <CheckCircle2 class="w-4 h-4 text-theme-success" />
+          <span>{hero.badges[0]}</span>
+        </span>
+        <span class="flex items-center gap-2">
+          <ShieldCheck class="w-4 h-4 text-theme-accent" />
+          <span>{hero.badges[1]}</span>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>

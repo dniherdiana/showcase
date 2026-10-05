@@ -1,0 +1,28 @@
+<!-- Stats -->
+		<div
+			class="grid grid-cols-3 gap-6 lg:gap-12 mt-20 lg:mt-32 pt-12 lg:pt-16"
+			style="border-top: 1px solid var(--color-border);"
+			data-scroll
+			data-scroll-direction="up"
+			data-scroll-delay="500"
+		>
+			{
+				hero.stats.map((stat) => (
+					<div class="text-center lg:text-left">
+						<div
+							class="text-display"
+							style="font-size: clamp(2.5rem, 5vw, 4rem); color: var(--color-cream);"
+						>
+							<span data-count={stat.value} class="counter">
+								0
+							</span>
+							<span style="color: var(--color-rust);">{stat.suffix}</span>
+						</div>
+						<p class="text-label mt-2" style="color: var(--color-dim);">
+							<span data-lang="id">{stat.label.id}</span>
+							<span data-lang="en">{stat.label.en}</span>
+						</p>
+					</div>
+				))
+			}
+		</div>

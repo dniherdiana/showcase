@@ -1,0 +1,61 @@
+---
+import { ruangOnboardingData } from './RuangOnboarding.data.js';
+import { QrCode, Compass, Laptop } from 'lucide-astro';
+
+const icons = {
+  QrCode,
+  Compass,
+  Laptop
+};
+---
+
+<section class="py-20 md:py-28 bg-bg-surface">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="font-caveat text-3xl md:text-5xl font-bold text-text-primary leading-tight">
+        {ruangOnboardingData.headline}
+      </h2>
+      <p class="font-dmsans text-sm md:text-base text-text-secondary mt-4 leading-relaxed">
+        {ruangOnboardingData.lede}
+      </p>
+    </div>
+
+    <!-- 3 Steps Without Rigid Cards (Open Hairline Layout) -->
+    <div class="mt-14 grid grid-cols-1 md:grid-cols-3 gap-8">
+      {ruangOnboardingData.steps.map((step, idx) => {
+        const IconComponent = icons[step.icon as keyof typeof icons] || Compass;
+        return (
+          <div class="p-6 bg-white rounded-blob border-[1.5px] border-border-indie shadow-indie relative">
+            <div class="w-10 h-10 rounded-full bg-accent/10 text-accent flex items-center justify-center mb-4">
+              <IconComponent class="w-5 h-5" />
+            </div>
+            <h3 class="font-dmsans text-lg font-bold text-text-primary">
+              {step.title}
+            </h3>
+            <p class="font-dmsans text-xs md:text-sm text-text-secondary mt-2 leading-relaxed">
+              {step.description}
+            </p>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Bottom Conversion Gate -->
+    <div class="mt-16 p-8 md:p-12 bg-bg-base border-[1.5px] border-border-indie rounded-blob text-center max-w-3xl mx-auto shadow-indie rotate-[-0.5deg]">
+      <h3 class="font-caveat text-3xl md:text-4xl font-bold text-text-primary">
+        {ruangOnboardingData.bottomGate.headline}
+      </h3>
+      <p class="font-dmsans text-sm text-text-secondary mt-3 leading-relaxed max-w-xl mx-auto">
+        {ruangOnboardingData.bottomGate.body}
+      </p>
+      <div class="mt-6">
+        <a
+          href={ruangOnboardingData.bottomGate.cta.href}
+          class="btn-thunk inline-flex items-center justify-center bg-accent text-white font-dmsans font-bold text-sm h-12 px-8 rounded-full shadow-indie hover:bg-accent-hover"
+        >
+          {ruangOnboardingData.bottomGate.cta.label}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,79 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Marquee from '../components/Marquee.astro';
+
+const shots = [
+	{ img: 'https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?q=80&w=800&auto=format&fit=crop', alt: 'Bangunan biru putih Santorini di tepi laut', loc: 'Santorini, Yunani', tag: 'Eropa', tall: true },
+	{ img: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?q=80&w=800&auto=format&fit=crop', alt: 'Ombak laut biru menghantam pantai', loc: 'Maladewa', tag: 'Resort', tall: true },
+	{ img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=800&auto=format&fit=crop', alt: 'Pantai dengan air jernih berwarna toska', loc: 'Raja Ampat', tag: 'Domestik' },
+	{ img: 'https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=800&auto=format&fit=crop', alt: 'Perahu kayak di danau pegunungan', loc: 'Danau Toba', tag: 'Domestik' },
+	{ img: 'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?q=80&w=800&auto=format&fit=crop', alt: 'Gondola melintas di kanal Venesia', loc: 'Venesia, Italia', tag: 'Eropa' },
+	{ img: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=800&auto=format&fit=crop', alt: 'Kolam renang hotel dengan kursi santai', loc: 'Bali', tag: 'Hotel', tall: true },
+	{ img: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=800&auto=format&fit=crop', alt: 'Puncak gunung bersalju di bawah langit jernih', loc: 'Nepal', tag: 'Petualangan' },
+	{ img: 'https://images.unsplash.com/photo-1498084393753-b411b2d26b34?q=80&w=800&auto=format&fit=crop', alt: 'Gedung bersejarah di malam hari', loc: 'Eropa Timur', tag: 'Kota' },
+];
+---
+<Layout title="Galeri — Momen dari Ribuan Perjalanan">
+	<!-- ══════════ HEADER — minim teks ══════════ -->
+	<section class="container-px mx-auto pt-32 pb-8 text-center md:pt-40">
+		<p class="reveal text-xs font-bold uppercase tracking-[0.3em] text-tide">Galeri</p>
+		<h1 class="reveal display-hero mt-4 text-[clamp(2.8rem,9vw,7rem)]">Momen, <span class="serif italic text-peach">dari kamera kami.</span></h1>
+		<p class="reveal mx-auto mt-5 max-w-md text-ink/60">Sebagian kecil dokumentasi dari perjalanan yang kami temani. Sisanya menunggu kamu untuk dibuat.</p>
+	</section>
+
+	<Marquee items={['Klik untuk info', 'Temukan inspirasimu', 'Setiap frame punya cerita']} className="bg-peach-soft py-5 text-ink" />
+
+	<!-- ══════════ MASONRY — unik halaman ini, minimal teks ══════════ -->
+	<section class="container-px mx-auto py-14 md:py-20">
+		<div class="columns-2 gap-4 md:columns-3 lg:columns-4 [column-fill:balance]">
+			{shots.map((s, i) => (
+				<figure key={i} class="reveal group relative mb-4 break-inside-avoid overflow-hidden rounded-blob">
+					<img
+						src={s.img}
+						alt={s.alt}
+						loading="lazy"
+						class={[
+							'w-full object-cover transition-transform duration-700 group-hover:scale-105',
+							s.tall ? 'aspect-[3/4]' : 'aspect-[4/3]',
+						]}
+					/>
+					<figcaption class="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-ink/80 via-transparent to-transparent p-5 text-cream opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+						<span class="w-fit rounded-full bg-peach px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-ink">{s.tag}</span>
+						<p class="mt-2 font-display text-base font-bold">{s.loc}</p>
+					</figcaption>
+					<span class="absolute left-4 top-4 rounded-full bg-cream/85 px-3 py-1 text-[10px] font-bold text-ink opacity-0 backdrop-blur transition-opacity group-hover:opacity-100">{s.loc}</span>
+				</figure>
+			))}
+		</div>
+	</section>
+
+	<!-- ══════════ FEATURE — 2 kartu besar ══════════ -->
+	<section class="container-px mx-auto pb-20 md:pb-28">
+		<div class="grid gap-5 md:grid-cols-2">
+			<div class="reveal relative overflow-hidden rounded-blob bg-ink p-10 text-cream">
+				<span class="pointer-events-none absolute -right-6 -top-8 font-display text-[10rem] font-bold text-white/5">♥</span>
+				<p class="font-display text-3xl font-bold leading-tight">Setiap foto di atas diambil di perjalanan yang <span class="serif italic text-peach">benar-benar kami urus.</span></p>
+				<p class="mt-4 max-w-sm text-sm text-cream/70">Bukan stok foto pihak ketiga — itulah bukti paling jujur dari kerja kami selama 10 tahun.</p>
+				<a href="/kontak" class="mt-7 inline-flex w-fit rounded-full bg-peach px-6 py-3.5 font-display text-sm font-bold text-ink transition-transform hover:-translate-y-0.5">Jadikan fotomu berikutnya →</a>
+			</div>
+			<div class="reveal relative overflow-hidden rounded-blob">
+				<img src="https://images.unsplash.com/photo-1503220317375-aaad61436b1b?q=80&w=900&auto=format&fit=crop" alt="Candi di Bali dengan latar langit senja" loading="lazy" class="h-full min-h-[20rem] w-full object-cover" />
+				<div class="absolute inset-x-0 bottom-0 flex items-center justify-between bg-gradient-to-t from-ink/80 to-transparent p-6 text-cream">
+					<span class="font-display text-sm font-bold">+250 momen lain</span>
+					<a href="https://instagram.com" target="_blank" rel="noopener" class="rounded-full bg-cream px-4 py-2 text-xs font-bold text-ink hover:bg-peach transition-colors">Follow @i-travel</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ══════════ CTA ══════════ -->
+	<section class="container-px mx-auto pb-24">
+		<div class="rounded-blob bg-peach px-8 py-14 text-center text-ink md:py-20">
+			<h2 class="reveal display-hero mx-auto max-w-2xl text-3xl md:text-5xl">Terinspirasi? Mulai rakit <span class="serif italic">ceritamu sendiri.</span></h2>
+			<div class="reveal mt-8 flex flex-wrap items-center justify-center gap-4">
+				<a href="https://wa.me/6281234567890" target="_blank" rel="noopener" class="rounded-full bg-ink px-8 py-4 font-display font-bold text-cream shadow-xl transition-transform hover:-translate-y-1">Order via WhatsApp →</a>
+				<a href="/layanan" class="rounded-full border-2 border-ink px-8 py-4 font-display font-bold transition-colors hover:bg-ink hover:text-cream">Lihat layanan</a>
+			</div>
+		</div>
+	</section>
+</Layout>

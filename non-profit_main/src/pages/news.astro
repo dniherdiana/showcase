@@ -1,0 +1,155 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ClientDataTag from '../components/ClientDataTag.astro';
+
+const articles = [
+  {
+    title: "Yayasan Bumi Bersama Reaches Milestone: 145 Villages Now Governed by Native Reforestation Pacts",
+    date: "July 14, 2026",
+    category: "Press Release",
+    excerpt: "With the formal signing of the Bedugul Customary Forest Charter, over 145 partner communities now actively manage their own indigenous buffer zones.",
+    image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=1200&auto=format&fit=crop"
+  },
+  {
+    title: "New Hydro-Electric Spring Pipeline Completed in Dry Coastal District",
+    date: "June 28, 2026",
+    category: "Field Update",
+    excerpt: "Over 2,400 villagers in Sambangan Valley now have permanent access to clean gravity-fed mountain spring water, eliminating waterborne illnesses.",
+    image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    title: "Solar Eco-Literacy Pods Expanded to 10 New Remote Elementary Schools",
+    date: "May 19, 2026",
+    category: "Education",
+    excerpt: "Off-grid digital learning stations powered by rooftop solar arrays bring environmental science curricula to over 1,200 rural schoolchildren.",
+    image: "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    title: "2025 Annual Financial & Impact Audit Released for Public Review",
+    date: "April 02, 2026",
+    category: "Accountability",
+    excerpt: "Independent CPAs confirm 96.2% direct program allocation ratio across all 5 action pillars for fiscal year 2025.",
+    image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=800&auto=format&fit=crop"
+  }
+];
+---
+
+<Layout 
+  title="News & Field Updates | Yayasan Bumi Bersama"
+  description="Read press releases, field updates, environmental research, and financial audit announcements from Yayasan Bumi Bersama."
+>
+
+  <!-- 1. EDITORIAL MAGAZINE HERO -->
+  <section class="bg-paper pt-12 pb-16 border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="max-w-3xl space-y-4">
+        <span class="text-xs uppercase font-mono tracking-wider font-semibold text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full border border-emerald-300">
+          Newsroom & Field Dispatch
+        </span>
+        <h1 class="text-4xl sm:text-5xl font-bold text-stone-900 leading-tight">
+          Field Dispatches From The <span class="font-serif italic font-normal text-emerald-800">Conservation Frontlines.</span>
+        </h1>
+        <p class="text-base text-stone-600 leading-relaxed">
+          Stay up to date with our project milestones, community press releases, and published annual audit reports.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 2. FEATURED ARTICLE (Asymmetric Magazine Layout) -->
+  <section class="py-16 bg-paper border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <article class="bg-white rounded-3xl p-6 sm:p-10 border border-stone-200 shadow-sm grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <div class="lg:col-span-7 zoom-img-container rounded-2xl overflow-hidden h-80 sm:h-96">
+          <img 
+            src={articles[0].image} 
+            alt={articles[0].title}
+            class="w-full h-full object-cover"
+          />
+        </div>
+
+        <div class="lg:col-span-5 space-y-4">
+          <div class="flex items-center gap-3 text-xs">
+            <span class="bg-emerald-800 text-white font-bold px-3 py-1 rounded-full">{articles[0].category}</span>
+            <span class="text-stone-500 font-mono">{articles[0].date}</span>
+          </div>
+
+          <h2 class="text-2xl sm:text-3xl font-bold text-stone-900 leading-snug">
+            {articles[0].title}
+          </h2>
+
+          <p class="text-sm text-stone-600 leading-relaxed">
+            {articles[0].excerpt}
+          </p>
+
+          <div class="pt-2">
+            <a href="/contact" class="inline-flex items-center gap-2 font-bold text-emerald-800 hover:underline text-xs">
+              <span>Read Full Press Release</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+      </article>
+
+    </div>
+  </section>
+
+  <!-- 3. RECENT NEWS GRID -->
+  <section class="py-16 bg-stone-100 border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <h2 class="text-2xl font-bold text-stone-900 mb-8">Recent Field Updates & Articles</h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {articles.slice(1).map((art) => (
+          <article class="bg-white rounded-2xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between group">
+            <div>
+              <div class="h-48 zoom-img-container bg-stone-100">
+                <img src={art.image} alt={art.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div class="p-6">
+                <div class="flex items-center gap-2 mb-2 text-xs">
+                  <span class="font-bold text-emerald-800">{art.category}</span>
+                  <span class="text-stone-400">•</span>
+                  <span class="text-stone-500 font-mono">{art.date}</span>
+                </div>
+                <h3 class="text-lg font-bold text-stone-900 group-hover:text-emerald-800 transition-colors leading-snug mb-2">
+                  {art.title}
+                </h3>
+                <p class="text-xs text-stone-600 leading-relaxed">
+                  {art.excerpt}
+                </p>
+              </div>
+            </div>
+            <div class="p-6 pt-0">
+              <span class="text-xs font-bold text-emerald-800 group-hover:underline">Read article →</span>
+            </div>
+          </article>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. ANNUAL REPORT ARCHIVE STRIP -->
+  <section class="py-16 bg-paper border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-stone-900 text-white rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div>
+          <span class="text-xs font-mono uppercase text-amber-400 font-bold">Public Audit Repository</span>
+          <h3 class="text-2xl font-bold mt-1">Download Audited Annual Reports</h3>
+          <p class="text-xs text-stone-400 mt-1">Access verified financial balance sheets and project evaluation PDFs.</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+          <ClientDataTag text="Link Unduh Laporan Keuangan PDF" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+</Layout>

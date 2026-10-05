@@ -1,0 +1,95 @@
+---
+import { destinationCategories, destinationRegions } from "../data/index.js";
+
+interface Props {
+	categories?: string[];
+	regions?: string[];
+}
+
+const { categories = destinationCategories, regions = destinationRegions } = Astro.props;
+---
+
+<div class="p-6 sm:p-8 border-y border-white/10 bg-[#0c141f] space-y-6 story-scroll-item relative overflow-hidden">
+	<!-- Top Search Bar Section -->
+	<div class="relative max-w-3xl mx-auto w-full space-y-2">
+		<div class="relative flex items-center">
+			<svg
+				class="absolute left-4 w-5 h-5 text-gold shrink-0 pointer-events-none"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				viewBox="0 0 24 24"
+			>
+				<path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+			</svg>
+
+			<input
+				id="destination-search-input"
+				type="text"
+				data-i18n-key="searchPlaceholder"
+				placeholder="Search by destination, luxury hotel name (e.g. Mandapa, Ritz-Carlton, Ayana, Misool), or country..."
+				class="w-full py-3.5 pl-12 pr-6 bg-slate-950/80 border border-white/20 rounded-none text-xs sm:text-sm text-white placeholder-white/40 focus:outline-none focus:border-gold transition-all font-sans shadow-inner"
+			/>
+		</div>
+	</div>
+
+	<!-- Region Quick Filter Selector Tags -->
+	<div class="space-y-2 pt-1 border-t border-white/10">
+		<div class="flex items-center justify-between px-1">
+			<span class="text-[10px] font-mono text-teal-400 uppercase tracking-widest font-bold" data-i18n-en="Filter by Region" data-i18n-id="Pilih Wilayah Regional">
+				✦ Filter by Region
+			</span>
+		</div>
+		<ul class="flex flex-wrap items-center justify-start gap-3 list-none">
+			{
+				regions.map((reg, idx) => (
+					<li>
+						<button
+							type="button"
+							data-destination-region-btn={reg}
+							class={`dest-region-btn px-3 py-1 font-mono text-[11px] uppercase tracking-wider transition-all duration-300 cursor-pointer border-b-2 ${
+								idx === 0
+									? "border-teal-400 text-teal-400 font-bold"
+									: "border-transparent text-white/60 hover:text-white"
+							}`}
+						>
+							<span>{reg}</span>
+						</button>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+
+	<!-- Category Filter Section (No Pill Badges) -->
+	<div class="space-y-2 pt-1 border-t border-white/10">
+		<div class="flex items-center justify-between px-1">
+			<span class="text-[10px] font-mono text-gold uppercase tracking-widest font-bold" data-i18n-en="Filter by Category" data-i18n-id="Filter Kategori Destinasi">
+				✦ Filter by Experience Category
+			</span>
+			<span id="dest-count-indicator" class="text-[10px] font-mono text-amber-300 uppercase tracking-widest font-bold">
+				Showing 15 Destinations
+			</span>
+		</div>
+
+		<ul class="flex flex-wrap items-center justify-start gap-3 list-none">
+			{
+				categories.map((cat, idx) => (
+					<li>
+						<button
+							type="button"
+							data-destination-category-btn={cat}
+							class={`dest-category-btn px-3 py-1.5 font-mono text-xs uppercase tracking-wider transition-all duration-300 cursor-pointer border-b-2 ${
+								idx === 0
+									? "border-gold text-gold font-bold"
+									: "border-transparent text-white/70 hover:text-white"
+							}`}
+						>
+							<span>{cat}</span>
+						</button>
+					</li>
+				))
+			}
+		</ul>
+	</div>
+</div>

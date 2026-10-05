@@ -1,0 +1,277 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ClientDataBadge from '../components/ClientDataBadge.astro';
+---
+
+<Layout 
+  title="Kontak & Jadwalkan Meeting | Elevate Event Organizer"
+  description="Hubungi Elevate Event Organizer. Konsultasikan rencana corporate event, luxury wedding, atau pameran Anda dengan Modern Space Typography."
+>
+
+  <!-- HERO CONTACT: MASSIVE SPACE TYPOGRAPHY -->
+  <section class="py-20 border-b border-white/10 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        
+        <div class="lg:col-span-8 space-y-6">
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-accent-lime bg-dark-card border-l-2 border-accent-lime px-3 py-1.5">
+            <span>// FAST RESPONSE INQUIRY</span> • <span>JAKARTA HQ</span>
+          </div>
+
+          <h1 class="text-6xl sm:text-8xl lg:text-9xl font-display font-extrabold text-text-main tracking-tighter leading-[0.86] uppercase">
+            JADWALKAN MEETING & <br />
+            <span class="text-accent-orange">KONSULTASI EVENT</span>
+          </h1>
+
+          <p class="text-text-muted text-xl leading-relaxed max-w-xl">
+            Siap mendiskusikan konsep, tanggal pelaksanaan, maupun spesifikasi teknis acara Anda.
+          </p>
+        </div>
+
+        <div class="lg:col-span-4">
+          <div class="bg-dark-surface p-8 border-l-4 border-accent-lime space-y-3">
+            <div class="flex items-center gap-3 text-accent-lime font-mono text-xs font-bold uppercase">
+              <span class="w-2.5 h-2.5 bg-emerald-400 rounded-none animate-pulse"></span>
+              <span>KONSULTAN SIAP TERHUBUNG</span>
+            </div>
+            <p class="text-xs font-mono text-text-muted">
+              Rata-rata waktu tanggap pesan inquiry kami adalah di bawah 30 menit pada jam kerja operasional (08:30 - 18:00 WIB).
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTACT SPLIT SECTION -->
+  <section class="py-20 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <!-- Left Column: Consultation Builder Form -->
+        <div class="lg:col-span-7">
+          <div class="bg-dark-surface p-8 sm:p-12 border-2 border-white/15 relative shadow-2xl">
+            
+            <div class="mb-10">
+              <span class="text-xs font-mono text-accent-orange uppercase tracking-widest block mb-2">// FORMULIR PERENCANAAN EVENT</span>
+              <h3 class="text-3xl sm:text-4xl font-display font-extrabold text-text-main">
+                Isi Detail Kebutuhan Event Anda
+              </h3>
+            </div>
+
+            <form id="contact-form" class="space-y-8">
+              
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label for="contact-name" class="block text-xs font-mono text-text-muted uppercase mb-2">NAMA LENGKAP *</label>
+                  <input 
+                    type="text" 
+                    id="contact-name"
+                    required
+                    placeholder="e.g. Budi Santoso"
+                    class="w-full bg-dark-card border-2 border-white/10 px-5 py-4 text-text-main placeholder-white/20 focus:outline-none focus:border-accent-orange transition-colors font-mono text-sm"
+                  />
+                </div>
+
+                <div>
+                  <label for="contact-company" class="block text-xs font-mono text-text-muted uppercase mb-2">NAMA PERUSAHAAN</label>
+                  <input 
+                    type="text" 
+                    id="contact-company"
+                    placeholder="e.g. PT Nusantara Tech"
+                    class="w-full bg-dark-card border-2 border-white/10 px-5 py-4 text-text-main placeholder-white/20 focus:outline-none focus:border-accent-orange transition-colors font-mono text-sm"
+                  />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label for="contact-email" class="block text-xs font-mono text-text-muted uppercase mb-2">ALAMAT EMAIL *</label>
+                  <input 
+                    type="email" 
+                    id="contact-email"
+                    required
+                    placeholder="budi@perusahaan.co.id"
+                    class="w-full bg-dark-card border-2 border-white/10 px-5 py-4 text-text-main placeholder-white/20 focus:outline-none focus:border-accent-orange transition-colors font-mono text-sm"
+                  />
+                </div>
+
+                <div>
+                  <label for="contact-phone" class="block text-xs font-mono text-text-muted uppercase mb-2">NOMOR WHATSAPP *</label>
+                  <input 
+                    type="tel" 
+                    id="contact-phone"
+                    required
+                    placeholder="0812-XXXX-XXXX"
+                    class="w-full bg-dark-card border-2 border-white/10 px-5 py-4 text-text-main placeholder-white/20 focus:outline-none focus:border-accent-orange transition-colors font-mono text-sm"
+                  />
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label for="contact-category" class="block text-xs font-mono text-text-muted uppercase mb-2">JENIS EVENT *</label>
+                  <select 
+                    id="contact-category"
+                    required
+                    class="w-full bg-dark-card border-2 border-white/10 px-5 py-4 text-text-main focus:outline-none focus:border-accent-orange transition-colors font-mono text-sm"
+                  >
+                    <option value="" disabled selected>Pilih Kategori Event</option>
+                    <option value="corporate">Corporate Event / Gala Dinner</option>
+                    <option value="wedding">Luxury Wedding Reception</option>
+                    <option value="exhibition">Exhibition & MICE</option>
+                    <option value="launch">Product Launching</option>
+                    <option value="brand">Brand Activation & Pop-Up</option>
+                    <option value="gathering">Employee Gathering</option>
+                    <option value="other">Lainnya / Produksi AV</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="contact-date" class="block text-xs font-mono text-text-muted uppercase mb-2">ESTIMASI TANGGAL EVENT</label>
+                  <input 
+                    type="date" 
+                    id="contact-date"
+                    class="w-full bg-dark-card border-2 border-white/10 px-5 py-4 text-text-main focus:outline-none focus:border-accent-orange transition-colors font-mono text-sm"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label for="contact-message" class="block text-xs font-mono text-text-muted uppercase mb-2">GAMBARAN ACARA & PERTANYAAN KHUSUS *</label>
+                <textarea 
+                  id="contact-message"
+                  required
+                  rows="4"
+                  placeholder="Tuliskan estimasi jumlah peserta, lokasi venue yang diinginkan, atau pertanyaan spesifik panggung..."
+                  class="w-full bg-dark-card border-2 border-white/10 p-5 text-text-main placeholder-white/20 focus:outline-none focus:border-accent-orange transition-colors font-sans text-base"
+                ></textarea>
+              </div>
+
+              <div class="bg-dark-card p-6 border-l-4 border-accent-lime">
+                <label class="block text-xs font-mono text-accent-lime uppercase font-bold mb-3">// PILIH JAM MEETING YANG DIINGINKAN:</label>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 font-mono text-xs">
+                  <button type="button" class="slot-btn py-3 border border-white/10 hover:border-accent-orange bg-white/5 text-text-main">09:00 WIB</button>
+                  <button type="button" class="slot-btn py-3 border border-white/10 hover:border-accent-orange bg-white/5 text-text-main">11:00 WIB</button>
+                  <button type="button" class="slot-btn py-3 border border-accent-orange bg-accent-orange text-dark-bg font-bold">14:00 WIB</button>
+                  <button type="button" class="slot-btn py-3 border border-white/10 hover:border-accent-orange bg-white/5 text-text-main">16:00 WIB</button>
+                </div>
+              </div>
+
+              <div>
+                <button 
+                  type="submit"
+                  class="w-full py-5 bg-accent-orange text-dark-bg font-mono font-bold text-lg hover:bg-accent-lime transition-all"
+                >
+                  KIRIM & JADWALKAN MEETING →
+                </button>
+              </div>
+
+              <div id="form-status" class="hidden p-5 bg-accent-lime/20 border-l-4 border-accent-lime text-accent-lime text-xs font-mono font-bold">
+                ✓ Terima kasih! Pesan Anda telah diterima. Tim konsultan Elevate akan menghubungi Anda dalam waktu 30 menit.
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+
+        <!-- Right Column: HQ Info -->
+        <div class="lg:col-span-5 space-y-8">
+          
+          <div class="space-y-4">
+            <a 
+              href="https://wa.me/6281234567890" 
+              target="_blank"
+              class="bg-dark-surface p-6 border-l-4 border-emerald-400 hover:border-accent-lime transition-all block group"
+            >
+              <span class="text-xs font-mono text-emerald-400 font-bold uppercase block mb-1">// WHATSAPP DIRECT LINE</span>
+              <span class="font-display font-extrabold text-2xl text-text-main group-hover:text-emerald-400 transition-colors">+62 812-3456-7890</span>
+              <span class="text-xs font-mono text-text-muted block mt-1">Balasan instan untuk kebutuhan mendesak</span>
+            </a>
+
+            <a 
+              href="mailto:hello@elevateorganizer.co.id" 
+              class="bg-dark-surface p-6 border-l-4 border-accent-orange hover:border-accent-lime transition-all block group"
+            >
+              <span class="text-xs font-mono text-accent-orange font-bold uppercase block mb-1">// EMAIL OFFICIAL INQUIRY</span>
+              <span class="font-display font-extrabold text-2xl text-text-main group-hover:text-accent-orange transition-colors">hello@elevateorganizer.co.id</span>
+              <span class="text-xs font-mono text-text-muted block mt-1">Untuk pengiriman dokumen RFP & Tender</span>
+            </a>
+          </div>
+
+          <div class="bg-dark-card p-8 border-l-4 border-accent-lime space-y-4 font-mono">
+            <h4 class="font-bold text-text-main uppercase text-sm">// KANTOR PUSAT ELEVATE HQ</h4>
+            <div class="space-y-4 text-xs text-text-muted">
+              <div>
+                <strong class="text-text-main block mb-1">Alamat Kantor Gedung:</strong>
+                <ClientDataBadge label="Alamat Spesifik SCBD Office Tower Elevate" class="mb-1 block" />
+                <span>SCBD Tower Level 18, Kawasan Niaga Terpadu Sudirman, Jakarta Selatan, DKI Jakarta 12190</span>
+              </div>
+              <div>
+                <strong class="text-text-main block">Jam Operasional:</strong>
+                <span class="text-text-main">Senin – Jumat: 08:30 – 18:00 WIB</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Google Maps Frame -->
+          <div class="relative border-2 border-white/15 h-64 overflow-hidden group">
+            <img 
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop" 
+              alt="Jakarta SCBD District Map Background" 
+              class="w-full h-full object-cover transform transition-transform group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-dark-bg/60"></div>
+            <div class="absolute inset-0 p-6 flex flex-col justify-between font-mono">
+              <span class="bg-dark-bg border border-white/10 px-3 py-1 text-xs text-accent-lime font-bold w-max">
+                📍 JAKARTA SOUTH CBD
+              </span>
+              <div class="bg-dark-surface p-4 border-l-2 border-accent-orange">
+                <span class="text-xs text-accent-orange font-bold uppercase block">// ELEVATE EXPERIENCE CENTER</span>
+                <p class="text-xs text-text-main font-bold mt-1">SCBD Tower Level 18, Jakarta</p>
+                <a href="https://maps.google.com" target="_blank" class="text-[11px] text-accent-lime hover:underline mt-2 inline-block">
+                  Buka di Google Maps →
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    const contactForm = document.getElementById('contact-form');
+    const formStatus = document.getElementById('form-status');
+
+    if (contactForm && formStatus) {
+      contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        formStatus.classList.remove('hidden');
+        contactForm.reset();
+        setTimeout(() => {
+          formStatus.classList.add('hidden');
+        }, 8000);
+      });
+    }
+
+    const slotBtns = document.querySelectorAll('.slot-btn');
+    slotBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        slotBtns.forEach(b => {
+          b.classList.remove('bg-accent-orange', 'text-dark-bg', 'font-bold');
+          b.classList.add('bg-white/5', 'text-text-main');
+        });
+        btn.classList.add('bg-accent-orange', 'text-dark-bg', 'font-bold');
+        btn.classList.remove('bg-white/5', 'text-text-main');
+      });
+    });
+  </script>
+
+</Layout>

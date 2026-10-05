@@ -1,0 +1,60 @@
+---
+import { ShieldCheck, Lock, Award, Wrench, Compass } from 'lucide-astro';
+import { homeContent } from '../../data/home.js';
+
+const { reassurance } = homeContent;
+
+const iconMap: Record<string, any> = {
+  Lock,
+  Award,
+  Wrench,
+  Compass
+};
+---
+
+<section class="py-24 lg:py-32 bg-theme-surface border-b border-theme-border">
+  <div class="editorial-container">
+    
+    <!-- Section Header -->
+    <div class="max-w-3xl mb-16 space-y-4 reveal-on-scroll">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-sm bg-theme-bg border border-theme-border text-theme-accent text-xs font-semibold tracking-wider">
+        <ShieldCheck class="w-4 h-4" />
+        <span>{reassurance.preheader}</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif text-theme-primary font-normal leading-tight">
+        {reassurance.title}
+      </h2>
+      <p class="text-theme-secondary text-base leading-relaxed">
+        {reassurance.subtitle}
+      </p>
+    </div>
+
+    <!-- 4 Reassurance Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {reassurance.items.map((item, idx) => {
+        const IconComponent = iconMap[item.icon] || ShieldCheck;
+        const delayClass = `stagger-${(idx % 4) + 1}`;
+        return (
+          <div class={`surface-card p-8 rounded-sm bg-theme-bg border-theme-border space-y-4 hover:border-theme-accent/50 transition-all reveal-on-scroll ${delayClass}`}>
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-sm bg-theme-accent-bg border border-theme-accent/30 text-theme-accent flex items-center justify-center shrink-0">
+                <IconComponent class="w-5 h-5" />
+              </div>
+              <h3 class="text-lg font-serif text-theme-primary font-medium leading-snug">
+                {item.question}
+              </h3>
+            </div>
+
+            <div class="p-4 rounded-sm bg-theme-surface border border-theme-border space-y-2">
+              <div class="text-xs font-bold text-theme-accent uppercase tracking-wider">Komitmen & Solusi Moving Co.:</div>
+              <p class="text-theme-secondary text-sm leading-relaxed">
+                {item.answer}
+              </p>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+  </div>
+</section>

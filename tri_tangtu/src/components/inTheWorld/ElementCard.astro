@@ -1,0 +1,70 @@
+---
+import { Image } from "astro:assets";
+const {
+	src,
+	alt,
+	classWrapper,
+	classTextWrapper,
+	pillar,
+	cardName,
+	role,
+	description,
+	keywords,
+	fetchpriority,
+	loading,
+	format,
+	quality,
+	creditInfo,
+} = Astro.props;
+---
+
+<article class={classWrapper}>
+	<div class="relative">
+		<Image
+			class="object-cover h-auto lg:h-120 max-w-full"
+			src={src}
+			alt={alt}
+			widths={[360, 720]}
+			sizes="(max-width: 768px) 100vw, 364px"
+			fetchpriority={fetchpriority}
+			loading={loading}
+			format={format}
+			quality={quality}
+		/>
+		<div
+			class="absolute bottom-1 left-2 z-10 flex items-center gap-1 text-heading/60 bg-text-dark/50 p-1"
+		>
+			<div class="w-1 h-1 rounded-full bg-current opacity-60"></div>
+
+			<p
+				class="uppercase text-[8px] lg:text-[10px] tracking-wider lg:tracking-widest font-light"
+			>
+				{creditInfo}
+			</p>
+		</div>
+	</div>
+
+	<div class={classTextWrapper}>
+		<div
+			class="flex flex-row gap-3 items-center text-sm lg:pt-25 pb-3 uppercase tracking-wide"
+		>
+			<div class="w-1.5 h-1.5 rounded-full bg-heading"></div>
+			<p class="text-heading text-[10px] lg:text-xs tracking-widest">
+				{pillar}
+			</p>
+		</div>
+		<h2 class="text-2xl lg:text-3xl text-text leading-relaxed">{cardName}</h2>
+		<h3
+			class="text-heading uppercase text-[10px] lg:text-[11px] tracking-widest mb-5"
+		>
+			{role}
+		</h3>
+		<p class="text-text text-base pb-5">{description}</p>
+		<div class="inline-flex items-center gap-3">
+			<div class="w-4 h-px bg-text"></div>
+			<p class="text-heading text-[11px] uppercase tracking-wide">
+				{keywords}
+			</p>
+		</div>
+	</div>
+</article>

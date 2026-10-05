@@ -1,0 +1,198 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const categories = [
+	{ id: 'semua', label: 'Semua' },
+	{ id: 'liburan', label: 'Liburan' },
+	{ id: 'bisnis', label: 'Bisnis' },
+	{ id: 'spesial', label: 'Momen Spesial' },
+];
+
+const services = [
+	{ cat: 'liburan', name: 'Paket Domestik', desc: 'Bali, Yogyakarta, Labuan Bajo, dan ribuan sudut Nusantara — lengkap dengan tiket, hotel, dan aktivitas.', img: 'https://images.unsplash.com/photo-1519046904884-53103b34b206?q=80&w=800&auto=format&fit=crop', alt: 'Pantai tropis dengan pohon kelapa', price: 'Mulai Rp1.250K' },
+	{ cat: 'liburan', name: 'Paket Internasional', desc: 'Asia Tenggara sampai Eropa. Visa diurus, itinerary diramu, kamu tinggal bawa rasa ingin tahu.', img: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=800&auto=format&fit=crop', alt: 'Pesawat terbang di langit biru', price: 'Mulai Rp6.500K' },
+	{ cat: 'bisnis', name: 'Corporate Travel', desc: 'Perjalanan dinas yang efisien dan akuntabel. Satu pintu untuk tiket, hotel, dan approval tim kamu.', img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop', alt: 'Pegawai profesional di kantor', price: 'Custom / corp' },
+	{ cat: 'bisnis', name: 'MICE & Event', desc: 'Meeting, incentive, conference, exhibition — dari ruang rapat sampai venue, kami yang turun tangan.', img: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop', alt: 'Konferensi dengan penonton di aula', price: 'Custom / event' },
+	{ cat: 'bisnis', name: 'Hotel & Transport', desc: 'Akses ke ratusan hotel dan armada dengan harga bersaing. Stok pasti, tanpa drama last-minute.', img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop', alt: 'Kamar hotel mewah dengan tempat tidur rapi', price: 'Harga member' },
+	{ cat: 'spesial', name: 'Umroh & Honeymoon', desc: 'Perjalanan sekali seumur hidup dirakit detail demi detail — sampai kamu lupa mengurus apa pun.', img: 'https://images.unsplash.com/photo-1526772662000-3f88f10405ff?q=80&w=800&auto=format&fit=crop', alt: 'Sayap pesawat saat terbang di atas awan', price: 'Kuota terbatas' },
+];
+
+const tiers = [
+	{ name: 'Explore', tag: 'Untuk healing domestik', price: 'Rp1.250K', unit: '/ orang', feats: ['Tiket + hotel 3 hari 2 malam', 'Itinerary harian lengkap', 'Asuransi perjalanan dasar', 'Bantuan 24 jam'] },
+	{ name: 'Adventure', tag: 'Paling populer, 60% klien pilih ini', price: 'Rp6.500K', unit: '/ orang', featured: true, feats: ['Tiket internasional PP', 'Hotel bintang 4', 'Tour leader & dokumentasi', 'Visa + asuransi penuh', 'Bantuan 24 jam & prioritas'] },
+	{ name: 'Prestige', tag: 'Corporate & custom', price: 'Custom', unit: 'sesuai brief', feats: ['Semua di Adventure, plus:', 'Rombongan / MICE / corporate', 'Laporan akuntabel', 'Tim khusus yang mendampingi'] },
+];
+
+const faqs = [
+	{ q: 'Berapa lama proses booking perjalanan?', a: 'Paket domestik bisa berangkat dalam 3–5 hari kerja setelah DP. Untuk internasional dan visa, umumnya 2–4 minggu tergantung kebijakan kedutaan. Kami selalu kasih timeline pasti sebelum kamu bayar.' },
+	{ q: 'Bagaimana jika jadwal saya berubah?', a: 'Perubahan jadwal sebelum keberangkatan dilayani tanpa drama — kami bantu cari pengganti tiket/hotel dengan biaya seminimal mungkin. Ini bagian dari kepuasan client yang kami jaga.' },
+	{ q: 'Apakah harga sudah termasuk semua?', a: 'Ya, dalam rincian yang kami kirim: tiket, hotel, transport lokal, aktivitas, dan asuransi — tanpa biaya siluman. Yang tidak termasuk selalu disebut eksplisit di awal.' },
+	{ q: 'Bisa request paket custom untuk perusahaan?', a: 'Tentu. Corporate travel kami sudah dipercaya puluhan perusahaan. Kirim brief kebutuhanmu, tim kami siapkan proposal lengkap dalam 48 jam.' },
+];
+---
+<Layout title="Layanan — Semua Kebutuhan Perjalanan dalam Satu Pintu">
+	<!-- ══════════ HEADER — kompak, bukan hero raksasa ══════════ -->
+	<section class="container-px mx-auto pt-32 pb-12 md:pt-40">
+		<nav class="text-xs font-semibold text-ink/50" aria-label="breadcrumb">Home <span class="mx-1 text-tide">/</span> Layanan</nav>
+		<div class="mt-6 grid items-end gap-8 md:grid-cols-12">
+			<div class="md:col-span-8">
+				<h1 class="reveal display-hero text-[clamp(2.6rem,6vw,5rem)]">
+					Pilih layanan,<br />
+					kami urus <span class="serif italic text-tide">sisanya.</span>
+				</h1>
+			</div>
+			<div class="md:col-span-4">
+				<p class="reveal text-lg text-ink/60">Dari tiket satu orang sampai event korporat 500 undangan — semua lewat satu pintu, dengan rincian yang transparan sejak awal.</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- ══════════ KATALOG — interactive filter (unik halaman ini) ══════════ -->
+	<section class="container-px mx-auto pb-20 md:pb-28">
+		<div id="service-tabs" class="reveal flex flex-wrap gap-2">
+			{categories.map((c) => (
+				<button data-filter={c.id} class="filter-btn rounded-full border border-ink/15 px-5 py-2.5 text-sm font-bold transition-colors" aria-pressed={c.id === 'semua'}>
+					{c.label}
+				</button>
+			))}
+		</div>
+
+		<div id="service-grid" class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+			{services.map((s, i) => (
+				<article class="service-card reveal group overflow-hidden rounded-blob border border-ink/10 bg-white" data-cat={s.cat}>
+					<div class="relative overflow-hidden">
+						<img src={s.img} alt={s.alt} loading="lazy" class="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+						<span class="absolute left-4 top-4 rounded-full bg-cream/90 px-3 py-1 text-xs font-bold text-ink backdrop-blur">{s.cat === 'spesial' ? '★ Momen Spesial' : s.cat === 'bisnis' ? 'Brief Bisnis' : 'Paket Reguler'}</span>
+					</div>
+					<div class="p-6">
+						<div class="flex items-start justify-between gap-3">
+							<h3 class="font-display text-xl font-bold">{s.name}</h3>
+							<span class="whitespace-nowrap rounded-full bg-peach-soft px-3 py-1 text-xs font-bold text-ink">{s.price}</span>
+						</div>
+						<p class="mt-3 text-sm leading-relaxed text-ink/60">{s.desc}</p>
+						<a href="/kontak" class="mt-5 inline-flex items-center gap-2 font-display text-sm font-bold text-tide hover:gap-3 hover:text-tide-deep transition-all">Booking layanan ini →</a>
+					</div>
+				</article>
+			))}
+			<article class="reveal flex flex-col justify-center gap-4 rounded-blob bg-ink p-8 text-cream">
+				<span class="text-3xl">✈</span>
+				<h3 class="font-display text-2xl font-bold">Tidak menemukan yang kamu cari?</h3>
+				<p class="text-sm text-cream/70">Kirim rencana liburanmu dan dapatkan proposal custom dalam 24 jam — ini bagian dari "bukti bukan janji" yang selalu kami pegang.</p>
+				<a href="https://wa.me/6281234567890" target="_blank" rel="noopener" class="mt-2 inline-flex w-fit rounded-full bg-peach px-5 py-3 font-display text-sm font-bold text-ink transition-transform hover:-translate-y-0.5">Order custom →</a>
+			</article>
+		</div>
+	</section>
+
+	<!-- ══════════ PAKET — 3 tier, featured lebih besar ══════════ -->
+	<section class="bg-ink py-20 text-cream md:py-28">
+		<div class="container-px mx-auto">
+			<p class="reveal text-center text-xs font-bold uppercase tracking-[0.25em] text-peach">Paket unggulan</p>
+			<h2 class="reveal display-hero mt-3 text-center text-4xl md:text-5xl">Pilih skala, kami yang hitung rinci.</h2>
+
+			<div class="mt-14 grid items-stretch gap-5 lg:grid-cols-3">
+				{tiers.map((t, i) => (
+					<div key={i} class:list={[
+						'reveal relative flex flex-col rounded-blob p-8',
+						t.featured ? 'bg-peach text-ink shadow-2xl shadow-peach/20 lg:-my-5 lg:py-13' : 'bg-cream/5 text-cream',
+					]}>
+						{t.featured && <span class="absolute -top-3 left-8 rounded-full bg-ink px-4 py-1 text-xs font-bold text-cream">Paling Populer</span>}
+						<p class="text-sm font-bold uppercase tracking-widest opacity-70">{t.name}</p>
+						<p class="mt-1 text-xs opacity-60">{t.tag}</p>
+						<p class="mt-6 font-display text-5xl font-bold tracking-tight">{t.price}</p>
+						<p class="mt-1 text-xs opacity-60">{t.unit}</p>
+						<ul class="mt-7 space-y-3 text-sm">
+							{t.feats.map((f) => (
+								<li class="flex items-start gap-2.5"><span class:list={["mt-0.5", t.featured ? 'text-ink' : 'text-peach']}>✓</span> {f}</li>
+							))}
+						</ul>
+						<a href="/kontak" class:list={[
+							'mt-8 inline-flex w-fit rounded-full px-6 py-3.5 font-display text-sm font-bold transition-transform hover:-translate-y-0.5',
+							t.featured ? 'bg-ink text-cream' : 'bg-cream text-ink',
+						]}>Pilih paket ini →</a>
+					</div>
+				))}
+			</div>
+			<p class="reveal mt-10 text-center text-sm text-cream/50">* Harga final dihitung saat konfirmasi. Karena kami percaya bukti selalu lebih kredibel daripada estimasi yang dipoles.</p>
+		</div>
+	</section>
+
+	<!-- ══════════ FAQ — accordion ══════════ -->
+	<section class="container-px mx-auto py-20 md:py-28">
+		<div class="grid gap-12 md:grid-cols-12">
+			<div class="md:col-span-4">
+				<p class="reveal text-xs font-bold uppercase tracking-[0.25em] text-tide">Pertanyaan umum</p>
+				<h2 class="reveal display-hero mt-3 text-3xl md:text-4xl">Sebelum kamu <span class="serif italic text-tide">bertanya,</span></h2>
+				<p class="reveal mt-4 text-ink/60">Belum ketemu jawabannya? Langsung saja tanya via WhatsApp.</p>
+				<a href="https://wa.me/6281234567890" target="_blank" rel="noopener" class="reveal mt-6 inline-flex w-fit rounded-full bg-tide px-6 py-3.5 font-display text-sm font-bold text-cream transition-transform hover:-translate-y-0.5">Tanya via WhatsApp</a>
+			</div>
+			<div class="md:col-span-8">
+				<div class="space-y-3">
+					{faqs.map((f, i) => (
+						<div key={i} class="faq-item overflow-hidden rounded-2xl border border-ink/10 bg-white">
+							<button class="faq-q flex w-full items-center justify-between gap-4 p-6 text-left" aria-expanded="false">
+								<h3 class="font-display text-lg font-bold">{f.q}</h3>
+								<span class="faq-icon grid size-8 shrink-0 place-items-center rounded-full bg-peach-soft font-bold text-ink transition-transform">+</span>
+							</button>
+							<div class="faq-a grid grid-rows-[0fr] transition-all duration-300">
+								<div class="overflow-hidden">
+									<p class="px-6 pb-6 text-sm leading-relaxed text-ink/60">{f.a}</p>
+								</div>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ══════════ CTA ══════════ -->
+	<section class="container-px mx-auto pb-20 md:pb-28">
+		<div class="rounded-blob bg-tide px-8 py-14 text-cream md:flex md:items-center md:justify-between md:px-14">
+			<div>
+				<h2 class="display-hero text-3xl md:text-4xl">Masih ragu memilih?</h2>
+				<p class="mt-3 max-w-md text-cream/80">Bukan masalah. Konsultasi dulu gratis — kami bantu temukan layanan yang paling pas untuk rencanamu.</p>
+			</div>
+			<div class="mt-7 flex flex-col gap-3 md:mt-0 md:flex-row">
+				<a href="tel:+6281234567890" class="rounded-full bg-cream px-7 py-4 font-display font-bold text-ink transition-transform hover:-translate-y-0.5">Telepon kami</a>
+				<a href="/kontak" class="rounded-full border-2 border-cream/50 px-7 py-4 font-display font-bold text-cream transition-colors hover:bg-cream hover:text-ink">Isi booking form</a>
+			</div>
+		</div>
+	</section>
+
+	<script>
+		// Interactive filter
+		const btns = document.querySelectorAll('#service-tabs .filter-btn');
+		const cards = document.querySelectorAll('#service-grid .service-card');
+		btns.forEach((btn) => {
+			btn.addEventListener('click', () => {
+				const f = btn.dataset.filter;
+				btns.forEach((b) => {
+					b.classList.remove('bg-ink', 'text-cream');
+					b.classList.add('border-ink/15');
+					b.setAttribute('aria-pressed', 'false');
+				});
+				btn.classList.add('bg-ink', 'text-cream');
+				btn.classList.remove('border-ink/15');
+				btn.setAttribute('aria-pressed', 'true');
+				cards.forEach((c) => {
+					const show = f === 'semua' || c.dataset.cat === f;
+					c.style.display = show ? '' : 'none';
+				});
+			});
+		});
+
+		// FAQ accordion
+		document.querySelectorAll('.faq-item').forEach((item) => {
+			const btn = item.querySelector('.faq-q');
+			const answer = item.querySelector('.faq-a');
+			const icon = item.querySelector('.faq-icon');
+			btn.addEventListener('click', () => {
+				const open = answer.classList.toggle('grid-rows-[1fr]');
+				btn.setAttribute('aria-expanded', String(open));
+				icon.style.transform = open ? 'rotate(45deg)' : '';
+				if (open) item.querySelector('.faq-q').classList.add('text-tide');
+				else item.querySelector('.faq-q').classList.remove('text-tide');
+			});
+		});
+	</script>
+</Layout>

@@ -1,0 +1,21 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import ContactForm from '../components/ContactForm.astro';
+import BookingWidget from '../components/BookingWidget.astro';
+import Footer from '../components/Footer.astro';
+import { siteConfig } from '../data/site.js';
+---
+
+<Layout 
+  title={`Mulai Percakapan Proyek Pabrik | ${siteConfig.name}`}
+  description="Jika Anda sedang merencanakan pembangunan pabrik signifikan, insinyur struktur Moving Co. siap mendengarkan dan membalas dalam 24 jam kerja."
+  canonicalPath="/kontak"
+>
+  <Navbar />
+  <main class="pt-20" id="main-content">
+    <ContactForm />
+    <BookingWidget />
+  </main>
+  <Footer />
+</Layout>

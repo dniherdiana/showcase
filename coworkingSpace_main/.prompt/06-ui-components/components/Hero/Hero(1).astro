@@ -1,0 +1,94 @@
+---
+import MissingData from "./MissingData.astro";
+const { missingdata } = Astro.props;
+---
+
+<div
+	class="mx-auto grid max-w-7xl gap-12 px-4 pb-20 pt-14 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:pt-20"
+>
+	<div>
+		<p
+			class="sticker-sm inline-flex -rotate-1 items-center gap-2 rounded-full bg-butter px-4 py-1.5 text-xs font-extrabold uppercase tracking-widest"
+		>
+			✈ Travel agent · 10 tahun · 450+ client
+		</p>
+		<h1
+			class="mt-6 font-display text-5xl font-extrabold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl"
+		>
+			Dunia luas banget. Kami yang atur, kamu tinggal
+			<span class="hl-sun whitespace-nowrap">nikmatin.</span>
+		</h1>
+		<p class="mt-6 max-w-xl text-lg font-medium leading-relaxed text-ink-soft">
+			Dari tiket, hotel, sampai rundown per jam — semua disusun rapi dan
+			disertai bukti nyata.
+			<strong class="text-ink">10 tahun berdiri, 450+ client</strong>, dan
+			jumlah itu masih terus bertambah tiap musim liburan.
+		</p>
+		<div class="mt-8 flex flex-wrap items-center gap-4">
+			<a
+				href="https://wa.me/6281234567890?text=Halo%20i-Travel!%20Aku%20mau%20rencanain%20liburan."
+				class="sticker hover-pop rounded-xl bg-coral px-6 py-3.5 font-display text-lg font-extrabold text-cream"
+				>Order via WhatsApp</a
+			>
+			<a
+				href="/kontak"
+				class="sticker hover-pop rounded-xl bg-cream px-6 py-3.5 font-display text-lg font-extrabold"
+				>Isi Form Booking</a
+			>
+			<MissingData note={missingdata} />
+		</div>
+	</div>
+
+	<!-- Kolase kartu pos -->
+	<div
+		class="relative mx-auto h-[420px] w-full max-w-md lg:h-[500px]"
+		data-reveal
+	>
+		<figure
+			class="tape sticker absolute left-0 top-4 w-56 -rotate-6 rounded-xl bg-cream p-3 animate-float"
+			style="--tilt:-6deg"
+		>
+			<img
+				src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=70"
+				alt="Pantai tropis berpasir putih dengan ombak tenang"
+				class="rounded-lg object-cover"
+				loading="eager"
+			/>
+			<figcaption class="pt-2 text-center font-display text-sm font-bold">
+				Pantai, kami yang booking 🏖
+			</figcaption>
+		</figure>
+		<figure
+			class="tape sticker absolute right-0 top-0 w-52 rotate-6 rounded-xl bg-cream p-3 animate-float-slow"
+			style="--tilt:6deg"
+		>
+			<img
+				src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=700&q=70"
+				alt="Gerbang pura tradisional Bali"
+				class="rounded-lg object-cover"
+				loading="eager"
+			/>
+			<figcaption class="pt-2 text-center font-display text-sm font-bold">
+				Budaya & temple run 🛕
+			</figcaption>
+		</figure>
+		<figure
+			class="tape sticker absolute bottom-0 left-1/2 w-60 -translate-x-1/2 rotate-2 rounded-xl bg-cream p-3 animate-float"
+			style="--tilt:2deg; animation-delay:1.2s"
+		>
+			<img
+				src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=700&q=70"
+				alt="Sekelompok sahabat menikmati matahari terbenam bersama"
+				class="rounded-lg object-cover"
+				loading="eager"
+			/>
+			<figcaption class="pt-2 text-center font-display text-sm font-bold">
+				Squad trip paling seru ✌
+			</figcaption>
+		</figure>
+		<span
+			class="sticker absolute -left-4 bottom-24 grid size-24 rotate-[-10deg] place-items-center rounded-full bg-sun text-center font-display text-xs font-extrabold leading-tight animate-spin-slow"
+			>BUKAN JANJI · BUKTI ·</span
+		>
+	</div>
+</div>

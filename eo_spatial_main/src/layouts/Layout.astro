@@ -1,0 +1,81 @@
+---
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Elevate Event Organizer | Konsultasi & Production Event Nasional",
+  description = "Elevate adalah Event Organizer profesional di Indonesia. Menangani Corporate Event, Luxury Wedding, Exhibition, Gathering & Brand Activation dari konsep hingga eksekusi dengan dokumentasi standar industri."
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1200&auto=format&fit=crop" />
+
+    <!-- Google Fonts Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body class="bg-dark-bg text-text-main antialiased selection:bg-accent-orange selection:text-dark-bg min-h-screen flex flex-col justify-between relative overflow-x-hidden">
+    
+    <!-- Scroll Progress Indicator -->
+    <div id="scroll-bar" class="fixed top-0 left-0 h-[3px] bg-gradient-to-r from-accent-orange via-accent-lime to-accent-cyan z-[100] transition-all duration-75 w-0"></div>
+
+    <!-- Mouse Ambient Light Cursor Spotlight -->
+    <div id="ambient-spotlight" class="fixed w-[450px] h-[450px] bg-accent-orange/5 blur-[120px] rounded-full pointer-events-none z-0 transform -translate-x-1/2 -translate-y-1/2 transition-opacity duration-300 opacity-0 md:opacity-100"></div>
+
+    <!-- Navbar -->
+    <Navbar />
+
+    <!-- Main Content Area -->
+    <main class="flex-grow relative z-10 pt-24">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <Footer />
+
+    <script>
+      // Scroll progress logic
+      const progressBar = document.getElementById('scroll-bar');
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        if (progressBar) {
+          progressBar.style.width = scrollPercent + '%';
+        }
+      });
+
+      // Ambient spotlight following mouse
+      const spotlight = document.getElementById('ambient-spotlight');
+      window.addEventListener('mousemove', (e) => {
+        if (spotlight) {
+          spotlight.style.left = e.clientX + 'px';
+          spotlight.style.top = e.clientY + 'px';
+        }
+      });
+    </script>
+  </body>
+</html>

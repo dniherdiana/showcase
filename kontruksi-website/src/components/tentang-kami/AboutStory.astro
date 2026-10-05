@@ -1,0 +1,110 @@
+---
+import { Image } from 'astro:assets';
+import { CheckCircle2, Quote, UserCheck, ShieldCheck } from 'lucide-astro';
+import { tentangKamiContent } from '../../data/tentang-kami.js';
+
+const { story } = tentangKamiContent;
+
+const timeline = [
+  { year: '2021', title: 'Evaluasi Industri', desc: 'Menyoroti pembengkakan biaya addendum & pengabaian garansi di Karawang & Cikarang.' },
+  { year: '2022', title: 'Inovasi Fixed-Cost', desc: 'Menerapkan skema Fixed-Cost RAB presisi berbasis tonase baja WF/H-Beam SNI.' },
+  { year: '2024+', title: 'Garansi 12 Bulan', desc: 'Standar baru inspeksi berkala purna jual 3 bulanan gratis untuk semua pemilik pabrik.' }
+];
+---
+
+<section class="py-24 lg:py-32 bg-theme-bg border-b border-theme-border">
+  <div class="editorial-container">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      
+      <!-- Narrative & Quality Highlights Column -->
+      <div class="lg:col-span-7 space-y-8">
+        
+        <div class="space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-theme-surface border border-theme-border text-theme-accent text-xs font-semibold uppercase tracking-wider">
+            <ShieldCheck class="w-4 h-4" />
+            <span>Perjalanan & Ideologi</span>
+          </div>
+
+          <h2 class="text-3xl sm:text-4xl font-serif text-theme-primary font-normal leading-snug">
+            {story.title}
+          </h2>
+        </div>
+
+        <div class="space-y-4 text-theme-secondary text-base leading-relaxed">
+          {story.paragraphs.map(p => (
+            <p>{p}</p>
+          ))}
+        </div>
+
+        <!-- Milestones Timeline Box -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+          {timeline.map((item) => (
+            <div class="p-4 rounded-sm bg-theme-surface border border-theme-border space-y-1.5 hover:border-theme-accent/50 transition-colors">
+              <span class="text-xs font-bold text-theme-accent bg-theme-bg px-2 py-0.5 rounded-sm border border-theme-border">{item.year}</span>
+              <div class="text-sm font-semibold text-theme-primary mt-1">{item.title}</div>
+              <p class="text-[11px] text-theme-secondary leading-normal">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <!-- Quality Standards Card -->
+        <div class="p-6 rounded-sm bg-theme-surface border border-theme-border space-y-4 shadow-sm">
+          <div class="flex items-center justify-between border-b border-theme-border pb-3">
+            <span class="text-sm font-bold text-theme-primary uppercase tracking-wider">Standar Mutu & Konstruksi Moving Co.</span>
+            <span class="text-xs text-theme-accent font-semibold">100% Verified SNI</span>
+          </div>
+
+          <div class="grid grid-cols-1 gap-3">
+            {story.qualityHighlights.map(q => (
+              <div class="flex items-start gap-3 text-xs sm:text-sm text-theme-secondary">
+                <CheckCircle2 class="w-4 h-4 text-theme-success shrink-0 mt-0.5" />
+                <span>{q}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Founder & Leadership Card Column -->
+      <div class="lg:col-span-5 sticky top-28">
+        <div class="surface-card p-6 sm:p-8 rounded-sm border border-theme-border space-y-6 shadow-xl relative">
+          
+          <div class="relative aspect-4/3 overflow-hidden rounded-sm border border-theme-border bg-theme-surface">
+            <Image 
+              src={story.founder.image} 
+              alt={story.founder.name}
+              width="800"
+              height="600"
+              class="w-full h-full object-cover object-center"
+              loading="lazy"
+            />
+            <div class="absolute top-3 right-3 bg-theme-bg/90 px-3 py-1 rounded-sm border border-theme-border text-theme-accent text-xs font-semibold flex items-center gap-1.5 shadow-md">
+              <UserCheck class="w-3.5 h-3.5 text-theme-success" />
+              <span>SKA Ahli Struktur</span>
+            </div>
+          </div>
+
+          <div class="space-y-4">
+            <div>
+              <h3 class="text-xl font-serif text-theme-primary font-normal">{story.founder.name}</h3>
+              <div class="text-xs text-theme-accent font-semibold mt-0.5">{story.founder.role}</div>
+            </div>
+
+            <blockquote class="p-4 rounded-sm bg-theme-bg border-l-2 border-theme-accent text-xs italic text-theme-secondary leading-relaxed relative">
+              <Quote class="w-4 h-4 text-theme-accent/40 absolute -top-2 -left-2" />
+              {story.founder.quote}
+            </blockquote>
+
+            <div class="pt-2 border-t border-theme-border flex items-center justify-between text-xs text-theme-secondary">
+              <span>Pengalaman: 15+ Tahun</span>
+              <span>Karawang & Cikarang</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

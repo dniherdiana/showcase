@@ -1,0 +1,110 @@
+---
+import { Image } from "astro:assets";
+import { aboutData } from "../data/index.js";
+---
+
+<div class="space-y-10 story-scroll-item border-t border-white/10 pt-16">
+	<!-- Section Header -->
+	<div class="text-center max-w-2xl mx-auto space-y-3">
+		<span class="text-xs font-mono font-bold uppercase tracking-widest text-[#0D9488]" data-i18n-key="aboutTeamTitle">
+			Meet the People Who Plan Your Trips
+		</span>
+		<h2 class="font-heading text-2xl sm:text-4xl font-extrabold text-white uppercase" data-i18n-key="aboutTeamTitle">
+			Meet the People Who Plan Your Trips
+		</h2>
+		<p class="text-xs text-white/60 font-sans max-w-lg mx-auto leading-relaxed" data-i18n-en="Real people with years of local experience, dedicated to making your journey smooth, comfortable, and memorable." data-i18n-id="Orang-orang nyata dengan pengalaman lokal bertahun-tahun, berdedikasi membuat liburan Anda lancar dan berkesan.">
+			Real people with years of local experience, dedicated to making your journey smooth, comfortable, and memorable.
+		</p>
+	</div>
+
+	<!-- 4 Team Members 2x2 Grid -->
+	<div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-stretch">
+		{
+			aboutData.team.map((member) => (
+				<div class="relative p-5 sm:p-8 rounded-2xl glass-card border border-white/15 hover:border-gold/50 flex flex-col justify-between transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-gold/15 group overflow-hidden bg-slate-900/80 h-full">
+					<!-- Top Glowing Accent Line -->
+					<div class="absolute top-0 left-0 right-0 h-0.5 bg-linear-to-r from-gold via-[#0D9488] to-transparent opacity-50 group-hover:opacity-100 transition-opacity"></div>
+					<!-- Subtle Ambient Background Glow -->
+					<div class="absolute inset-0 bg-linear-to-br from-gold/5 via-transparent to-[#0D9488]/5 pointer-events-none group-hover:opacity-100 transition-opacity"></div>
+
+					<!-- Content Top Half -->
+					<div class="space-y-4 sm:space-y-5 relative z-10 flex-1 pb-4 sm:pb-6">
+						<!-- Top Member Header: Avatar & Title info side-by-side on all screens -->
+						<div class="flex flex-row gap-3.5 sm:gap-5 items-center">
+							<div class="w-20 h-20 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border-2 border-gold/40 shadow-xl relative shrink-0 group-hover:border-gold transition-colors duration-300">
+								<Image src={member.image} alt={member.name} widths={[120, 240, 360]} sizes="112px" quality={50} format="webp" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+							</div>
+
+							<div class="space-y-1 flex-1 min-w-0">
+								<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+									<h3 class="font-heading text-base sm:text-xl font-extrabold text-white uppercase group-hover:text-gold transition-colors truncate">
+										{member.name}
+									</h3>
+									{member.experience && (
+										<span
+											data-i18n-en={member.experience}
+											data-i18n-id={member.experience_id}
+											class="text-[8px] sm:text-[9px] font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold w-fit shrink-0"
+										>
+											{member.experience}
+										</span>
+									)}
+								</div>
+
+								<span
+									data-i18n-en={member.role}
+									data-i18n-id={member.role_id}
+									class="text-[11px] sm:text-xs font-mono text-gold block font-semibold leading-tight"
+								>
+									{member.role}
+								</span>
+
+								{member.specialty && (
+									<div class="pt-0.5 flex items-center gap-1.5 text-[10px] sm:text-[11px] text-[#0D9488] font-mono font-medium truncate">
+										<span class="text-gold shrink-0">✦</span>
+										<span class="truncate" data-i18n-en={member.specialty} data-i18n-id={member.specialty_id}>
+											{member.specialty}
+										</span>
+									</div>
+								)}
+							</div>
+						</div>
+
+						<!-- Bio Description -->
+						<p
+							data-i18n-en={member.bio}
+							data-i18n-id={member.bio_id}
+							class="text-xs sm:text-sm text-white/80 font-sans leading-relaxed font-light pt-1"
+						>
+							{member.bio}
+						</p>
+					</div>
+
+					<!-- Key Details Box (Languages & Direct Consultation CTA) - Pinned to Bottom -->
+					<div class="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 text-xs relative z-10 mt-auto">
+						{member.languages && (
+							<div class="space-y-0.5">
+								<span class="text-[9px] font-mono text-white/40 uppercase tracking-widest block" data-i18n-en="Languages Spoken" data-i18n-id="Bahasa">Languages Spoken</span>
+								<span data-i18n-en={member.languages} data-i18n-id={member.languages_id} class="font-mono text-white/90 font-medium">
+									{member.languages}
+								</span>
+							</div>
+						)}
+
+						<a
+							href={`https://wa.me/${aboutData.officeDetails.whatsappNumber}?text=${encodeURIComponent(`Hello Wanderlust, I would like to consult with ${member.name} regarding my upcoming travel itinerary.`)}`}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="inline-flex items-center justify-center gap-1.5 px-4 py-2.5 sm:py-2 rounded-full bg-white/10 hover:bg-gold hover:text-slate-950 text-gold text-[11px] font-bold uppercase tracking-wider transition-all border border-gold/30 hover:border-gold shadow-sm shrink-0 w-full sm:w-auto"
+						>
+							<span>💬</span>
+							<span data-i18n-en={`Consult with ${member.name.split(' ')[0]}`} data-i18n-id={`Konsultasi (${member.name.split(' ')[0]})`}>
+								Consult with {member.name.split(' ')[0]}
+							</span>
+						</a>
+					</div>
+				</div>
+			))
+		}
+	</div>
+</div>

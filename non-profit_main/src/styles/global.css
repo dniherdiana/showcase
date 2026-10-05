@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-serif: 'Instrument Serif', Georgia, serif;
+
+  /* Natural Green & Earth Color Palette */
+  --color-earth-dark: #172a21;
+  --color-forest: #1e3a2b;
+  --color-forest-medium: #2d5540;
+  --color-sage: #4f7962;
+  --color-sage-light: #7c9d8a;
+  --color-sage-muted: #e6ede8;
+  
+  --color-terracotta: #d96b43;
+  --color-terracotta-hover: #c45831;
+  --color-terracotta-light: #fbeee8;
+
+  --color-amber-warm: #e09f3e;
+  --color-amber-soft: #fff8eb;
+
+  --color-paper: #f7f6f0;
+  --color-paper-card: #ffffff;
+  --color-paper-dark: #eeeade;
+
+  --color-charcoal: #1c2420;
+  --color-charcoal-muted: #5c6861;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-paper);
+    color: var(--color-charcoal);
+    font-family: var(--font-sans);
+  }
+
+  ::selection {
+    background-color: var(--color-forest);
+    color: var(--color-paper);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-paper);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-sage-light);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-forest-medium);
+}
+
+/* Organic Texture Overlay */
+.bg-paper-texture {
+  background-color: var(--color-paper);
+  background-image: radial-gradient(rgba(30, 58, 43, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Subtle image hover zoom */
+.zoom-img-container {
+  overflow: hidden;
+}
+.zoom-img-container img {
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.zoom-img-container:hover img {
+  transform: scale(1.06);
+}
+
+/* Custom Badges for Data Needed */
+.client-data-tag {
+  background-color: #fef3c7;
+  border: 1px dashed #d97706;
+  color: #78350f;
+  padding: 0.15rem 0.5rem;
+  border-radius: 0.25rem;
+  font-family: monospace;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}

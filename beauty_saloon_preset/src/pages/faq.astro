@@ -1,0 +1,88 @@
+---
+import Layout from '../components/Layout.astro';
+import Icon from '../components/Icon.astro';
+import Reveal from '../components/Reveal.astro';
+import FaqAccordion from '../components/svelte/FaqAccordion.svelte';
+import { brand, faqs } from '../data/site.js';
+---
+
+<Layout
+	title="FAQ"
+	description="Jawaban untuk pertanyaan paling sering ditanyakan di Nama Beauty Salon — booking, kebersihan, produk, dan membership."
+>
+	<!-- ============ HERO — compact split ============ -->
+	<section class="relative overflow-hidden bg-cream-2 pb-14 pt-14 lg:pb-20 lg:pt-20">
+		<div class="pointer-events-none absolute -left-24 top-0 h-64 w-64 rounded-full bg-lime/30 blur-3xl"></div>
+		<div class="relative mx-auto grid max-w-[1200px] items-end gap-8 px-5 lg:grid-cols-12 lg:px-10">
+			<div class="lg:col-span-8">
+				<Reveal>
+					<span class="sticker sticker--pink" style="--tilt:-2deg"><Icon name="sparkles" class="h-3.5 w-3.5" /> Pusat bantuan</span>
+					<h1 class="mt-6 font-display text-5xl font-black leading-[0.95] sm:text-7xl">
+						Ada <span class="italic text-pink">pertanyaan</span>? Kami sudah menjawabnya.
+					</h1>
+				</Reveal>
+			</div>
+			<div class="lg:col-span-4">
+				<Reveal delay={120}>
+					<p class="font-sans text-base leading-relaxed text-ink/70">
+						Kami menyusun jawaban paling sering dicari pelanggan sebelum memutuskan datang.
+						Tidak menemukan yang kamu butuhkan? Chat kami langsung.
+					</p>
+					<a href={`https://wa.me/${brand.whatsapp}`} target="_blank" rel="noreferrer" class="btn btn--violet mt-5">
+						<Icon name="whatsapp" class="h-4 w-4" /> Tanya Langsung
+					</a>
+				</Reveal>
+			</div>
+		</div>
+	</section>
+
+	<!-- ============ ACCORDION ============ -->
+	<section class="py-16 lg:py-24">
+		<div class="mx-auto max-w-4xl px-5 lg:px-10">
+			<FaqAccordion items={faqs} client:idle />
+		</div>
+	</section>
+
+	<!-- ============ QUICK LINKS chips ============ -->
+	<section class="pb-16 lg:pb-20">
+		<div class="mx-auto max-w-4xl px-5 lg:px-10">
+			<Reveal>
+				<div class="rounded-[var(--radius-blob)] border-2 border-ink bg-cream-2 p-8 sm:p-10">
+					<h2 class="text-center font-display text-2xl font-black sm:text-3xl">Cari tahu topik lain</h2>
+					<div class="mt-6 flex flex-wrap justify-center gap-3">
+						{
+							[
+								{ label: 'Treatment & harga', href: '/treatment', icon: 'sparkles' },
+								{ label: 'Katalog layanan', href: '/layanan', icon: 'tag' },
+								{ label: 'Promo & membership', href: '/promo', icon: 'gift' },
+								{ label: 'Tentang kami', href: '/tentang', icon: 'users' },
+								{ label: 'Galeri ritual', href: '/galeri', icon: 'camera' },
+								{ label: 'Blog tips', href: '/blog', icon: 'leaf' },
+							].map((c) => (
+								<a href={c.href} class="sticker sticker--cream" style="--tilt:-1deg">
+									<Icon name={c.icon} class="h-3.5 w-3.5" /> {c.label}
+								</a>
+							))
+						}
+					</div>
+				</div>
+			</Reveal>
+		</div>
+	</section>
+
+	<!-- ============ CTA ============ -->
+	<section class="relative overflow-hidden bg-ink py-20 text-cream">
+		<span class="outline-text outline-text--cream pointer-events-none absolute -bottom-8 right-4 select-none font-display text-[8rem] font-black opacity-10" aria-hidden="true">FAQ</span>
+		<div class="relative mx-auto max-w-4xl px-5 text-center lg:px-10">
+			<Reveal>
+				<h2 class="font-display text-4xl font-black leading-[1.02] sm:text-6xl">
+					Pertanyaan terbaik adalah yang <span class="italic text-lime">kamu ajukan</span>.
+				</h2>
+				<div class="mt-8 flex flex-wrap justify-center gap-4">
+					<a href="/kontak" class="btn btn--pink text-base">Hubungi Kami <Icon name="arrow-right" class="h-5 w-5" /></a>
+					<a href="/kontak" class="btn btn--ghost text-base !text-cream !border-cream"><Icon name="calendar" class="h-5 w-5" /> Booking Sekarang</a>
+				</div>
+			</Reveal>
+		</div>
+	</section>
+</Layout>

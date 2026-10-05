@@ -1,0 +1,245 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ClientDataBadge from '../components/ClientDataBadge.astro';
+
+const timeline = [
+  {
+    year: "2015",
+    title: "Pendirian Elevate di Jakarta",
+    desc: "Berawal dari studio desain kreatif kecil beranggotakan 4 orang yang berfokus pada konsep panggung unik untuk event komunitas."
+  },
+  {
+    year: "2018",
+    title: "Ekspansi Skala Nasional",
+    desc: "Menangani pameran dan konferensi korporasi pertama di luar Jawa (Bali & Medan) dengan membentuk armada logistik mandiri."
+  },
+  {
+    year: "2021",
+    title: "Inovasi Hybrid & Live Stream 4K",
+    desc: "Mengembangkan divisi penyiaran digital dan panggung hibrida di masa pandemi untuk melayani 50+ event perusahaan terkemuka."
+  },
+  {
+    year: "2024",
+    title: "Pencapaian 350+ Event & 35+ Tim",
+    desc: "Tumbuh menjadi agensi event terintegrasi yang dipercaya oleh 120+ korporasi nasional dengan 35+ profesional berpengalaman."
+  }
+];
+
+const team = [
+  {
+    name: "Daris Raditya",
+    role: "Founder & Executive Creative Director",
+    img: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop",
+    bio: "12+ tahun pengalaman memimpin arsitektur pengalaman visual dan strategi event korporasi nasional."
+  },
+  {
+    name: "Siti Rahmania",
+    role: "Head of Event Strategy & Client Experience",
+    img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop",
+    bio: "Pakar perencana komunikasi brand yang berfokus pada konversi ROI bisnis dan protokol VIP."
+  },
+  {
+    name: "Bima Pratama",
+    role: "Technical & AV Production Director",
+    img: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop",
+    bio: "Memimpin 15+ teknisi rig sound, lighting DMX, dan insinyur struktur panggung berkualifikasi tinggi."
+  },
+  {
+    name: "Aris Munandar",
+    role: "Lead Spatial Architect & 3D Designer",
+    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop",
+    bio: "Perancang panggung holografik dan tata pameran interaktif yang kaya akan detail Swiss Typography."
+  }
+];
+---
+
+<Layout 
+  title="Tentang Kami | Elevate Event Organizer"
+  description="Mengenal Elevate Event Organizer: Sejarah sejak 2015, filosofi kerja, tim profesional dengan Modern Space Typography."
+>
+
+  <!-- HERO ABOUT: MASSIVE SPACE TYPOGRAPHY -->
+  <section class="py-20 border-b border-white/10 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-accent-lime bg-dark-card border-l-2 border-accent-lime px-3 py-1.5">
+            <span>// OUR JOURNEY SINCE 2015</span> • <span>35+ PROFESSIONALS</span>
+          </div>
+
+          <h1 class="text-6xl sm:text-8xl lg:text-9xl font-display font-extrabold text-text-main tracking-tighter leading-[0.86] uppercase">
+            FILOSOFI DI BALIK <br />
+            <span class="text-accent-orange">SETIAP PANGGUNG</span>
+          </h1>
+
+          <p class="text-text-muted text-xl leading-relaxed">
+            Elevate lahir dari sebuah keyakinan bahwa event bukan sekadar kumpulan susunan speaker, melainkan sebuah pertunjukan emosi, energi, dan nilai dari suatu brand.
+          </p>
+        </div>
+
+        <div class="lg:col-span-5 relative">
+          <div class="border-2 border-white/15 h-[400px] relative overflow-hidden group">
+            <img 
+              src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?q=80&w=1600&auto=format&fit=crop" 
+              alt="Elevate Team Behind Curtain" 
+              class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-dark-bg/60"></div>
+            <div class="absolute bottom-6 left-6 right-6">
+              <span class="text-xs font-mono text-accent-orange font-bold uppercase block mb-1">// BEHIND THE CURTAIN</span>
+              <h3 class="text-2xl font-display font-extrabold text-text-main">
+                Dedikasi Penuh di Setiap Detik
+              </h3>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE SECTION -->
+  <section class="py-28 border-b border-white/10 bg-dark-surface">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <div class="lg:col-span-5 space-y-6">
+          <span class="text-xs font-mono text-accent-lime uppercase tracking-widest block">// REKAM JEJAK PERTUMBUHAN</span>
+          <h2 class="text-5xl sm:text-7xl font-display font-extrabold text-text-main uppercase leading-[0.9]">
+            REVOLUSI ELEVATE
+          </h2>
+          <p class="text-text-muted text-base leading-relaxed font-sans">
+            Perjalanan 9 tahun membangun kepercayaan korporasi nasional melalui inovasi desain panggung dan manajemen disiplin tinggi.
+          </p>
+
+          <div class="p-8 bg-dark-card border-l-4 border-accent-orange space-y-3">
+            <h4 class="font-mono font-bold text-accent-orange text-sm uppercase">// PERNYATAAN MISI</h4>
+            <p class="text-text-muted text-sm leading-relaxed font-sans">
+              "Menghadirkan pengalaman event terbaik di Indonesia melalui integrasi kreativitas spasial tanpa batas dan eksekusi operasional yang tanpa cela."
+            </p>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7 relative pl-8 border-l-4 border-accent-orange/40 space-y-16">
+          {timeline.map((item) => (
+            <div class="relative group">
+              <div class="absolute -left-[41px] top-1.5 w-5 h-5 bg-dark-bg border-4 border-accent-orange rounded-none"></div>
+              <span class="text-lg font-mono text-accent-orange font-bold uppercase block mb-1">{item.year}</span>
+              <h3 class="text-3xl font-display font-extrabold text-text-main mb-3">
+                {item.title}
+              </h3>
+              <p class="text-text-muted text-base leading-relaxed font-sans">
+                {item.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WORKFLOW 5 STEPS -->
+  <section class="py-28 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      
+      <div class="mb-20">
+        <span class="text-xs font-mono text-accent-orange uppercase tracking-widest block mb-2">// METODOLOGI KINERJA</span>
+        <h2 class="text-5xl sm:text-7xl font-display font-extrabold text-text-main uppercase leading-[0.9]">
+          5 TAHAP WORKFLOW PRESISI
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+        
+        <div class="bg-dark-card border-l-4 border-accent-orange p-6">
+          <div class="font-mono text-xs text-accent-orange font-bold mb-3">STEP 01</div>
+          <h4 class="font-display font-bold text-text-main text-lg mb-2">Discovery & Strategy</h4>
+          <p class="text-text-muted text-xs leading-relaxed font-sans">Bedah objektif bisnis klien, karakteristik audiens, dan batas anggaran.</p>
+        </div>
+
+        <div class="bg-dark-card border-l-4 border-accent-lime p-6">
+          <div class="font-mono text-xs text-accent-lime font-bold mb-3">STEP 02</div>
+          <h4 class="font-display font-bold text-text-main text-lg mb-2">Spatial 3D Design</h4>
+          <p class="text-text-muted text-xs leading-relaxed font-sans">Perancangan panggung 3D, tata cahaya DMX, dan simulasi alur penonton.</p>
+        </div>
+
+        <div class="bg-dark-card border-l-4 border-accent-cyan p-6">
+          <div class="font-mono text-xs text-accent-cyan font-bold mb-3">STEP 03</div>
+          <h4 class="font-display font-bold text-text-main text-lg mb-2">Technical Rigging</h4>
+          <p class="text-text-muted text-xs leading-relaxed font-sans">Pemasangan infrastruktur sound, screen, lighting, dan gladi bersih rundown.</p>
+        </div>
+
+        <div class="bg-dark-card border-l-4 border-accent-orange p-6">
+          <div class="font-mono text-xs text-accent-orange font-bold mb-3">STEP 04</div>
+          <h4 class="font-display font-bold text-text-main text-lg mb-2">Live Execution</h4>
+          <p class="text-text-muted text-xs leading-relaxed font-sans">Pengawalan penuh floor manager, operator audio visual, dan protokol VIP.</p>
+        </div>
+
+        <div class="bg-dark-card border-l-4 border-accent-lime p-6">
+          <div class="font-mono text-xs text-accent-lime font-bold mb-3">STEP 05</div>
+          <h4 class="font-display font-bold text-text-main text-lg mb-2">Media & Analytics</h4>
+          <p class="text-text-muted text-xs leading-relaxed font-sans">Penyerahan arsip foto video 4K dan evaluasi laporan kepuasan acara.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TEAM GRID (CUSTOM OFFSET TILES - NO BOOTSTRAP CARDS) -->
+  <section class="py-28 bg-dark-surface border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-20">
+        <div>
+          <span class="text-xs font-mono text-accent-lime uppercase tracking-widest block mb-2">// TIM PROFESIONAL IN-HOUSE</span>
+          <h2 class="text-5xl sm:text-7xl font-display font-extrabold text-text-main uppercase leading-[0.9]">
+            TIM DI BALIK DEDIKASI
+          </h2>
+        </div>
+        <div class="font-mono text-right">
+          <span class="text-5xl font-bold text-accent-orange block">35+</span>
+          <span class="text-xs text-text-muted uppercase">PROFESIONAL IN-HOUSE</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {team.map((member) => (
+          <div class="bg-dark-card border-2 border-white/10 group">
+            <div class="relative h-72 overflow-hidden border-b-2 border-white/10">
+              <img 
+                src={member.img} 
+                alt={member.name} 
+                class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+              />
+            </div>
+            <div class="p-6">
+              <span class="text-xs font-mono text-accent-orange font-bold uppercase block mb-1">// {member.role}</span>
+              <h3 class="text-2xl font-display font-extrabold text-text-main mb-3">{member.name}</h3>
+              <p class="text-text-muted text-xs leading-relaxed font-sans">{member.bio}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-8">
+      <h2 class="text-4xl sm:text-6xl font-display font-extrabold text-text-main uppercase mb-6 leading-[0.9]">
+        INGIN MENGETAHUI LEBIH BANYAK <br />
+        <span class="text-accent-orange">TENTANG CARA KERJA KAMI?</span>
+      </h2>
+      <a href="/contact" class="inline-block px-10 py-5 bg-accent-orange text-dark-bg font-mono font-bold text-lg hover:bg-accent-lime transition-all">
+        JADWALKAN SESI PERKENALAN →
+      </a>
+    </div>
+  </section>
+
+</Layout>

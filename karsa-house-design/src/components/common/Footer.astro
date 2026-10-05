@@ -1,0 +1,81 @@
+---
+import { siteIdentity } from '../../data/site.data.js';
+---
+
+<footer class="w-full bg-surface-contrast text-surface-ground pt-16 pb-12 border-t border-border-sketch">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-surface-ground/10">
+      <!-- Column 1 & 2: Brand and Conviction -->
+      <div class="lg:col-span-2 space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-brand-accent text-surface-ground flex items-center justify-center font-display text-lg font-bold">
+            K
+          </div>
+          <span class="font-display text-2xl font-bold tracking-tight text-surface-ground">
+            {siteIdentity.brandName}
+          </span>
+        </div>
+        <p class="text-xs text-surface-ground/70 leading-relaxed max-w-sm">
+          {siteIdentity.legalEntity}. Studio arsitektur komersial terintegrasi untuk F&B, ritel, dan kantor modern dengan Gambar Kerja Detail (DED), audit ketersediaan material lokal, dan garansi deviasi RAB maksimal 5%.
+        </p>
+        <div class="pt-2">
+          <span class="inline-block px-3 py-1 bg-surface-ground/10 text-brand-accent rounded-full text-xs font-mono">
+            Toleransi Deviasi RAB &lt; 5% Terkunci
+          </span>
+        </div>
+      </div>
+
+      <!-- Column 3: Navigation -->
+      <div class="space-y-3">
+        <h2 class="text-sm font-semibold text-surface-ground tracking-wide uppercase font-mono">
+          Navigasi
+        </h2>
+        <ul class="space-y-2 text-xs">
+          {siteIdentity.navLinks.map((link) => (
+            <li>
+              <a
+                href={link.href}
+                class="text-surface-ground/70 hover:text-brand-accent transition-colors"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Column 4 & 5: Studio Hubs -->
+      <div class="lg:col-span-2 space-y-4">
+        <h2 class="text-sm font-semibold text-surface-ground tracking-wide uppercase font-mono">
+          Kantor Studio & Perwakilan
+        </h2>
+        <div class="space-y-4 text-xs">
+          {siteIdentity.studios.map((studio) => (
+            <div class="border-l-2 border-brand-accent/60 pl-3">
+              <p class="font-semibold text-surface-ground">{studio.city}</p>
+              <p class="text-surface-ground/70 leading-relaxed">{studio.address}</p>
+              <p class="text-brand-accent mt-0.5 font-mono">{studio.phone} | {studio.email}</p>
+            </div>
+          ))}
+        </div>
+        <p class="text-[11px] text-surface-ground/50 pt-2">
+          {siteIdentity.operationalHours}
+        </p>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-surface-ground/50">
+      <p>
+        &copy; {new Date().getFullYear()} {siteIdentity.legalEntity}. Seluruh hak cipta dilindungi.
+      </p>
+      <div class="flex items-center gap-6 font-mono text-[11px]">
+        <span>Jakarta</span>
+        <span class="text-brand-accent">•</span>
+        <span>Bandung</span>
+        <span class="text-brand-accent">•</span>
+        <span>Bali</span>
+      </div>
+    </div>
+  </div>
+</footer>

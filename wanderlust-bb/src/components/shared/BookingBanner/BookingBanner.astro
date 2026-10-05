@@ -1,0 +1,290 @@
+---
+import { bookingBannerData } from "./booking-banner.data.js";
+import { siteConfig } from "../../layout/site.config.js";
+import { Image } from "astro:assets";
+import defaultBgImage from "../../../assets/images/amalfi.jpg";
+
+interface Props {
+	id?: string;
+	badge?: string;
+	badge_id?: string;
+	title?: string;
+	title_id?: string;
+	subtitle?: string;
+	subtitle_id?: string;
+	primaryBtnText?: string;
+	secondaryBtnText?: string;
+	primaryHref?: string;
+	secondaryHref?: string;
+	bgImage?: any;
+}
+
+const defaultConsultationWhatsapp = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent("Hello Wanderlust Concierge, I would like to schedule a private travel consultation for my upcoming journey.")}`;
+
+const defaultPdfEmail = `mailto:${siteConfig.contactEmail}?subject=${encodeURIComponent("Request 2026 Luxury Travel Lookbook PDF")}&body=${encodeURIComponent("Hello Wanderlust Concierge Team,\n\nPlease send me your latest 2026 Luxury Travel Portfolio & Lookbook PDF brochure to this email address.\n\nThank you!")}`;
+
+const {
+	id = "book",
+	badge = bookingBannerData.badge || "Start Planning",
+	badge_id = bookingBannerData.badge_id || "Mulai Merencanakan",
+	title = bookingBannerData.title,
+	title_id = bookingBannerData.title_id,
+	subtitle = bookingBannerData.subtitle,
+	subtitle_id = bookingBannerData.subtitle_id,
+	primaryBtnText = bookingBannerData.primaryBtnText,
+	secondaryBtnText = bookingBannerData.secondaryBtnText,
+	primaryHref = defaultConsultationWhatsapp,
+	secondaryHref = defaultPdfEmail,
+	bgImage = defaultBgImage,
+} = Astro.props;
+---
+
+<!-- Cinematic Fluid Magazine Closing Spread CTA (Borderless / Hairline Layout) -->
+<section
+	id={id}
+	class="story-scroll-section mx-auto max-w-7xl px-[5%] py-12 sm:py-16"
+>
+	<div
+		class="group relative flex flex-col items-center justify-center space-y-6 overflow-hidden rounded-lg border-y border-white/15 bg-slate-950 px-6 py-12 text-center transition-all duration-500 sm:space-y-8 sm:px-12 sm:py-16 lg:px-16"
+	>
+		<!-- Background Image via Astro Image Component -->
+		<div
+			class="pointer-events-none absolute inset-0 z-0 h-full w-full overflow-hidden"
+		>
+			{
+				typeof bgImage === "string" ?
+					<img
+						src={bgImage}
+						alt="Booking Banner Background"
+						loading="lazy"
+						decoding="async"
+						class="h-full w-full object-cover opacity-30 transition-transform duration-1000 ease-out group-hover:scale-105"
+					/>
+				:	<Image
+						src={bgImage}
+						alt="Booking Banner Background"
+						widths={[480, 800, 1280]}
+						sizes="(max-width: 768px) 100vw, 1280px"
+						quality={75}
+						format="webp"
+						loading="lazy"
+						decoding="async"
+						class="h-full w-full object-cover opacity-30 transition-transform duration-1000 ease-out group-hover:scale-105"
+					/>
+			}
+			<!-- Deep Dark Layered Gradient Overlay -->
+			<div
+				class="absolute inset-0 bg-slate-950/85 bg-gradient-to-b from-slate-950/90 via-slate-950/75 to-slate-950/95"
+			>
+			</div>
+		</div>
+
+		<!-- Top Hairline Gold Accent -->
+		<div
+			class="from-gold/50 absolute top-0 right-0 left-0 h-[1px] bg-gradient-to-r via-amber-300/30 to-transparent"
+		>
+		</div>
+
+		<!-- Main Headline & Subtitle -->
+		<div class="relative z-10 max-w-4xl space-y-4">
+			<div
+				class="text-gold inline-flex items-center gap-2 font-mono text-[10px] font-bold tracking-[3px] uppercase sm:text-xs"
+			>
+				<span>✦</span>
+				<span data-i18n-en={badge} data-i18n-id={badge_id}>{badge}</span>
+			</div>
+
+			<h2
+				data-i18n-key="bookingTitle"
+				data-i18n-en={title}
+				data-i18n-id={title_id}
+				class="travel-soul-reveal-heading mx-auto max-w-4xl font-serif text-3xl leading-tight font-extrabold tracking-tight text-white uppercase drop-shadow-md sm:text-4xl lg:text-5xl"
+			>
+				{title}
+			</h2>
+
+			<p
+				data-i18n-key="bookingSubtitle"
+				data-i18n-en={subtitle}
+				data-i18n-id={subtitle_id}
+				class="story-text-reveal mx-auto max-w-2xl font-sans text-xs leading-relaxed font-light text-slate-200/90 drop-shadow-sm sm:text-base sm:text-sm"
+			>
+				{subtitle}
+			</p>
+		</div>
+
+		<!-- Interactive Travel Interest Chips (Editorial Tab Style, No Pill Badges) -->
+		<div class="relative z-10 space-y-3 pt-2">
+			<p
+				class="font-mono text-[10px] font-bold tracking-widest text-amber-200/80 uppercase sm:text-[11px]"
+			>
+				Tailor Your Travel Consultation:
+			</p>
+			<ul
+				class="mx-auto flex max-w-3xl list-none flex-wrap items-center justify-center gap-3"
+				id="booking-interest-chips"
+			>
+				<li>
+					<button
+						type="button"
+						data-intent="Private Villa & Island Stay"
+						class="booking-chip active border-gold text-gold cursor-pointer border-b-2 px-3 py-1.5 font-mono text-xs font-bold tracking-wider uppercase transition-all duration-300"
+					>
+						<span>🏝️ Private Villa & Island</span>
+					</button>
+				</li>
+				<li>
+					<button
+						type="button"
+						data-intent="Luxury Yacht Charter"
+						class="booking-chip cursor-pointer border-b-2 border-transparent px-3 py-1.5 font-mono text-xs font-medium tracking-wider text-white/60 uppercase transition-all duration-300 hover:border-white/30 hover:text-white"
+					>
+						<span>⛵ Yacht & Marine Expeditions</span>
+					</button>
+				</li>
+				<li>
+					<button
+						type="button"
+						data-intent="Alpine Retreat & Ski Lodge"
+						class="booking-chip cursor-pointer border-b-2 border-transparent px-3 py-1.5 font-mono text-xs font-medium tracking-wider text-white/60 uppercase transition-all duration-300 hover:border-white/30 hover:text-white"
+					>
+						<span>🏔️ Alpine & Nature Stays</span>
+					</button>
+				</li>
+				<li>
+					<button
+						type="button"
+						data-intent="Cultural & Bespoke Heritage Tour"
+						class="booking-chip cursor-pointer border-b-2 border-transparent px-3 py-1.5 font-mono text-xs font-medium tracking-wider text-white/60 uppercase transition-all duration-300 hover:border-white/30 hover:text-white"
+					>
+						<span>🍷 Cultural & Culinary Escapes</span>
+					</button>
+				</li>
+			</ul>
+		</div>
+
+		<!-- Editorial Action Buttons (No Pill Capsules) -->
+		<div
+			class="relative z-10 flex flex-col items-center justify-center gap-4 pt-2 sm:flex-row"
+		>
+			<a
+				id="booking-primary-btn"
+				href={primaryHref}
+				target={primaryHref.startsWith("http") ? "_blank" : "_self"}
+				rel={primaryHref.startsWith("http") ? "noopener noreferrer" : ""}
+				class="group/btn bg-gold hover:bg-gold-light inline-flex w-full items-center justify-center gap-3 rounded-none px-8 py-4 font-mono text-xs font-extrabold tracking-[2px] text-slate-950 uppercase shadow-2xl transition-all duration-300 hover:scale-105 sm:w-auto"
+			>
+				<svg
+					class="h-4 w-4 transition-transform group-hover/btn:scale-110"
+					viewBox="0 0 24 24"
+					fill="currentColor"
+				>
+					<path
+						d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.347z"
+					></path>
+					<path
+						d="M12 2C6.477 2 2 6.477 2 12c0 1.891.524 3.662 1.435 5.176L2 22l4.956-1.385A9.955 9.955 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18c-1.63 0-3.14-.447-4.434-1.226l-.318-.19-2.94.821.834-2.867-.208-.33A7.954 7.954 0 0 1 4 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z"
+					></path>
+				</svg>
+				<span data-i18n-key="bookingPrimaryBtn">{primaryBtnText}</span>
+				<svg
+					width="14"
+					height="14"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2.5"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					class="transition-transform group-hover/btn:translate-x-1"
+				>
+					<path d="M5 12h14M12 5l7 7-7 7"></path>
+				</svg>
+			</a>
+
+			<a
+				href={secondaryHref}
+				target={secondaryHref.startsWith("http") ? "_blank" : "_self"}
+				class="group/sec hover:border-gold hover:text-gold-light inline-flex w-full items-center justify-center gap-3 rounded-none border border-white/30 bg-slate-950/60 px-8 py-4 font-mono text-xs font-bold tracking-[2px] text-white uppercase shadow-lg transition-all duration-300 hover:bg-slate-950/90 sm:w-auto"
+			>
+				<svg
+					width="16"
+					height="16"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					class="text-gold transition-transform group-hover/sec:scale-110"
+				>
+					<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+					></path>
+					<polyline points="14 2 14 8 20 8"></polyline>
+					<line x1="12" y1="18" x2="12" y2="12"></line>
+					<line x1="9" y1="15" x2="15" y2="15"></line>
+				</svg>
+				<span data-i18n-key="bookingSecondaryBtn">{secondaryBtnText}</span>
+			</a>
+		</div>
+
+		<!-- Trust Guarantee Badges (Editorial Mono Footer) -->
+		<div
+			class="relative z-10 flex flex-wrap items-center justify-center gap-6 border-t border-white/10 pt-4 font-mono text-[10px] tracking-wider text-slate-300/80 uppercase sm:text-xs"
+		>
+			<div class="flex items-center gap-2">
+				<span class="text-gold">🛡️</span>
+				<span
+					data-i18n-en="100% Privacy Guaranteed"
+					data-i18n-id="100% Privasi Terjamin">100% Privacy Guaranteed</span
+				>
+			</div>
+			<div class="flex items-center gap-2">
+				<span class="text-gold">⚡</span>
+				<span
+					data-i18n-en="24-Hour Concierge Response"
+					data-i18n-id="Respon Konsierge 24 Jam"
+					>24-Hour Concierge Response</span
+				>
+			</div>
+			<div class="flex items-center gap-2">
+				<span class="text-gold">💎</span>
+				<span
+					data-i18n-en="No Hidden Booking Fees"
+					data-i18n-id="Tanpa Biaya Tersembunyi">No Hidden Booking Fees</span
+				>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	function initBookingBannerChips() {
+		const chips = document.querySelectorAll(".booking-chip");
+		const primaryBtn = document.getElementById(
+			"booking-primary-btn",
+		) as HTMLAnchorElement | null;
+
+		if (!chips.length || !primaryBtn) return;
+
+		chips.forEach((chip) => {
+			chip.addEventListener("click", () => {
+				chips.forEach((c) => {
+					c.classList.remove("active", "border-gold", "text-gold");
+					c.classList.add("border-transparent", "text-white/60");
+				});
+
+				chip.classList.remove("border-transparent", "text-white/60");
+				chip.classList.add("active", "border-gold", "text-gold");
+
+				const intent = chip.getAttribute("data-intent") || "Private Journey";
+				const message = `Hello Wanderlust Concierge, I am interested in planning a trip focused on: ${intent}. Please share available dates and custom options.`;
+				const waNumber = "6281234567890";
+				primaryBtn.href = `https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`;
+			});
+		});
+	}
+
+	document.addEventListener("DOMContentLoaded", initBookingBannerChips);
+	document.addEventListener("astro:page-load", initBookingBannerChips);
+</script>

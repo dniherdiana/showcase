@@ -1,0 +1,105 @@
+---
+import { Image } from 'astro:assets';
+import { homeData } from '../../data/home.data.js';
+import umaSawahImg from '../../images/uma-sawah-bali.jpg';
+import rosterRoastImg from '../../images/roster-roast-dago.jpg';
+
+const { hero } = homeData;
+---
+
+<section class="relative w-full py-12 lg:py-20 overflow-hidden architect-grid-bg">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      <!-- Left Column: Typography & CTAs (Col 1-7) -->
+      <div class="lg:col-span-7 space-y-6">
+        <!-- Single H1 per page, NO EYEBROW -->
+        <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink-primary leading-[1.1]">
+          Arsitektur Komersial <span class="text-brand-accent underline decoration-wavy decoration-brand-accent/40">{hero.headlineAccent}</span> Tanpa Pembengkakan Biaya.
+        </h1>
+
+        <p class="text-base sm:text-lg text-ink-muted leading-relaxed max-w-2xl font-normal">
+          {hero.subhead}
+        </p>
+
+        <!-- Pinned Location Badges -->
+        <div class="flex items-center gap-2 pt-1 font-mono text-xs text-ink-muted">
+          <span class="text-brand-accent font-semibold">Hub Operasional:</span>
+          {hero.pinnedLocations.map((loc, idx) => (
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-surface-panel border border-border-sketch rounded-md text-ink-primary font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand-accent"></span>
+              {loc}
+              {idx < hero.pinnedLocations.length - 1 ? '' : ''}
+            </span>
+          ))}
+        </div>
+
+        <!-- Dual Action Buttons -->
+        <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+          <a
+            href={hero.ctaPrimary.href}
+            class="inline-flex items-center justify-center px-6 py-3.5 text-sm font-semibold uppercase tracking-wider text-white bg-brand-accent hover:bg-brand-accent-hover rounded-control transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 text-center"
+          >
+            {hero.ctaPrimary.label}
+          </a>
+          <a
+            href={hero.ctaSecondary.href}
+            class="inline-flex items-center justify-center px-6 py-3.5 text-sm font-semibold tracking-wide text-ink-primary border-1.5 border-ink-primary hover:bg-surface-panel rounded-control transition-all text-center"
+          >
+            {hero.ctaSecondary.label}
+          </a>
+        </div>
+
+        <!-- Trust Note -->
+        <div class="pt-2 flex items-center gap-3 text-xs text-ink-muted">
+          <span class="font-mono text-brand-accent font-bold">100% GARANSI:</span>
+          <span>Batas toleransi deviasi RAB fisik di bawah 5% dari nilai tender tender resmi.</span>
+        </div>
+      </div>
+
+      <!-- Right Column: Asymmetric Scrapbook Composition (Col 8-12) -->
+      <div class="lg:col-span-5 relative mt-6 lg:mt-0">
+        <div class="relative w-full min-h-[420px] sm:min-h-[480px] flex items-center justify-center">
+          <!-- Background decorative paper accent -->
+          <div class="absolute -inset-2 bg-surface-panel sketch-border -rotate-3 -z-10 opacity-70"></div>
+
+          <!-- Primary Layer Photo: Uma Sawah Osteria Bali (-2deg rotation) -->
+          <div class="relative w-4/5 sm:w-3/4 -rotate-2 sketch-border bg-surface-card p-2 shadow-floating transition-transform hover:rotate-0 duration-300">
+            <div class="overflow-hidden rounded-sm aspect-[4/3]">
+              <Image
+                src={umaSawahImg}
+                alt="Uma Sawah Osteria & Lounge Canggu Bali - Restoran semi-terbuka dengan kayu ulin daur ulang"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                loading="eager"
+              />
+            </div>
+            <div class="mt-2 px-1 flex items-center justify-between font-mono text-[11px] text-ink-muted">
+              <span class="font-semibold text-ink-primary">Uma Sawah, Bali</span>
+              <span class="text-brand-accent font-bold">Deviasi RAB 2.4%</span>
+            </div>
+          </div>
+
+          <!-- Secondary Overlap Photo: Roster & Roast Bandung (+2deg rotation) -->
+          <div class="absolute -bottom-4 -right-2 sm:-right-4 w-3/5 rotate-2 sketch-border bg-surface-card p-2 shadow-floating transition-transform hover:rotate-0 duration-300 z-10">
+            <div class="overflow-hidden rounded-sm aspect-[4/3]">
+              <Image
+                src={rosterRoastImg}
+                alt="Roster & Roast Specialty Coffee Dago Bandung - Interior kafe dengan teraso andesit lokal"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                loading="eager"
+              />
+            </div>
+            <div class="mt-2 px-1 flex items-center justify-between font-mono text-[11px] text-ink-muted">
+              <span class="font-semibold text-ink-primary">Roster & Roast, Dago</span>
+              <span class="text-brand-accent font-bold">10 Minggu Tepat</span>
+            </div>
+          </div>
+
+          <!-- Pinned Stamp Label -->
+          <div class="absolute -top-3 left-4 bg-brand-accent text-white font-mono text-[10px] px-2.5 py-1 rounded-full uppercase tracking-wider font-semibold shadow-sm z-20">
+            42 Proyek Selesai
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

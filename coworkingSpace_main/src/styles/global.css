@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-bg-base: #FFFDF9;
+  --color-bg-surface: #F7F3E9;
+  --color-bg-dark: #292524;
+  --color-text-primary: #1C1917;
+  --color-text-secondary: #57534E;
+  --color-accent: #EA580C;
+  --color-accent-hover: #C2410C;
+  --font-caveat: 'Caveat', cursive;
+  --font-dmsans: 'DM Sans', sans-serif;
+  --radius-blob: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  --shadow-indie: 0 4px 12px rgba(0, 0, 0, 0.05);
+  --border-indie: rgba(28, 25, 23, 0.15);
+}
+
+@layer base {
+  body {
+    background-color: var(--color-bg-base);
+    color: var(--color-text-primary);
+    font-family: var(--font-dmsans);
+    background-image: radial-gradient(rgba(28, 25, 23, 0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-caveat);
+    color: var(--color-text-primary);
+  }
+}
+
+@layer utilities {
+  .btn-thunk {
+    transition: transform 150ms cubic-bezier(0.2, 0, 0, 1),
+                background-color 150ms ease,
+                box-shadow 150ms ease;
+  }
+  .btn-thunk:hover {
+    transform: translateY(-1px);
+  }
+  .btn-thunk:active {
+    transform: translateY(1px) scale(0.98);
+  }
+
+  .card-thunk {
+    transition: border-color 200ms ease, transform 200ms cubic-bezier(0.2, 0, 0, 1), box-shadow 200ms ease;
+  }
+  .card-thunk:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+
+  .rounded-blob {
+    border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+  }
+}

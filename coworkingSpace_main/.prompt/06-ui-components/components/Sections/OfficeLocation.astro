@@ -1,0 +1,85 @@
+<section class="relative py-24 bg-[var(--color-surface-base)] overflow-hidden">
+	<div class="texture-grid absolute inset-0 opacity-10 pointer-events-none">
+	</div>
+	<div
+		class="glow-accent absolute bottom-0 right-0 w-full h-full opacity-20 pointer-events-none"
+	>
+	</div>
+
+	<div
+		class="w-full max-w-[1600px] mx-auto px-6 md:px-12 relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-0"
+	>
+		<!-- Image (70%) -->
+		<div
+			class="w-full lg:w-[70%] relative aspect-[16/9] lg:aspect-[21/9] overflow-hidden"
+			data-reveal="fade-up"
+		>
+			<img
+				src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1200&q=80&fit=crop"
+				alt="Office Interior"
+				class="absolute inset-0 w-full h-full object-cover filter grayscale opacity-70"
+			/>
+			<div
+				class="absolute inset-0 bg-[var(--color-surface-base)] mix-blend-color opacity-50"
+			>
+			</div>
+			<div class="absolute inset-0 border border-[var(--color-line-hard)]">
+			</div>
+		</div>
+
+		<!-- Info (30%) - Overlapping negative margin on desktop -->
+		<div
+			class="w-full lg:w-[40%] bg-[var(--color-surface-raised)] p-8 md:p-12 lg:-ml-32 relative z-20 border-t-2 border-[var(--color-brand-accent)]"
+			data-reveal="fade-up"
+			data-reveal-delay="200"
+		>
+			<div class="flex items-center gap-4 mb-10">
+				<span class="font-mono text-sm text-[var(--color-text-secondary)]"
+					>03</span
+				>
+				<div class="h-[1px] w-12 bg-[var(--color-line-hard)]"></div>
+				<span class="meta-tag" data-lang="id">HQ AlurFlow</span>
+				<span class="meta-tag hidden" data-lang="en">AlurFlow HQ</span>
+			</div>
+
+			<div class="flex flex-col gap-8">
+				<div class="flex flex-col gap-2">
+					<span
+						class="font-mono text-xs text-[var(--color-brand-accent)] uppercase tracking-wider"
+						>Location</span
+					>
+					<p class="font-body text-base text-[var(--color-text-primary)]">
+						Treasury Tower Lt. 21,<br />
+						Kawasan SCBD, Jakarta Selatan,<br />
+						DKI Jakarta 12190
+					</p>
+				</div>
+
+				<div class="flex flex-col gap-2">
+					<span
+						class="font-mono text-xs text-[var(--color-brand-accent)] uppercase tracking-wider"
+						>Direct Connect</span
+					>
+					<p
+						class="font-body text-base text-[var(--color-text-primary)] font-mono"
+					>
+						enterprise@alurflow.com<br />
+						+62-21-5555-8888
+					</p>
+				</div>
+
+				<div
+					class="flex flex-col gap-2 pt-4 border-t border-[var(--color-line-soft)]"
+				>
+					<span
+						class="font-mono text-xs text-[var(--color-brand-accent)] uppercase tracking-wider"
+						>Operational Hours</span
+					>
+					<p class="font-body text-base text-[var(--color-text-secondary)]">
+						Senin – Jumat | 08.30 – 17.30 WIB
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

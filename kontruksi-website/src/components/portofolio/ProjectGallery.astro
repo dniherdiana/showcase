@@ -1,0 +1,458 @@
+---
+import { Image, getImage } from 'astro:assets';
+import { Maximize2, ZoomIn, ZoomOut, ChevronLeft, ChevronRight, X, MapPin, Layers, Info } from 'lucide-astro';
+import { portofolioContent } from '../../data/portofolio.js';
+
+const projectsRaw = portofolioContent.galleryProjects;
+
+// Pre-generate Sharp optimized WebP image URLs for every photo in gallery
+const projects = await Promise.all(
+  projectsRaw.map(async (proj) => {
+    const photosWithWebp = await Promise.all(
+      proj.photos.map(async (photo) => {
+        const optimized = await getImage({
+          src: photo.image,
+          format: 'webp',
+          width: 1200,
+          height: 900
+        });
+        return {
+          ...photo,
+          imageWebpSrc: optimized.src
+        };
+      })
+    );
+    return {
+      ...proj,
+      photos: photosWithWebp
+    };
+  })
+);
+
+const initialPhoto = projects[0]?.photos[0]?.image;
+const initialPhotoWebpSrc = projects[0]?.photos[0]?.imageWebpSrc;
+---
+
+<section id="galeri-dokumentasi" class="py-20 lg:py-28 bg-theme-bg border-b border-theme-border">
+  <div class="editorial-container space-y-16">
+
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div class="space-y-4 max-w-2xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-theme-surface border border-theme-border text-theme-accent text-xs font-semibold tracking-wider">
+          <Layers class="w-4 h-4" />
+          <span>Galeri Dokumentasi Foto Lapangan</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif text-theme-primary font-normal leading-tight">
+          Detail Visual & Tahapan Konstruksi Riil
+        </h2>
+        <p class="text-theme-secondary text-base leading-relaxed">
+          Inspeksi sambungan baja WF, spesifikasi material, dan detail pengerjaan riil kami secara langsung.
+        </p>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <span class="text-xs text-theme-secondary flex items-center gap-1.5 bg-theme-surface px-3 py-2 rounded-sm border border-theme-border shadow-sm">
+          <ZoomIn class="w-4 h-4 text-theme-accent shrink-0" />
+          <span class="hidden sm:inline">Klik foto untuk perbesar (Zoom)</span>
+          <span class="inline sm:hidden font-bold text-theme-accent">Ketuk foto untuk perbesar (Zoom)</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- Project Galleries List -->
+    <div class="space-y-16">
+      {projects.map((proj) => (
+        <div class="surface-card p-6 sm:p-10 rounded-sm border-theme-border space-y-8">
+
+          <!-- Project Header -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-theme-border pb-6">
+            <div>
+              <span class="text-xs text-theme-accent font-semibold uppercase tracking-wider">{proj.client}</span>
+              <h3 class="text-2xl sm:text-3xl font-serif text-theme-primary font-normal mt-1">{proj.name}</h3>
+              <div class="flex items-center gap-2 text-xs text-theme-secondary mt-2">
+                <MapPin class="w-3.5 h-3.5 text-theme-accent" />
+                <span>{proj.location}</span>
+              </div>
+            </div>
+            <div class="text-xs text-theme-primary bg-theme-bg p-3 rounded-sm border border-theme-border max-w-sm">
+              <span class="text-theme-secondary font-medium">Spesifikasi Riil:</span> {proj.specs}
+            </div>
+          </div>
+
+          <!-- Photo Grid for this project -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {proj.photos.map((photo, index) => {
+              const photoDataForModal = {
+                ...photo,
+                imageSrc: photo.imageWebpSrc
+              };
+              return (
+                <button
+                  type="button"
+                  class="gallery-trigger group relative text-left surface-card surface-card-hover rounded-sm overflow-hidden border border-theme-border cursor-pointer focus:outline-none focus:ring-2 focus:ring-theme-accent"
+                  data-photo-id={photo.id}
+                  data-photo-index={index}
+                  data-project-id={proj.id}
+                  data-json={JSON.stringify(photoDataForModal)}
+                  aria-label={`Perbesar foto ${photo.title}`}
+                >
+                  <!-- Thumbnail Container -->
+                  <div class="relative aspect-4/3 overflow-hidden bg-theme-surface">
+                    <Image
+                      src={photo.image}
+                      alt={photo.title}
+                      width="800"
+                      height="600"
+                      format="webp"
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                    <div class="absolute inset-0 bg-linear-to-t from-theme-bg/90 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
+
+                    <!-- Phase Badge -->
+                    <div class="absolute top-3 left-3 bg-theme-bg/90 px-2.5 py-1 rounded-sm border border-theme-border text-theme-accent text-[11px] font-semibold">
+                      {photo.phase.split(':')[0]}
+                    </div>
+
+                    <!-- Mobile-Prominent Zoom Indicator Badge -->
+                    <div class="absolute bottom-3 right-3 bg-theme-accent text-theme-bg px-2.5 py-1.5 sm:p-2 rounded-sm opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all transform scale-100 shadow-md flex items-center gap-1.5">
+                      <Maximize2 class="w-3.5 h-3.5 stroke-[2.5] shrink-0" />
+                      <span class="text-[10px] font-bold uppercase tracking-wider sm:hidden">Ketuk Perbesar</span>
+                    </div>
+                  </div>
+
+                  <!-- Text Overlay Content -->
+                  <div class="p-4 space-y-1.5 bg-theme-surface">
+                    <h4 class="text-sm font-serif text-theme-primary font-medium group-hover:text-theme-accent transition-colors line-clamp-1">
+                      {photo.title}
+                    </h4>
+                    <p class="text-xs text-theme-secondary line-clamp-2">
+                      {photo.spec}
+                    </p>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+
+  <!-- Interactive Lightbox Modal with Fullscreen Zoom -->
+  <div
+    id="lightbox-modal"
+    class="fixed inset-0 z-50 hidden bg-theme-bg/95 backdrop-blur-md items-center justify-center p-4 sm:p-6 lg:p-8"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="modal-photo-title"
+  >
+    <div class="relative w-full max-w-5xl bg-theme-surface border border-theme-border rounded-sm shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
+
+      <!-- Modal Top Header -->
+      <div class="flex items-center justify-between px-6 py-4 border-b border-theme-border bg-theme-surface-elevated">
+        <div class="flex items-center gap-3">
+          <span id="modal-phase-badge" class="px-2.5 py-1 rounded-sm bg-theme-bg border border-theme-border text-theme-accent text-xs font-semibold">
+            Tahap Proyek
+          </span>
+          <span id="modal-project-client" class="text-xs text-theme-secondary font-medium hidden sm:inline">
+            Klien
+          </span>
+        </div>
+
+        <!-- Controls (Zoom, Prev/Next, Close) -->
+        <div class="flex items-center gap-2">
+          <button
+            id="modal-zoom-btn"
+            type="button"
+            class="p-2 text-theme-secondary hover:text-theme-primary bg-theme-bg hover:bg-theme-surface-hover rounded-sm border border-theme-border text-xs flex items-center gap-1.5 transition-colors"
+            title="Klik untuk Zoom 2x"
+          >
+            <ZoomIn id="icon-zoom-in" class="w-4 h-4 text-theme-accent" />
+            <ZoomOut id="icon-zoom-out" class="w-4 h-4 text-theme-accent hidden" />
+            <span id="zoom-label" class="hidden sm:inline font-medium">Zoom 2x</span>
+          </button>
+
+          <button
+            id="modal-close-btn"
+            type="button"
+            class="p-2 text-theme-secondary hover:text-theme-primary bg-theme-bg hover:bg-theme-surface-hover rounded-sm border border-theme-border transition-colors"
+            aria-label="Tutup Galeri"
+          >
+            <X class="w-5 h-5 text-theme-primary" />
+          </button>
+        </div>
+      </div>
+
+      <!-- Modal Body (Image Container + Specs Panel) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 overflow-y-auto flex-1">
+
+        <!-- Image Viewer Container -->
+        <div class="lg:col-span-8 bg-theme-bg relative flex items-center justify-center p-4 min-h-80 sm:min-h-110 overflow-hidden group select-none">
+
+          <div id="image-wrapper" class="relative w-full h-full flex items-center justify-center cursor-zoom-in transition-transform duration-300">
+            <Image
+              id="modal-photo-img"
+              src={initialPhoto}
+              alt="Dokumentasi foto pabrik Moving Co."
+              width="1200"
+              height="900"
+              format="webp"
+              class="max-h-[60vh] sm:max-h-[65vh] w-auto object-contain rounded-sm shadow-xl transition-transform duration-300 origin-center"
+            />
+          </div>
+
+          <!-- Navigation Arrow Left -->
+          <button
+            id="modal-prev-btn"
+            type="button"
+            class="absolute left-3 top-1/2 -translate-y-1/2 p-3 rounded-sm bg-theme-bg/80 border border-theme-border text-theme-primary hover:text-theme-accent hover:bg-theme-bg transition-all focus:outline-none"
+            aria-label="Foto Sebelumnya"
+          >
+            <ChevronLeft class="w-6 h-6" />
+          </button>
+
+          <!-- Navigation Arrow Right -->
+          <button
+            id="modal-next-btn"
+            type="button"
+            class="absolute right-3 top-1/2 -translate-y-1/2 p-3 rounded-sm bg-theme-bg/80 border border-theme-border text-theme-primary hover:text-theme-accent hover:bg-theme-bg transition-all focus:outline-none"
+            aria-label="Foto Selanjutnya"
+          >
+            <ChevronRight class="w-6 h-6" />
+          </button>
+
+          <!-- Zoom Prompt Indicator -->
+          <div class="absolute bottom-4 left-4 bg-theme-bg/90 border border-theme-border px-3 py-1 rounded-sm text-[11px] text-theme-secondary flex items-center gap-1.5 pointer-events-none">
+            <Info class="w-3.5 h-3.5 text-theme-accent" />
+            <span>Klik gambar untuk Toggle Zoom Mode</span>
+          </div>
+        </div>
+
+        <!-- Info Sidebar -->
+        <div class="lg:col-span-4 p-6 bg-theme-surface space-y-6 border-t lg:border-t-0 lg:border-l border-theme-border flex flex-col justify-between">
+          <div class="space-y-4">
+            <div>
+              <span id="modal-photo-counter" class="text-xs font-bold text-theme-accent tracking-wider uppercase">
+                Foto 1 dari 4
+              </span>
+              <h3 id="modal-photo-title" class="text-xl font-serif text-theme-primary font-normal mt-1 leading-snug">
+                Judul Foto
+              </h3>
+            </div>
+
+            <div class="p-3.5 rounded-sm bg-theme-bg border border-theme-border space-y-1">
+              <div class="text-[11px] text-theme-accent font-semibold uppercase tracking-wider">Spesifikasi Teknis & Standard:</div>
+              <p id="modal-photo-spec" class="text-xs text-theme-primary font-medium leading-relaxed">
+                Detail Spesifikasi
+              </p>
+            </div>
+
+            <div class="space-y-2">
+              <div class="text-xs text-theme-secondary font-medium">Penjelasan Pengerjaan Lapangan:</div>
+              <p id="modal-photo-desc" class="text-xs text-theme-secondary leading-relaxed">
+                Deskripsi lengkap pengerjaan.
+              </p>
+            </div>
+          </div>
+
+          <!-- Bottom Meta & Action -->
+          <div class="pt-4 border-t border-theme-border space-y-3">
+            <div class="flex items-center justify-between text-xs text-theme-secondary">
+              <span>Lokasi Proyek:</span>
+              <span id="modal-photo-location" class="font-medium text-theme-primary">Lokasi</span>
+            </div>
+            <a
+              id="modal-wa-btn"
+              href="#"
+              target="_blank"
+              class="btn-primary w-full py-3 text-xs justify-center font-bold"
+            >
+              <span>Konsultasikan Spesifikasi Ini</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  interface PhotoData {
+    id: string;
+    projectId: string;
+    projectName: string;
+    client: string;
+    location: string;
+    phase: string;
+    title: string;
+    spec: string;
+    description: string;
+    imageSrc: string;
+  }
+
+  let currentPhotos: PhotoData[] = [];
+  let currentIndex = 0;
+  let isZoomed = false;
+
+  const modal = document.getElementById('lightbox-modal');
+  const modalImg = document.getElementById('modal-photo-img') as HTMLImageElement;
+  const imageWrapper = document.getElementById('image-wrapper');
+  const phaseBadge = document.getElementById('modal-phase-badge');
+  const clientTag = document.getElementById('modal-project-client');
+  const counterTag = document.getElementById('modal-photo-counter');
+  const titleTag = document.getElementById('modal-photo-title');
+  const specTag = document.getElementById('modal-photo-spec');
+  const descTag = document.getElementById('modal-photo-desc');
+  const locTag = document.getElementById('modal-photo-location');
+  const waBtn = document.getElementById('modal-wa-btn') as HTMLAnchorElement;
+  const zoomBtn = document.getElementById('modal-zoom-btn');
+  const iconZoomIn = document.getElementById('icon-zoom-in');
+  const iconZoomOut = document.getElementById('icon-zoom-out');
+  const zoomLabel = document.getElementById('zoom-label');
+
+  const closeBtn = document.getElementById('modal-close-btn');
+  const prevBtn = document.getElementById('modal-prev-btn');
+  const nextBtn = document.getElementById('modal-next-btn');
+
+  const triggers = document.querySelectorAll('.gallery-trigger');
+
+  const allPhotosByProject: Record<string, PhotoData[]> = {};
+  triggers.forEach(trig => {
+    const rawJson = trig.getAttribute('data-json');
+    const projId = trig.getAttribute('data-project-id');
+    if (rawJson && projId) {
+      const data: PhotoData = JSON.parse(rawJson);
+      if (!allPhotosByProject[projId]) {
+        allPhotosByProject[projId] = [];
+      }
+      allPhotosByProject[projId].push(data);
+    }
+  });
+
+  function openModal(photo: PhotoData, projectList: PhotoData[], index: number) {
+    currentPhotos = projectList;
+    currentIndex = index;
+    renderCurrentPhoto();
+
+    if (modal) {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function renderCurrentPhoto() {
+    if (!currentPhotos.length) return;
+    const photo = currentPhotos[currentIndex];
+
+    resetZoom();
+
+    if (modalImg) {
+      modalImg.src = photo.imageSrc;
+      modalImg.alt = photo.title;
+    }
+    if (phaseBadge) phaseBadge.textContent = photo.phase;
+    if (clientTag) clientTag.textContent = `${photo.client} • ${photo.projectName}`;
+    if (counterTag) counterTag.textContent = `Foto ${currentIndex + 1} dari ${currentPhotos.length}`;
+    if (titleTag) titleTag.textContent = photo.title;
+    if (specTag) specTag.textContent = photo.spec;
+    if (descTag) descTag.textContent = photo.description;
+    if (locTag) locTag.textContent = photo.location;
+    if (waBtn) {
+      waBtn.href = `https://wa.me/6281234567890?text=Halo%20Moving%20Co.,%20saya%20tertarik%20dengan%20spesifikasi%20foto%20${encodeURIComponent(photo.title)}%20(${encodeURIComponent(photo.client)})`;
+    }
+  }
+
+  function resetZoom() {
+    isZoomed = false;
+    if (modalImg) {
+      modalImg.style.transform = 'scale(1)';
+      modalImg.classList.remove('cursor-zoom-out');
+      modalImg.classList.add('cursor-zoom-in');
+    }
+    if (imageWrapper) {
+      imageWrapper.style.transform = 'scale(1)';
+    }
+    if (iconZoomIn) iconZoomIn.classList.remove('hidden');
+    if (iconZoomOut) iconZoomOut.classList.add('hidden');
+    if (zoomLabel) zoomLabel.textContent = 'Zoom 2x';
+  }
+
+  function toggleZoom() {
+    isZoomed = !isZoomed;
+    if (isZoomed) {
+      if (modalImg) {
+        modalImg.style.transform = 'scale(1.8)';
+        modalImg.classList.remove('cursor-zoom-in');
+        modalImg.classList.add('cursor-zoom-out');
+      }
+      if (iconZoomIn) iconZoomIn.classList.add('hidden');
+      if (iconZoomOut) iconZoomOut.classList.remove('hidden');
+      if (zoomLabel) zoomLabel.textContent = 'Reset Zoom';
+    } else {
+      resetZoom();
+    }
+  }
+
+  function closeModal() {
+    if (modal) {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+      resetZoom();
+    }
+  }
+
+  function showPrev() {
+    if (!currentPhotos.length) return;
+    currentIndex = (currentIndex - 1 + currentPhotos.length) % currentPhotos.length;
+    renderCurrentPhoto();
+  }
+
+  function showNext() {
+    if (!currentPhotos.length) return;
+    currentIndex = (currentIndex + 1) % currentPhotos.length;
+    renderCurrentPhoto();
+  }
+
+  triggers.forEach(trig => {
+    trig.addEventListener('click', () => {
+      const projId = trig.getAttribute('data-project-id');
+      const idxStr = trig.getAttribute('data-photo-index');
+      const rawJson = trig.getAttribute('data-json');
+      if (projId && idxStr && rawJson) {
+        const index = parseInt(idxStr, 10);
+        const photo: PhotoData = JSON.parse(rawJson);
+        const list = allPhotosByProject[projId] || [photo];
+        openModal(photo, list, index);
+      }
+    });
+  });
+
+  closeBtn?.addEventListener('click', closeModal);
+  prevBtn?.addEventListener('click', showPrev);
+  nextBtn?.addEventListener('click', showNext);
+  zoomBtn?.addEventListener('click', toggleZoom);
+  imageWrapper?.addEventListener('click', toggleZoom);
+
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (modal && !modal.classList.contains('hidden')) {
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowLeft') showPrev();
+      if (e.key === 'ArrowRight') showNext();
+    }
+  });
+</script>

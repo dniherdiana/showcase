@@ -1,0 +1,76 @@
+---
+import { Image } from "astro:assets";
+
+const {
+	subheadline,
+	src,
+	headline_1,
+	headline_2,
+	headline_3,
+	href,
+	buttonText,
+} = Astro.props;
+---
+
+<section class="relative min-h-[70vh] overflow-hidden">
+	<figure class="absolute inset-0 z-0">
+		<Image
+			class="h-full w-full object-cover"
+			src={src}
+			widths={[400, 800, 1200]}
+			sizes="100vw"
+			alt="Baduy Dalam"
+			loading="eager"
+			fetchpriority="high"
+			format="webp"
+			quality="85"
+		/>
+		<div class="absolute inset-0 bg-black/20"></div>
+		<div
+			class="text-heading/70 bg-text-dark/50 absolute bottom-1 left-2 z-10 flex items-center gap-1 p-1"
+		>
+			<div class="h-1 w-1 rounded-full bg-current opacity-60"></div>
+
+			<p
+				class="text-[8px] font-light tracking-wider uppercase lg:text-[10px] lg:tracking-widest"
+			>
+				Baduy Dalam, West Java
+			</p>
+		</div>
+	</figure>
+
+	<div
+		class="text-text relative z-10 flex flex-col justify-center px-6 py-30 lg:w-2/3"
+	>
+		<h2 class="mt-2 mb-5">
+			<span
+				class="text-heading block text-lg font-light tracking-wide lg:text-xl"
+			>
+				{headline_1}
+			</span>
+			<span
+				class="from-primary via-text to-primary my-2 block bg-linear-to-r bg-clip-text font-serif text-2xl leading-tight font-semibold text-transparent italic lg:text-4xl"
+			>
+				{headline_2}
+			</span>
+			<span class="text-text block text-base font-extralight lg:text-lg">
+				{headline_3}
+			</span>
+		</h2>
+
+		<p
+			class="text-text mb-8 block max-w-xl text-base leading-relaxed font-light lg:text-lg"
+		>
+			{subheadline}
+		</p>
+
+		<div class="w-full lg:text-left">
+			<a
+				href={href}
+				class="bg-primary hover:bg-primary-hover text-text-dark px-3 py-2 text-sm font-medium tracking-wide shadow-md hover:shadow-lg lg:px-6 lg:text-base"
+			>
+				{buttonText}
+			</a>
+		</div>
+	</div>
+</section>

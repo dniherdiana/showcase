@@ -1,0 +1,52 @@
+---
+import { ShieldCheck, Award, Lock, Wrench } from 'lucide-astro';
+import { homeContent } from '../../data/home.js';
+
+const { trust } = homeContent;
+
+const iconMap: Record<string, any> = {
+  Lock,
+  Wrench,
+  Award
+};
+---
+
+<section id="keunggulan" class="py-24 lg:py-32 bg-theme-bg border-b border-theme-border">
+  <div class="editorial-container">
+    
+    <!-- Section Header -->
+    <div class="max-w-3xl mb-16 space-y-4 reveal-on-scroll">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-theme-surface border border-theme-border text-theme-accent text-xs font-semibold tracking-wider">
+        <ShieldCheck class="w-4 h-4" />
+        <span>{trust.preheader}</span>
+      </div>
+      <h2 class="text-xl sm:text-2xl lg:text-3xl font-serif text-theme-primary font-normal leading-snug">
+        {trust.title}
+      </h2>
+      <p class="text-theme-secondary text-base leading-relaxed">
+        {trust.subtitle}
+      </p>
+    </div>
+
+    <!-- 3 Concrete Differentiators -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {trust.items.map((item, idx) => {
+        const IconComponent = iconMap[item.icon] || ShieldCheck;
+        return (
+          <div class={`surface-card p-8 rounded-sm space-y-4 ${item.highlighted ? 'border-theme-accent/40' : ''} reveal-on-scroll stagger-${idx + 1}`}>
+            <div class="w-10 h-10 rounded-sm bg-theme-accent-bg border border-theme-accent/30 text-theme-accent flex items-center justify-center">
+              <IconComponent class="w-5 h-5" />
+            </div>
+            <h3 class="text-xl font-serif text-theme-primary font-normal">
+              {item.title}
+            </h3>
+            <p class="text-theme-secondary text-sm leading-relaxed">
+              {item.description}
+            </p>
+          </div>
+        );
+      })}
+    </div>
+
+  </div>
+</section>

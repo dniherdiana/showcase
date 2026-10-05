@@ -1,0 +1,256 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const services = [
+  {
+    category: "facial",
+    title: "Aura Diamond Laser Glow",
+    price: "Rp 1.250.000",
+    duration: "75 Menit",
+    badge: "Best Seller",
+    desc: "Perawatan mencerahkan flek hitam, meratakan warna kulit, dan mengecilkan pori-pori dengan laser presisi tinggi."
+  },
+  {
+    category: "facial",
+    title: "Acne Care Purifying Therapy",
+    price: "Rp 650.000",
+    duration: "60 Menit",
+    badge: "Rekomendasi Dok",
+    desc: "Extraksi komedo medis higienis, aplikasi serum anti-inflamasi, dan blue light LED therapy untuk menyembuhkan jerawat."
+  },
+  {
+    category: "aesthetic",
+    title: "HIFU V-Shape Collagen Lifting",
+    price: "Rp 1.850.000",
+    duration: "90 Menit",
+    badge: "Anti-Aging Signature",
+    desc: "Pengencangan kulit kendur dan pembentukan kontur V-shape tanpa rasa sakit dengan ultrasound berfokus tinggi."
+  },
+  {
+    category: "body",
+    title: "Aroma Spa Relaxing Massage",
+    price: "Rp 550.000",
+    duration: "90 Menit",
+    badge: "Relaksasi Populer",
+    desc: "Pijatan tubuh menyeluruh menggunakan minyak aromaterapi lavender organik untuk meredakan pegal dan stres."
+  },
+  {
+    category: "body",
+    title: "Gluta Bright Body Scrub & Wrap",
+    price: "Rp 700.000",
+    duration: "90 Menit",
+    badge: "Kulit Mulus",
+    desc: "Eksfoliasi lulur beras jepang dan glutathione mask untuk melembutkan serta mencerahkan warna kulit tubuh."
+  },
+  {
+    category: "hair",
+    title: "Hair Scalp Spa & Keratin Therapy",
+    price: "Rp 480.000",
+    duration: "60 Menit",
+    badge: "Rambut Sehat",
+    desc: "Pembersihan mendalam ketombe dan penutrisi akar rambut dengan masker keratin konsentrat tinggi."
+  }
+];
+
+const comparisonRows = [
+  { feature: "Konsultasi Analisis Kulit Medis", standard: "Singkat / Tidak Ada", aura: "Gratis dengan Dokter & Terapis Expert" },
+  { feature: "Perlengkapan Treatment", standard: "Multi-use Disinfected", aura: "100% Single-Use Sterilized Kit" },
+  { feature: "Formulasi Produk Skincare", standard: "Bahan Generik", aura: "Bahan Premium Bersertifikat Board" },
+  { feature: "Ruang Treatment Privacy", standard: "Sekat Tirai Biasa", aura: "Kamar Privat Eksklusif Kedap Suara" },
+  { feature: "Garansi Kepuasan & Follow Up", standard: "Tidak Ada", aura: "Pendampingan Pasca-Treatment 7 Hari" }
+];
+---
+
+<Layout
+  title="Daftar Layanan & Harga | AURA Aesthetic & Beauty Lounge"
+  description="Katalog layanan lengkap: Facial & Skin, Body Spa, Hair Care, dan Aesthetic Anti-Aging dengan harga transparan di AURA Beauty Lounge."
+>
+  <!-- 1. Hero: Catalog Top Header -->
+  <section class="py-16 bg-[#0A080F] border-b border-pink-950/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+      <span class="magazine-badge">MENU TREATMENT LENGKAP</span>
+      <h1 class="font-serif text-4xl sm:text-5xl font-extrabold text-white">
+        Layanan Kecantikan <span class="text-gradient-vibrant">& Aesthetic Care</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-gray-300 max-w-2xl mx-auto">
+        Kami menghadirkan pengalaman perawatan kecantikan yang mewah, nyaman, dan personal dengan didukung oleh terapis profesional, produk premium, serta standar kebersihan yang tinggi.
+      </p>
+
+      <!-- Category Filter Tabs -->
+      <div class="flex flex-wrap items-center justify-center gap-2 pt-6" id="category-filter-bar">
+        <button data-cat="all" class="cat-btn active px-5 py-2 text-xs font-bold rounded-full border border-pink-500 bg-pink-600 text-white transition-all cursor-pointer">
+          Semua Layanan
+        </button>
+        <button data-cat="facial" class="cat-btn px-5 py-2 text-xs font-bold rounded-full border border-pink-950/60 bg-[#15121E] text-gray-300 hover:text-white transition-all cursor-pointer">
+          Facial & Skin Care
+        </button>
+        <button data-cat="aesthetic" class="cat-btn px-5 py-2 text-xs font-bold rounded-full border border-pink-950/60 bg-[#15121E] text-gray-300 hover:text-white transition-all cursor-pointer">
+          Aesthetic Anti-Aging
+        </button>
+        <button data-cat="body" class="cat-btn px-5 py-2 text-xs font-bold rounded-full border border-pink-950/60 bg-[#15121E] text-gray-300 hover:text-white transition-all cursor-pointer">
+          Body Spa & Massage
+        </button>
+        <button data-cat="hair" class="cat-btn px-5 py-2 text-xs font-bold rounded-full border border-pink-950/60 bg-[#15121E] text-gray-300 hover:text-white transition-all cursor-pointer">
+          Hair Care & Scalp
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Dynamic Interactive Category Filter & Price List Cards -->
+  <section class="py-20 bg-[#0E0B14] relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Client Data Placeholder Notice -->
+      <div class="mb-8 text-center">
+        <div class="client-data-badge">
+          ⚠️ [PERLU DATA CLIENT: Detail Harga & Durasi Paket Khusus]
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="services-grid">
+        {services.map((item) => (
+          <div data-category={item.category} class="service-card bg-[#15121E] border border-pink-950/80 rounded-3xl p-6 shadow-xl space-y-4 hover:border-pink-500/40 transition-all">
+            <div class="flex items-center justify-between">
+              <span class="px-3 py-1 bg-pink-600/30 text-pink-300 border border-pink-500/30 font-bold text-[10px] uppercase rounded-full">
+                {item.badge}
+              </span>
+              <span class="text-xs font-semibold text-gray-400">⏱ {item.duration}</span>
+            </div>
+
+            <h3 class="font-serif text-xl font-bold text-white">{item.title}</h3>
+            <p class="text-xs text-gray-300 leading-relaxed min-h-[48px]">{item.desc}</p>
+
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] text-gray-400 uppercase block">Harga Per Sesi</span>
+                <span class="text-lg font-bold text-pink-400">{item.price}</span>
+              </div>
+              <button
+                onclick="document.getElementById('booking-modal')?.classList.remove('hidden')"
+                class="px-5 py-2 text-xs font-bold text-white bg-gradient-to-r from-[#E6007A] to-[#8B5CF6] rounded-full hover:scale-105 transition-transform"
+              >
+                Booking Sesi
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3. Section Shell: Comparison Table (Standard vs Aura Luxe) -->
+  <section class="py-20 bg-[#0C0A10] relative border-t border-pink-950/40">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center mb-12 space-y-3">
+        <span class="magazine-badge">KOMPARASI KUALITAS</span>
+        <h2 class="font-serif text-3xl font-extrabold text-white">
+          Mengapa AURA Berbeda Dari Salon Biasa
+        </h2>
+      </div>
+
+      <div class="overflow-x-auto rounded-3xl border border-pink-500/30 bg-[#15121E] shadow-2xl">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-pink-950/80 bg-pink-950/30">
+              <th class="p-4 text-xs font-bold uppercase text-pink-300">Aspek Perawatan</th>
+              <th class="p-4 text-xs font-bold uppercase text-gray-400">Salon Kecantikan Standar</th>
+              <th class="p-4 text-xs font-bold uppercase text-amber-300 bg-pink-600/20">AURA Signature Care</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/10 text-xs sm:text-sm">
+            {comparisonRows.map((row) => (
+              <tr class="hover:bg-white/5 transition-colors">
+                <td class="p-4 font-bold text-white">{row.feature}</td>
+                <td class="p-4 text-gray-400">{row.standard}</td>
+                <td class="p-4 font-bold text-pink-300 bg-pink-950/10">✓ {row.aura}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. Section Shell: 4-Step Treatment Journey Process -->
+  <section class="py-20 bg-[#0E0B14] relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 space-y-3">
+        <span class="text-xs font-bold text-pink-400 uppercase tracking-widest">Alur Pelayanan Klien</span>
+        <h2 class="font-serif text-3xl font-extrabold text-white">4 Langkah Pengalaman Perawatan</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="p-6 rounded-3xl bg-[#15121E] border border-pink-950/80 space-y-3">
+          <span class="text-4xl font-extrabold font-serif text-pink-500">01</span>
+          <h3 class="font-serif text-lg font-bold text-white">Skin Check & Konsultasi</h3>
+          <p class="text-xs text-gray-300">Analisis kondisi kulit dengan pemindai digital sebelum menentukan regimen treatment.</p>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-[#15121E] border border-pink-950/80 space-y-3">
+          <span class="text-4xl font-extrabold font-serif text-purple-500">02</span>
+          <h3 class="font-serif text-lg font-bold text-white">Deep Cleansing Steril</h3>
+          <p class="text-xs text-gray-300">Pembersihan pori-pori secara menyeluruh dengan perlengkapan steril sekali pakai.</p>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-[#15121E] border border-pink-950/80 space-y-3">
+          <span class="text-4xl font-extrabold font-serif text-amber-500">03</span>
+          <h3 class="font-serif text-lg font-bold text-white">Targeted Therapy</h3>
+          <p class="text-xs text-gray-300">Aplikasi teknologi laser, HIFU, atau serum konsentrat tinggi sesuai kebutuhan.</p>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-[#15121E] border border-pink-950/80 space-y-3">
+          <span class="text-4xl font-extrabold font-serif text-emerald-500">04</span>
+          <h3 class="font-serif text-lg font-bold text-white">Glow Protect & Advice</h3>
+          <p class="text-xs text-gray-300">Penguncian kelembapan kulit dan panduan perawatan mandiri di rumah.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Immediate WhatsApp Booking Banner -->
+  <section class="py-12 bg-gradient-to-r from-pink-600 via-purple-600 to-amber-500 text-white text-center">
+    <div class="max-w-4xl mx-auto px-4 space-y-4">
+      <h3 class="font-serif text-2xl sm:text-3xl font-extrabold">Bingung Memilih Treatment Yang Tepat?</h3>
+      <p class="text-xs sm:text-sm font-semibold opacity-90">
+        Konsultasikan keluhan kulit Anda gratis bersama tim terapis kami via WhatsApp sekarang.
+      </p>
+      <a
+        href="https://wa.me/6281234567890?text=Halo%20Aura%20Beauty,%20saya%20butuh%20rekomendasi%20treatment"
+        target="_blank"
+        class="inline-block px-8 py-3 bg-black text-white font-bold text-xs uppercase tracking-wider rounded-full hover:bg-gray-900 transition-colors shadow-lg"
+      >
+        Chat WA Konsultasi Gratis
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // Category Filter Tab Logic
+  const filterBtns = document.querySelectorAll('.cat-btn');
+  const cards = document.querySelectorAll('.service-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => {
+        b.classList.remove('bg-pink-600', 'text-white', 'border-pink-500');
+        b.classList.add('bg-[#15121E]', 'text-gray-300', 'border-pink-950/60');
+      });
+      btn.classList.add('bg-pink-600', 'text-white', 'border-pink-500');
+      btn.classList.remove('bg-[#15121E]', 'text-gray-300', 'border-pink-950/60');
+
+      const cat = btn.getAttribute('data-cat');
+      cards.forEach(card => {
+        if (cat === 'all' || card.getAttribute('data-category') === cat) {
+          (card as HTMLElement).style.display = 'block';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

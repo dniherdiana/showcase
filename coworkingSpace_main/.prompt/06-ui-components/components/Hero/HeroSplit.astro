@@ -1,0 +1,103 @@
+<!-- ============================================================
+         SECTION 1: HERO — Left 50% / Right 50% Split
+         ============================================================ -->
+<section
+	class="relative min-h-screen flex flex-col lg:flex-row bg-[var(--color-navy)]"
+>
+	<!-- Micro grid overlay -->
+	<div
+		class="absolute inset-0 pointer-events-none"
+		style="background-image: linear-gradient(rgba(139,155,180,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(139,155,180,0.04) 1px, transparent 1px); background-size: 32px 32px;"
+	>
+	</div>
+
+	<!-- Left 50%: Text content -->
+	<div
+		class="relative w-full lg:w-[50%] flex flex-col justify-center px-8 md:px-16 lg:px-24 pt-36 pb-24 z-10"
+	>
+		<div data-reveal>
+			<!-- Layer 1: Micro-metadata -->
+			<div class="flex items-center gap-3 mb-8">
+				<span class="w-6 h-[1px] bg-[var(--color-orange)]"></span>
+				<span
+					class="font-mono text-[0.62rem] tracking-[0.22em] uppercase text-[var(--color-orange)]"
+				>
+					[COMPANY PROFILE &amp; GOVERNANCE]
+				</span>
+			</div>
+
+			<!-- Layer 2: Main narrative H1 -->
+			<h1
+				class="font-sans font-bold text-4xl md:text-5xl lg:text-[3.25rem] leading-[1.08] tracking-tight text-[var(--color-offwhite)] mb-8 max-w-xl"
+			>
+				Membangun Ketahanan Supply Chain Melalui Disiplin Operasional
+			</h1>
+
+			<!-- Layer 3: Deep context -->
+			<div class="border-l-2 border-[var(--color-orange)] pl-6 max-w-lg mb-10">
+				<p
+					class="font-sans text-[var(--color-steel-light)] text-base leading-[1.75] mb-4"
+				>
+					TransLogix berdiri dengan satu fokus: memberikan kepastian distribusi
+					bagi sektor industri dan manufaktur. Kami mengombinasikan kelayakan
+					armada fisik, kepatuhan regulasi transportasi, dan manajemen risiko
+					yang ketat untuk memastikan barang bisnis Anda sampai tanpa kendala.
+				</p>
+				<p
+					class="font-mono text-[0.7rem] text-[var(--color-offwhite-80)] tracking-wider"
+				>
+					// VISION: Powering Supply Chains with Uncompromised Safety &amp;
+					Speed
+				</p>
+			</div>
+
+			<!-- Certification tags -->
+			<div class="flex flex-wrap gap-3">
+				<span
+					class="font-mono text-[0.6rem] tracking-[0.15em] uppercase border border-[var(--color-orange)]/40 text-[var(--color-orange)] px-3 py-1"
+				>
+					ISO 9001:2015
+				</span>
+				<span
+					class="font-mono text-[0.6rem] tracking-[0.15em] uppercase border border-[var(--color-steel-dim)] text-[var(--color-steel)] px-3 py-1"
+				>
+					ISO 45001:2018
+				</span>
+				<span
+					class="font-mono text-[0.6rem] tracking-[0.15em] uppercase border border-[var(--color-steel-dim)] text-[var(--color-steel)] px-3 py-1"
+				>
+					PPJK LICENSED
+				</span>
+			</div>
+		</div>
+	</div>
+
+	<!-- Right 50%: Full-bleed image -->
+	<div class="relative w-full lg:w-[50%] h-[55vw] lg:h-auto min-h-[400px]">
+		<!-- Left fade gradient to blend with navy -->
+		<div
+			class="absolute inset-y-0 left-0 w-32 z-10 hidden lg:block"
+			style="background: linear-gradient(to right, var(--color-navy), transparent);"
+		>
+		</div>
+		<!-- Orange tint overlay -->
+		<div
+			class="absolute inset-0 z-10 opacity-10"
+			style="background-color: var(--color-orange); mix-blend-mode: multiply;"
+		>
+		</div>
+		<img
+			src="https://images.unsplash.com/photo-1553413077-190dd305871c?w=1000&q=85&auto=format&fit=crop"
+			alt="TransLogix Distribution Center Operations"
+			class="w-full h-full object-cover"
+			style="filter: grayscale(30%) contrast(1.1) brightness(0.8);"
+		/>
+	</div>
+
+	<!-- Overlap element into Section 2 -->
+	<div
+		class="absolute bottom-0 left-0 right-0 h-24 z-20"
+		style="background: linear-gradient(to bottom, transparent, var(--color-offwhite));"
+	>
+	</div>
+</section>

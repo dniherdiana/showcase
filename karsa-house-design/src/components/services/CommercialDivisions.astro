@@ -1,0 +1,100 @@
+---
+import { Image } from 'astro:assets';
+import { layananData } from '../../data/layanan.data.js';
+
+import fnbImg from '../../images/uma-sawah-bali.jpg';
+import retailImg from '../../images/sonder-senopati.jpg';
+import officeImg from '../../images/studio-kolabora.jpg';
+import feasibilityImg from '../../images/feasibility-study.jpg';
+
+const imageMap: Record<string, ImageMetadata> = {
+  fnb: fnbImg,
+  retail: retailImg,
+  office: officeImg,
+  feasibility: feasibilityImg,
+};
+
+const { divisions } = layananData;
+---
+
+<section class="w-full py-16 lg:py-24 bg-surface-ground">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24">
+    {divisions.map((division, idx) => {
+      const isEven = idx % 2 === 1;
+      const photo = imageMap[division.imageKey];
+
+      return (
+        <div
+          id={division.id}
+          class="scroll-mt-24 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center"
+        >
+          <!-- Media Column (Photo real estate > 60%) -->
+          <div class:list={[
+            'lg:col-span-6',
+            isEven ? 'lg:order-2' : 'lg:order-1'
+          ]}>
+            <div class="relative">
+              <div class="absolute -inset-2 bg-surface-panel sketch-border -rotate-1 -z-10"></div>
+              <div class:list={[
+                'sketch-border bg-surface-card p-3 shadow-sketch hover:shadow-floating transition-all duration-300',
+                division.rotation
+              ]}>
+                <div class="overflow-hidden rounded-sm aspect-[16/10] bg-surface-panel">
+                  {photo && (
+                    <Image
+                      src={photo}
+                      alt={division.title}
+                      class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                    />
+                  )}
+                </div>
+                <div class="mt-3 px-2 flex items-center justify-between font-mono text-xs text-ink-muted">
+                  <span class="text-brand-accent font-semibold">{division.number}</span>
+                  <span>{division.focus}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content Column -->
+          <div class:list={[
+            'lg:col-span-6 space-y-5',
+            isEven ? 'lg:order-1' : 'lg:order-2'
+          ]}>
+            <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight text-ink-primary leading-tight">
+              {division.title}
+            </h2>
+
+            <p class="text-sm sm:text-base text-ink-muted leading-relaxed font-medium">
+              <strong class="text-ink-primary">Fokus Tipologi:</strong> {division.focus}
+            </p>
+
+            <div class="space-y-3 pt-2">
+              <h3 class="font-mono text-xs uppercase tracking-wider text-brand-accent font-bold">
+                Cakupan Deliverables Teknis:
+              </h3>
+              <ul class="space-y-2.5">
+                {division.deliverables.map((item) => (
+                  <li class="flex items-start gap-3 text-xs sm:text-sm text-ink-primary leading-relaxed">
+                    <span class="text-brand-accent font-bold mt-0.5">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="pt-4">
+              <a
+                href="/kontak"
+                class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-brand-accent hover:text-brand-accent-hover transition-colors font-mono"
+              >
+                <span>Konsultasikan Kebutuhan {division.title.split(' ')[0]}</span>
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      );
+    })}
+  </div>
+</section>

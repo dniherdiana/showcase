@@ -1,0 +1,327 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const services = [
+  {
+    id: 'corporate',
+    tag: 'Corporate Outing',
+    title: 'Corporate Outing & Employee Gathering',
+    desc: 'Paket komplit outbound, gala dinner, team building, dan akomodasi VIP untuk menyegarkan kembali semangat produktivitas perusahaan.',
+    features: ['Gratis dokumentasi drone & video recap', 'Akomodasi hotel bintang 4/5', 'Tour Leader & Medical Team siaga', 'Perizinan lokasi & venue terurus'],
+    img: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80',
+    badge: 'Paling Diminati Perusahaan'
+  },
+  {
+    id: 'opentrip',
+    tag: 'Open Trip',
+    title: 'Open Trip Budget-Friendly & Fun',
+    desc: 'Gabung dengan sesama traveler seru menuju destinasi pilihan tanpa pusing memikirkan kuota atau urusan transportasi.',
+    features: ['Jadwal keberangkatan pasti', 'Armada bus luxury AC & WiFi', 'Guide lokal komunikatif & energik', 'Termasuk tiket masuk objek wisata'],
+    img: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80',
+    badge: 'Cocok Untuk Solo & Small Group'
+  },
+  {
+    id: 'custom',
+    tag: 'Custom Luxury Tour',
+    title: 'Private & Customized Tailor-Made Tour',
+    desc: 'Tentukan sendiri destinasi impian, pilihan restoran premium, dan durasi sesuai keinginan Anda dan keluarga tercinta.',
+    features: ['Fleksibilitas rute 100%', 'Layanan VIP airport transfer', 'Mobil pribadi mewah + driver pro', 'Pendampingan konsultasi itinerari gratis'],
+    img: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80',
+    badge: 'Privasi Terjamin'
+  },
+  {
+    id: 'incentive',
+    tag: 'Incentive Travel',
+    title: 'Incentive Trip Luar Negeri (Eropa & Asia)',
+    desc: 'Penghargaan eksklusif bagi mitra bisnis dan top performer dengan pengalaman destinasi kelas dunia yang prestisius.',
+    features: ['Penerbangan internasional full service', 'Gala award night spesial', 'Pemandu multibahasa', 'Merchandise eksklusif premium'],
+    img: 'https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=800&q=80',
+    badge: 'Pengalaman Prestisius'
+  },
+  {
+    id: 'visa',
+    tag: 'Visa & Flight',
+    title: 'Layanan Tiket Pesawat & Pengurusan Visa',
+    desc: 'Proses pengurusan dokumen perjalanan anti ribet dengan kepastian approval tinggi dan harga penerbangan grup kompetitif.',
+    features: ['Pendampingan berkas visa 1-on-1', 'Issued tiket pesawat 24/7', 'Asuransi perjalanan komprehensif', 'Layanan antar-jemput paspor'],
+    img: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?auto=format&fit=crop&w=800&q=80',
+    badge: 'Proses Cepat & Resmi'
+  }
+];
+---
+
+<Layout title="Layanan & Paket Tour — i-Travel | Katalog Lengkap Perjalanan Korporat & Private" activeNav="layanan">
+
+  <!-- SECTION 1: COMPACT HERO CATALOG HEADER -->
+  <section class="bg-slate-900 text-white py-16 lg:py-20 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-4">
+      <span class="px-3.5 py-1.5 rounded-full bg-sky-500/20 text-sky-300 border border-sky-500/30 text-xs font-bold uppercase tracking-widest">
+        Katalog Layanan Terpadu
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-extrabold text-white">
+        Solusi Perjalanan Lengkap Tanpa Khawatir
+      </h1>
+      <p class="text-slate-300 text-base max-w-2xl mx-auto font-light">
+        Setiap layanan dikurasi dengan standar presisi tinggi. <strong>Kepuasan client adalah prioritas kami</strong> dalam setiap paket perjalanan yang kami sajikan.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECTION 2: INTERACTIVE FILTER TABS & SERVICE CATALOG CARDS -->
+  <section class="py-16 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Filter Buttons Bar (Vanilla JS Interactivity) -->
+      <div class="flex items-center justify-center gap-2 overflow-x-auto pb-4 mb-12" id="filter-tabs">
+        <button data-filter="all" class="tab-btn active px-5 py-2.5 rounded-full text-sm font-bold bg-slate-900 text-white shadow-sm transition-all shrink-0">
+          Semua Layanan
+        </button>
+        <button data-filter="corporate" class="tab-btn px-5 py-2.5 rounded-full text-sm font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all shrink-0">
+          Corporate Outing
+        </button>
+        <button data-filter="opentrip" class="tab-btn px-5 py-2.5 rounded-full text-sm font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all shrink-0">
+          Open Trip
+        </button>
+        <button data-filter="custom" class="tab-btn px-5 py-2.5 rounded-full text-sm font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all shrink-0">
+          Custom Luxury Tour
+        </button>
+        <button data-filter="incentive" class="tab-btn px-5 py-2.5 rounded-full text-sm font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all shrink-0">
+          Incentive Trip
+        </button>
+        <button data-filter="visa" class="tab-btn px-5 py-2.5 rounded-full text-sm font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all shrink-0">
+          Visa & Tiket
+        </button>
+      </div>
+
+      <!-- Catalog Cards List -->
+      <div class="space-y-8" id="services-container">
+        {services.map((item) => (
+          <div data-category={item.id} class="service-card bg-white rounded-3xl p-6 lg:p-8 border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 grid lg:grid-cols-12 gap-8 items-center">
+            
+            <!-- Image Frame -->
+            <div class="lg:col-span-5 relative rounded-2xl overflow-hidden h-64 lg:h-80">
+              <img src={item.img} alt={item.title} class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+              <span class="absolute top-4 left-4 px-3 py-1 bg-slate-900/90 text-white text-xs font-bold rounded-md backdrop-blur-md">
+                {item.badge}
+              </span>
+            </div>
+
+            <!-- Content -->
+            <div class="lg:col-span-7 space-y-4">
+              <span class="text-xs font-bold text-sky-600 uppercase tracking-widest block">{item.tag}</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">{item.title}</h2>
+              <p class="text-slate-600 text-sm leading-relaxed">{item.desc}</p>
+              
+              <!-- Features Grid -->
+              <div class="grid sm:grid-cols-2 gap-2.5 pt-2">
+                {item.features.map((feat) => (
+                  <div class="flex items-center gap-2 text-xs font-semibold text-slate-700">
+                    <span class="w-4 h-4 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">✓</span>
+                    <span>{feat}</span>
+                  </div>
+                ))}
+              </div>
+
+              <!-- CTA for this service -->
+              <div class="pt-4 flex flex-wrap items-center gap-4">
+                <a 
+                  href={`https://wa.me/6281234567890?text=Halo%20i-Travel%2C%20saya%20tertarik%20dengan%20layanan%20${encodeURIComponent(item.title)}`}
+                  target="_blank"
+                  class="px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-sm shadow-md transition-colors flex items-center gap-2"
+                >
+                  <span>Konsultasi Paket WA</span>
+                </a>
+                <a 
+                  href="/kontak" 
+                  class="px-6 py-3 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-sm transition-colors"
+                >
+                  Minta Proposal Penawaran
+                </a>
+              </div>
+
+            </div>
+
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 3: INCLUSION VS EXCLUSIONS SERVICE MATRIX -->
+  <section class="py-20 bg-white border-t border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12 space-y-2">
+        <span class="text-xs font-bold text-rose-500 uppercase tracking-widest">Garansi Transparansi Biaya</span>
+        <h2 class="text-3xl font-extrabold text-slate-900">Standar Fasilitas Paket i-Travel</h2>
+        <p class="text-slate-600 text-sm">Sesuai prinsip bahwa <strong>kami menawarkan bukti bukan janji</strong>, semua rincian tertera secara gamblang.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-8">
+        
+        <!-- Inclusive Column -->
+        <div class="bg-emerald-50/60 rounded-3xl p-8 border border-emerald-200 space-y-4">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold">✓</span>
+            <h3 class="text-xl font-bold text-emerald-950">Sudah Termasuk Dalam Paket Standard</h3>
+          </div>
+          <ul class="space-y-3 text-sm text-emerald-900">
+            <li class="flex items-start gap-2">
+              <span class="font-bold text-emerald-600">•</span>
+              <span>Bus Luxury Pariwisata Reclining Seat + AC + USB Charger</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="font-bold text-emerald-600">•</span>
+              <span>Akomodasi Hotel Bintang Pilihan (Minimal Bintang 3+)</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="font-bold text-emerald-600">•</span>
+              <span>Makan sesuai itinerari dengan menu higienis teruji</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="font-bold text-emerald-600">•</span>
+              <span>Tiket masuk seluruh objek wisata utama</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="font-bold text-emerald-600">•</span>
+              <span>Tour Leader berpengalaman & P3K standar</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Exclusions Column -->
+        <div class="bg-slate-50 rounded-3xl p-8 border border-slate-200 space-y-4">
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-full bg-slate-400 text-white flex items-center justify-center font-bold">!</span>
+            <h3 class="text-xl font-bold text-slate-900">Ketentuan Opsional / Luar Paket</h3>
+          </div>
+          <ul class="space-y-3 text-sm text-slate-600">
+            <li class="flex items-start gap-2">
+              <span class="font-bold text-slate-400">•</span>
+              <span>Pengeluaran pribadi (laundry, minibar, souvenir)</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="font-bold text-slate-400">•</span>
+              <span>Tipping sukarela untuk driver & local guide</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="font-bold text-slate-400">•</span>
+              <span>Surcharge musim liburan puncak (High Season) jika ada</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="font-bold text-slate-400">•</span>
+              <span>Wahana permainan tambahan di luar itinerari sepakat</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 4: INTERACTIVE TRAVEL BUDGET CALCULATOR PREVIEW -->
+  <section class="py-16 bg-slate-900 text-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20 space-y-6">
+        
+        <div class="text-center space-y-2">
+          <h3 class="text-2xl font-bold text-white">Estimasi Cepat Biaya Trip Rombongan</h3>
+          <p class="text-xs text-slate-300">Hitung perkiraan budget awal untuk acara outing perusahaan Anda.</p>
+        </div>
+
+        <div class="grid sm:grid-cols-3 gap-4" id="calc-form">
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Jumlah Peserta</label>
+            <select id="calc-pax" class="w-full bg-slate-800 border border-slate-700 text-white rounded-xl p-3 text-sm focus:outline-none focus:border-sky-400">
+              <option value="20">15 - 25 Orang</option>
+              <option value="50" selected>30 - 60 Orang</option>
+              <option value="100">70 - 150+ Orang</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Wilayah Destinasi</label>
+            <select id="calc-dest" class="w-full bg-slate-800 border border-slate-700 text-white rounded-xl p-3 text-sm focus:outline-none focus:border-sky-400">
+              <option value="2500000">Jawa & Bali (Lokal)</option>
+              <option value="4800000">Labuan Bajo / Raja Ampat</option>
+              <option value="12500000">Singapura / Thailand / Asia</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Durasi Hari</label>
+            <select id="calc-days" class="w-full bg-slate-800 border border-slate-700 text-white rounded-xl p-3 text-sm focus:outline-none focus:border-sky-400">
+              <option value="3">3 Hari 2 Malam</option>
+              <option value="4">4 Hari 3 Malam</option>
+              <option value="5">5 Hari 4 Malam</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div>
+            <span class="text-xs text-slate-300 block">Estimasi Perkiraan / pax:</span>
+            <span id="calc-result" class="text-2xl font-extrabold text-emerald-400">Rp 4.800.000</span>
+          </div>
+          <a 
+            id="calc-wa-btn"
+            href="https://wa.me/6281234567890?text=Halo%20i-Travel%2C%20saya%20ingin%20minta%20proposal%20kalkulasi%20tour"
+            target="_blank"
+            class="w-full sm:w-auto px-6 py-3 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold text-sm text-center shadow-lg transition-colors"
+          >
+            Minta Proposal Lengkap WA
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Script for Tab Filtering & Budget Calculator -->
+  <script>
+    // Tab filtering
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const serviceCards = document.querySelectorAll('.service-card');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+        
+        tabBtns.forEach(b => {
+          b.classList.remove('bg-slate-900', 'text-white');
+          b.classList.add('bg-white', 'text-slate-700');
+        });
+        btn.classList.remove('bg-white', 'text-slate-700');
+        btn.classList.add('bg-slate-900', 'text-white');
+
+        serviceCards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || filter === category) {
+            (card as HTMLElement).style.display = 'grid';
+          } else {
+            (card as HTMLElement).style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Estimator calculator
+    const paxEl = document.getElementById('calc-pax') as HTMLSelectElement;
+    const destEl = document.getElementById('calc-dest') as HTMLSelectElement;
+    const daysEl = document.getElementById('calc-days') as HTMLSelectElement;
+    const resultEl = document.getElementById('calc-result');
+
+    function updateCalc() {
+      if (!paxEl || !destEl || !daysEl || !resultEl) return;
+      const baseDest = parseInt(destEl.value);
+      const days = parseInt(daysEl.value);
+      const totalPerPax = Math.round(baseDest * (1 + (days - 3) * 0.25));
+      resultEl.textContent = `Rp ${totalPerPax.toLocaleString('id-ID')}`;
+    }
+
+    paxEl?.addEventListener('change', updateCalc);
+    destEl?.addEventListener('change', updateCalc);
+    daysEl?.addEventListener('change', updateCalc);
+  </script>
+
+</Layout>

@@ -1,0 +1,19 @@
+---
+const { label, description } = Astro.props;
+---
+
+<article
+	class="context-card bg-surface border-border/30 mx-auto h-auto w-full rounded-sm border p-6 md:p-7 lg:w-5/6"
+>
+	<div class="mb-3 flex items-start justify-between">
+		<h3 class="font-display text-heading text-lg font-light">{label}</h3>
+		<div class="flex shrink-0 gap-1.5 pt-1">
+			<div class="bg-primary h-1.5 w-1.5 rounded-full"></div>
+			<div class="bg-success h-1.5 w-1.5 rounded-full"></div>
+			<div class="bg-info h-1.5 w-1.5 rounded-full"></div>
+		</div>
+	</div>
+	<p class="text-text text-base leading-relaxed font-light opacity-70">
+		{description}
+	</p>
+</article>

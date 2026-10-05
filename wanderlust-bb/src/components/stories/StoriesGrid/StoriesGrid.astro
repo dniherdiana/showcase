@@ -1,0 +1,24 @@
+---
+import StoryCard from "../../shared/StoryCard/StoryCard.astro";
+import { storiesData } from "../data/index.js";
+
+interface Props {
+	stories?: typeof storiesData;
+	title?: string;
+}
+
+const { stories = storiesData, title = "Feature Dispatches" } = Astro.props;
+---
+
+<div class="lg:col-span-8 space-y-8">
+	<div class="flex items-center justify-between border-b border-white/10 pb-4">
+		<h3 data-i18n-key="featureDispatches" class="font-heading text-xl sm:text-2xl font-extrabold uppercase text-white">
+			{title}
+		</h3>
+		<span class="text-xs font-mono text-white/40">{stories.length} <span data-i18n-key="articlesCountText">Articles</span></span>
+	</div>
+
+	<div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+		{stories.map((item) => <StoryCard {...item} />)}
+	</div>
+</div>

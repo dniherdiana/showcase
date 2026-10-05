@@ -1,0 +1,12 @@
+---
+const { label, title } = Astro.props;
+---
+
+<article class="py-2 text-heading bg-bg w-full">
+	<p
+		class="text-xl tracking-widest lg:text-2xl leading-tighter text-primary italic max-w-96"
+	>
+		{label}
+	</p>
+	<h2 class="text-sm tracking-wide text-text">{title}</h2>
+</article>

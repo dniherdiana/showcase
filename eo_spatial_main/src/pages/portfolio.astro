@@ -1,0 +1,316 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ClientDataBadge from '../components/ClientDataBadge.astro';
+
+const projects = [
+  {
+    id: "proj-1",
+    category: "corporate",
+    categoryLabel: "Corporate Event",
+    title: "Global FinTech Summit 2024",
+    client: "Konsorsium Perbankan Indonesia",
+    location: "Ritz-Carlton Pacific Place, Jakarta",
+    year: "2024",
+    coverImg: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=1000&auto=format&fit=crop",
+    scope: ["Stage Design 3D", "Lighting & Sound Rigging", "VIP Management", "Live Streaming 4K"],
+    story: "Summit teknologi finansial terbesar tahun ini yang mempertemukan 2.500 pimpinan lembaga keuangan, regulasi pemerintah, dan founder startup regional.",
+    challenge: "Ruang ballroom utama memiliki batasan beban langit-langit yang ketat untuk pemasangan rigging LED raksasa berbobot 4 ton.",
+    solution: "Tim insinyur struktural Elevate merancang rangka penopang ground-support mandiri berbasis baja berkekuatan tinggi tanpa membebani atap venue.",
+    result: "Acara berjalan tanpa hambatan teknis sekecil apapun, meraih kepuasan audiens 99.4% dan diliput oleh 35+ media nasional."
+  },
+  {
+    id: "proj-2",
+    category: "wedding",
+    categoryLabel: "Luxury Wedding",
+    title: "The Celestial Glasshouse Wedding",
+    client: "Arya & Luna",
+    location: "Uluwatu Cliffside Estate, Bali",
+    year: "2024",
+    coverImg: "https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=1000&auto=format&fit=crop",
+    scope: ["Bespoke Floral Architecture", "Spatial Lighting Design", "Rundown Choreography", "Protokol VVIP"],
+    story: "Pernikahan mewah bernuansa botanical dengan konstruksi struktur kaca tembus pandang seluas 800m² di tepi tebing laut Uluwatu.",
+    challenge: "Angin kencang pantai dan perubahan cuaca mendadak di area tebing terbuka.",
+    solution: "Pemasangan pendingin udara tersembunyi berkapasitas 100 PK dan sistem proteksi cuaca otomatis yang menyatu rapi dengan alam.",
+    result: "Mewujudkan pesta pernikahan impian pasangan dengan apresiasi tinggi dari 1.200 tamu undangan internasional."
+  },
+  {
+    id: "proj-3",
+    category: "exhibition",
+    categoryLabel: "Exhibition",
+    title: "Indonesia EV Future Expo 2024",
+    client: "Kementerian Perindustrian & Asosiasi EV",
+    location: "ICE BSD City, Tangerang",
+    year: "2024",
+    coverImg: "https://images.unsplash.com/photo-1531058020387-3be344556be6?q=80&w=1000&auto=format&fit=crop",
+    scope: ["Master Floor Plan", "Custom Pavilion Production", "Registration System", "Crowd Safety Protocol"],
+    story: "Pameran ekosistem kendaraan listrik nasional seluas 15.000m² yang menampilkan 80 brand otomotif terkemuka.",
+    challenge: "Manajemen arus pengunjung yang mencapai 45.000 orang selama 4 hari pameran tanpa kemacetan di area registrasi.",
+    solution: "Implementasi 24 gate pendaftaran berteknologi scan facial recognition dan sistem navigasi digital interaktif.",
+    result: "Terjadi transaksi senilai puluhan miliar rupiah dan antrean registrasi rata-rata di bawah 45 detik per pengunjung."
+  },
+  {
+    id: "proj-4",
+    category: "launching",
+    categoryLabel: "Product Launch",
+    title: "Neo-Cyber Smartphone Launch Night",
+    client: "Global Tech Brand",
+    location: "JCC Main Hall, Jakarta",
+    year: "2023",
+    coverImg: "https://images.unsplash.com/photo-1522158634071-9c383947886e?q=80&w=1000&auto=format&fit=crop",
+    scope: ["Holographic Projection Stage", "Immersive Audio Mapping", "KOL Experience Zone", "Media Kit Distribution"],
+    story: "Peluncuran smartphone flagship terbaru menggunakan panggung proyeksi hologram 3D immersive pertama di Asia Tenggara.",
+    challenge: "Menjaga kerahasiaan bentuk produk fisik hingga detik-detik peluncuran di panggung utama.",
+    solution: "Sistem pengamanan ruang steril ketat dengan otentikasi biometrik bagi seluruh krew dan performer yang terlibat.",
+    result: "Trending #1 di media sosial selama 48 jam dan mencapai 3.5 juta total views pada sesi live streaming."
+  },
+  {
+    id: "proj-5",
+    category: "gathering",
+    categoryLabel: "Gathering & Gala",
+    title: "National Retailer Annual Gala",
+    client: "PT Retail Nusantara Tbk",
+    location: "Grand Ballroom Hotel Mulia, Jakarta",
+    year: "2023",
+    coverImg: "https://images.unsplash.com/photo-1527529482837-4698179dc6ce?q=80&w=1000&auto=format&fit=crop",
+    scope: ["Gala Dinner Spatial Layout", "Artist Booking & Rundown", "Awards Production", "Souvenir Management"],
+    story: "Malam selebrasi ulang tahun ke-25 perusahaan retail dengan konsep Great Gatsby yang menghadirkan musisi papan atas Indonesia.",
+    challenge: "Mengakomodasi 1.800 karyawan dan mitra bisnis dalam jamuan makan 5-course bertahap tanpa jeda lama.",
+    solution: "Sinergi ketat antara stage manager Elevate dan 120 banquet staff hotel dengan aba-aba earpiece nirkabel terpusat.",
+    result: "Acara selesai tepat sesuai jadwal rundown hingga menit terakhir dan kepuasan jajaran direksi 100%."
+  }
+];
+---
+
+<Layout 
+  title="Portfolio Event | Elevate Event Organizer"
+  description="Jelajahi rekam jejak galeri dan cerita eksekusi event presisi kami dengan Modern Space Typography dan layout kartu kustom."
+>
+
+  <!-- HERO PORTFOLIO: MASSIVE SPACE TYPOGRAPHY ARCHIVE -->
+  <section class="relative py-20 border-b border-white/10 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-accent-lime bg-dark-card border-l-2 border-accent-lime px-3 py-1.5">
+            <span>// SHOWCASE ARCHIVE</span> • <span>350+ EVENTS EXECUTED</span>
+          </div>
+
+          <h1 class="text-6xl sm:text-8xl lg:text-9xl font-display font-extrabold text-text-main tracking-tighter leading-[0.86] uppercase">
+            GALERI HASIL <br />
+            <span class="text-accent-orange">EKSEKUSI PRESISI</span>
+          </h1>
+
+          <p class="text-text-muted text-xl leading-relaxed">
+            Membuka tirai di balik setiap perhelatan akbar. Pelajari tantangan teknis, arsitektur panggung, dan dampak nyata yang dihasilkan dari setiap event.
+          </p>
+        </div>
+
+        <div class="lg:col-span-5 relative">
+          <div class="border-2 border-white/15 h-[380px] relative overflow-hidden group">
+            <img 
+              src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?q=80&w=1600&auto=format&fit=crop" 
+              alt="Elevate Portfolio Cover Showcase" 
+              class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-dark-bg/60"></div>
+            <div class="absolute bottom-6 left-6 right-6">
+              <span class="text-xs font-mono text-accent-orange font-bold uppercase block mb-1">// DOKUMENTASI ATMOSFER</span>
+              <h3 class="text-2xl font-display font-extrabold text-text-main">
+                Pengalaman Visual yang Bercerita
+              </h3>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FILTER CONTROLS BAR -->
+  <section class="sticky top-20 z-40 bg-dark-bg/95 backdrop-blur-md py-4 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <div class="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none font-mono text-xs" id="filter-container">
+        <button class="filter-btn px-6 py-3 border border-accent-orange bg-accent-orange text-dark-bg font-bold" data-filter="all">
+          [SEMUA PROYEK (5)]
+        </button>
+        <button class="filter-btn px-6 py-3 border border-white/10 text-text-muted hover:text-white hover:border-accent-lime" data-filter="corporate">
+          CORPORATE EVENT
+        </button>
+        <button class="filter-btn px-6 py-3 border border-white/10 text-text-muted hover:text-white hover:border-accent-lime" data-filter="wedding">
+          LUXURY WEDDING
+        </button>
+        <button class="filter-btn px-6 py-3 border border-white/10 text-text-muted hover:text-white hover:border-accent-lime" data-filter="exhibition">
+          EXHIBITION & MICE
+        </button>
+        <button class="filter-btn px-6 py-3 border border-white/10 text-text-muted hover:text-white hover:border-accent-lime" data-filter="launching">
+          PRODUCT LAUNCH
+        </button>
+        <button class="filter-btn px-6 py-3 border border-white/10 text-text-muted hover:text-white hover:border-accent-lime" data-filter="gathering">
+          GATHERING & GALA
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO CUSTOM LAYERED ASYMMETRIC GRID (NO BOOTSTRAP CARDS) -->
+  <section class="py-20 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12" id="projects-grid">
+        {projects.map((proj, idx) => (
+          <div 
+            class={`project-card custom-card-layer p-8 sm:p-10 border-b border-white/10 cursor-pointer group flex flex-col justify-between`}
+            data-category={proj.category}
+            data-project-id={proj.id}
+          >
+            <div>
+              <div class="flex items-center justify-between font-mono text-xs mb-4">
+                <span class="text-accent-lime font-bold">// {proj.categoryLabel}</span>
+                <span class="text-text-muted">PROJECT 0{idx + 1} • {proj.year}</span>
+              </div>
+
+              <div class="relative overflow-hidden h-72 border-2 border-white/10 mb-6">
+                <img 
+                  src={proj.coverImg} 
+                  alt={proj.title} 
+                  class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+                />
+              </div>
+
+              <div class="text-xs font-mono text-accent-orange mb-2 font-bold">{proj.location}</div>
+              <h3 class="text-3xl sm:text-4xl font-display font-extrabold text-text-main mb-4 group-hover:text-accent-orange transition-colors">
+                {proj.title}
+              </h3>
+              <p class="text-text-muted text-base line-clamp-2 mb-6 leading-relaxed">
+                {proj.story}
+              </p>
+
+              <div class="flex flex-wrap gap-2 mb-6">
+                {proj.scope.map(s => (
+                  <span class="text-xs font-mono bg-white/5 border border-white/10 text-text-main px-3 py-1">
+                    {s}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div class="pt-6 border-t border-white/10 flex items-center justify-between font-mono text-xs">
+              <span class="text-accent-lime font-bold">KLIK UNTUK CERITA LENGKAP</span>
+              <span class="px-4 py-2 bg-accent-orange text-dark-bg font-bold">BACA STORY →</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="py-20 text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-8">
+      <h2 class="text-4xl sm:text-6xl font-display font-extrabold text-text-main uppercase mb-6 leading-[0.9]">
+        INGIN EVENT ANDA MASUK KEDALAM <br />
+        <span class="text-accent-orange">PORTOFOLIO TERBAIK KAMI?</span>
+      </h2>
+      <a href="/contact" class="inline-block px-10 py-5 bg-accent-orange text-dark-bg font-mono font-bold text-lg hover:bg-accent-lime transition-all">
+        KONSULTASI EVENT SEKARANG →
+      </a>
+    </div>
+  </section>
+
+  <!-- PROJECT STORY MODAL -->
+  <div id="project-modal" class="fixed inset-0 bg-dark-bg/95 backdrop-blur-xl z-50 hidden items-center justify-center p-4 sm:p-8">
+    <div class="bg-dark-surface max-w-3xl w-full max-h-[90vh] overflow-y-auto border-2 border-accent-orange p-8 sm:p-12 relative">
+      <button id="close-modal" class="absolute top-6 right-6 w-10 h-10 border border-white/20 hover:bg-accent-orange hover:text-dark-bg text-white font-mono text-xl transition-colors">
+        ✕
+      </button>
+
+      <div id="modal-body" class="space-y-6"></div>
+    </div>
+  </div>
+
+  <script define:vars={{ projects }}>
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-accent-orange', 'text-dark-bg');
+          b.classList.add('text-text-muted');
+        });
+        btn.classList.add('bg-accent-orange', 'text-dark-bg');
+        btn.classList.remove('text-text-muted');
+
+        projectCards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    const modal = document.getElementById('project-modal');
+    const closeModal = document.getElementById('close-modal');
+    const modalBody = document.getElementById('modal-body');
+
+    projectCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const projId = card.getAttribute('data-project-id');
+        const proj = projects.find(p => p.id === projId);
+
+        if (proj && modal && modalBody) {
+          modalBody.innerHTML = `
+            <div class="space-y-4">
+              <span class="text-xs font-mono text-accent-lime font-bold uppercase block">// ${proj.categoryLabel} • ${proj.year}</span>
+              <h2 class="text-3xl sm:text-5xl font-display font-extrabold text-text-main leading-tight">${proj.title}</h2>
+              <div class="text-xs font-mono text-text-muted">KLIEN: ${proj.client} | LOKASI: ${proj.location}</div>
+              
+              <img src="${proj.coverImg}" alt="${proj.title}" class="w-full h-72 object-cover border border-white/20 my-4" />
+
+              <div class="space-y-3">
+                <h4 class="font-mono font-bold text-accent-orange uppercase text-sm">// CERITA & LATAR BELAKANG</h4>
+                <p class="text-text-muted text-base leading-relaxed font-sans">${proj.story}</p>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+                <div class="bg-dark-card p-6 border-l-2 border-accent-orange">
+                  <h5 class="font-mono font-bold text-accent-orange text-xs uppercase mb-2">TANTANGAN TEKNIS</h5>
+                  <p class="text-text-muted text-xs leading-relaxed font-sans">${proj.challenge}</p>
+                </div>
+                <div class="bg-dark-card p-6 border-l-2 border-accent-lime">
+                  <h5 class="font-mono font-bold text-accent-lime text-xs uppercase mb-2">SOLUSI & EKSEKUSI ELEVATE</h5>
+                  <p class="text-text-muted text-xs leading-relaxed font-sans">${proj.solution}</p>
+                </div>
+              </div>
+
+              <div class="bg-accent-lime/10 border-l-4 border-accent-lime p-5">
+                <span class="block font-mono text-xs text-accent-lime font-bold uppercase">HASIL & DAMPAK:</span>
+                <p class="text-base font-display font-bold text-text-main mt-1">${proj.result}</p>
+              </div>
+
+              <div class="pt-6 border-t border-white/10 flex justify-end">
+                <a href="/contact" class="px-8 py-4 bg-accent-orange text-dark-bg font-mono font-bold text-sm">
+                  RENCANAKAN EVENT SERUPA →
+                </a>
+              </div>
+            </div>
+          `;
+          modal.classList.remove('hidden');
+          modal.classList.add('flex');
+        }
+      });
+    });
+
+    closeModal?.addEventListener('click', () => {
+      modal?.classList.add('hidden');
+      modal?.classList.remove('flex');
+    });
+  </script>
+
+</Layout>

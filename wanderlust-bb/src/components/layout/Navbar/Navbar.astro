@@ -1,0 +1,213 @@
+---
+import { navItems } from "./navbar.data.js";
+import { siteConfig } from "../site.config.js";
+
+interface Props {
+	currentPath?: string;
+}
+
+const { currentPath = "/" } = Astro.props;
+
+function navKey(href: string) {
+	return (
+		href === "/" ? "navHome"
+		: href === "/destinations" ? "navDestinations"
+		: href === "/promo" ? "navPromo"
+		: href === "/about" ? "navAbout"
+		: "navStories"
+	);
+}
+---
+
+<nav
+	class="sticky top-0 z-50 flex items-center justify-between border-b border-white/10 bg-[#0e1622]/95 px-[5%] py-4 shadow-lg backdrop-blur-md transition-all duration-300"
+>
+	<!-- CSS-only mobile menu toggle (checkbox hack) -->
+	<input
+		type="checkbox"
+		id="mobile-menu-toggle"
+		class="sr-only md:hidden"
+		aria-label="Toggle Mobile Menu"
+	/>
+
+	<!-- Brand Logo -->
+	<a
+		href="/"
+		class="font-serif text-2xl font-bold tracking-tight text-white transition-opacity hover:opacity-90"
+	>
+		{siteConfig.logoText}<span class="text-gold">{siteConfig.logoAccent}</span>.
+	</a>
+
+	<!-- Desktop Navigation Links -->
+	<ul class="hidden list-none items-center gap-8 md:flex">
+		{
+			navItems.map((item) => {
+				const isActive =
+					item.href === "/" ?
+						currentPath === "/" || currentPath === ""
+					:	currentPath.startsWith(item.href);
+
+				return (
+					<li>
+						<a
+							href={item.href}
+							data-i18n-key={navKey(item.href)}
+							class={`relative py-1 font-mono text-xs font-bold tracking-[2px] uppercase transition-colors duration-300 ${
+								isActive ?
+									"text-gold font-bold"
+								:	"text-white/80 hover:text-white"
+							}`}
+						>
+							{item.name}
+							{isActive && (
+								<span class="bg-gold absolute bottom-0 left-0 h-0.5 w-full transition-all" />
+							)}
+						</a>
+					</li>
+				);
+			})
+		}
+
+		<!-- Language Switcher Tag -->
+		<li
+			class="flex items-center border-b border-white/20 px-1 font-mono text-xs"
+		>
+			<button
+				id="lang-btn-en"
+				type="button"
+				class="text-gold cursor-pointer px-2 py-0.5 font-bold transition-all"
+			>
+				EN
+			</button>
+			<span class="text-white/30">/</span>
+			<button
+				id="lang-btn-id"
+				type="button"
+				class="cursor-pointer px-2 py-0.5 text-white/70 transition-all hover:text-white"
+			>
+				ID
+			</button>
+		</li>
+
+		<li>
+			<a
+				href="/#book"
+				data-i18n-key="navBookTrip"
+				class="bg-gold hover:bg-gold-light inline-block rounded-none px-6 py-2.5 font-mono text-xs font-extrabold tracking-[2px] text-slate-950 uppercase shadow-md transition-all duration-300"
+			>
+				Book a Trip
+			</a>
+		</li>
+	</ul>
+
+	<!-- Mobile Right Bar (Language Switcher + Hamburger Label) -->
+	<div class="mobile-controls flex items-center gap-3 md:hidden">
+		<div
+			class="flex items-center border-b border-white/20 px-1 font-mono text-[11px]"
+		>
+			<button
+				id="mobile-lang-en"
+				type="button"
+				class="text-gold cursor-pointer px-1.5 py-0.5 font-bold">EN</button
+			>
+			<span class="text-white/30">/</span>
+			<button
+				id="mobile-lang-id"
+				type="button"
+				class="cursor-pointer px-1.5 py-0.5 text-white/70">ID</button
+			>
+		</div>
+
+		<label
+			for="mobile-menu-toggle"
+			class="mobile-menu-label flex cursor-pointer flex-col gap-1.5 p-2 text-white transition-colors select-none hover:bg-white/10"
+			aria-hidden="true"
+		>
+			<span
+				class="nav-line nav-line-1 h-0.5 w-6 origin-center bg-white transition-transform duration-300"
+			></span>
+			<span
+				class="nav-line nav-line-2 h-0.5 w-6 bg-white transition-opacity duration-300"
+			></span>
+			<span
+				class="nav-line nav-line-3 h-0.5 w-6 origin-center bg-white transition-transform duration-300"
+			></span>
+		</label>
+	</div>
+
+	<!-- Mobile Dropdown Menu (toggled purely by the checkbox above) -->
+	<div
+		id="mobile-menu"
+		class="absolute top-full right-0 left-0 hidden flex-col gap-4 border-b border-white/10 bg-[#0e1622] px-[5%] py-6 shadow-2xl md:hidden"
+	>
+		<ul class="flex list-none flex-col gap-1">
+			{
+				navItems.map((item) => {
+					const isActive =
+						item.href === "/" ?
+							currentPath === "/" || currentPath === ""
+						:	currentPath.startsWith(item.href);
+
+					return (
+						<li>
+							<a
+								href={item.href}
+								data-i18n-key={navKey(item.href)}
+								class={`block py-2 font-mono text-sm font-bold tracking-wider uppercase transition-colors ${
+									isActive ? "text-gold" : "text-white/80 hover:text-white"
+								}`}
+							>
+								{item.name}
+							</a>
+						</li>
+					);
+				})
+			}
+		</ul>
+		<a
+			href="/#book"
+			data-i18n-key="navBookTrip"
+			class="bg-gold mt-2 w-full rounded-none px-6 py-3 text-center font-mono text-xs font-extrabold tracking-[2px] text-slate-950 uppercase shadow-md transition-colors"
+		>
+			Book a Trip
+		</a>
+	</div>
+</nav>
+
+<style>
+	/* CSS-only mobile menu: the hidden checkbox drives the menu + X icon via :checked. */
+	#mobile-menu-toggle {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		margin: -1px;
+		padding: 0;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border: 0;
+	}
+
+	@media (max-width: 767.98px) {
+		#mobile-menu-toggle:checked ~ #mobile-menu {
+			display: flex;
+		}
+
+		/* Hamburger morphs into an animated (X) close button */
+		#mobile-menu-toggle:checked ~ .mobile-controls .nav-line-1 {
+			transform: translateY(8px) rotate(45deg);
+		}
+		#mobile-menu-toggle:checked ~ .mobile-controls .nav-line-2 {
+			opacity: 0;
+		}
+		#mobile-menu-toggle:checked ~ .mobile-controls .nav-line-3 {
+			transform: translateY(-8px) rotate(-45deg);
+		}
+	}
+
+	/* Keyboard focus ring on the toggle */
+	#mobile-menu-toggle:focus-visible ~ .mobile-controls .mobile-menu-label {
+		outline: 2px solid var(--color-gold);
+		outline-offset: 2px;
+	}
+</style>

@@ -1,0 +1,72 @@
+---
+import { Building2, ShieldCheck, Award, Clock, ArrowRight } from 'lucide-astro';
+import { tentangKamiContent } from '../../data/tentang-kami.js';
+
+const { hero } = tentangKamiContent;
+
+const heroStats = [
+  { label: 'Proyek Selesai Tepat Waktu', value: '100%', icon: Clock },
+  { label: 'Garansi Maintenance Purna Jual', value: '12 Bulan', icon: ShieldCheck },
+  { label: 'Transparansi RAB Biaya', value: 'Fixed-Cost', icon: Award },
+];
+---
+
+<section class="py-20 lg:py-32 bg-theme-bg border-b border-theme-border relative overflow-hidden">
+  <!-- Subtle Ambient Radial Glow -->
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,var(--tw-gradient-stops))] from-theme-accent/5 via-transparent to-transparent pointer-events-none"></div>
+
+  <div class="editorial-container relative z-10 space-y-16">
+
+    <!-- Hero Main Heading Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
+      <div class="lg:col-span-8 space-y-6">
+        <!-- Preheader Badge -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-sm bg-theme-surface border border-theme-border text-theme-accent text-xs font-semibold tracking-wider uppercase shadow-sm">
+          <Building2 class="w-4 h-4 text-theme-accent" />
+          <span>{hero.preheader} & Filosofi Pendirian</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-serif text-theme-primary font-normal leading-tight">
+          {hero.title}
+        </h1>
+
+        <p class="text-base sm:text-xl text-theme-secondary font-normal leading-relaxed max-w-3xl">
+          {hero.subheading}
+        </p>
+      </div>
+
+      <!-- Quick Action Card -->
+      <div class="lg:col-span-4 flex flex-col justify-end">
+        <div class="surface-card p-6 rounded-sm border border-theme-border space-y-4 shadow-lg">
+          <div class="text-xs font-semibold text-theme-accent uppercase tracking-wider">Komitmen Utama Moving Co.</div>
+          <p class="text-xs text-theme-secondary leading-relaxed">
+            Menghapus risiko addendum biaya di tengah jalan dengan perhitungan tonase baja WF SNI presisi sejak hari pertama.
+          </p>
+          <a href="/kontak" class="btn-primary w-full py-3 text-xs justify-center font-bold">
+            <span>Diskusi Bersama Insinyur</span>
+            <ArrowRight class="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Metrics Stats Bar -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-6 border-t border-theme-border/60">
+      {heroStats.map(stat => {
+        const IconComponent = stat.icon;
+        return (
+          <div class="surface-card p-6 rounded-sm border-theme-border flex items-center gap-4 hover:border-theme-accent/50 transition-colors">
+            <div class="w-12 h-12 rounded-sm bg-theme-surface border border-theme-border flex items-center justify-center text-theme-accent shrink-0">
+              <IconComponent class="w-6 h-6 stroke-2" />
+            </div>
+            <div>
+              <div class="text-2xl font-serif font-bold text-theme-primary">{stat.value}</div>
+              <div class="text-xs text-theme-secondary font-medium mt-0.5">{stat.label}</div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+  </div>
+</section>

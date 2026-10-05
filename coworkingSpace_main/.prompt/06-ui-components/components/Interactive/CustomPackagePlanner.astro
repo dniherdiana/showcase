@@ -1,0 +1,264 @@
+---
+import { siteConfig } from '../../data/siteConfig.js';
+---
+
+<section id="custom-planner" class="py-24 md:py-32 bg-[#15221E] text-white relative overflow-hidden" aria-label="Interactive Custom Package Planner">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+    
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-xs uppercase tracking-widest text-[#C86D51] font-bold block mb-2">
+        Bikin Paket Sendiri
+      </span>
+      <h2 class="font-serif-editorial text-3xl sm:text-4xl lg:text-5xl text-white font-normal leading-tight mb-4">
+        Rancang Sendiri Paket Wisata Anda <span class="italic text-[#EFE6D8] font-semibold">Sesuai Keinginan</span>
+      </h2>
+      <p class="text-base text-[#EFE6D8]/80 font-sans-body">
+        Pilih tipe trip, destinasi, dan tambahan yang Anda mau. Estimasi biaya langsung muncul di bawah—tinggal kirim ke WA kalau sudah cocok.
+      </p>
+    </div>
+
+    <!-- Builder Form Container -->
+    <div class="bg-[#1E2E28] rounded-3xl p-8 sm:p-12 border border-white/10 shadow-2xl">
+      
+      <form id="custom-builder-form" class="space-y-10">
+        
+        <!-- STEP 1: Type Selection -->
+        <div>
+          <div class="flex items-center gap-3 mb-6">
+            <span class="w-8 h-8 rounded-full bg-[#C86D51] text-white font-serif font-bold text-sm flex items-center justify-center" aria-hidden="true">1</span>
+            <h3 class="font-serif-editorial text-2xl text-white font-semibold">Siapa yang Ikut?</h3>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <label class="builder-radio-card cursor-pointer p-5 rounded-2xl bg-[#15221E] border border-white/10 hover:border-[#C86D51] transition-all has-[:checked]:border-[#C86D51] has-[:checked]:bg-[#C86D51]/10">
+              <input type="radio" name="builder_group" value="Liburan Keluarga" checked class="sr-only" />
+              <span class="text-xs font-bold text-[#C86D51] uppercase tracking-wider block mb-1">Pribadi</span>
+              <span class="font-serif-editorial text-xl font-bold text-white block mb-1">Liburan Keluarga</span>
+              <span class="text-xs text-[#6B7674] block">2–15 orang · Aman buat lansia & balita</span>
+            </label>
+
+            <label class="builder-radio-card cursor-pointer p-5 rounded-2xl bg-[#15221E] border border-white/10 hover:border-[#C86D51] transition-all has-[:checked]:border-[#C86D51] has-[:checked]:bg-[#C86D51]/10">
+              <input type="radio" name="builder_group" value="Outing Kantor" class="sr-only" />
+              <span class="text-xs font-bold text-[#C86D51] uppercase tracking-wider block mb-1">Korporat</span>
+              <span class="font-serif-editorial text-xl font-bold text-white block mb-1">Outing Kantor</span>
+              <span class="text-xs text-[#6B7674] block">20–500+ orang · e-Faktur beres</span>
+            </label>
+
+            <label class="builder-radio-card cursor-pointer p-5 rounded-2xl bg-[#15221E] border border-white/10 hover:border-[#C86D51] transition-all has-[:checked]:border-[#C86D51] has-[:checked]:bg-[#C86D51]/10">
+              <input type="radio" name="builder_group" value="Meeting & Insentif" class="sr-only" />
+              <span class="text-xs font-bold text-[#C86D51] uppercase tracking-wider block mb-1">MICE</span>
+              <span class="font-serif-editorial text-xl font-bold text-white block mb-1">Meeting & Insentif</span>
+              <span class="text-xs text-[#6B7674] block">10–100 orang · Setup VIP</span>
+            </label>
+
+            <label class="builder-radio-card cursor-pointer p-5 rounded-2xl bg-[#15221E] border border-white/10 hover:border-[#C86D51] transition-all has-[:checked]:border-[#C86D51] has-[:checked]:bg-[#C86D51]/10">
+              <input type="radio" name="builder_group" value="Bulan Madu" class="sr-only" />
+              <span class="text-xs font-bold text-[#C86D51] uppercase tracking-wider block mb-1">Romantis</span>
+              <span class="font-serif-editorial text-xl font-bold text-white block mb-1">Bulan Madu</span>
+              <span class="text-xs text-[#6B7674] block">2 orang · Villa & dinner romantis</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- STEP 2: Destination & Pax -->
+        <div>
+          <div class="flex items-center gap-3 mb-6">
+            <span class="w-8 h-8 rounded-full bg-[#C86D51] text-white font-serif font-bold text-sm flex items-center justify-center" aria-hidden="true">2</span>
+            <h3 class="font-serif-editorial text-2xl text-white font-semibold">Mau ke Mana & Berapa Orang?</h3>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="builder-dest" class="block text-xs font-semibold text-[#EFE6D8] mb-2">Pilih Tujuan</label>
+              <select id="builder-dest" class="w-full bg-[#15221E] border border-white/15 rounded-xl px-4 py-3 text-xs font-semibold text-white focus:outline-none focus:ring-2 focus:ring-[#C86D51]">
+                <option value="Bali (3D2N)" data-price="2450000">Bali (Beach & Culture Resort)</option>
+                <option value="Labuan Bajo Phinisi (3D2N)" data-price="4850000">Labuan Bajo (Komodo & Phinisi)</option>
+                <option value="Bromo & Malang (3D2N)" data-price="2150000">Bromo, Batu & Malang Highland</option>
+                <option value="Yogyakarta (3D2N)" data-price="1850000">Yogyakarta & Borobudur Heritage</option>
+                <option value="Raja Ampat (5D4N)" data-price="8900000">Raja Ampat Exotic Archipelago</option>
+                <option value="Jepang Sakura (6D5N)" data-price="15800000">Jepang Tokyo & Fuji (Overseas)</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="builder-pax-range" class="block text-xs font-semibold text-[#EFE6D8] mb-2">Jumlah Peserta</label>
+              <!-- [U4 Fix: Slider visual min/max labels] -->
+              <div class="flex items-center gap-3 bg-[#15221E] border border-white/15 rounded-xl px-4 py-2.5">
+                <span class="text-[10px] text-[#6B7674] font-semibold shrink-0" aria-hidden="true">2</span>
+                <input 
+                  type="range" 
+                  id="builder-pax-range" 
+                  min="2" 
+                  max="200" 
+                  value="30" 
+                  aria-label="Jumlah Peserta Custom Trip"
+                  class="w-full accent-[#C86D51]" 
+                />
+                <span class="text-[10px] text-[#6B7674] font-semibold shrink-0" aria-hidden="true">200</span>
+                <span id="builder-pax-val" class="font-serif-editorial text-xl font-bold text-[#C86D51] min-w-[60px] text-right">
+                  30 pax
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3: Add-ons -->
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="w-8 h-8 rounded-full bg-[#C86D51] text-white font-serif font-bold text-sm flex items-center justify-center" aria-hidden="true">3</span>
+            <h3 class="font-serif-editorial text-2xl text-white font-semibold">Tambahan yang Anda Mau</h3>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs font-medium text-[#EFE6D8]">
+            <label class="flex items-center gap-3 p-4 rounded-xl bg-[#15221E] border border-white/10 cursor-pointer hover:border-white/20 transition-all">
+              <input type="checkbox" id="ext-hotel5" class="accent-[#C86D51] w-4 h-4" />
+              <span>Upgrade Hotel Bintang 5 / Luxury Resort</span>
+            </label>
+
+            <label class="flex items-center gap-3 p-4 rounded-xl bg-[#15221E] border border-white/10 cursor-pointer hover:border-white/20 transition-all">
+              <input type="checkbox" id="ext-outbound" checked class="accent-[#C86D51] w-4 h-4" />
+              <span>Facilitator Team Building & Outbound Games</span>
+            </label>
+
+            <label class="flex items-center gap-3 p-4 rounded-xl bg-[#15221E] border border-white/10 cursor-pointer hover:border-white/20 transition-all">
+              <input type="checkbox" id="ext-gala" checked class="accent-[#C86D51] w-4 h-4" />
+              <span>Gala Dinner + Sound System & MC Professional</span>
+            </label>
+
+            <label class="flex items-center gap-3 p-4 rounded-xl bg-[#15221E] border border-white/10 cursor-pointer hover:border-white/20 transition-all">
+              <input type="checkbox" id="ext-photo" class="accent-[#C86D51] w-4 h-4" />
+              <span>Dokumentasi Fotografer Dedicated + Drone Video</span>
+            </label>
+
+            <label class="flex items-center gap-3 p-4 rounded-xl bg-[#15221E] border border-white/10 cursor-pointer hover:border-white/20 transition-all">
+              <input type="checkbox" id="ext-bus" checked class="accent-[#C86D51] w-4 h-4" />
+              <span>Bus Pariwisata Executive HDD/SHD Terbaru</span>
+            </label>
+
+            <label class="flex items-center gap-3 p-4 rounded-xl bg-[#15221E] border border-white/10 cursor-pointer hover:border-white/20 transition-all">
+              <input type="checkbox" id="ext-efaktur" checked class="accent-[#C86D51] w-4 h-4" />
+              <span>Penerbitan e-Faktur Pajak & Invoice Corporate</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- SUMMARY & ACTION PANEL -->
+        <div class="pt-8 border-t border-white/15 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <span class="text-xs uppercase tracking-wider text-[#6B7674] block mb-1">Perkiraan Biaya Per Orang</span>
+            <div class="flex items-baseline gap-2">
+              <span class="text-base font-semibold text-[#EFE6D8]">Rp</span>
+              <!-- [U5 Fix: Transition animation target] -->
+              <span id="builder-cost-pax" class="font-serif-editorial text-4xl sm:text-5xl font-bold text-white transition-all duration-200 inline-block">
+                2.350.000
+              </span>
+              <span class="text-xs text-[#6B7674]">/ pax</span>
+            </div>
+            <p id="builder-total-summary" class="text-xs text-[#C86D51] font-semibold mt-2">
+              Est. Total Rombongan: Rp 70.500.000 (30 Pax)
+            </p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center gap-3 w-full md:w-auto">
+            <!-- [C3 Fix: type="button"] -->
+            <button 
+              type="button"
+              id="builder-submit-wa"
+              class="w-full sm:w-auto bg-[#25D366] hover:bg-[#1EBC5A] text-white text-xs font-bold px-7 py-4 rounded-xl shadow-xl transition-all cursor-pointer flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#25D366]"
+            >
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.157 4.228 4.26-1.117z"/>
+              </svg>
+              <span>Kirim ke WhatsApp</span>
+            </button>
+
+            <button 
+              type="button"
+              data-modal-target="proposal-modal"
+              class="open-proposal-modal w-full sm:w-auto bg-white/10 hover:bg-white/20 text-white text-xs font-semibold px-6 py-4 rounded-xl transition-all text-center focus:outline-none focus:ring-2 focus:ring-white"
+            >
+              Minta Proposal PDF
+            </button>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // Dynamic Builder Calculation Script with Recalculation Flash Effect [U5 Fix]
+  const bPaxRange = document.getElementById('builder-pax-range') as HTMLInputElement;
+  const bPaxVal = document.getElementById('builder-pax-val');
+  const bDestSelect = document.getElementById('builder-dest') as HTMLSelectElement;
+  const bCostPax = document.getElementById('builder-cost-pax');
+  const bTotalSummary = document.getElementById('builder-total-summary');
+  const bSubmitWa = document.getElementById('builder-submit-wa');
+
+  function calculateBuilder() {
+    if (!bPaxRange || !bPaxVal || !bDestSelect || !bCostPax || !bTotalSummary) return;
+
+    const pax = parseInt(bPaxRange.value);
+    bPaxVal.textContent = `${pax} pax`;
+
+    const selectedOption = bDestSelect.options[bDestSelect.selectedIndex];
+    const baseRate = parseInt(selectedOption.getAttribute('data-price') || '2150000');
+
+    // Add extra costs for selected add-ons
+    let extraRate = 0;
+    if ((document.getElementById('ext-hotel5') as HTMLInputElement)?.checked) extraRate += 450000;
+    if ((document.getElementById('ext-outbound') as HTMLInputElement)?.checked) extraRate += 150000;
+    if ((document.getElementById('ext-gala') as HTMLInputElement)?.checked) extraRate += 200000;
+    if ((document.getElementById('ext-photo') as HTMLInputElement)?.checked) extraRate += 100000;
+
+    let finalPaxPrice = baseRate + extraRate;
+
+    // Apply corporate bulk scale discount
+    if (pax > 50) finalPaxPrice = Math.round(finalPaxPrice * 0.90);
+    else if (pax > 25) finalPaxPrice = Math.round(finalPaxPrice * 0.94);
+
+    const grandTotal = finalPaxPrice * pax;
+
+    // Micro-animation flash feedback on price update [U5 Fix]
+    bCostPax.classList.add('opacity-40', 'scale-95');
+    setTimeout(() => {
+      if (bCostPax) bCostPax.textContent = finalPaxPrice.toLocaleString('id-ID');
+      if (bTotalSummary) bTotalSummary.textContent = `Est. Total Rombongan: Rp ${grandTotal.toLocaleString('id-ID')} (${pax} Pax)`;
+      bCostPax.classList.remove('opacity-40', 'scale-95');
+    }, 100);
+  }
+
+  if (bPaxRange && bDestSelect) {
+    bPaxRange.addEventListener('input', calculateBuilder);
+    bDestSelect.addEventListener('change', calculateBuilder);
+
+    document.querySelectorAll('#custom-builder-form input[type="checkbox"]').forEach(chk => {
+      chk.addEventListener('change', calculateBuilder);
+    });
+
+    document.querySelectorAll('input[name="builder_group"]').forEach(rad => {
+      rad.addEventListener('change', calculateBuilder);
+    });
+
+    calculateBuilder();
+  }
+
+  if (bSubmitWa) {
+    bSubmitWa.addEventListener('click', () => {
+      const groupType = (document.querySelector('input[name="builder_group"]:checked') as HTMLInputElement)?.value || 'Gathering';
+      const dest = bDestSelect.value;
+      const pax = bPaxRange.value;
+      const costPax = bCostPax?.textContent || '';
+      const grandTotal = bTotalSummary?.textContent || '';
+
+      const msg = `Halo Nusantara Journey, saya merancang paket custom:%0A- Tipe Rombongan: ${encodeURIComponent(groupType)}%0A- Destinasi: ${encodeURIComponent(dest)}%0A- Jumlah Peserta: ${pax} pax%0A- Est. Harga per Pax: Rp ${costPax}%0A- ${encodeURIComponent(grandTotal)}%0A%0AMohon bantuan tim travel consultant untuk draf proposal & rundown detailnya. Terima kasih!`;
+      
+      window.open(`https://wa.me/6281234567890?text=${msg}`, '_blank');
+    });
+  }
+</script>

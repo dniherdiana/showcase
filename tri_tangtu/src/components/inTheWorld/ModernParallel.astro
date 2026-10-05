@@ -1,0 +1,78 @@
+---
+import { Image } from "astro:assets";
+
+const {
+	sectionLabel,
+	opener,
+	openerAccent,
+	body,
+	body_rama_styling,
+	body_resi,
+	body_resi_styling,
+	body_prabu,
+	body_prabu_styling,
+	body_end,
+	closing,
+	tagline,
+	serenTaunSrc,
+} = Astro.props;
+---
+
+<section class="grid items-center gap-10 lg:grid-cols-[1fr_0.85fr] lg:gap-16">
+	<div class="py-4 leading-tight">
+		<h2 class="text-primary py-4 text-sm font-light tracking-widest uppercase">
+			{sectionLabel}
+		</h2>
+
+		<p class="text-heading text-lg font-light lg:text-xl">
+			{opener}
+			<span class="text-primary italic">{openerAccent}</span>
+		</p>
+
+		<p class="text-text py-4 text-base leading-tight lg:text-lg">
+			{body}
+			(<span class="text-primary">{body_rama_styling}</span>)
+			{body_resi}
+			(<span class="text-success">{body_resi_styling}</span>)
+			{body_prabu}
+			(<span class="text-info">{body_prabu_styling}</span>)
+			{body_end}
+		</p>
+
+		<p class="text-text pb-10 text-base leading-tight lg:text-lg">
+			{closing}
+		</p>
+
+		<div class="inline-flex items-center gap-3">
+			<div class="bg-text-inverse h-px w-6"></div>
+
+			<p class="text-primary text-sm tracking-wider uppercase">
+				{tagline}
+			</p>
+		</div>
+	</div>
+
+	<div class="group relative">
+		<Image
+			src={serenTaunSrc}
+			alt="Upacara Seren Taun — tradisi panen masyarakat Sunda"
+			widths={[250, 500, 1000]}
+			sizes="(max-width: 500px) 100vw, 500px"
+			quality={82}
+			loading="lazy"
+			fetchpriority="low"
+			format="webp"
+			class="h-55 w-full object-cover lg:h-95"
+		/>
+
+		<div
+			class="text-heading bg-text-dark/50 absolute bottom-1 left-2 z-10 flex items-center gap-3 p-1"
+		>
+			<div class="h-px w-6 bg-current opacity-20"></div>
+
+			<p class="text-[9px] font-light tracking-[0.3em] uppercase">
+				Seren Taun · Sunda Heritage
+			</p>
+		</div>
+	</div>
+</section>

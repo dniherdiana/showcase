@@ -1,0 +1,56 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeroPortfolio from '../components/portfolio/HeroPortfolio.astro';
+import PortfolioIsland from '../components/portfolio/PortfolioIsland.svelte';
+import TechnicalDeepDive from '../components/portfolio/TechnicalDeepDive.astro';
+import ClosingCta from '../components/common/ClosingCta.astro';
+import { portofolioData } from '../data/portofolio.data.js';
+import { siteIdentity } from '../data/site.data.js';
+
+import umaSawahImg from '../images/uma-sawah-bali.jpg';
+import rosterRoastImg from '../images/roster-roast-dago.jpg';
+import sonderImg from '../images/sonder-senopati.jpg';
+import studioKolaboraImg from '../images/studio-kolabora.jpg';
+import meruUbudImg from '../images/meru-ubud.jpg';
+import monochromeLabImg from '../images/monochrome-lab.jpg';
+
+const imageMap: Record<string, ImageMetadata> = {
+  umaSawah: umaSawahImg,
+  rosterRoast: rosterRoastImg,
+  sonderAtelier: sonderImg,
+  studioKolabora: studioKolaboraImg,
+  meruUbud: meruUbudImg,
+  monochromeLab: monochromeLabImg,
+};
+
+const enrichedCases = portofolioData.cases.map((c) => ({
+  ...c,
+  imgSrc: imageMap[c.imageKey]?.src,
+}));
+
+const title = `Portofolio 42 Proyek Komersial Selesai | ${siteIdentity.brandName}`;
+const description = 'Data riil anggaran, luas m2, deviasi RAB, dan durasi pengerjaan 42 proyek restoran, kafe, butik ritel, dan kantor di Jakarta, Bandung, dan Bali.';
+---
+
+<Layout title={title} description={description} currentPath="/portofolio">
+  <HeroPortfolio />
+
+  <section class="w-full py-12 lg:py-16 bg-surface-ground">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <PortfolioIsland
+        client:visible
+        categories={portofolioData.categories}
+        cases={enrichedCases}
+      />
+    </div>
+  </section>
+
+  <TechnicalDeepDive />
+
+  <ClosingCta
+    headline={portofolioData.closingCta.headline}
+    subhead={portofolioData.closingCta.subhead}
+    buttonText={portofolioData.closingCta.buttonText}
+    href={portofolioData.closingCta.href}
+  />
+</Layout>

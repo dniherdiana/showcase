@@ -1,0 +1,133 @@
+---
+import { brand, hours, nav } from '../data/site.js';
+import Icon from './Icon.astro';
+import Placeholder from './Placeholder.astro';
+---
+
+<footer class="relative mt-24 overflow-hidden border-t-4 border-ink bg-ink text-cream">
+	<div class="noise absolute inset-0"></div>
+
+	<div class="relative mx-auto max-w-[1400px] px-5 pb-10 pt-16 lg:px-10">
+		{/* Giant wordmark */}
+		<a href="/" class="group block overflow-hidden" aria-label={`${brand.name} — kembali ke beranda`}>
+			<span class="block whitespace-nowrap text-center font-display text-[15vw] font-black leading-none tracking-tight text-transparent lg:text-[9rem]" style="-webkit-text-stroke:1.5px var(--color-cream);">
+				NAMA BEAUTY
+			</span>
+			<span class="block -mt-2 text-center font-display text-[9vw] font-black italic leading-none text-pink lg:-mt-4 lg:text-[6rem]">
+				Salon ✦
+			</span>
+		</a>
+
+		<div class="mt-12 grid gap-10 border-t-2 border-cream/15 pt-10 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]">
+			{/* Brand */}
+			<div>
+				<p class="max-w-sm font-sans text-sm leading-relaxed text-cream/70">
+					{brand.tagline} Sebuah rumah ritual dengan standar kebersihan tinggi, terapis
+					profesional, dan produk premium — tempat kamu datang untuk merasa dirawat,
+					bukan sekadar dilayani.
+				</p>
+				<div class="mt-5 flex gap-3">
+					<a href={`https://wa.me/${brand.whatsapp}`} target="_blank" rel="noreferrer" aria-label="WhatsApp"
+						class="grid h-11 w-11 place-items-center rounded-full border-2 border-cream/30 transition-all hover:-translate-y-1 hover:border-pink hover:bg-pink">
+						<Icon name="whatsapp" class="h-5 w-5" />
+					</a>
+					<a href="#" aria-label="Instagram"
+						class="grid h-11 w-11 place-items-center rounded-full border-2 border-cream/30 transition-all hover:-translate-y-1 hover:border-pink hover:bg-pink">
+						<Icon name="instagram" class="h-5 w-5" />
+					</a>
+					<a href="mailto:halo@namabeautysalon.id" aria-label="Email"
+						class="grid h-11 w-11 place-items-center rounded-full border-2 border-cream/30 transition-all hover:-translate-y-1 hover:border-pink hover:bg-pink">
+						<Icon name="phone" class="h-5 w-5" />
+					</a>
+				</div>
+				<div class="mt-6 flex flex-wrap gap-2">
+					<span class="sticker sticker--lime" style="--tilt:-2deg">10+ Tahun</span>
+					<span class="sticker sticker--violet" style="--tilt:2deg">15.000+ Klien</span>
+					<span class="sticker sticker--pink" style="--tilt:-1deg">4.9/5 Rating</span>
+				</div>
+			</div>
+
+			{/* Nav */}
+			<div>
+				<p class="font-sans text-[0.7rem] font-bold uppercase tracking-[0.3em] text-pink">Navigasi</p>
+				<ul class="mt-4 space-y-2.5">
+					{
+						nav.slice(0, 6).map((l) => (
+							<li>
+								<a href={l.href} class="link-mag font-sans text-sm text-cream/85">{l.label}</a>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+
+			<div>
+				<p class="font-sans text-[0.7rem] font-bold uppercase tracking-[0.3em] text-pink">Halaman</p>
+				<ul class="mt-4 space-y-2.5">
+					{
+						nav.slice(6).map((l) => (
+							<li>
+								<a href={l.href} class="link-mag font-sans text-sm text-cream/85">{l.label}</a>
+							</li>
+						))
+					}
+				</ul>
+				<div class="mt-6">
+					<p class="font-sans text-[0.7rem] font-bold uppercase tracking-[0.3em] text-pink">Jam Operasional</p>
+					<ul class="mt-3 space-y-1.5">
+						{
+							hours.map((h) => (
+								<li class="flex justify-between gap-3 font-sans text-xs text-cream/70">
+									<span>{h.day}</span>
+									<span class="font-bold text-lime">{h.time}</span>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+			</div>
+
+			{/* Contact */}
+			<div>
+				<p class="font-sans text-[0.7rem] font-bold uppercase tracking-[0.3em] text-pink">Hubungi Kami</p>
+				<ul class="mt-4 space-y-3 font-sans text-sm text-cream/85">
+					<li class="flex items-start gap-3">
+						<Icon name="map-pin" class="mt-0.5 h-4 w-4 shrink-0 text-lime" />
+						<span>{brand.address}</span>
+					</li>
+					<li class="flex items-start gap-3">
+						<Icon name="phone" class="mt-0.5 h-4 w-4 shrink-0 text-lime" />
+						<span>{brand.phone} <Placeholder inline label="No. telp" /></span>
+					</li>
+					<li class="flex items-start gap-3">
+						<Icon name="whatsapp" class="mt-0.5 h-4 w-4 shrink-0 text-lime" />
+						<span>WhatsApp Booking {brand.phone}</span>
+					</li>
+					<li class="flex items-start gap-3">
+						<Icon name="instagram" class="mt-0.5 h-4 w-4 shrink-0 text-lime" />
+						<span>{brand.instagram}</span>
+					</li>
+				</ul>
+				<div class="mt-6">
+					<a
+						href="https://www.google.com/maps/search/?api=1&query={brand.mapQuery}"
+						target="_blank"
+						rel="noreferrer"
+						class="btn btn--cream w-full"
+					>
+						<Icon name="map-pin" class="h-4 w-4" /> Lihat di Google Maps
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="mt-12 flex flex-col items-center justify-between gap-4 border-t border-cream/15 pt-6 sm:flex-row">
+			<p class="font-sans text-xs text-cream/50">
+				© {new Date().getFullYear()} {brand.name}. Seluruh hak cipta dilindungi.
+			</p>
+			<p class="flex items-center gap-2 font-sans text-xs text-cream/50">
+				Ritual kecantikan setiap hari <Icon name="sparkles" class="h-3.5 w-3.5 text-pink" />
+			</p>
+		</div>
+	</div>
+</footer>

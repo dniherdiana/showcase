@@ -1,0 +1,43 @@
+---
+import { cobaExpectationData } from './CobaExpectation.data.js';
+import { Send, KeyRound, Smile } from 'lucide-astro';
+
+const icons = {
+  Send,
+  KeyRound,
+  Smile
+};
+---
+
+<section class="py-20 md:py-24 bg-bg-surface border-b border-border-indie">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="font-caveat text-3xl md:text-5xl font-bold text-text-primary leading-tight">
+        {cobaExpectationData.headline}
+      </h2>
+      <p class="font-dmsans text-sm md:text-base text-text-secondary mt-4 leading-relaxed">
+        {cobaExpectationData.lede}
+      </p>
+    </div>
+
+    <div class="mt-14 grid grid-cols-1 md:grid-cols-3 gap-8">
+      {cobaExpectationData.steps.map((step, idx) => {
+        const IconComponent = icons[step.icon as keyof typeof icons] || Send;
+        const rotationClass = idx === 0 ? 'rotate-[-1deg]' : idx === 1 ? 'rotate-[1deg]' : 'rotate-[-0.5deg]';
+        return (
+          <div class={`p-8 bg-white rounded-blob border-[1.5px] border-border-indie shadow-indie ${rotationClass}`}>
+            <div class="w-10 h-10 rounded-full bg-accent/10 text-accent flex items-center justify-center mb-4">
+              <IconComponent class="w-5 h-5" />
+            </div>
+            <h3 class="font-dmsans text-lg font-bold text-text-primary">
+              {step.title}
+            </h3>
+            <p class="font-dmsans text-xs md:text-sm text-text-secondary mt-2 leading-relaxed">
+              {step.description}
+            </p>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

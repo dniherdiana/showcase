@@ -1,0 +1,50 @@
+---
+import { Image } from 'astro:assets';
+import Container from '../base/Container.astro';
+import SectionHeader from '../base/SectionHeader.astro';
+import imgInspection from '../../assets/images/architect-inspection.jpg';
+import { homeTrustData } from './HomeTrust.data.js';
+---
+
+<section class="py-20 lg:py-28 border-b border-[var(--color-border-hairline)] bg-[var(--color-canvas-surface)]">
+  <Container size="xl" as="div" class="flex flex-col gap-14 lg:gap-16">
+    <!-- Header -->
+    <SectionHeader
+      title={homeTrustData.heading}
+      subtitle={homeTrustData.subheading}
+      level="h2"
+    />
+
+    <!-- Asymmetric 7/5 Grid with Real Site Inspection Photography -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+      <!-- Left: Real Inspection Photo (6 cols) -->
+      <figure class="lg:col-span-6 flex flex-col gap-3">
+        <div class="relative overflow-hidden aspect-[4/3] bg-[var(--color-canvas-light)] border border-[var(--color-border-hairline)] shadow-sm">
+          <Image
+            src={imgInspection}
+            alt="Prinsipal Arsitek HomeSketch Melakukan Inspeksi Presisi Sambungan di Lapangan"
+            class="w-full h-full object-cover object-center"
+            loading="lazy"
+          />
+        </div>
+        <figcaption class="text-xs text-[var(--color-ink-muted)]">
+          Inspeksi langsung berkala di lokasi proyek untuk memastikan toleransi sambungan kayu dan struktur beton.
+        </figcaption>
+      </figure>
+
+      <!-- Right: Trust Pillars (6 cols) -->
+      <div class="lg:col-span-6 flex flex-col gap-8">
+        {homeTrustData.points.map((pt) => (
+          <article class="flex flex-col gap-2 border-l-2 border-[var(--color-accent-terracotta)] pl-5">
+            <h3 class="font-serif text-lg font-bold text-[var(--color-ink-primary)]">
+              {pt.title}
+            </h3>
+            <p class="text-sm text-[var(--color-ink-muted)] leading-relaxed">
+              {pt.description}
+            </p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </Container>
+</section>

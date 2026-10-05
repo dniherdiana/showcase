@@ -1,0 +1,256 @@
+---
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+import PromoCard from "../components/shared/PromoCard/PromoCard.astro";
+import BookingBanner from "../components/shared/BookingBanner/BookingBanner.astro";
+import { promosData, promoTags } from "../components/promo/data/index.js";
+import { galleries } from "../assets/images/gallery/index.js";
+
+const activeCount = promosData.length;
+---
+
+<Layout
+	title="Promotions & Limited-Time Offers — Wanderlust Travel"
+	currentPath="/promo"
+>
+	<!-- Hero Banner -->
+	<section class="relative flex min-h-[68vh] items-center overflow-hidden">
+		<div class="absolute inset-0">
+			<Image
+				src={galleries.raja[2]}
+				alt="Promotions"
+				widths={[720, 1080, 1600, 2200]}
+				sizes="100vw"
+				quality={80}
+				format="webp"
+				class="hero-kenburns h-full w-full object-cover"
+				loading="eager"
+				decoding="async"
+				fetchpriority="high"
+			/>
+			<div
+				class="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/75 to-slate-950/40"
+			>
+			</div>
+			<div
+				class="absolute inset-0 bg-linear-to-r from-slate-950/80 via-slate-950/30 to-transparent"
+			>
+			</div>
+		</div>
+
+		<div class="relative z-10 mx-auto w-full max-w-7xl px-[5%] py-24">
+			<div class="max-w-3xl space-y-6">
+				<nav
+					class="flex items-center gap-2 font-mono text-[10px] tracking-widest text-white/50 uppercase"
+				>
+					<a
+						href="/"
+						class="hover:text-gold transition-colors"
+						data-i18n-en="Home"
+						data-i18n-id="Beranda">Home</a
+					>
+					<span class="text-gold">/</span>
+					<span class="text-gold" data-i18n-en="Promotions" data-i18n-id="Promo"
+						>Promotions</span
+					>
+				</nav>
+
+				<span
+					class="border-gold/40 text-gold inline-flex items-center gap-2 bg-slate-950/50 px-4 py-1.5 font-mono text-[10px] font-bold tracking-[2px] uppercase backdrop-blur-sm"
+				>
+					✦ <span
+						data-i18n-en="Handpicked Offers"
+						data-i18n-id="Penawaran Pilihan">Handpicked Offers</span
+					>
+				</span>
+
+				<h1
+					class="font-serif text-5xl leading-[1.02] font-extrabold tracking-tight text-white uppercase sm:text-6xl lg:text-7xl"
+				>
+					<span
+						class="from-gold-light to-gold bg-linear-to-r bg-clip-text text-transparent italic"
+						data-i18n-en="Promo"
+						data-i18n-id="Promo">Promo</span
+					>
+				</h1>
+
+				<p
+					class="max-w-xl text-sm leading-relaxed font-light text-slate-200 sm:text-base"
+					data-i18n-en="Unlock members-only pricing on the world's most extraordinary journeys. Book before the deadline and travel at a whisper of the usual cost."
+					data-i18n-id="Buka harga khusus member untuk perjalanan paling luar biasa di dunia. Pesan sebelum tenggat dan nikmati perjalanan dengan biaya jauh lebih hemat."
+				>
+					Unlock members-only pricing on the world's most extraordinary
+					journeys. Book before the deadline and travel at a whisper of the
+					usual cost.
+				</p>
+
+				<div class="flex flex-wrap items-center gap-4 pt-2">
+					<a
+						href="#promo-grid"
+						class="from-gold to-gold-dark inline-flex items-center gap-2 rounded-full bg-linear-to-r px-8 py-3.5 font-mono text-[11px] font-bold tracking-widest text-slate-950 uppercase shadow-[0_10px_40px_-8px_rgba(212,168,83,0.6)] transition-all hover:scale-[1.02]"
+						data-i18n-en="Explore Offers"
+						data-i18n-id="Lihat Penawaran"
+					>
+						Explore Offers <span>↓</span>
+					</a>
+				</div>
+
+				<div
+					class="flex flex-wrap gap-x-8 gap-y-3 border-t border-white/10 pt-6"
+				>
+					<div>
+						<p class="text-gold font-serif text-2xl font-bold">{activeCount}</p>
+						<p
+							class="font-mono text-[10px] tracking-widest text-white/50 uppercase"
+							data-i18n-en="Active Offers"
+							data-i18n-id="Penawaran Aktif"
+						>
+							Active Offers
+						</p>
+					</div>
+					<div>
+						<p class="text-gold font-serif text-2xl font-bold">Up to 25%</p>
+						<p
+							class="font-mono text-[10px] tracking-widest text-white/50 uppercase"
+							data-i18n-en="Member Savings"
+							data-i18n-id="Hemat Anggota"
+						>
+							Member Savings
+						</p>
+					</div>
+					<div>
+						<p class="text-gold font-serif text-2xl font-bold">Global</p>
+						<p
+							class="font-mono text-[10px] tracking-widest text-white/50 uppercase"
+							data-i18n-en="Handpicked Destinations"
+							data-i18n-id="Destinasi Pilihan"
+						>
+							Handpicked Destinations
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Promo Listing -->
+	<div
+		id="promo-grid"
+		class="mx-auto max-w-7xl scroll-mt-28 space-y-10 px-[5%] py-16"
+	>
+		<!-- Section Header -->
+		<div class="space-y-1">
+			<span
+				class="block font-mono text-[10px] font-bold tracking-widest text-[#0D9488] uppercase"
+				data-i18n-en="✦ Exclusive Offers"
+				data-i18n-id="✦ Penawaran Eksklusif"
+			>
+				✦ Exclusive Offers
+			</span>
+			<h2
+				class="font-serif text-3xl font-extrabold tracking-tight text-white uppercase sm:text-4xl"
+				data-i18n-en="Limited-Time Journeys"
+				data-i18n-id="Perjalanan Terbatas"
+			>
+				Limited-Time Journeys
+			</h2>
+		</div>
+
+		<!-- Tag Filter -->
+		<ul
+			class="flex flex-wrap items-center gap-3 border-b border-white/10 pb-6 list-none"
+		>
+			{
+				promoTags.map((tag) => (
+					<li>
+						<button
+							type="button"
+							data-promo-tag-btn={tag}
+							class="promo-tag-btn cursor-pointer rounded-full border px-4 py-2 font-mono text-[10px] font-bold tracking-widest uppercase transition-all"
+						>
+							{tag}
+						</button>
+					</li>
+				))
+			}
+		</ul>
+
+		<p
+			id="promo-count"
+			class="font-mono text-[11px] tracking-widest text-white/50 uppercase"
+		>
+		</p>
+
+		<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+			{promosData.map((promo) => <PromoCard {...promo} />)}
+		</div>
+
+		<BookingBanner />
+	</div>
+</Layout>
+
+<style>
+	.hero-kenburns {
+		animation: kenburns 24s ease-in-out infinite alternate;
+	}
+	@keyframes kenburns {
+		0% {
+			transform: scale(1) translate(0, 0);
+		}
+		100% {
+			transform: scale(1.12) translate(-1.5%, 2%);
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.hero-kenburns {
+			animation: none;
+		}
+	}
+</style>
+
+<script>
+	function initPromoFilter() {
+		const buttons = document.querySelectorAll<HTMLElement>(".promo-tag-btn");
+		const cards = document.querySelectorAll<HTMLElement>("[data-promo-tag]");
+		const count = document.getElementById("promo-count");
+		let currentTag = "All Offers";
+
+		function applyFilter() {
+			let visibleCount = 0;
+
+			buttons.forEach((btn) => {
+				const tag = btn.getAttribute("data-promo-tag-btn");
+				if (tag === currentTag) {
+					btn.classList.remove("border-white/20", "text-white/60");
+					btn.classList.add("border-gold", "bg-gold", "text-slate-950");
+				} else {
+					btn.classList.remove("border-gold", "bg-gold", "text-slate-950");
+					btn.classList.add("border-white/20", "text-white/60");
+				}
+			});
+
+			cards.forEach((card) => {
+				const tag = card.getAttribute("data-promo-tag") || "";
+				const matches = currentTag === "All Offers" || tag === currentTag;
+				card.style.display = matches ? "" : "none";
+				if (matches) visibleCount++;
+			});
+
+			if (count) {
+				count.textContent = `${visibleCount} offer${visibleCount === 1 ? "" : "s"} available`;
+			}
+		}
+
+		buttons.forEach((btn) => {
+			btn.addEventListener("click", () => {
+				currentTag = btn.getAttribute("data-promo-tag-btn") || "All Offers";
+				applyFilter();
+			});
+		});
+
+		applyFilter();
+	}
+
+	document.addEventListener("DOMContentLoaded", initPromoFilter);
+	document.addEventListener("astro:page-load", initPromoFilter);
+</script>

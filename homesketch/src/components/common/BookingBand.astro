@@ -1,0 +1,55 @@
+---
+import Container from '../base/Container.astro';
+import Button from '../base/Button.astro';
+import { bookingBandData } from './BookingBand.data.js';
+
+interface Props {
+  dark?: boolean;
+}
+
+const { dark = false } = Astro.props;
+---
+
+<section class={`py-20 lg:py-24 border-t ${dark ? 'bg-[var(--color-canvas-dark-surface)] text-[var(--color-ink-light)] border-[var(--color-border-dark-hairline)]' : 'bg-[var(--color-canvas-surface)] text-[var(--color-ink-primary)] border-[var(--color-border-hairline)]'}`}>
+  <Container size="lg" as="div" class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10">
+    <!-- Left Copy -->
+    <div class="flex flex-col gap-4 max-w-[62ch]">
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-semibold leading-[1.2] tracking-tight">
+        {bookingBandData.heading}
+      </h2>
+      <p class={`text-base leading-relaxed ${dark ? 'text-[var(--color-ink-light-muted)]' : 'text-[var(--color-ink-muted)]'}`}>
+        {bookingBandData.subheading}
+      </p>
+      <ul class="flex flex-wrap gap-x-6 gap-y-2 pt-2 text-xs font-medium text-[var(--color-accent-terracotta)]">
+        {bookingBandData.guarantees.map((item) => (
+          <li class="flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent-terracotta)]" />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Right Actions -->
+    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 shrink-0 w-full sm:w-auto">
+      <Button
+        href={bookingBandData.primaryCta.href}
+        variant={dark ? 'dark' : 'primary'}
+        size="lg"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full sm:w-auto"
+      >
+        {bookingBandData.primaryCta.label}
+      </Button>
+      <Button
+        href={bookingBandData.secondaryCta.href}
+        variant={dark ? 'outline' : 'secondary'}
+        size="lg"
+        class={`w-full sm:w-auto ${dark ? '!text-[var(--color-ink-light)] !border-[var(--color-ink-light-muted)]' : ''}`}
+      >
+        {bookingBandData.secondaryCta.label}
+      </Button>
+    </div>
+  </Container>
+</section>

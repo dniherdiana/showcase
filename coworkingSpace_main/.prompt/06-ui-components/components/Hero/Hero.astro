@@ -1,0 +1,224 @@
+---
+import { siteConfig } from '../data/siteConfig.js';
+---
+
+<section class="relative pt-12 pb-24 md:pt-20 md:pb-32 overflow-hidden" aria-label="Hero Section">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    <!-- 60:40 Asymmetric Editorial Layout -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      
+      <!-- Left Column (60% ~ 7 cols) -->
+      <div class="lg:col-span-7 flex flex-col items-start z-10">
+        
+        <!-- Natural Integrated Narrative Headline -->
+        <h1 class="font-serif-editorial text-4xl sm:text-5xl lg:text-6xl text-[#1C2520] font-normal leading-[1.12] tracking-tight mb-6">
+          Liburan itu harusnya bikin tenang, bukan bikin stres— <span class="italic text-[#C86D51] font-semibold">makanya semua urusan perjalanan kami yang pegang</span> sampai Anda tinggal datang dan nikmati.
+        </h1>
+
+        <!-- [H1 Fix: Audience Switcher Tab] -->
+        <div class="flex items-center gap-2 mb-4 p-1.5 bg-[#1C2520]/5 rounded-2xl w-fit" role="tablist" aria-label="Pilihan Jenis Rombongan">
+          <button 
+            type="button" 
+            id="tab-family" 
+            role="tab" 
+            aria-selected="true" 
+            aria-controls="body-family"
+            class="audience-tab active text-xs font-semibold px-4 py-2 rounded-xl bg-white shadow-sm text-[#2C5E4E] transition-all cursor-pointer"
+          >
+            🏠 Liburan Keluarga
+          </button>
+          <button 
+            type="button" 
+            id="tab-corp" 
+            role="tab" 
+            aria-selected="false" 
+            aria-controls="body-corp"
+            class="audience-tab text-xs font-semibold px-4 py-2 rounded-xl text-[#6B7674] hover:text-[#1C2520] transition-all cursor-pointer"
+          >
+            🏢 Outing & Gathering Kantor
+          </button>
+        </div>
+
+        <!-- Empathic Audience Segmented Copywriting -->
+        <div class="mb-8 max-w-2xl font-sans-body">
+          <p id="body-family" role="tabpanel" aria-labelledby="tab-family" class="audience-body text-base sm:text-lg text-[#5A6660] leading-relaxed">
+            Mau bawa keluarga besar—dari balita sampai kakek-nenek? Kami nggak akan bikin jadwal yang memaksa mereka bangun jam 4 subuh. Tempo santai, armada private, dan rincian harga yang transparan dari awal.
+          </p>
+
+          <p id="body-corp" role="tabpanel" aria-labelledby="tab-corp" class="audience-body hidden text-base sm:text-lg text-[#5A6660] leading-relaxed">
+            Ngurus outing kantor sendirian itu berat. Kami yang handle semua administrasi—dari quotation kilat, NPWP resmi, hingga e-Faktur Pajak—supaya Anda tinggal terima beres dan enjoy acaranya.
+          </p>
+        </div>
+
+        <!-- Operational Differentiator Callouts -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full mb-10 text-sm text-[#1C2520] font-medium">
+          <div class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded-full bg-[#2C5E4E]/10 text-[#2C5E4E] flex items-center justify-center shrink-0 mt-0.5" aria-hidden="true">
+              ✓
+            </div>
+            <span>Itinerary boleh diubah-ubah sampai pas, baru bayar DP</span>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded-full bg-[#2C5E4E]/10 text-[#2C5E4E] flex items-center justify-center shrink-0 mt-0.5" aria-hidden="true">
+              ✓
+            </div>
+            <span>Hotel, tiket pesawat & kendaraan sudah pasti confirmed H-7</span>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded-full bg-[#2C5E4E]/10 text-[#2C5E4E] flex items-center justify-center shrink-0 mt-0.5" aria-hidden="true">
+              ✓
+            </div>
+            <span>Quotation, Invoice, Kwitansi, e-Faktur—semua dokumen beres</span>
+          </div>
+
+          <div class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded-full bg-[#2C5E4E]/10 text-[#2C5E4E] flex items-center justify-center shrink-0 mt-0.5" aria-hidden="true">
+              ✓
+            </div>
+            <span>Tour Guide & driver yang sudah kami kenal baik dan terverifikasi</span>
+          </div>
+        </div>
+
+        <!-- Action Buttons [C3 Fix: type="button"] -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
+          <button 
+            type="button"
+            data-modal-target="proposal-modal"
+            class="open-proposal-modal bg-[#C86D51] hover:bg-[#B55B40] text-white text-sm font-semibold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition-all cursor-pointer flex items-center justify-center gap-3 group focus:outline-none focus:ring-2 focus:ring-[#C86D51]"
+          >
+            <span>Minta Proposal & Sample Faktur</span>
+            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </button>
+
+          <a 
+            href={siteConfig.getWaLink("Halo Nusantara Journey, saya ingin konsultasi itinerary custom")}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="border border-[#1C2520]/20 hover:border-[#2C5E4E] bg-white/60 hover:bg-white text-[#1C2520] hover:text-[#2C5E4E] text-sm font-semibold px-7 py-4 rounded-xl transition-all text-center flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#2C5E4E]"
+          >
+            <svg class="w-5 h-5 text-[#25D366]" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.157 4.228 4.26-1.117z"/>
+            </svg>
+            <span>Konsultasi Itinerary via WA</span>
+          </a>
+        </div>
+
+        <!-- Social Proof Micro Badge -->
+        <p class="text-xs text-[#6B7674] mt-6 flex items-center gap-2">
+          <span class="inline-block w-2 h-2 rounded-full bg-[#25D366] animate-pulse" aria-hidden="true"></span>
+          <span>Tim kami standby {siteConfig.operatingHours} · Harga awal = harga final, tanpa biaya nambah</span>
+        </p>
+
+      </div>
+
+      <!-- Right Column (40% ~ 5 cols) - Editorial Photography with Overlap -->
+      <div class="lg:col-span-5 relative mt-6 lg:mt-0">
+        
+        <!-- Main Portrait Visual [C5 Fix: width/height, eager loading, fetchpriority] -->
+        <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-[#1C2520]/10 aspect-[3/4] group">
+          <img 
+            src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1000&q=80" 
+            alt="Perjalanan Wisata Domestik Nusantara Bali Labuan Bajo" 
+            width="1000"
+            height="1333"
+            loading="eager"
+            fetchpriority="high"
+            class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#15221E]/70 via-transparent to-transparent"></div>
+          
+          <!-- Image Tagline Overlay -->
+          <div class="absolute bottom-6 left-6 right-6 text-white">
+            <span class="text-xs uppercase tracking-widest text-[#EFE6D8] font-semibold">Private & Corporate Tour</span>
+            <p class="font-serif-editorial text-2xl font-normal mt-1 leading-snug">
+              Labuan Bajo, Raja Ampat, Bali, Bromo, sampai Jepang & Turki
+            </p>
+          </div>
+        </div>
+
+        <!-- [H4 Fix: Mobile Proof Badges visible on mobile] -->
+        <div class="flex items-center gap-3 mt-4 sm:hidden">
+          <div class="flex-1 bg-white/95 p-3 rounded-xl border border-[#1C2520]/10 text-xs">
+            <span class="font-semibold text-[#2C5E4E] block">✓ Semua Dokumen Siap</span>
+            <span class="text-[#6B7674]">e-Faktur & itinerary sebelum H-7</span>
+          </div>
+          <div class="bg-[#15221E] text-white p-3 rounded-xl text-xs text-center shrink-0">
+            <span class="font-bold text-[#C86D51] block text-base">100%</span>
+            <span class="text-[10px] text-[#EFE6D8]">No hidden cost</span>
+          </div>
+        </div>
+
+        <!-- OVERLAPPING FLOATING CARD 1 (Desktop Overlap) -->
+        <div class="absolute -left-6 bottom-16 sm:-left-10 bg-white/95 backdrop-blur-md p-5 rounded-2xl shadow-2xl border border-[#1C2520]/10 max-w-[280px] sm:max-w-[300px] hidden sm:block animate-float-slow z-20">
+          <div class="flex items-start gap-3">
+            <div class="w-10 h-10 rounded-xl bg-[#2C5E4E]/10 text-[#2C5E4E] flex items-center justify-center shrink-0 text-xl font-bold" aria-hidden="true">
+              📋
+            </div>
+            <div>
+              <div class="flex items-center gap-1 text-xs font-semibold text-[#2C5E4E] mb-1">
+                <span class="w-2 h-2 rounded-full bg-[#2C5E4E]" aria-hidden="true"></span>
+                Semua Dokumen Siap
+              </div>
+              <p class="text-xs font-medium text-[#1C2520] leading-snug font-sans-body">
+                "Itinerary final, daftar kamar hotel & e-Faktur sudah di tangan Anda sebelum H-7 keberangkatan."
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- OVERLAPPING FLOATING CARD 2 (Desktop Overlap) -->
+        <div class="absolute -top-6 -right-4 sm:-right-8 bg-[#15221E] text-white p-4 rounded-xl shadow-xl border border-white/10 text-xs flex items-center gap-3 z-20 hidden sm:flex">
+          <div class="w-8 h-8 rounded-full bg-[#C86D51] text-white flex items-center justify-center font-bold text-sm" aria-hidden="true">
+            100%
+          </div>
+          <div>
+            <p class="font-semibold text-white">Sudah Dibooking</p>
+            <p class="text-[11px] text-[#6B7674]">Nggak Ada Biaya Tambahan</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  // Audience Tab Switcher Logic [H1 Fix]
+  const tabFamily = document.getElementById('tab-family');
+  const tabCorp = document.getElementById('tab-corp');
+  const bodyFamily = document.getElementById('body-family');
+  const bodyCorp = document.getElementById('body-corp');
+
+  function switchTab(isFamily: boolean) {
+    if (isFamily) {
+      tabFamily?.classList.add('bg-white', 'shadow-sm', 'text-[#2C5E4E]');
+      tabFamily?.classList.remove('text-[#6B7674]');
+      tabFamily?.setAttribute('aria-selected', 'true');
+
+      tabCorp?.classList.remove('bg-white', 'shadow-sm', 'text-[#2C5E4E]');
+      tabCorp?.classList.add('text-[#6B7674]');
+      tabCorp?.setAttribute('aria-selected', 'false');
+
+      bodyFamily?.classList.remove('hidden');
+      bodyCorp?.classList.add('hidden');
+    } else {
+      tabCorp?.classList.add('bg-white', 'shadow-sm', 'text-[#2C5E4E]');
+      tabCorp?.classList.remove('text-[#6B7674]');
+      tabCorp?.setAttribute('aria-selected', 'true');
+
+      tabFamily?.classList.remove('bg-white', 'shadow-sm', 'text-[#2C5E4E]');
+      tabFamily?.classList.add('text-[#6B7674]');
+      tabFamily?.setAttribute('aria-selected', 'false');
+
+      bodyCorp?.classList.remove('hidden');
+      bodyFamily?.classList.add('hidden');
+    }
+  }
+
+  tabFamily?.addEventListener('click', () => switchTab(true));
+  tabCorp?.addEventListener('click', () => switchTab(false));
+</script>

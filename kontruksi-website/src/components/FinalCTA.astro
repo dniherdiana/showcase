@@ -1,0 +1,68 @@
+---
+import { ArrowRight, Calendar, MessageSquare, ShieldCheck, Clock, FileText } from 'lucide-astro';
+import { homeContent } from '../data/home.js';
+
+const { finalCta } = homeContent;
+---
+
+<section class="py-24 lg:py-32 bg-theme-bg border-b border-theme-border relative overflow-hidden">
+  <!-- Subtle Background Ambient Mesh -->
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-theme-accent/5 via-transparent to-transparent pointer-events-none"></div>
+
+  <div class="editorial-container relative z-10">
+    <div class="surface-card p-8 sm:p-14 lg:p-20 rounded-sm border border-theme-border shadow-xl max-w-4xl mx-auto text-center flex flex-col items-center space-y-8">
+      
+      <!-- Preheader Badge (Centered) -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-sm bg-theme-bg border border-theme-border text-theme-accent text-xs font-semibold tracking-wider uppercase shadow-sm">
+        <MessageSquare class="w-4 h-4 text-theme-accent" />
+        <span>{finalCta.preheader}</span>
+      </div>
+
+      <!-- Headline: Invitation (Centered with mx-auto) -->
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif text-theme-primary font-normal leading-snug max-w-2xl mx-auto">
+        {finalCta.title}
+      </h2>
+
+      <!-- Subtitle (Centered) -->
+      <p class="text-theme-secondary text-base sm:text-lg leading-relaxed max-w-xl mx-auto">
+        {finalCta.subtitle}
+      </p>
+
+      <!-- Action Buttons (Centered) -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto pt-2">
+        <a 
+          href={finalCta.primaryHref} 
+          class="btn-primary w-full sm:w-auto py-3.5 px-8 text-sm font-bold shadow-md hover:shadow-lg transition-all"
+        >
+          <span>{finalCta.primaryCta}</span>
+          <ArrowRight class="w-5 h-5" />
+        </a>
+
+        <a 
+          href={finalCta.secondaryHref} 
+          class="btn-secondary w-full sm:w-auto py-3.5 px-8 text-sm font-medium border-theme-border hover:border-theme-accent transition-all"
+        >
+          <Calendar class="w-5 h-5 text-theme-accent" />
+          <span>{finalCta.secondaryCta}</span>
+        </a>
+      </div>
+
+      <!-- Trust Badges Bar -->
+      <div class="pt-8 border-t border-theme-border/60 w-full grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-theme-secondary">
+        <div class="flex items-center justify-center gap-2 py-1">
+          <Clock class="w-4 h-4 text-theme-accent shrink-0" />
+          <span>Respon Cepat &lt; 30 Menit</span>
+        </div>
+        <div class="flex items-center justify-center gap-2 py-1">
+          <ShieldCheck class="w-4 h-4 text-theme-success shrink-0" />
+          <span>100% Bebas Kewajiban Kontrak</span>
+        </div>
+        <div class="flex items-center justify-center gap-2 py-1">
+          <FileText class="w-4 h-4 text-theme-accent shrink-0" />
+          <span>RAB Sketsa Awal Gratis</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

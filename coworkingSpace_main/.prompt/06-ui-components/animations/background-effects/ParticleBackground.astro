@@ -1,0 +1,44 @@
+---
+---
+
+<div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+  <!-- Mesh Ambient Orbs (No Bouncing, Pure Soft Ambient Glow) -->
+  <div class="absolute inset-0 z-0 overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div
+      class="absolute -top-[10%] -left-[10%] w-[600px] h-[600px] rounded-full filter blur-[80px] opacity-40 bg-[radial-gradient(circle,rgba(212,168,83,0.35)_0%,transparent_70%)] animate-ambient-glow"
+    ></div>
+    <div
+      class="absolute top-[40%] -right-[5%] w-[500px] h-[500px] rounded-full filter blur-[80px] opacity-40 bg-[radial-gradient(circle,rgba(99,102,241,0.25)_0%,transparent_70%)] animate-ambient-glow [animation-delay:-4s]"
+    ></div>
+    <div
+      class="absolute -bottom-[10%] left-[30%] w-[400px] h-[400px] rounded-full filter blur-[80px] opacity-40 bg-[radial-gradient(circle,rgba(236,72,153,0.18)_0%,transparent_70%)] animate-ambient-glow [animation-delay:-8s]"
+    ></div>
+  </div>
+
+  <!-- Subtle SVG Noise Overlay -->
+  <div class="absolute inset-0 z-[1] opacity-30 pointer-events-none bg-[url('data:image/svg+xml,%3Csvg%20viewBox=%270%200%20256%20256%27%20xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cfilter%20id=%27noise%27%3E%3CfeTurbulence%20type=%27fractalNoise%27%20baseFrequency=%270.9%27%20numOctaves=%274%27%20stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect%20width=%27100%25%27%20height=%27100%25%27%20filter=%27url(%23noise)%27/%3E%3C/svg%3E')]"></div>
+
+  <!-- Dynamic Floating Particles -->
+  <div class="particles absolute inset-0 z-[2] pointer-events-none overflow-hidden" id="particles"></div>
+</div>
+
+<script>
+  function initParticles() {
+    const container = document.getElementById("particles");
+    if (!container) return;
+    container.innerHTML = "";
+    const particleCount = 30;
+    for (let i = 0; i < particleCount; i++) {
+      const particle = document.createElement("div");
+      particle.className =
+        "particle absolute w-[2px] h-[2px] bg-white/30 rounded-full animate-particle";
+      particle.style.left = `${Math.random() * 100}%`;
+      particle.style.animationDelay = `${Math.random() * 15}s`;
+      particle.style.animationDuration = `${10 + Math.random() * 10}s`;
+      container.appendChild(particle);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", initParticles);
+  document.addEventListener("astro:page-load", initParticles);
+</script>

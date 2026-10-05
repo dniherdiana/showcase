@@ -1,0 +1,46 @@
+---
+import { fasilitasNetworkData } from './FasilitasNetwork.data.js';
+import { Wifi, Zap, Server } from 'lucide-astro';
+
+const icons = {
+  Wifi,
+  Zap,
+  Server
+};
+---
+
+<section class="py-20 md:py-24 bg-bg-surface border-b border-border-indie">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7">
+        <h2 class="font-caveat text-3xl md:text-5xl font-bold text-text-primary leading-tight">
+          {fasilitasNetworkData.headline}
+        </h2>
+        <p class="font-dmsans text-sm md:text-base text-text-secondary mt-6 leading-relaxed">
+          {fasilitasNetworkData.body}
+        </p>
+      </div>
+
+      <div class="lg:col-span-5 space-y-4">
+        {fasilitasNetworkData.specs.map((spec, idx) => {
+          const IconComponent = icons[spec.icon as keyof typeof icons] || Wifi;
+          return (
+            <div class="p-5 bg-white rounded-blob border-[1.5px] border-border-indie shadow-indie flex items-start gap-4">
+              <div class="w-10 h-10 rounded-full bg-accent/10 text-accent flex items-center justify-center shrink-0">
+                <IconComponent class="w-5 h-5" />
+              </div>
+              <div>
+                <h3 class="font-dmsans text-base font-bold text-text-primary">
+                  {spec.title}
+                </h3>
+                <p class="font-dmsans text-xs text-text-secondary mt-1 leading-relaxed">
+                  {spec.description}
+                </p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </div>
+</section>

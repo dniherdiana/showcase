@@ -1,0 +1,163 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ClientDataTag from '../components/ClientDataTag.astro';
+---
+
+<Layout 
+  title="Get Involved | Volunteer, Partner or Intern with Yayasan Bumi Bersama"
+  description="Discover how to volunteer in field stations, initiate corporate partnerships, lead community fundraising, or apply for our rural conservation internship."
+>
+
+  <!-- 1. SPLIT-SCREEN ACTION HERO -->
+  <section class="bg-paper pt-12 pb-16 border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 bg-terracotta-light text-terracotta border border-terracotta/30 px-3.5 py-1 rounded-full text-xs font-bold">
+            <span>Community Participation Network</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl font-bold text-stone-900 leading-tight">
+            Your Hands, Your Voice, <span class="font-serif italic font-normal text-emerald-800">Our Shared Earth.</span>
+          </h1>
+
+          <p class="text-base text-stone-600 leading-relaxed">
+            Whether you want to spend 2 months living in a remote highland village planting trees, sponsor a solar school pod through corporate CSR, or intern with our research team, there is a direct seat for you.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <a href="#volunteer" class="bg-emerald-800 hover:bg-emerald-900 text-white font-bold px-6 py-3 rounded-xl text-xs transition-all">
+              Volunteer Field Placement
+            </a>
+            <a href="#corporate" class="bg-stone-200 hover:bg-stone-300 text-stone-900 font-bold px-6 py-3 rounded-xl text-xs transition-all">
+              Corporate CSR Partnerships
+            </a>
+            <a href="#internship" class="bg-terracotta hover:bg-terracotta-hover text-white font-bold px-6 py-3 rounded-xl text-xs transition-all">
+              Research Internships
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 zoom-img-container rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+          <img 
+            src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=1200&auto=format&fit=crop" 
+            alt="Volunteers joining hands in forest field work"
+            class="w-full h-[420px] object-cover"
+          />
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 2. THE 5 WAYS TO GET INVOLVED (Cards Grid) -->
+  <section class="py-20 bg-stone-100 border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs uppercase font-mono tracking-wider font-semibold text-emerald-800 block mb-1">Pillars of Involvement</span>
+        <h2 class="text-3xl font-bold text-stone-900">Choose How You Want to Contribute</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Volunteer Card -->
+        <div id="volunteer" class="bg-white rounded-2xl p-8 border border-stone-200 shadow-sm flex flex-col justify-between group">
+          <div>
+            <span class="text-3xl mb-4 block">👩‍🌾</span>
+            <span class="text-xs uppercase font-mono font-bold text-emerald-800">320 Active Volunteers</span>
+            <h3 class="text-xl font-bold text-stone-900 mt-1 mb-3">Field Volunteer Program</h3>
+            <p class="text-xs text-stone-600 leading-relaxed mb-6">
+              Join 2 to 8 week residential field stays in partner villages. Assist in seedling propagation, solar pod assembly, and community mapping.
+            </p>
+          </div>
+          <a href="/contact" class="w-full text-center bg-emerald-800 text-white font-bold py-3 rounded-xl text-xs hover:bg-emerald-900 transition-colors">
+            Apply for Field Placement
+          </a>
+        </div>
+
+        <!-- Corporate Partnership Card -->
+        <div id="corporate" class="bg-white rounded-2xl p-8 border border-stone-200 shadow-sm flex flex-col justify-between group">
+          <div>
+            <span class="text-3xl mb-4 block">🏢</span>
+            <span class="text-xs uppercase font-mono font-bold text-amber-600">ESG & CSR Alignment</span>
+            <h3 class="text-xl font-bold text-stone-900 mt-1 mb-3">Corporate Partnerships</h3>
+            <p class="text-xs text-stone-600 leading-relaxed mb-6">
+              Sponsor specific watershed restoration zones or solar school pods with co-branded impact reporting and employee volunteer field days.
+            </p>
+          </div>
+          <a href="/contact" class="w-full text-center bg-stone-900 text-white font-bold py-3 rounded-xl text-xs hover:bg-emerald-800 transition-colors">
+            Inquire About Corporate CSR
+          </a>
+        </div>
+
+        <!-- Internship Card -->
+        <div id="internship" class="bg-white rounded-2xl p-8 border border-stone-200 shadow-sm flex flex-col justify-between group">
+          <div>
+            <span class="text-3xl mb-4 block">🎓</span>
+            <span class="text-xs uppercase font-mono font-bold text-terracotta">Academic & Research</span>
+            <h3 class="text-xl font-bold text-stone-900 mt-1 mb-3">Research Internships</h3>
+            <p class="text-xs text-stone-600 leading-relaxed mb-6">
+              Designed for university students in ecology, development studies, and renewable energy to conduct field research with local mentors.
+            </p>
+          </div>
+          <a href="/contact" class="w-full text-center bg-terracotta text-white font-bold py-3 rounded-xl text-xs hover:bg-terracotta-hover transition-colors">
+            Submit Internship Resume
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3. NON-STANDARD COMPONENT: CORPORATE PARTNERSHIP TIERS TABLE -->
+  <section class="py-20 bg-paper border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs uppercase font-mono tracking-wider font-semibold text-emerald-800 block mb-1">ESG & Corporate CSR Tiers</span>
+        <h2 class="text-3xl font-bold text-stone-900">Partner Impact Tiers Matrix</h2>
+        <p class="text-xs text-stone-600 mt-2">Transparent, audited impact deliverables for corporate sustainability sponsors.</p>
+      </div>
+
+      <div class="overflow-x-auto bg-white rounded-2xl border border-stone-200 shadow-sm">
+        <table class="w-full text-left text-xs sm:text-sm text-stone-700">
+          <thead class="bg-emerald-900 text-white font-mono text-xs uppercase tracking-wider">
+            <tr>
+              <th class="p-4 sm:p-5">Partnership Tier</th>
+              <th class="p-4 sm:p-5">Target Annual Gift</th>
+              <th class="p-4 sm:p-5">Direct Deliverables</th>
+              <th class="p-4 sm:p-5">Corporate Benefits</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-stone-200">
+            <tr>
+              <td class="p-4 sm:p-5 font-bold text-stone-900">🌿 Village Guardian Partner</td>
+              <td class="p-4 sm:p-5 font-mono text-emerald-800 font-bold">$2,500 / yr</td>
+              <td class="p-4 sm:p-5 text-stone-600">Fund 1 complete village nursery & 1,500 native saplings</td>
+              <td class="p-4 sm:p-5 text-stone-600">Logo on field sign & quarterly GPS updates</td>
+            </tr>
+            <tr>
+              <td class="p-4 sm:p-5 font-bold text-stone-900">☀️ Solar School Sponsor</td>
+              <td class="p-4 sm:p-5 font-mono text-emerald-800 font-bold">$7,500 / yr</td>
+              <td class="p-4 sm:p-5 text-stone-600">Fully electrify 1 remote school with solar digital laptops</td>
+              <td class="p-4 sm:p-5 text-stone-600">Dedication plaque & employee volunteer day</td>
+            </tr>
+            <tr>
+              <td class="p-4 sm:p-5 font-bold text-stone-900">🏞️ Watershed Alliance Sustainer</td>
+              <td class="p-4 sm:p-5 font-mono text-emerald-800 font-bold">$18,000 / yr</td>
+              <td class="p-4 sm:p-5 text-stone-600">Restore 50 hectares of watershed slope & 1 mountain spring pipeline</td>
+              <td class="p-4 sm:p-5 text-stone-600">Co-branded documentary video & ESG compliance audit</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </section>
+
+</Layout>

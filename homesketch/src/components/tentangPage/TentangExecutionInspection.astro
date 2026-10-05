@@ -1,0 +1,50 @@
+---
+import { Image } from 'astro:assets';
+import Container from '../base/Container.astro';
+import SectionHeader from '../base/SectionHeader.astro';
+import HairlineDivider from '../base/HairlineDivider.astro';
+import imgWorkflow from '../../assets/images/workflow-inspection.jpg';
+import { tentangExecutionInspectionData } from './TentangExecutionInspection.data.js';
+---
+
+<section class="py-20 lg:py-28 border-b border-[var(--color-border-hairline)] bg-[var(--color-canvas-surface)]">
+  <Container size="xl" as="div" class="flex flex-col gap-14 lg:gap-16">
+    <!-- Header -->
+    <SectionHeader
+      title={tentangExecutionInspectionData.heading}
+      subtitle={tentangExecutionInspectionData.subheading}
+      level="h2"
+    />
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+      <!-- Left: Inspection Photo (6 cols) -->
+      <figure class="lg:col-span-6 flex flex-col gap-3">
+        <div class="relative overflow-hidden aspect-[4/3] bg-[var(--color-canvas-light)] border border-[var(--color-border-hairline)] shadow-xs">
+          <Image
+            src={imgWorkflow}
+            alt="Supervisi Lapangan Arsitek HomeSketch Meninjau Kelurusan Struktur Dinding"
+            class="w-full h-full object-cover object-center"
+            loading="lazy"
+          />
+        </div>
+        <figcaption class="text-xs text-[var(--color-ink-muted)]">
+          Inspeksi kelurusan bidang dinding dan pertemuan kusen di lokasi proyek hunian premium.
+        </figcaption>
+      </figure>
+
+      <!-- Right: Protocols List (6 cols) -->
+      <div class="lg:col-span-6 flex flex-col gap-6">
+        {tentangExecutionInspectionData.protocols.map((p) => (
+          <article class="flex flex-col gap-1.5 border-l-2 border-[var(--color-accent-terracotta)] pl-5">
+            <h3 class="font-serif text-lg font-bold text-[var(--color-ink-primary)]">
+              {p.title}
+            </h3>
+            <p class="text-xs sm:text-sm text-[var(--color-ink-muted)] leading-relaxed">
+              {p.detail}
+            </p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </Container>
+</section>

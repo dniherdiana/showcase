@@ -1,0 +1,221 @@
+---
+import Layout from '../components/Layout.astro';
+import Icon from '../components/Icon.astro';
+import Reveal from '../components/Reveal.astro';
+import Placeholder from '../components/Placeholder.astro';
+import { IMG, brand } from '../data/site.js';
+
+const reviews = [
+	{ avatar: IMG.av4, initials: 'DA', treatment: 'Signature Glow Facial', rating: 5, text: 'Kulitku kering kronis selama bertahun-tahun. Setelah 3 sesi, makeup-ku jadi jarang dipakai karena glow-nya sudah cukup.' },
+	{ avatar: IMG.av5, initials: 'MI', treatment: 'Keratin Luxury', rating: 5, text: 'Rambut keritingku sekarang tertata sampai 4 bulan. Terapisnya menjelaskan tiap langkah sebelum melakukannya.' },
+	{ avatar: IMG.av6, initials: 'SN', treatment: 'Hot Stone Therapy', rating: 5, text: 'Pijat batu hangatnya luar biasa. Aku tertidur pulas — padahal biasanya susah rileks di tempat baru.' },
+	{ avatar: IMG.av7, initials: 'RT', treatment: 'Gel Artistry', rating: 4, text: 'Hasil nail art-nya rapi banget, detailnya seperti dicetak. Suka banget dengan ruangannya yang bersih.' },
+	{ avatar: IMG.av8, initials: 'EW', treatment: 'Anti-Aging Lift', rating: 5, text: 'Di usia 40-an, aku butuh hasil yang jujur — bukan janji. Lift manualnya terasa beda, hasilnya terlihat setelah 2 minggu.' },
+	{ avatar: IMG.av9, initials: 'AY', treatment: 'Couple Recharge', rating: 5, text: 'Liburan anniversary terbaik: massage berdua. Booking gampang, ruangan private, dan mereka ingat preferensi aroma kami.' },
+	{ avatar: IMG.av10, initials: 'FK', treatment: 'Scalp Detox', rating: 5, text: 'Aku baru tahu masalah ketombe kadang soal scalp, bukan rambut. Setelah perawatan, gatal-gatal hilang total.' },
+	{ avatar: IMG.av11, initials: 'BJ', treatment: 'Luxe Manicure', rating: 5, text: 'Pijat tangannya bikin aku tidak mau pulang. Perhatian ke detail — bahkan kutikula terawat sempurna.' },
+	{ avatar: IMG.av12, initials: 'GA', treatment: 'Hair Spa Ritual', rating: 4, text: 'Ritual yang sangat menenangkan setelah seminggu kerja. Harum produknya lembut, tidak menyengat.' },
+	{ avatar: IMG.av13, initials: 'DH', treatment: 'Signature Glow Facial', rating: 5, text: 'Aku datang karena teman merekomendasikan — sekarang aku yang jadi promotor di kantor. Hasilnya konsisten setiap kunjungan.' },
+];
+
+const bars = [
+	{ label: '5 Bintang', pct: 82, color: 'bg-lime' },
+	{ label: '4 Bintang', pct: 15, color: 'bg-pink' },
+	{ label: '3 Bintang', pct: 2, color: 'bg-violet' },
+	{ label: '2 Bintang & 1', pct: 1, color: 'bg-ink-3' },
+];
+---
+
+<Layout
+	title="Testimoni"
+	description="Ulasan jujur dari 15.000+ pelanggan Nama Beauty Salon — rating 4.9/5 dan cerita tentang ritual yang berkesan."
+	ogImage={IMG.av5}
+>
+	<!-- ============ HERO — rating spotlight ============ -->
+	<section class="relative overflow-hidden bg-ink pb-20 pt-14 text-cream lg:pb-28 lg:pt-20">
+		<div class="pointer-events-none absolute -left-24 top-16 h-96 w-96 rounded-full bg-pink/25 blur-3xl"></div>
+		<div class="pointer-events-none absolute right-0 bottom-0 h-72 w-72 rounded-full bg-violet/25 blur-3xl"></div>
+
+		<div class="relative mx-auto grid max-w-[1400px] items-center gap-12 px-5 lg:grid-cols-12 lg:px-10">
+			<div class="lg:col-span-6" data-reveal="scale">
+				<div class="relative inline-block">
+					<span class="mag-number block text-[7rem] leading-[0.8] text-lime sm:text-[10rem]">4.9</span>
+					<span class="absolute -right-14 top-6 rotate-12 rounded-full border-2 border-ink bg-pink px-4 py-2 font-display text-2xl font-black shadow-[var(--shadow-sticker)] sm:-right-20">
+						/5
+					</span>
+					<div class="mt-4 flex gap-1 text-lime">
+						{[1, 2, 3, 4, 5].map(() => <Icon name="star" class="h-6 w-6 fill-current" />)}
+					</div>
+				</div>
+			</div>
+			<div class="lg:col-span-6">
+				<Reveal>
+					<span class="sticker sticker--pink" style="--tilt:-2deg"><Icon name="heart" class="h-3.5 w-3.5" /> Kata mereka, jujur</span>
+					<h1 class="mt-7 font-display text-4xl font-black leading-[1.02] sm:text-6xl">
+						Ribuan cerita, <span class="italic text-lime">satu</span> rasa yang sama.
+					</h1>
+					<p class="mt-6 max-w-xl font-sans text-base leading-relaxed text-cream/70">
+						Rating bukan statistik bagi kami — setiap angka adalah seseorang yang memercayakan
+						waktu dan dirinya pada kami. Berikut sebagian dari 15.000+ cerita itu.
+					</p>
+					<div class="mt-8 flex -space-x-3">
+						{
+							[IMG.av14, IMG.av15, IMG.av21, IMG.av22, IMG.av23].map((a) => (
+								<img src={a} alt="" loading="lazy" class="h-11 w-11 rounded-full border-2 border-ink object-cover" />
+							))
+						}
+						<span class="grid h-11 w-11 place-items-center rounded-full border-2 border-ink bg-lime font-sans text-[0.6rem] font-bold text-ink">15rb+</span>
+					</div>
+				</Reveal>
+			</div>
+		</div>
+	</section>
+
+	<!-- ============ FEATURED SINGLE QUOTE ============ -->
+	<section class="bg-cream py-16 lg:py-24">
+		<div class="mx-auto max-w-4xl px-5 lg:px-10">
+			<Reveal>
+				<figure class="relative rounded-[var(--radius-blob)] border-2 border-ink bg-cream-2 p-8 shadow-[var(--shadow-sticker)] sm:p-12">
+					<span class="sticker sticker--lime absolute -top-4 left-8" style="--tilt:-2deg">Paling sering dikutip</span>
+					<Icon name="quote" class="h-12 w-12 text-pink" />
+					<blockquote class="mt-6 font-display text-2xl font-medium italic leading-snug sm:text-4xl">
+						“Aku sudah coba banyak salon. Baru di sini aku merasa <span class="text-violet">dirawat</span>,
+						bukan sekadar dilayani. Selisihnya terasa di setiap detail — dari aroma ruangan sampai
+						cara terapis mengingat nama dan preferensiku.”
+					</blockquote>
+					<figcaption class="mt-8 flex items-center gap-4">
+						<span class="grid h-14 w-14 place-items-center rounded-full border-2 border-ink bg-pink font-display text-lg font-black text-cream">SA</span>
+						<div>
+							<p class="font-sans text-sm font-bold uppercase tracking-widest">Klien Loyal 4 Tahun</p>
+							<Placeholder inline label="Nama & foto" class="mt-1" />
+						</div>
+					</figcaption>
+				</figure>
+			</Reveal>
+		</div>
+	</section>
+
+	<!-- ============ REVIEW GRID ============ -->
+	<section class="pb-20 lg:pb-28">
+		<div class="mx-auto max-w-[1400px] px-5 lg:px-10">
+			<div class="mb-10 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
+				<Reveal>
+					<span class="sticker sticker--violet" style="--tilt:1deg"><Icon name="users" class="h-3.5 w-3.5" /> 10 dari 15.000+</span>
+					<h2 class="mt-5 font-display text-4xl font-black sm:text-5xl">Cerita <span class="italic text-pink">mereka</span>.</h2>
+				</Reveal>
+				<a href="/kontak" class="pill-link shrink-0">Jadilah cerita berikutnya <Icon name="arrow-right" /></a>
+			</div>
+
+			<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+				{
+					reviews.map((r, i) => (
+						<article class="card-raise flex flex-col rounded-[var(--radius-blob)] border-2 border-ink bg-cream-2 p-6 shadow-[var(--shadow-sticker)]" data-reveal style={`--reveal-delay:${(i % 3) * 90}ms`}>
+							<div class="flex items-center gap-3">
+								<img src={r.avatar} alt="" loading="lazy" class="h-12 w-12 rounded-full border-2 border-ink object-cover" />
+								<div class="flex-1">
+									<p class="font-display text-base font-black">Klien {r.initials}</p>
+									<p class="font-sans text-[0.65rem] font-bold uppercase tracking-widest text-pink">{r.treatment}</p>
+								</div>
+								<Placeholder inline label="Nama" />
+							</div>
+							<div class="mt-4 flex gap-1 text-pink">
+								{[1, 2, 3, 4, 5].map((n) => <Icon name="star" class:list={['h-4 w-4', n <= r.rating ? 'fill-current' : 'opacity-25']} />)}
+							</div>
+							<blockquote class="mt-3 flex-1 font-sans text-sm leading-relaxed text-ink/75">“{r.text}”</blockquote>
+							<div class="mt-5 flex items-center justify-between border-t-2 border-dashed border-ink/15 pt-4">
+								<span class="font-sans text-[0.6rem] font-bold uppercase tracking-widest text-ink/50">Terverifikasi kunjungan</span>
+								<Icon name="check-circle" class="h-5 w-5 text-pink" />
+							</div>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- ============ RATING DISTRIBUTION ============ -->
+	<section class="bg-violet py-16 text-cream lg:py-20">
+		<div class="mx-auto grid max-w-[1400px] items-center gap-10 px-5 lg:grid-cols-12 lg:px-10">
+			<div class="lg:col-span-4">
+				<Reveal>
+					<h2 class="font-display text-3xl font-black sm:text-4xl">
+						Kepuasan yang bisa <span class="italic text-lime">diukur</span>.
+					</h2>
+					<p class="mt-4 font-sans text-sm leading-relaxed text-cream/70">
+						Kami meninjau setiap ulasan di bawah 5 bintang setiap minggu — dan memperbaikinya,
+						bukan menyembunyikannya.
+					</p>
+				</Reveal>
+			</div>
+			<div class="lg:col-span-8">
+				<div class="space-y-5">
+					{
+						bars.map((b, i) => (
+							<div data-reveal style={`--reveal-delay:${i * 80}ms`}>
+								<div class="mb-2 flex items-center justify-between font-sans text-xs font-bold uppercase tracking-widest">
+									<span>{b.label}</span>
+									<span class="text-lime">{b.pct}%</span>
+								</div>
+								<div class="h-4 overflow-hidden rounded-full border-2 border-ink bg-ink">
+									<div class={`h-full ${b.color} rounded-full transition-all duration-700`} style={`width:${b.pct}%`}></div>
+								</div>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ============ VIDEO TESTIMONIAL ============ -->
+	<section class="py-20 lg:py-24">
+		<div class="mx-auto max-w-[1400px] px-5 lg:px-10">
+			<Reveal>
+				<div class="mb-8 flex items-center gap-3">
+					<span class="eq" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+					<h2 class="font-display text-3xl font-black sm:text-4xl">Cerita versi <span class="italic text-pink">video</span></h2>
+				</div>
+			</Reveal>
+			<div class="grid gap-6 lg:grid-cols-3">
+				{
+					[
+						{ src: IMG.av25, time: '1:24', label: 'Testimoni klien' },
+						{ src: IMG.av26, time: '2:01', label: 'Di balik ritual facial' },
+						{ src: IMG.av27, time: '0:58', label: 'Sesi konsultasi' },
+					].map((v, i) => (
+						<button class="group relative overflow-hidden rounded-[var(--radius-blob)] border-2 border-ink text-left" data-reveal style={`--reveal-delay:${i * 100}ms`} aria-label={`Putar video: ${v.label}`}>
+							<img src={v.src} alt={v.label} loading="lazy" class="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+							<div class="absolute inset-0 bg-ink/30 transition-colors group-hover:bg-ink/10"></div>
+							<span class="absolute left-1/2 top-1/2 grid h-16 w-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 border-ink bg-cream text-ink shadow-[var(--shadow-sticker)] transition-transform group-hover:scale-110 group-hover:rotate-12">
+								<Icon name="play" class="h-6 w-6" />
+							</span>
+							<span class="absolute bottom-4 left-4 rounded-full border-2 border-ink bg-lime px-3 py-1 font-sans text-[0.6rem] font-bold uppercase tracking-widest">▶ {v.time}</span>
+							<span class="absolute bottom-4 right-4 font-sans text-xs font-bold uppercase tracking-widest text-cream drop-shadow">{v.label}</span>
+						</button>
+					))
+				}
+			</div>
+			<div class="mt-6 text-center">
+				<Placeholder note="Ganti dengan video testimoni asli klien sebelum website dikirim ke client." label="Video testimoni asli" class="mx-auto max-w-md" />
+			</div>
+		</div>
+	</section>
+
+	<!-- ============ CTA ============ -->
+	<section class="relative overflow-hidden bg-pink py-20 text-cream">
+		<span class="outline-text outline-text--cream pointer-events-none absolute -bottom-6 left-4 select-none font-display text-[8rem] font-black opacity-15" aria-hidden="true">4.9★</span>
+		<div class="relative mx-auto max-w-4xl px-5 text-center lg:px-10">
+			<Reveal>
+				<h2 class="font-display text-4xl font-black leading-[1.02] sm:text-6xl">
+					Sekarang giliran <span class="italic">kamu</span> yang bercerita.
+				</h2>
+				<div class="mt-8 flex flex-wrap justify-center gap-4">
+					<a href="/kontak" class="btn btn--ink text-base">Booking Sekarang <Icon name="arrow-right" class="h-5 w-5" /></a>
+					<a href={`https://wa.me/${brand.whatsapp}`} target="_blank" rel="noreferrer" class="btn btn--ghost text-base !text-cream !border-cream">
+						<Icon name="whatsapp" class="h-5 w-5" /> Tanya via WhatsApp
+					</a>
+				</div>
+			</Reveal>
+		</div>
+	</section>
+</Layout>

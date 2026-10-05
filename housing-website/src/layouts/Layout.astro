@@ -1,0 +1,158 @@
+---
+import "../styles/global.css";
+import fontsUrl from "../styles/fonts.css?url";
+import plusJakarta400Url from "@assets/fonts/plus-jakarta-sans-latin-400-normal.woff2?url";
+import cormorant400Url from "@assets/fonts/cormorant-garamond-latin-400-normal.woff2?url";
+import hero from "@assets/images/hero.jpg";
+import Navbar from "../components/shared/Navbar.astro";
+import Footer from "../components/shared/Footer.astro";
+
+interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+	canonicalURL?: string;
+	structuredData?: object | object[];
+}
+
+const {
+	title = "Grand Samudra Cluster — Hunian Modern & Nyaman untuk Masa Depan Keluarga",
+	description = "Developer perumahan cluster modern dengan kemudahan KPR, lokasi strategis dekat fasilitas publik, dan lingkungan aman untuk tumbuh kembang keluarga Anda.",
+	image = hero.src,
+	canonicalURL = new URL(Astro.url.pathname, Astro.site),
+	structuredData = [],
+} = Astro.props;
+
+const siteURL = Astro.site ?? new URL("https://grandsamudraresidence.co.id");
+const ogImage = new URL(image, siteURL);
+const canonical = new URL(canonicalURL, siteURL);
+
+const baseSchema = {
+	"@context": "https://schema.org",
+	"@type": "RealEstateAgent",
+	name: "Grand Samudra Residence",
+	description:
+		"Developer perumahan cluster modern dengan fasilitas lengkap dan skema KPR fleksibel.",
+	url: siteURL.href,
+	telephone: "+6281234567890",
+	email: "info@grandsamudrafamily.id",
+	image: ogImage.href,
+	address: {
+		"@type": "PostalAddress",
+		streetAddress: "Jl. Boulevard Samudra Residence No. 1",
+		addressLocality: "Bandung Selatan",
+		addressCountry: "ID",
+	},
+	areaServed: "Indonesia",
+	priceRange: "Rp 750 Juta - Rp 1.8 Miliar",
+};
+
+const schemaPayload =
+	Array.isArray(structuredData) ?
+		[baseSchema, ...structuredData]
+	:	[baseSchema, structuredData];
+
+const jsonLD = schemaPayload
+	.filter((schema) => schema && typeof schema === "object")
+	.map((schema) => JSON.stringify(schema));
+
+const criticalFontCss = `
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-display:swap;font-weight:400;src:url(${plusJakarta400Url}) format('woff2');}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-display:swap;font-weight:400;src:url(${cormorant400Url}) format('woff2');}
+`;
+---
+
+<!doctype html>
+<html lang="id" class="dark scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="theme-color" content="#0A0D12" />
+
+		<!-- Fonts: preload the two critical weights, load the rest non-blocking -->
+		<link
+			rel="preload"
+			href={plusJakarta400Url}
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href={cormorant400Url}
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<style is:inline set:html={criticalFontCss}></style>
+		<link
+			rel="stylesheet"
+			href={fontsUrl}
+			media="print"
+			onload="this.media='all'"
+		/>
+		<noscript><link rel="stylesheet" href={fontsUrl} /></noscript>
+
+		<slot name="head" />
+
+		<!-- SEO Meta Tags -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="robots" content="index, follow" />
+		<meta name="author" content="Grand Samudra Development" />
+		<link rel="canonical" href={canonical} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content="Grand Samudra Residence" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:locale" content="id_ID" />
+
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
+
+		<!-- Schema.org JSON-LD Structured Data -->
+		{
+			jsonLD.map((schema) => (
+				<script type="application/ld+json" is:inline set:html={schema} />
+			))
+		}
+	</head>
+	<body
+		class="bg-canvas-default text-slate-100 min-h-screen selection:bg-amber-400 selection:black font-sans relative overflow-x-hidden"
+	>
+		<div
+			class="fixed inset-0 pointer-events-none z-99 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-amber-500/5 via-transparent to-transparent"
+		>
+		</div>
+		<Navbar />
+		<slot />
+		<Footer />
+		<script>
+			document.addEventListener("DOMContentLoaded", () => {
+				const observer = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (entry.isIntersecting) {
+								entry.target.classList.add("is-revealed");
+							}
+						});
+					},
+					{ threshold: 0.05, rootMargin: "0px 0px 100px 0px" }
+				);
+
+				const elements = document.querySelectorAll(
+					"[data-reveal], .story-beat, .timeline-btn, .af-reveal, .timeline-progress-line, .af-timeline-line"
+				);
+				elements.forEach((el) => observer.observe(el));
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,101 @@
+<section
+	class="relative min-h-[90vh] bg-[var(--color-navy)] flex flex-col lg:flex-row border-b border-white/10 z-10"
+>
+	<!-- Background Grid -->
+	<div
+		class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"
+	>
+	</div>
+
+	<!-- Left Content (60%) -->
+	<div
+		class="relative w-full lg:w-[60%] px-6 md:px-12 lg:px-24 pt-32 pb-24 lg:py-40 flex flex-col justify-center"
+	>
+		<div class="flex flex-col gap-8 max-w-3xl" data-reveal>
+			<!-- Micro-metadata -->
+			<div
+				class="flex flex-wrap gap-4 font-mono text-xs tracking-wider text-[var(--color-orange)]"
+			>
+				<span>[OPERATIONAL STATUS: ACTIVE NETWORK]</span>
+				<span class="text-[var(--color-steel)]">•</span>
+				<span>[COVERAGE: 34 PROVINCES & REGIONAL PORTS]</span>
+			</div>
+
+			<!-- Headline -->
+			<h1
+				class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1]"
+			>
+				Kontrol Penuh Rute Logistik Industri Anda Tanpa Delay Operasional
+			</h1>
+
+			<!-- Sub-headline & Deep context -->
+			<div
+				class="flex flex-col gap-6 text-[var(--color-steel)] text-lg md:text-xl max-w-2xl border-l-2 border-[var(--color-orange)] pl-6"
+			>
+				<p class="font-medium text-[var(--color-offwhite)]">
+					TransLogix mengintegrasikan manajemen armada darat, pengiriman kargo
+					laut, dan fasilitas pergudangan dalam satu sistem pelaporan real-time
+					untuk kepastian supply chain bisnis Anda.
+				</p>
+				<p class="text-base text-[var(--color-steel-dim)]">
+					Sistem operasi tersentralisasi kami menghilangkan blind-spots dalam
+					distribusi multi-moda. Dengan pelacakan presisi dari titik origin
+					hingga destinasi akhir, kami memastikan kargo enterprise Anda tiba
+					sesuai Service Level Agreement (SLA).
+				</p>
+			</div>
+
+			<!-- Quick Tracker -->
+			<div
+				class="mt-8 bg-[var(--color-navy-80)] border border-white/10 p-6 md:p-8 max-w-2xl relative overflow-hidden group"
+			>
+				<div
+					class="absolute inset-0 bg-[var(--color-orange)]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+				>
+				</div>
+				<form id="tracking-form" class="relative flex flex-col gap-4">
+					<label
+						for="tracking-input"
+						class="font-mono text-xs text-[var(--color-steel)] tracking-widest uppercase"
+					>
+						Masukkan Nomor Resi / Waybill / Bill of Lading (B/L)
+					</label>
+					<div class="flex flex-col sm:flex-row gap-4">
+						<input
+							type="text"
+							id="tracking-input"
+							placeholder="Contoh: TLX-889021-ID"
+							class="flex-1 bg-[var(--color-navy)] border border-white/20 px-4 py-3 text-white font-mono placeholder:text-white/20 focus:outline-none focus:border-[var(--color-orange)] transition-colors"
+							required
+						/>
+						<button
+							type="submit"
+							class="bg-[var(--color-orange)] hover:bg-[var(--color-orange-light)] text-white font-bold px-8 py-3 transition-colors shrink-0"
+						>
+							Lacak Posisi Kargo
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Right Image (40%) -->
+	<div
+		class="w-full lg:w-[40%] min-h-[50vh] lg:min-h-full relative overflow-hidden hidden lg:block"
+	>
+		<div
+			class="absolute inset-0 bg-gradient-to-r from-[var(--color-navy)] to-transparent z-10 w-32"
+		>
+		</div>
+		<div
+			class="absolute inset-0 bg-[var(--color-orange)]/20 mix-blend-overlay z-10"
+		>
+		</div>
+		<img
+			src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=900&q=85&auto=format&fit=crop"
+			alt="TransLogix Fleet and Cargo Operations"
+			class="absolute inset-0 w-full h-full object-cover scale-105"
+		/>
+	</div>
+</section>

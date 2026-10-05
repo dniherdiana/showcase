@@ -1,0 +1,282 @@
+---
+import { Image } from "astro:assets";
+import { images } from "../assets/images/index.js";
+
+interface TravelStyle {
+  id: string;
+  badge_en: string;
+  badge_id: string;
+  title_en: string;
+  title_id: string;
+  subtitle_en: string;
+  subtitle_id: string;
+  desc_en: string;
+  desc_id: string;
+  image: ImageMetadata;
+  perks_en: string[];
+  perks_id: string[];
+  recommended_en: string;
+  recommended_id: string;
+  actionHref: string;
+}
+
+const travelStyles: TravelStyle[] = [
+  {
+    id: "coastal",
+    badge_en: "Coastal & Island Retreats",
+    badge_id: "Pantai & Pulau Tersembunyi",
+    title_en: "Tranquil Oceans & Private Villas",
+    title_id: "Ketenangan Pesisir & Vila Privat Tebing",
+    subtitle_en: "Peaceful coastal stays overlooking crystal-clear waters away from tourist crowds.",
+    subtitle_id: "Penginapan damai tepi pantai memandang laut jernih jauh dari keramaian turis.",
+    desc_en: "Stay in cliffside boutique villas in Positano or cave suites in Oia. Enjoy private Riva speedboat charters to Capri and quiet lemon grove wine tastings.",
+    desc_id: "Menginap di vila boutique tepi tebing Positano atau suite gua Oia. Nikmati sewa speedboat kayu privat ke Capri dan cicip anggur di kebun lemon yang tenang.",
+    image: images.amalfi,
+    perks_en: ["100% Private Boat Charters", "Cliffside Balcony Stays", "Private Sommelier Dinners"],
+    perks_id: ["Sewa Kapal Privat 100%", "Vila Balkon Tebing Laut", "Makan Malam Sommelier"],
+    recommended_en: "Amalfi Coast • Santorini • Capri",
+    recommended_id: "Amalfi Coast • Santorini • Capri",
+    actionHref: "/destinations/amalfi-coast-sanctuary",
+  },
+  {
+    id: "alpine",
+    badge_en: "High Alpine & Snow Chalets",
+    badge_id: "Pegunungan & Chalet Salju",
+    title_en: "Glacier Flight & Fireside Comfort",
+    title_id: "Helikopter Gletser & Chalet Perapian",
+    subtitle_en: "Cozy mountain chalets, high alpine views, and private glacier landings.",
+    subtitle_id: "Chalet kayu hangat di pegunungan, pemandangan gletser, dan helikopter privat.",
+    desc_en: "Retreat to Zermatt in alpine luxury. Fly by private Eurocopter over frozen glaciers for sommelier wine tastings before relaxing in your chalet hot tub.",
+    desc_id: "Bersantai di Zermatt dengan penginapan pegunungan privat. Terbang dengan helikopter di atas gletser es dan bersantai di kolam air hangat chalet kayu Anda.",
+    image: images.swissAlps,
+    perks_en: ["Private Helicopter Flights", "Personal Chef & Sauna", "Gornergrat VIP Passes"],
+    perks_id: ["Terbang Helikopter Privat", "Koki Pribadi & Sauna", "Tiket Kereta VIP Gornergrat"],
+    recommended_en: "Swiss Matterhorn • Zermatt • Julian Alps",
+    recommended_id: "Swiss Matterhorn • Zermatt • Julian Alps",
+    actionHref: "/destinations/swiss-matterhorn-chalet",
+  },
+  {
+    id: "yachting",
+    badge_en: "Yachting & Deep Sea Diving",
+    badge_id: "Pelayaran Kapal Phinisi & Laut Dalam",
+    title_en: "Private Phinisi & Submarine Expeditions",
+    title_id: "Jelajah Phinisi & Eksplorasi Kapal Selam",
+    subtitle_en: "Navigate untouched coral islands with full crew, divemasters, and private chefs.",
+    subtitle_id: "Jelajahi gugusan pulau karang alami bersama kru kapal, instruktur selam, & koki pribadi.",
+    desc_en: "Charter traditional wooden Phinisi superyachts through Raja Ampat's Wayag lagoons or dive 1,000 meters into deep Maldives trenches in private Triton submersibles.",
+    desc_id: "Sewa kapal Phinisi kayu tradisional mengelilingi laguna Wayag Raja Ampat atau menyelam 1.000 meter di palung laut Maldives dengan kapal selam privat.",
+    image: images.rajaAmpat,
+    perks_en: ["Private Phinisi Charters", "1,000m Submarine Dives", "Uninhabited Island Barbecues"],
+    perks_id: ["Sewa Kapal Phinisi Privat", "Penyelaman Kapal Selam 1.000m", "Barbekyu Pantai Pulau Tak Berpenghuni"],
+    recommended_en: "Raja Ampat • Maldives Deep Sea",
+    recommended_id: "Raja Ampat • Maldives Deep Sea",
+    actionHref: "/destinations/superyacht-island-hopping-raja-ampat",
+  },
+  {
+    id: "wilderness",
+    badge_en: "Wilderness & Air Safaris",
+    badge_id: "Alam Liar & Safari Udara Afrika",
+    title_en: "Dawn Balloons & Stargazing Domes",
+    title_id: "Balon Udara Fajar & Bintang Gurun",
+    subtitle_en: "Witness ancient migrations and lightless desert night skies with expert naturalists.",
+    subtitle_id: "Saksikan migrasi jutaan satwa dan indahnya langit bintang murni bersama pakar alam liar.",
+    desc_en: "Float in hot air balloons over Serengeti's Great Migration at dawn or observe deep galaxies through research optical telescopes in Chile's Atacama Desert.",
+    desc_id: "Melayang di atas migrasi jutaan satwa Serengeti dari balon udara panas atau amati galaksi bintang di Gurun Atacama Cile menggunakan teleskop canggih.",
+    image: images.serengeti,
+    perks_en: ["Hot Air Balloon Safaris", "Optical Telescope Nights", "Luxury Mobile Eco-Tents"],
+    perks_id: ["Safari Balon Udara Fajar", "Pengamatan Teleskop Bintang", "Kemah Mewah Ramah Lingkungan"],
+    recommended_en: "Serengeti • Atacama • Patagonia",
+    recommended_id: "Serengeti • Atacama • Patagonia",
+    actionHref: "/destinations/serengeti-migration-air-safari",
+  },
+];
+---
+
+<section class="relative z-10 w-full py-16 px-[5%] overflow-hidden border-y border-white/10 bg-slate-950">
+  <div class="max-w-7xl mx-auto space-y-10">
+    <!-- Header: Intuitive & Inviting Section Title -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-6">
+      <div class="space-y-1">
+        <span 
+          class="text-xs font-extrabold uppercase tracking-widest text-gold flex items-center gap-2"
+          data-i18n-en="Curated Travel Characters"
+          data-i18n-id="Karakter & Suasana Perjalanan Impian"
+        >
+          <span class="w-2 h-2 rounded-full bg-gold animate-pulse"></span>
+          Curated Travel Characters
+        </span>
+        <h2 
+          class="font-heading text-2xl sm:text-4xl font-extrabold text-white tracking-tight"
+          data-i18n-en="Choose How You Wish to Feel The World"
+          data-i18n-id="Pilih Bagaimana Anda Ingin Merasakan Dunia"
+        >
+          Choose How You Wish to Feel The World
+        </h2>
+      </div>
+
+      <p 
+        class="text-xs sm:text-sm text-white/70 max-w-md font-sans leading-relaxed"
+        data-i18n-en="Every journey is designed around your rhythm—whether you seek high alpine snows, quiet coastal villas, or deep sea expeditions."
+        data-i18n-id="Setiap perjalanan dirancang kustom mengikuti suasana hati Anda—baik ketenangan pesisir, pegunungan salju, atau pelayaran laut lepas."
+      >
+        Every journey is designed around your rhythm.
+      </p>
+    </div>
+
+    <!-- Intuitive Interactive Selector Tabs (No Card Base) -->
+    <div class="flex items-center gap-3 overflow-x-auto pb-2 scrollbar-none border-b border-white/10" id="mood-tabs-container">
+      {
+        travelStyles.map((style, index) => (
+          <button
+            type="button"
+            data-style-id={style.id}
+            class={`mood-tab-btn px-5 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider transition-all duration-300 flex items-center gap-2.5 whitespace-nowrap cursor-pointer border-b-2 ${
+              index === 0
+                ? "text-gold border-gold"
+                : "text-white/60 border-transparent hover:text-white hover:border-white/30"
+            }`}
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-current"></span>
+            <span data-i18n-en={style.badge_en} data-i18n-id={style.badge_id}>
+              {style.badge_en}
+            </span>
+          </button>
+        ))
+      }
+    </div>
+
+    <!-- Mempesona Interactive Showcase Panel -->
+    {
+      travelStyles.map((style, index) => (
+        <div
+          id={`mood-panel-${style.id}`}
+          class={`mood-showcase-panel relative rounded-2xl overflow-hidden min-h-[420px] sm:min-h-[480px] flex flex-col justify-end p-6 sm:p-12 transition-all duration-700 ${
+            index === 0 ? "block opacity-100 scale-100" : "hidden opacity-0 scale-95"
+          }`}
+        >
+          <!-- Background Image -->
+          <div class="absolute inset-0 z-0">
+            <Image
+              src={style.image}
+              alt={style.title_en}
+              class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-1000"
+              widths={[640, 1024, 1600]}
+              sizes="100vw"
+              quality={75}
+              loading="eager"
+            />
+            <!-- Gradient Overlay for Contrast -->
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-950/40"></div>
+            <div class="absolute inset-0 bg-slate-950/40"></div>
+          </div>
+
+          <!-- Content Foreground -->
+          <div class="relative z-10 max-w-3xl space-y-5">
+            <!-- Badge Tag -->
+            <span 
+              class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-gold/20 text-gold-light border border-gold/40 backdrop-blur-md"
+              data-i18n-en={style.badge_en}
+              data-i18n-id={style.badge_id}
+            >
+              ✦ {style.badge_en}
+            </span>
+
+            <!-- Main Title -->
+            <h3 
+              class="font-serif text-3xl sm:text-5xl font-extrabold text-white leading-tight drop-shadow-lg"
+              data-i18n-en={style.title_en}
+              data-i18n-id={style.title_id}
+            >
+              {style.title_en}
+            </h3>
+
+            <!-- Description -->
+            <p 
+              class="text-sm sm:text-base text-white/90 font-sans leading-relaxed max-w-2xl drop-shadow-md font-light"
+              data-i18n-en={style.desc_en}
+              data-i18n-id={style.desc_id}
+            >
+              {style.desc_en}
+            </p>
+
+            <!-- Perks List -->
+            <div class="flex flex-wrap items-center gap-3 pt-2">
+              {style.perks_en.map((perkEn, perkIdx) => (
+                <span 
+                  class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-900/80 border border-white/20 text-white/90 backdrop-blur-md flex items-center gap-2"
+                  data-i18n-en={perkEn}
+                  data-i18n-id={style.perks_id[perkIdx]}
+                >
+                  <span class="text-gold">✓</span>
+                  {perkEn}
+                </span>
+              ))}
+            </div>
+
+            <!-- Footer Row: Recommended Destinations & CTA Link -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-4 border-t border-white/20">
+              <div class="text-xs text-white/70">
+                <span class="uppercase tracking-wider font-semibold text-gold-light block mb-0.5" data-i18n-en="Recommended Destinations" data-i18n-id="Destinasi Rekomendasi">
+                  Destinasi Rekomendasi
+                </span>
+                <span class="font-serif text-sm text-white font-medium">
+                  {style.recommended_en}
+                </span>
+              </div>
+
+              <a
+                href={style.actionHref}
+                class="inline-flex items-center justify-center gap-2.5 px-6 py-3 rounded-full bg-gold hover:bg-gold-light text-slate-950 font-bold text-xs uppercase tracking-wider transition-all duration-300 shadow-xl hover:scale-105"
+              >
+                <span data-i18n-en="Explore This Experience" data-i18n-id="Jelajahi Suasana Ini">
+                  Jelajahi Suasana Ini
+                </span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<!-- Interactive Vanilla JS Tab Switcher -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const tabBtns = document.querySelectorAll<HTMLButtonElement>(".mood-tab-btn");
+    const panels = document.querySelectorAll<HTMLElement>(".mood-showcase-panel");
+
+    tabBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const styleId = btn.dataset.styleId;
+
+        // Deactivate all tabs
+        tabBtns.forEach((b) => {
+          b.classList.remove("text-gold", "border-gold");
+          b.classList.add("text-white/60", "border-transparent");
+        });
+
+        // Activate clicked tab
+        btn.classList.add("text-gold", "border-gold");
+        btn.classList.remove("text-white/60", "border-transparent");
+
+        // Hide all panels
+        panels.forEach((panel) => {
+          panel.classList.add("hidden", "opacity-0", "scale-95");
+          panel.classList.remove("block", "opacity-100", "scale-100");
+        });
+
+        // Show target panel
+        const targetPanel = document.getElementById(`mood-panel-${styleId}`);
+        if (targetPanel) {
+          targetPanel.classList.remove("hidden");
+          setTimeout(() => {
+            targetPanel.classList.add("block", "opacity-100", "scale-100");
+            targetPanel.classList.remove("opacity-0", "scale-95");
+          }, 50);
+        }
+      });
+    });
+  });
+</script>

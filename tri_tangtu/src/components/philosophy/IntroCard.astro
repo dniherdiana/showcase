@@ -1,0 +1,38 @@
+---
+const {
+	title,
+	text,
+	text_1,
+	text_2,
+	text_3,
+	text_4,
+	text_5,
+	text_6,
+	text_7,
+	classText2,
+	classText4,
+	classText6,
+	classParagraph,
+} = Astro.props;
+---
+
+<section class="py-2">
+	<h2
+		aria-label="Tri Tangtu"
+		class="text-primary py-4 text-sm tracking-widest uppercase"
+	>
+		{title}
+	</h2>
+	<div class={classParagraph}>
+		<p>
+			{text}
+			{text_1}
+			<span class={classText2}>{text_2}</span>
+			{text_3}
+			<span class={classText4}>{text_4}</span>
+			{text_5}
+			<span class={classText6}>{text_6}</span>
+			{text_7}
+		</p>
+	</div>
+</section>

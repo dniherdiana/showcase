@@ -1,0 +1,228 @@
+---
+import Layout from '../components/Layout.astro';
+import Icon from '../components/Icon.astro';
+import Reveal from '../components/Reveal.astro';
+import Placeholder from '../components/Placeholder.astro';
+import { IMG, promos, memberships } from '../data/site.js';
+
+const perks = [
+	{ icon: 'calendar', t: 'Prioritas booking', d: 'Slot terapis terbaik dipegang untuk member lebih dulu.' },
+	{ icon: 'gift', t: 'Hadiah bulanan', d: 'Produk travel-size atau mini-treatment pilihan tim kami.' },
+	{ icon: 'users', t: 'Undangan event', d: 'Pratinjau treatment baru dan workshop kecantikan.' },
+	{ icon: 'shield', t: 'Garansi kepercayaan', d: 'Kalau hasil tidak sesuai ekspektasi, kami evaluasi gratis.' },
+];
+---
+
+<Layout
+	title="Promo & Membership"
+	description="Promo spesial dan program membership Nama Beauty Salon — ritual mewah yang bisa diakses semua orang."
+	ogImage={IMG.promo1}
+>
+	<!-- ============ HERO — vibrant lime, discount motif ============ -->
+	<section class="relative overflow-hidden bg-lime pb-24 pt-16 lg:pb-32 lg:pt-20">
+		<div class="pointer-events-none absolute -left-24 -top-16 h-80 w-80 rounded-full bg-pink/40 blur-3xl"></div>
+		<div class="pointer-events-none absolute -right-20 top-20 h-72 w-72 rounded-full bg-violet/30 blur-3xl"></div>
+		<span class="outline-text pointer-events-none absolute -bottom-14 left-1/2 -translate-x-1/2 select-none whitespace-nowrap font-display text-[11rem] font-black opacity-15 sm:text-[16rem]" aria-hidden="true">PROMO</span>
+
+		<div class="relative mx-auto max-w-[1400px] px-5 lg:px-10">
+			<Reveal>
+				<span class="sticker sticker--pink" style="--tilt:-2deg"><Icon name="percent" class="h-3.5 w-3.5" /> Bulan penuh kejutan</span>
+				<h1 class="mt-6 max-w-4xl font-display text-6xl font-black leading-[0.9] text-ink sm:text-8xl">
+					Waktumu berharga — <span class="italic text-pink">diskonnya</span> juga.
+				</h1>
+			</Reveal>
+			<Reveal delay={120}>
+				<p class="mt-7 max-w-xl font-sans text-lg leading-relaxed text-ink/75">
+					Ritual mewah bukan monopoli sebagian orang. Promo dan membership kami dirancang agar
+					kamu bisa memberi waktu terbaik untuk diri sendiri — lebih sering, tanpa rasa bersalah.
+				</p>
+			</Reveal>
+			<Reveal delay={200}>
+				<div class="mt-9 flex flex-wrap gap-4">
+					<a href="/kontak" class="btn btn--ink text-base">Klaim Promo <Icon name="arrow-right" class="h-5 w-5" /></a>
+					<a href="#member" class="btn btn--ghost text-base">Lihat Membership</a>
+				</div>
+			</Reveal>
+		</div>
+	</section>
+
+	<!-- ============ PROMO CARDS (ticket style) ============ -->
+	<section class="relative z-10 -mt-12 pb-20 lg:pb-28">
+		<div class="mx-auto max-w-[1400px] px-5 lg:px-10">
+			<div class="grid gap-8 md:grid-cols-3">
+				{
+					promos.map((p, i) => (
+						<article class="ticket card-raise overflow-hidden" data-reveal style={`--reveal-delay:${i * 110}ms`}>
+							<div class="relative overflow-hidden">
+								<img src={IMG[p.img]} alt={p.name} loading="lazy" class="aspect-[4/3] w-full object-cover" />
+								<div class="absolute inset-0 bg-gradient-to-t from-ink/70 via-transparent to-transparent"></div>
+								<span class="sticker sticker--lime absolute left-4 top-4" style="--tilt:-2deg">{p.tag}</span>
+								<span class="absolute bottom-4 right-4 font-display text-6xl font-black italic text-lime drop-shadow-[0_2px_0_var(--color-ink)]">
+									{p.discount}
+								</span>
+							</div>
+							<div class="p-6">
+								<h3 class="font-display text-2xl font-black">{p.name}</h3>
+								<p class="mt-2 font-sans text-sm leading-relaxed text-ink/70">{p.desc}</p>
+								<p class="mt-4 flex items-center gap-2 font-sans text-[0.65rem] font-bold uppercase tracking-widest text-pink-deep">
+									<Icon name="clock" class="h-3.5 w-3.5" /> {p.valid}
+								</p>
+								<a href="/kontak" class="btn btn--violet mt-5 w-full">Ambil Promo Ini</a>
+							</div>
+						</article>
+					))
+				}
+			</div>
+			<div class="mt-8 text-center">
+				<Placeholder note="Konfirmasi periode & syarat promo sebelum dikirim ke client." label="Detail & syarat promo" class="mx-auto max-w-md" />
+			</div>
+		</div>
+	</section>
+
+	<!-- ============ MEMBERSHIP TIERS ============ -->
+	<section id="member" class="border-y-4 border-ink bg-cream-2 py-20 lg:py-28">
+		<div class="mx-auto max-w-[1400px] px-5 lg:px-10">
+			<Reveal>
+				<div class="mb-14 flex flex-col items-center text-center">
+					<span class="sticker sticker--violet" style="--tilt:-1deg"><Icon name="award" class="h-3.5 w-3.5" /> Membership</span>
+					<h2 class="mt-6 max-w-2xl font-display text-4xl font-black sm:text-6xl">
+						Semakin <span class="italic text-pink">sering merawat</span>, semakin besar keuntunganmu.
+					</h2>
+				</div>
+			</Reveal>
+
+			<div class="grid items-stretch gap-8 lg:grid-cols-3">
+				{
+					memberships.map((m, i) => (
+						<article
+							class:list={[
+								'card-raise relative flex flex-col rounded-[var(--radius-blob)] border-2 border-ink p-7 shadow-[var(--shadow-sticker)]',
+								m.hot ? 'bg-ink text-cream lg:-translate-y-4 lg:rotate-[-1deg]' : 'bg-cream',
+								i === 0 ? 'lg:rotate-[1deg]' : '',
+								i === 2 ? 'lg:rotate-[1.5deg]' : '',
+							]}
+							data-reveal
+							style={`--reveal-delay:${i * 100}ms`}
+						>
+							{m.hot ? (
+								<span class="sticker sticker--pink absolute -top-4 left-1/2 -translate-x-1/2" style="--tilt:-2deg"><Icon name="flame" class="h-3 w-3" /> {m.tag}</span>
+							) : (
+								<span class="sticker sticker--cream absolute -top-4 left-6" style="--tilt:2deg">{m.tag}</span>
+							)}
+							<h3 class="font-display text-2xl font-black">{m.name}</h3>
+							<div class="mt-5">
+								<Placeholder note="Isi harga iuran & periode keanggotaan di sini." label="Iuran membership" />
+							</div>
+							<ul class="mt-6 flex-1 space-y-3">
+								{
+									m.features.map((f) => (
+										<li class="flex items-start gap-3 font-sans text-sm {m.hot ? 'text-cream/85' : 'text-ink/75'}">
+											<span class:list={['mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full border-2 border-ink', m.hot ? 'bg-lime' : 'bg-pink-soft']}>
+												<Icon name="check" class="h-3.5 w-3.5" />
+											</span>
+											{f}
+										</li>
+									))
+								}
+							</ul>
+							<a href="/kontak" class:list={['btn mt-8 w-full', m.hot ? 'btn--lime' : 'btn--violet']}>
+								{m.hot ? 'Pilih Luxe Member' : 'Gabung Sekarang'}
+							</a>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- ============ MEMBER PERKS ============ -->
+	<section class="bg-violet py-16 text-cream">
+		<div class="mx-auto max-w-[1400px] px-5 lg:px-10">
+			<Reveal>
+				<h2 class="mb-10 font-display text-3xl font-black sm:text-4xl">
+					Bukan cuma diskon — <span class="italic text-lime">pengalaman</span>.
+				</h2>
+			</Reveal>
+			<div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+				{
+					perks.map((f, i) => (
+						<div class="flex items-start gap-4" data-reveal style={`--reveal-delay:${i * 90}ms`}>
+							<span class="grid h-12 w-12 shrink-0 place-items-center rounded-full border-2 border-ink bg-lime text-ink shadow-[var(--shadow-sticker)]">
+								<Icon name={f.icon} class="h-5 w-5" />
+							</span>
+							<div>
+								<h3 class="font-display text-lg font-black">{f.t}</h3>
+								<p class="mt-1 font-sans text-sm leading-relaxed text-cream/70">{f.d}</p>
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- ============ REFERRAL ============ -->
+	<section class="relative overflow-hidden py-20 lg:py-24">
+		<div class="pointer-events-none absolute -right-24 -top-10 h-72 w-72 rounded-full bg-lime/40 blur-3xl"></div>
+		<div class="relative mx-auto max-w-4xl px-5 text-center lg:px-10">
+			<Reveal>
+				<span class="sticker sticker--pink mx-auto" style="--tilt:-2deg"><Icon name="users" class="h-3.5 w-3.5" /> Ajak teman</span>
+				<h2 class="mt-6 font-display text-4xl font-black leading-[1.02] sm:text-6xl">
+					Temanmu <span class="italic text-pink">bahagia</span>, kamu dapat reward.
+				</h2>
+				<p class="mx-auto mt-6 max-w-xl font-sans text-base leading-relaxed text-ink/70">
+					Setiap teman yang melakukan treatment pertamanya atas rekomendasimu, kamu mendapat
+					kredit ritual. Bagikan link referalmu — dan buat temanmu ikut merasakan.
+				</p>
+				<div class="mx-auto mt-8 flex max-w-md items-center gap-2 rounded-full border-2 border-ink bg-cream p-2 shadow-[var(--shadow-sticker)]">
+					<code class="flex-1 truncate px-4 font-sans text-sm font-bold text-ink/60">nama.beautysalon.id/referral/NAMA-KAMU</code>
+					<button class="btn btn--violet !py-3">Salin</button>
+				</div>
+			</Reveal>
+		</div>
+	</section>
+
+	<!-- ============ FAQ MINI ============ -->
+	<section class="bg-ink py-16 text-cream">
+		<div class="mx-auto max-w-3xl px-5 lg:px-10">
+			<Reveal>
+				<h2 class="mb-8 flex items-center gap-3 font-display text-3xl font-black sm:text-4xl">
+					<Icon name="sparkles" class="h-7 w-7 text-pink" /> Tentang promo & membership
+				</h2>
+			</Reveal>
+			<div class="space-y-4">
+				{
+					[
+						{ q: 'Apakah promo bisa digabung dengan diskon member?', a: 'Tidak bisa digabung pada treatment yang sama — sistem otomatis memilih potongan yang lebih besar untukmu.' },
+						{ q: 'Apakah membership bisa dibatalkan kapan saja?', a: 'Bisa. Tanpa biaya penalti, dan benefit yang sudah kamu pakai tetap dihitung adil.' },
+						{ q: 'Apakah voucher berlaku untuk semua cabang?', a: 'Saat ini berlaku di seluruh cabang kami. Informasi cabang terbaru akan kami perbarui di halaman Kontak.' },
+					].map((f, i) => (
+						<div class="rounded-2xl border-2 border-cream/20 bg-cream/5 p-6" data-reveal style={`--reveal-delay:${i * 80}ms`}>
+							<h3 class="font-display text-lg font-black">{f.q}</h3>
+							<p class="mt-2 font-sans text-sm leading-relaxed text-cream/70">{f.a}</p>
+						</div>
+					))
+				}
+			</div>
+			<Reveal delay={120}>
+				<a href="/faq" class="pill-link mt-8 !text-cream !border-lime">Semua pertanyaan di FAQ <Icon name="arrow-right" /></a>
+			</Reveal>
+		</div>
+	</section>
+
+	<!-- ============ CTA ============ -->
+	<section class="relative overflow-hidden bg-pink py-20 text-cream">
+		<span class="outline-text outline-text--cream pointer-events-none absolute -bottom-8 right-4 select-none font-display text-[8rem] font-black opacity-15" aria-hidden="true">SALE</span>
+		<div class="relative mx-auto max-w-4xl px-5 text-center lg:px-10">
+			<Reveal>
+				<h2 class="font-display text-4xl font-black leading-[1.02] sm:text-6xl">
+					Promo berlaku sampai <span class="italic">akhir bulan</span>. Jangan tunggu lagi.
+				</h2>
+				<div class="mt-8 flex flex-wrap justify-center gap-4">
+					<a href="/kontak" class="btn btn--ink text-base">Booking Sekarang <Icon name="arrow-right" class="h-5 w-5" /></a>
+					<a href="/treatment" class="btn btn--ghost text-base !text-cream !border-cream">Lihat Treatment</a>
+				</div>
+			</Reveal>
+		</div>
+	</section>
+</Layout>

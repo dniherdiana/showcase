@@ -1,0 +1,100 @@
+---
+import { Image } from "astro:assets";
+import { aboutData } from "../data/index.js";
+---
+
+<div
+	class="story-scroll-item grid grid-cols-1 items-center gap-12 lg:grid-cols-12"
+>
+	<div
+		class="relative aspect-4/3 overflow-hidden rounded-lg border border-white/10 bg-slate-950 shadow-xl lg:col-span-6"
+	>
+		<Image
+			src={aboutData.team[0].image}
+			alt="Wanderlust Sanctuary Story"
+			class="h-full w-full object-cover"
+			widths={[480, 768, 1024]}
+			sizes="(min-width: 1024px) 600px, 50vw"
+			quality={40}
+			format="webp"
+			fetchpriority="high"
+			loading="eager"
+		/>
+		<div
+			class="absolute inset-0 bg-linear-to-t from-slate-950 via-transparent to-transparent"
+		>
+		</div>
+		<div
+			class="absolute right-6 bottom-6 left-6 rounded-none border border-white/15 bg-slate-950/85 p-4"
+		>
+			<p
+				class="text-gold font-mono text-xs font-bold tracking-widest uppercase"
+				data-i18n-en="Personalized Care"
+				data-i18n-id="Layanan Perjalanan Pribadi"
+			>
+				Personalized Care
+			</p>
+			<p
+				class="mt-1 font-sans text-xs text-white/80"
+				data-i18n-en="Every itinerary is crafted with genuine warmth, honoring your unique pace and aspirations."
+				data-i18n-id="Setiap rencana perjalanan dirancang dengan keramahan hangat, menghormati kecepatan dan impian Anda."
+			>
+				Every itinerary is crafted with genuine warmth, honoring your unique
+				pace and aspirations.
+			</p>
+		</div>
+	</div>
+
+	<div class="space-y-6 lg:col-span-6">
+		<span
+			class="font-mono text-xs font-bold tracking-widest text-[#0D9488] uppercase"
+			data-i18n-en="Our Heritage & Philosophy"
+			data-i18n-id="Filosofi & Komitmen Kami"
+		>
+			✦ Our Heritage & Philosophy
+		</span>
+		<h2
+			data-i18n-en={aboutData.storyTitle}
+			data-i18n-id={aboutData.storyTitle_id}
+			class="font-serif text-2xl leading-snug font-bold tracking-tight text-white uppercase sm:text-4xl"
+		>
+			{aboutData.storyTitle}
+		</h2>
+
+		<p
+			data-i18n-en={aboutData.storyParagraph1}
+			data-i18n-id={aboutData.storyParagraph1_id}
+			class="font-sans text-base leading-relaxed font-light text-slate-300"
+		>
+			{aboutData.storyParagraph1}
+		</p>
+
+		<p
+			data-i18n-en={aboutData.storyParagraph2}
+			data-i18n-id={aboutData.storyParagraph2_id}
+			class="font-sans text-base leading-relaxed font-light text-slate-400"
+		>
+			{aboutData.storyParagraph2}
+		</p>
+
+		<div class="flex items-center gap-6 border-t border-white/10 pt-4">
+			<a
+				href={`https://wa.me/${aboutData.officeDetails.whatsappNumber}?text=${encodeURIComponent("Hello Wanderlust Concierge, I would like to learn more about your private travel concierge services.")}`}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="bg-gold hover:bg-gold-light shadow-gold/20 inline-flex items-center gap-2 rounded-none px-6 py-3.5 font-mono text-xs font-bold tracking-wider text-slate-950 uppercase shadow-lg transition-all"
+			>
+				<span>💬</span>
+				<span data-i18n-key="chatConcierge">Chat with Concierge</span>
+			</a>
+			<a
+				href="/destinations"
+				class="text-gold font-mono text-xs tracking-wider uppercase transition-colors hover:text-amber-200"
+				data-i18n-en="Explore Curated Journeys →"
+				data-i18n-id="Jelajahi Destinasi Pilihan →"
+			>
+				Explore Curated Journeys →
+			</a>
+		</div>
+	</div>
+</div>

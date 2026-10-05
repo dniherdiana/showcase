@@ -1,0 +1,272 @@
+---
+import { buyingStepsContent } from "../../data/properti/buyingSteps.js";
+---
+
+<section
+	class="py-28 bg-canvas-default relative border-t border-slate-900 overflow-hidden"
+>
+	<div
+		class="absolute inset-0 bg-[linear-gradient(to_right,color-mix(in_srgb,var(--color-canvas-elevated)_8%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_srgb,var(--color-canvas-elevated)_8%,transparent)_1px,transparent_1px)] bg-size-[4rem_4rem] pointer-events-none"
+	>
+	</div>
+
+	<div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10 space-y-20">
+		<div
+			data-reveal="right"
+			class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end border-b border-slate-800/80 pb-12"
+		>
+			<div class="lg:col-span-7 space-y-4">
+				<span
+					class="text-xs font-mono text-amber-400/90 tracking-widest uppercase block"
+				>
+					<span class="border h-3 border-l bg-amber-400 justify-center mr-2"
+					></span>
+					{buyingStepsContent.tag}
+				</span>
+				<h2
+					class="font-serif text-3xl sm:text-4xl lg:text-5xl text-slate-50 font-normal tracking-tight leading-[1.15]"
+				>
+					{buyingStepsContent.headline}
+				</h2>
+				<p class="text-slate-300 text-base leading-relaxed font-normal pt-2">
+					{buyingStepsContent.subtext}
+				</p>
+			</div>
+
+			<div
+				class="lg:col-span-5 bg-canvas-raised border border-slate-800/90 p-6 rounded-sm space-y-4"
+			>
+				<div
+					class="text-xs font-mono text-amber-300/90 uppercase tracking-wider"
+				>
+					Jaminan Kenyamanan Transaksi
+				</div>
+				<div class="grid grid-cols-3 gap-4 border-t border-slate-800 pt-4">
+					{
+						buyingStepsContent.metrics.map((m) => (
+							<div>
+								<span class="block font-serif text-2xl text-slate-100">
+									{m.value}
+								</span>
+								<span class="text-[11px] text-slate-400 font-normal">
+									{m.label}
+								</span>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</div>
+
+		<div class="space-y-12">
+			<div
+				data-reveal="zoom"
+				class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 border-b border-slate-800/80 pb-6"
+				role="tablist"
+				aria-label="Tahapan Pembelian Rumah"
+			>
+				{
+					buyingStepsContent.steps.map((step) => (
+						<button
+							type="button"
+							role="tab"
+							aria-selected={step.id === 1 ? "true" : "false"}
+							aria-controls={`panel-step-${step.id}`}
+							data-step-target={step.id}
+							class={`step-tab-btn text-left p-4 rounded-sm border transition-all duration-300 min-h-11 ${step.id === 1 ? "border-amber-400/80 bg-canvas-active shadow-lg shadow-amber-500/5" : "border-slate-800 bg-canvas-raised/60 hover:border-slate-700 hover:bg-canvas-raised"}`}
+						>
+							<div class="flex items-center justify-between mb-2">
+								<span
+									class={`font-serif text-2xl md:text-3xl italic font-light ${step.id === 1 ? "text-amber-300" : "text-slate-500 group-hover:text-amber-300/80"}`}
+								>
+									{String(step.id).padStart(2, "0")}
+								</span>
+								<span
+									class={`text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded ${step.id === 1 ? "text-amber-300/90 font-semibold bg-amber-400/10" : "text-slate-400 font-normal"}`}
+								>
+									{step.timing}
+								</span>
+							</div>
+							<span
+								class={`block text-xs font-semibold ${step.id === 1 ? "text-slate-100" : "text-slate-300 group-hover:text-slate-100"} transition-colors`}
+							>
+								{step.label}
+							</span>
+							<span class="block text-[11px] text-slate-400 font-normal mt-0.5">
+								{step.subtitle}
+							</span>
+						</button>
+					))
+				}
+			</div>
+
+			<div class="relative min-h-95">
+				{
+					buyingStepsContent.steps.map((step) => (
+						<div
+							id={`panel-step-${step.id}`}
+							role="tabpanel"
+							class={`step-panel ${step.id === 1 ? "block" : "hidden"} transition-opacity duration-300`}
+						>
+							<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+								<div class="lg:col-span-7 space-y-6">
+									<div class="flex items-center gap-3 text-xs font-mono text-amber-300">
+										<span>{step.detailTag}</span>
+										<span>•</span>
+										<span>{step.detailTiming}</span>
+									</div>
+
+									<h3 class="font-serif text-2xl sm:text-3xl text-slate-100 font-normal">
+										{step.headline}
+									</h3>
+
+									<p class="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
+										{step.description}
+									</p>
+
+									<div class="space-y-3 pt-4 border-t border-slate-800">
+										<span class="text-xs font-mono uppercase tracking-widest text-slate-400 block">
+											Berkas & Informasi yang Langsung Anda Terima:
+										</span>
+										<div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-slate-200">
+											{step.documents.map((d) => (
+												<div class="flex items-start gap-2.5 p-3 rounded bg-slate-900/60 border border-slate-800/80">
+													<span class="text-amber-300 font-bold">✓</span>
+													<div>
+														<span class="font-semibold block text-slate-100">
+															{d.title}
+														</span>
+														<span class="text-[11px] text-slate-400">
+															{d.sub}
+														</span>
+													</div>
+												</div>
+											))}
+										</div>
+									</div>
+								</div>
+
+								<div class="lg:col-span-5 bg-canvas-panel border border-slate-800 p-6 sm:p-8 rounded-sm relative space-y-6 shadow-2xl">
+									<div class="flex items-center justify-between border-b border-slate-800 pb-4">
+										<span class="text-xs font-mono text-slate-300">
+											{step.checklistTitle}
+										</span>
+										<span class="text-xs font-mono text-amber-300 font-bold">
+											{step.checklistBadge}
+										</span>
+									</div>
+
+									<div class="space-y-4">
+										{step.checklist.map((item) =>
+											typeof item === "string" ?
+												<div class="flex items-center gap-3 text-xs text-slate-200">
+													<div class="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
+													<span>{item}</span>
+												</div>
+											:	<div class="p-3 bg-slate-950 rounded border border-slate-800/80 flex items-center justify-between text-xs text-slate-200">
+													<span>{item.label}</span>
+													<span class="text-emerald-400 font-mono font-bold">
+														{item.status}
+													</span>
+												</div>,
+										)}
+									</div>
+
+									<div class="pt-4 border-t border-slate-800 flex items-center justify-between">
+										<div>
+											<span class="block text-[11px] text-slate-400">
+												{step.footerLeft}
+											</span>
+											<span class="text-xs text-amber-300 font-semibold">
+												{step.footerHighlight}
+											</span>
+										</div>
+										<a
+											href={`https://wa.me/6281234567890?text=${step.footerWa}`}
+											target="_blank"
+											rel="noopener noreferrer"
+											class="px-4 py-2.5 bg-amber-400 hover:bg-amber-300 text-slate-950 text-xs font-semibold rounded-sm transition-colors"
+										>
+											{step.footerCta}
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</div>
+
+	<script>
+		document.addEventListener("DOMContentLoaded", () => {
+			const tabButtons = document.querySelectorAll(".step-tab-btn");
+			const tabPanels = document.querySelectorAll(".step-panel");
+
+			tabButtons.forEach((btn) => {
+				btn.addEventListener("click", () => {
+					const targetStep = btn.getAttribute("data-step-target");
+
+					tabButtons.forEach((b) => {
+						b.setAttribute("aria-selected", "false");
+						b.classList.remove(
+							"border-amber-400/80",
+							"bg-canvas-active",
+							"shadow-lg",
+							"shadow-amber-500/5",
+						);
+						b.classList.add("border-slate-800", "bg-canvas-raised/60");
+
+						const numSpan = b.querySelector("span.italic");
+						if (numSpan) {
+							numSpan.classList.remove("text-amber-300");
+							numSpan.classList.add("text-slate-500");
+						}
+					});
+
+					btn.setAttribute("aria-selected", "true");
+					btn.classList.remove("border-slate-800", "bg-canvas-raised/60");
+					btn.classList.add(
+						"border-amber-400/80",
+						"bg-canvas-active",
+						"shadow-lg",
+						"shadow-amber-500/5",
+					);
+
+					const activeNumSpan = btn.querySelector("span.italic");
+					if (activeNumSpan) {
+						activeNumSpan.classList.remove("text-slate-500");
+						activeNumSpan.classList.add("text-amber-300");
+					}
+
+					tabPanels.forEach((panel) => {
+						if (panel.id === "panel-step-" + targetStep) {
+							panel.classList.remove("hidden");
+							panel.classList.add("block");
+						} else {
+							panel.classList.remove("block");
+							panel.classList.add("hidden");
+						}
+					});
+				});
+			});
+
+			document.querySelectorAll("[data-step-link]").forEach((link) => {
+				link.addEventListener("click", () => {
+					const stepId = link.getAttribute("data-step-link");
+					const tab = document.querySelector(
+						`.step-tab-btn[data-step-target="${stepId}"]`,
+					) as HTMLElement;
+					if (!tab) return;
+
+					const tabsRegion = document.querySelector('[role="tablist"]');
+					if (tabsRegion) {
+						tabsRegion.scrollIntoView({ behavior: "smooth", block: "start" });
+					}
+					tab.click();
+				});
+			});
+		});
+	</script>
+</section>

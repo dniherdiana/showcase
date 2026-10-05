@@ -1,0 +1,28 @@
+---
+import { storiesCategories } from "../data/index.js";
+
+interface Props {
+	categories?: string[];
+	activeCategory?: string;
+}
+
+const { categories = storiesCategories, activeCategory = "All Stories" } = Astro.props;
+---
+
+<div class="flex items-center gap-4 overflow-x-auto pb-3 border-b border-white/10 scrollbar-none story-scroll-item">
+	{
+		categories.map((cat) => (
+			<button
+				type="button"
+				data-category={cat}
+				class={`story-category-btn text-xs font-mono font-bold uppercase tracking-wider px-3 py-1.5 transition-colors whitespace-nowrap cursor-pointer border-b-2 ${
+					cat === activeCategory
+						? "border-gold text-gold"
+						: "border-transparent text-white/70 hover:text-white"
+				}`}
+			>
+				{cat}
+			</button>
+		))
+	}
+</div>

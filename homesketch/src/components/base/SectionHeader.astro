@@ -1,0 +1,33 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  level?: 'h2' | 'h3';
+  dark?: boolean;
+  class?: string;
+  descriptionClass?: string;
+}
+
+const {
+  title,
+  subtitle,
+  level = 'h2',
+  dark = false,
+  class: className = '',
+  descriptionClass = '',
+} = Astro.props;
+
+const Tag = level;
+---
+
+<header class={`flex flex-col items-start gap-3 max-w-[68ch] ${className}`}>
+  <Tag class={`text-2xl sm:text-3xl lg:text-4xl font-semibold leading-[1.18] tracking-tight ${dark ? 'text-[var(--color-ink-light)]' : 'text-[var(--color-ink-primary)]'}`}>
+    {title}
+  </Tag>
+  {subtitle && (
+    <p class={`text-base sm:text-lg leading-relaxed ${dark ? 'text-[var(--color-ink-light-muted)]' : 'text-[var(--color-ink-muted)]'} ${descriptionClass}`}>
+      {subtitle}
+    </p>
+  )}
+  <slot />
+</header>

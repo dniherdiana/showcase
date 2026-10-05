@@ -1,0 +1,53 @@
+export const developerValuesContent = {
+  tag: 'Prinsip & Standar Pengembangan',
+  headline: 'Empat pilar yang membedakan kualitas karya kami dari pengembang konvensional.',
+  subtext: 'Kami tidak percaya pada janji pemasaran tanpa bukti hukum dan teknis. Berikut adalah standar baku yang wajib terpenuhi di seluruh proyek Grand Samudra.',
+  values: [
+    {
+      id: 'pilar-01',
+      span: 7,
+      style: 'featured',
+      number: 'PILAR 01',
+      category: 'KEPASTIAN HUKUM',
+      title: 'Legalitas 100% SHM & IMB Pecah per Unit Sebelum Peluncuran',
+      description: 'Kami menolak praktik pemasaran lahan induk yang belum dibebaskan. Sebelum satu brosur pun dicetak, seluruh sertifikat hak milik (SHM) dan Izin Mendirikan Bangunan (IMB/PBG) telah selesai dipecah per kavling, siap untuk langsung diajukan akad KPR di hadapan notaris.',
+      metrics: [
+        { value: '0 Hari Penundaan', label: 'Proses SP3K bank berjalan langsung tanpa menunggu pemecahan sertifikat induk.' },
+        { value: 'PPAT Rekanan', label: 'Pemeriksaan dokumen terbuka bersama notaris terdaftar kabupaten.' },
+      ],
+    },
+    {
+      id: 'pilar-02',
+      span: 5,
+      style: 'standard',
+      number: 'PILAR 02',
+      category: 'REKAYASA HIDROLOGI',
+      title: 'Elevasi Lahan +1.5M & Retention Basin Bebas Banjir',
+      description: 'Kami membangun danau resapan (retention pond) berkapasitas 4.500 m³ dan saluran drainase beton bertulang tertutup berdiameter besar. Elevasi seluruh kawasan ditinggikan 1.5 meter di atas jalan utama kota.',
+      guarantee: '✓ GARANSI BEBAS GENANGAN 100 TAHUN HIDROLOGI',
+    },
+    {
+      id: 'pilar-03',
+      span: 5,
+      style: 'standard',
+      number: 'PILAR 03',
+      category: 'ARSITEKTUR TROPIS',
+      title: 'Cross-Ventilation Alami & Hemat Energi Listrik',
+      description: 'Rumah yang nyaman tidak harus bergantung pada AC 24 jam. Setiap unit berorientasi utara-selatan dengan bukaan jendela tinggi dan void lantai 2, menurunkan suhu interior hingga 3°C secara alami.',
+      guarantee: '✓ REDUKSI KONSUMSI LISTRIK UP TO 30% / BULAN',
+    },
+    {
+      id: 'pilar-04',
+      span: 7,
+      style: 'standard',
+      number: 'PILAR 04',
+      category: 'PERLINDUNGAN PURNA JUAL',
+      title: 'Inspeksi 42 Titik & Garansi Pemeliharaan Struktur 12 Bulan',
+      description: 'Serah terima kunci bukan akhir dari tanggung jawab kami. Setiap pembeli berhak melakukan pengecekan kualitas bersama tim engineering sebelum tanda tangan BAST. Jika terjadi retak rambut atau kebocoran pipa dalam 12 bulan pertama, tim kami akan memperbaikinya tanpa biaya sepeser pun.',
+      metrics: [
+        { value: 'Respon Maksimal 48 Jam', label: 'Tim maintenance khusus kawasan siap menindaklanjuti laporan perbaikan.' },
+        { value: 'Township Management', label: 'Pengelolaan kebersihan taman dan keamanan gerbang 24 jam non-stop.' },
+      ],
+    },
+  ],
+}

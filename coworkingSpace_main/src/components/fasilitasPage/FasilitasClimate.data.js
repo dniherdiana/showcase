@@ -1,0 +1,6 @@
+export const fasilitasClimateData = {
+  headline: "Harmoni Suhu Udara Presisi dan Redaman Akustik",
+  body: "Berusaha mempertahankan fokus kerja saat suhu ruangan terlalu menusuk tulang, atau justru menguras keringat, adalah pertempuran biologis yang sangat melelahkan pikiran. Menyadari fatalitas kondisi tersebut, kendali iklim ruangan di seluruh penjuru situs kami diatur menggunakan mesin pengatur suhu ganda yang secara terus menerus memantau tingkat kelembapan ideal standar hunian modern. Distribusi angin diarahkan secara landai ke sudut langit-langit untuk menghindari terpaan hembusan langsung yang sering memicu sakit kepala berkelanjutan bagi para penghuni ruang. Untuk urusan tata letak suara, permukaan lantai zona diam sengaja dilapisi karpet tenun padat bermaterial penyerap pantulan, yang berfungsi secara ajaib menelan gema tajam dari hentakan keras langkah kaki maupun gesekan tapak sepatu. Musik latar berfrekuensi gelombang halus di area komunal diukur menggunakan meteran tingkat desibel khusus agar membangkitkan denyut semangat tanpa sekalipun berubah bising mengalahkan percakapan manusia.",
+  image: "https://images.unsplash.com/photo-1527192491265-7e15c55b1ed2?auto=format&fit=crop&w=800&q=80",
+  imageAlt: "Tata udara dan karpet peredam suara di ruang kerja fokus"
+};

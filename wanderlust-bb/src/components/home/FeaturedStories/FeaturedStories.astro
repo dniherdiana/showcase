@@ -1,0 +1,52 @@
+---
+import StoryCard from "../../shared/StoryCard/StoryCard.astro";
+
+import { storiesData } from "./data.js";
+interface Props {
+	badge?: string;
+	title?: string;
+	actionText?: string;
+	actionHref?: string;
+	limit?: number;
+}
+
+const {
+	badge = "Journal Dispatches",
+	title = "Stories & Travel Essays",
+	actionText = "Read Magazine",
+	actionHref = "/stories",
+	limit = 2,
+} = Astro.props;
+
+const recentStories = storiesData.slice(0, limit);
+---
+
+<section class="py-20 px-[5%] max-w-7xl mx-auto space-y-12 border-t border-white/10">
+	<div
+		class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-6 story-scroll-item"
+	>
+		<div class="space-y-2">
+			<span
+				class="text-xs font-mono font-bold uppercase tracking-widest text-[#0D9488]"
+			>
+				✦ {badge}
+			</span>
+			<h2
+				class="font-serif text-3xl sm:text-5xl font-extrabold uppercase text-white tracking-tight"
+			>
+				{title}
+			</h2>
+		</div>
+		<a
+			href={actionHref}
+			class="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-gold hover:text-amber-200 transition-colors"
+		>
+			{actionText}
+			<span>→</span>
+		</a>
+	</div>
+
+	<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+		{recentStories.map((story) => <StoryCard {...story} />)}
+	</div>
+</section>

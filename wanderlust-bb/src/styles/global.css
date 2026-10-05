@@ -1,0 +1,415 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+
+  --color-gold: #d4a853;
+  --color-gold-light: #e8c87a;
+  --color-dark: #0f172a;
+
+  --animate-pulse-slow: pulseSlow 3s ease-in-out infinite;
+  --animate-travel-soul: travelSoulHorizon 1.1s cubic-bezier(0.16, 1, 0.3, 1)
+    forwards;
+
+  @keyframes pulseSlow {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes travelSoulHorizon {
+    0% {
+      opacity: 0;
+      transform: translateY(32px) scale(0.95);
+      letter-spacing: -0.04em;
+    }
+    60% {
+      opacity: 0.9;
+      transform: translateY(6px) scale(0.99);
+      letter-spacing: 0.01em;
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0px) scale(1);
+      letter-spacing: -0.01em;
+    }
+  }
+
+  @keyframes travelHorizonShimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  @keyframes smoothTravelDown {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+  }
+}
+
+/* -------------------------------------------------------------
+   LENIS SMOOTH SCROLLING BASE
+   ------------------------------------------------------------- */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* -------------------------------------------------------------
+   GLOBAL SMOOTH SCROLLING & SMOOTH TRANSITIONS SYSTEM
+   ------------------------------------------------------------- */
+html {
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #0f172a;
+  color: #ffffff;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Smooth Global Element Transitions (Optimized - No filter/shadow repaints) */
+a,
+button,
+input,
+select,
+textarea,
+.glass-card {
+  transition:
+    color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: auto;
+}
+
+/* -------------------------------------------------------------
+   I18N ANTI-FLASH-OF-WRONG-LANGUAGE
+   Hides translated text until the saved language is applied client-side,
+   preventing the SSR default (English) from flashing before hydration.
+   ------------------------------------------------------------- */
+html.i18n-pending [data-i18n-key],
+html.i18n-pending [data-i18n-id] {
+  visibility: hidden;
+}
+
+/* -------------------------------------------------------------
+   TRAVEL SOUL HEADING ANIMATION (Horizon Journey Unfolding & Shimmer)
+   ------------------------------------------------------------- */
+.travel-soul-heading {
+  font-family: var(--font-serif);
+  display: inline-block;
+  background: linear-gradient(
+    110deg,
+    #ffffff 0%,
+    #ffffff 40%,
+    #e8c87a 50%,
+    #d4a853 60%,
+    #ffffff 75%,
+    #ffffff 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation:
+    travelSoulHorizon 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+    travelHorizonShimmer 7s ease-in-out infinite;
+}
+
+.travel-soul-reveal-heading {
+  font-family: var(--font-serif);
+  display: inline-block;
+  opacity: 0;
+  transform: translate3d(0, 24px, 0) scale(0.97);
+  letter-spacing: -0.04em;
+  background: linear-gradient(
+    110deg,
+    #ffffff 0%,
+    #ffffff 40%,
+    #e8c87a 50%,
+    #d4a853 60%,
+    #ffffff 75%,
+    #ffffff 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    letter-spacing 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.travel-soul-reveal-heading.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  letter-spacing: -0.01em;
+  will-change: auto;
+  animation: travelHorizonShimmer 7s ease-in-out infinite;
+}
+
+/* -------------------------------------------------------------
+   EVERY COMPONENT SCROLLING TELLS ITS OWN STORY (Story Scroll Reveal)
+   ------------------------------------------------------------- */
+.story-scroll-item {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0) scale(0.98);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+}
+
+.story-scroll-item.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  will-change: auto;
+}
+
+.story-scroll-section {
+  opacity: 0;
+  transform: translate3d(0, 32px, 0);
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+}
+
+.story-scroll-section.is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  will-change: auto;
+}
+
+/* -------------------------------------------------------------
+   CINEMATIC FLUID MAGAZINE THEME (Deep Obsidian Slate Palette)
+   ------------------------------------------------------------- */
+body {
+  font-family: var(--font-sans);
+  background-color: #0e1622;
+  color: #f8fafc;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Smooth Element Transitions */
+a,
+button,
+input,
+select,
+textarea {
+  transition:
+    color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Editorial Glass Nav Bar */
+.glass-nav {
+  background: rgba(14, 22, 34, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Editorial Hairline Dividers */
+.hairline-rule {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(212, 168, 83, 0.5) 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+}
+
+.glass-card {
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.glass-card:hover {
+  border-color: #d4a853;
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* Smooth Flowing Scroll Indicator Line */
+.travel-scroll-line {
+  position: relative;
+  overflow: hidden;
+}
+
+.travel-scroll-line::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, #d4a853, transparent);
+  animation: smoothTravelDown 2.5s ease-in-out infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d4a853;
+}
+
+/* -------------------------------------------------------------
+   TEXT SCROLL STORYTELLING SYSTEM (Word-by-Word & Marquee Reveals)
+   ------------------------------------------------------------- */
+.story-word {
+  display: inline-block;
+  margin-right: 0.28em;
+  opacity: 0.35;
+  transform: translateY(8px);
+  transition:
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    color 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, color;
+}
+
+.story-word.is-illuminated {
+  opacity: 1;
+  transform: translateY(0px);
+  color: #ffffff;
+}
+
+.story-word.is-highlighted {
+  opacity: 1;
+  transform: translateY(0px) scale(1.04);
+  color: #e8c87a;
+  text-shadow: 0 0 12px rgba(212, 168, 83, 0.4);
+}
+
+/* Story Quote Styling */
+.story-quote-card {
+  background: radial-gradient(
+    circle at center,
+    rgba(212, 168, 83, 0.08) 0%,
+    rgba(15, 23, 42, 0.8) 100%
+  );
+  border: 1px solid rgba(212, 168, 83, 0.25);
+  box-shadow:
+    0 0 50px rgba(0, 0, 0, 0.6),
+    inset 0 0 30px rgba(212, 168, 83, 0.05);
+}
+
+/* Story Marquee Ticker */
+.story-ticker-wrapper {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  background: rgba(15, 23, 42, 0.7);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.story-ticker-content {
+  display: flex;
+  gap: 3rem;
+  min-width: 100%;
+  animation: storyTickerLoop 28s linear infinite;
+  will-change: transform;
+}
+
+@keyframes storyTickerLoop {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* -------------------------------------------------------------
+   PRINTABLE ITINERARY PDF STYLING SYSTEM (@media print)
+   ------------------------------------------------------------- */
+@media print {
+  nav,
+  footer,
+  aside button,
+  #gallery-lightbox-modal,
+  .gallery-thumb-btn,
+  #no-destinations-msg,
+  #no-stories-msg {
+    display: none !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+  }
+
+  .glass-card,
+  div {
+    border-color: #e2e8f0 !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+    color: #0f172a !important;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  span,
+  li {
+    color: #0f172a !important;
+    text-shadow: none !important;
+  }
+}

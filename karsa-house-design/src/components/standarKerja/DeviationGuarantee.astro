@@ -1,0 +1,46 @@
+---
+import { standarKerjaData } from '../../data/standarKerja.data.js';
+
+const { deviationProtocol, supervisionSop } = standarKerjaData;
+---
+
+<section class="w-full py-16 lg:py-24 bg-surface-panel border-t border-border-sketch">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+    <!-- Guarantee Section -->
+    <div class="max-w-4xl">
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink-primary leading-tight">
+        {deviationProtocol.headline}
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+        {deviationProtocol.points.map((pt, i) => (
+          <div class="p-5 bg-surface-card sketch-border space-y-3 shadow-sketch">
+            <span class="font-mono text-xs font-bold text-brand-accent px-2 py-0.5 bg-surface-panel rounded inline-block">
+              Pilar 0{i + 1}
+            </span>
+            <h3 class="text-base font-bold text-ink-primary">
+              {pt.title}
+            </h3>
+            <p class="text-xs text-ink-muted leading-relaxed">
+              {pt.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Supervision SOP Section -->
+    <div class="p-8 bg-surface-contrast text-surface-ground sketch-border rounded-2xl space-y-4">
+      <h3 class="font-display text-2xl sm:text-3xl font-bold text-surface-ground">
+        {supervisionSop.headline}
+      </h3>
+      <p class="text-sm sm:text-base text-surface-ground/80 leading-relaxed max-w-4xl">
+        {supervisionSop.body}
+      </p>
+      <div class="pt-2 flex items-center gap-3 font-mono text-xs text-brand-accent">
+        <span class="w-2 h-2 rounded-full bg-brand-accent"></span>
+        <span>Berita Acara Lapangan Mingguan Wajib Ditandatangani Mandor & Lead Architect</span>
+      </div>
+    </div>
+  </div>
+</section>

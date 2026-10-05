@@ -1,0 +1,138 @@
+---
+const links = [
+	{ href: "/paket-website", id: "Paket Website", en: "Website Packages" },
+	{ href: "/#cara-kerja", id: "Tentang", en: "About" },
+	{ href: "/portfolio", id: "Portfolio", en: "Portfolio" },
+	{ href: "/#faq", id: "FAQ", en: "FAQ" },
+];
+---
+
+<header class="fixed top-4 left-0 right-0 z-50 px-4 md:px-8">
+	<nav
+		class="mx-auto flex max-w-content items-center justify-between px-6 py-4 md:px-8 bg-ivory-alt/80 backdrop-blur-lg border border-line/80 rounded-full shadow-soft transition-all duration-base hover:shadow-card"
+	>
+		<a
+			href="/"
+			class="font-display text-lg font-light tracking-wide text-ink hover:opacity-80 transition-opacity"
+		>
+			dni<span class="text-sage font-medium">Web</span>Craft
+		</a>
+
+		<div class="hidden items-center gap-10 lg:flex">
+			{
+				links.map((l) => (
+					<a href={l.href} class="nav-link">
+						<>
+							<span data-lang="id">{l.id}</span>
+							<span data-lang="en">{l.en}</span>
+						</>
+					</a>
+				))
+			}
+		</div>
+
+		<div class="flex items-center gap-4">
+			<!-- Language Toggle -->
+			<div
+				class="flex items-center gap-0.5 rounded-full border border-line bg-ivory/50 px-1 py-1 text-[10px]"
+			>
+				<button
+					data-lang-btn="id"
+					aria-pressed="true"
+					class="rounded-full px-3 py-1 font-semibold text-ink-faint transition-all duration-base aria-pressed:bg-ink aria-pressed:text-ivory"
+					>ID</button
+				>
+				<button
+					data-lang-btn="en"
+					aria-pressed="false"
+					class="rounded-full px-3 py-1 font-semibold text-ink-faint transition-all duration-base aria-pressed:bg-ink aria-pressed:text-ivory"
+					>EN</button
+				>
+			</div>
+
+			<!-- Contact CTA -->
+			<a
+				href="/#kontak"
+				class="hidden rounded-full border border-sage/40 bg-sage-soft px-5 py-2 text-xs font-semibold uppercase tracking-wider text-sage transition-all duration-base hover:bg-sage hover:text-ivory hover:border-sage lg:inline-block"
+			>
+				<span data-lang="id">Hubungi Saya</span><span data-lang="en"
+					>Get in Touch</span
+				>
+			</a>
+
+			<!-- Mobile toggle -->
+			<button
+				data-nav-toggle
+				aria-expanded="false"
+				aria-label="Toggle menu"
+				class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-line bg-ivory/30 lg:hidden hover:bg-ivory/60 transition-colors"
+			>
+				<svg
+					width="18"
+					height="18"
+					viewBox="0 0 18 18"
+					fill="none"
+					class="text-ink"
+				>
+					<path
+						d="M2 5h14M2 9h14M2 13h14"
+						stroke="currentColor"
+						stroke-width="1.5"
+						stroke-linecap="round"></path>
+				</svg>
+			</button>
+		</div>
+	</nav>
+
+	<!-- Mobile Dropdown Menu -->
+	<div
+		data-nav-menu
+		class="hidden flex-col gap-2 mt-2 border border-line bg-ivory-alt/90 backdrop-blur-lg rounded-2xl p-4 shadow-card lg:hidden max-w-content mx-auto"
+	>
+		{
+			links.map((l) => (
+				<a
+					href={l.href}
+					class="rounded-xl px-4 py-3 text-xs uppercase tracking-wider text-ink-soft transition-all duration-base hover:bg-ivory hover:text-ink font-semibold border border-transparent hover:border-line"
+				>
+					<>
+						<span data-lang="id">{l.id}</span>
+						<span data-lang="en">{l.en}</span>
+					</>
+				</a>
+			))
+		}
+		<a
+			href="/#kontak"
+			class="mt-2 rounded-xl border border-sage bg-sage-soft px-4 py-3 text-center text-xs font-bold uppercase tracking-wider text-sage hover:bg-sage hover:text-ivory transition-all duration-base"
+		>
+			<span data-lang="id">Hubungi Saya</span><span data-lang="en"
+				>Get in Touch</span
+			>
+		</a>
+	</div>
+</header>
+
+
+<style>
+/* ─── Nav link underline (desktop) ─────────────────── */
+.nav-link {
+  @apply text-[11px] font-medium uppercase tracking-eyebrow text-ink-soft transition-colors duration-base relative py-1;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #7CA870;
+  transition: width 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-link:hover {
+  @apply text-ink;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+<style/>

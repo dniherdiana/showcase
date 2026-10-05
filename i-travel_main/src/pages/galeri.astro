@@ -1,0 +1,232 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const galleryItems = [
+  {
+    id: 1,
+    title: 'Cappadocia Hot Air Balloon Adventure',
+    location: 'Turki',
+    cat: 'internasional',
+    src: 'https://images.unsplash.com/photo-1500835556837-99ac94a94552?auto=format&fit=crop&w=1000&q=80',
+    aspect: 'aspect-[3/4]',
+    client: 'Gala Trip Corporate 2024'
+  },
+  {
+    id: 2,
+    title: 'Coastal Paradise Cinque Terre',
+    location: 'Italia',
+    cat: 'internasional',
+    src: 'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1000&q=80',
+    aspect: 'aspect-square',
+    client: 'VIP Incentive Group'
+  },
+  {
+    id: 3,
+    title: 'Sunset Desert Safari Outing',
+    location: 'Dubai, Uni Emirat Arab',
+    cat: 'corporate',
+    src: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?auto=format&fit=crop&w=1000&q=80',
+    aspect: 'aspect-[4/3]',
+    client: 'Outing Tahunan 120 Pax'
+  },
+  {
+    id: 4,
+    title: 'Paris Cityscape Walk',
+    location: 'Prancis',
+    cat: 'internasional',
+    src: 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=1000&q=80',
+    aspect: 'aspect-[3/4]',
+    client: 'Custom Luxury Couple Tour'
+  },
+  {
+    id: 5,
+    title: 'Private Island Beach Gathering',
+    location: 'Nusa Tenggara Timur',
+    cat: 'domestik',
+    src: 'https://images.unsplash.com/photo-1506197603052-3cc9c3a201bd?auto=format&fit=crop&w=1000&q=80',
+    aspect: 'aspect-square',
+    client: 'Gathering BUMN Komunitas'
+  },
+  {
+    id: 6,
+    title: 'Alpine Peak Trekking',
+    location: 'Swiss',
+    cat: 'internasional',
+    src: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=80',
+    aspect: 'aspect-[4/3]',
+    client: 'Leadership Retreat'
+  },
+  {
+    id: 7,
+    title: 'Historic Kyoto Temple Walk',
+    location: 'Jepang',
+    cat: 'internasional',
+    src: 'https://images.unsplash.com/photo-1528164344705-47542687990d?auto=format&fit=crop&w=1000&q=80',
+    aspect: 'aspect-[3/4]',
+    client: 'Incentive Trip Top Performer'
+  },
+  {
+    id: 8,
+    title: 'White Cliff Villa Views',
+    location: 'Santorini, Yunani',
+    cat: 'internasional',
+    src: 'https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=1000&q=80',
+    aspect: 'aspect-square',
+    client: 'Honeymoon Private Package'
+  }
+];
+---
+
+<Layout title="Galeri Dokumentasi — i-Travel | Portofolio Foto Perjalanan & Outing Klien" activeNav="galeri">
+
+  <!-- SECTION 1: VISUAL HERO -->
+  <section class="relative bg-slate-950 text-white py-20 overflow-hidden">
+    <div class="absolute inset-0 opacity-20">
+      <img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?auto=format&fit=crop&w=1600&q=80" alt="Travel gear" class="w-full h-full object-cover" />
+    </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center space-y-4">
+      <span class="px-4 py-1.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs font-bold uppercase tracking-widest">
+        Galeri Foto & Momen Indah
+      </span>
+      <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight">
+        Bukti Nyata Kebahagiaan 450+ Klien
+      </h1>
+      <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto font-light">
+        Setiap foto menceritakan kisah tawa, kebersamaan, dan kenyamanan tanpa rasa khawatir selama perjalanan bersama i-Travel.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECTION 2: FILTER & MASONRY PHOTO GRID (UNIQUE STRUCTURAL ELEMENT) -->
+  <section class="py-16 bg-slate-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Category Filter Bar -->
+      <div class="flex items-center justify-center gap-3 mb-12 flex-wrap" id="gal-filter-bar">
+        <button data-gal-filter="all" class="gal-tab active px-5 py-2 rounded-full text-xs font-bold bg-sky-500 text-white transition-all">
+          Semua Foto
+        </button>
+        <button data-gal-filter="corporate" class="gal-tab px-5 py-2 rounded-full text-xs font-bold bg-white/10 hover:bg-white/20 text-slate-200 transition-all">
+          Corporate Gathering
+        </button>
+        <button data-gal-filter="domestik" class="gal-tab px-5 py-2 rounded-full text-xs font-bold bg-white/10 hover:bg-white/20 text-slate-200 transition-all">
+          Tur Domestik
+        </button>
+        <button data-gal-filter="internasional" class="gal-tab px-5 py-2 rounded-full text-xs font-bold bg-white/10 hover:bg-white/20 text-slate-200 transition-all">
+          Mancanegara
+        </button>
+      </div>
+
+      <!-- Masonry Layout Columns -->
+      <div class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6" id="gal-grid">
+        {galleryItems.map((item) => (
+          <div data-gal-cat={item.cat} class="gal-item break-inside-avoid group relative rounded-3xl overflow-hidden cursor-pointer border border-white/10 shadow-lg bg-slate-800" onclick={`openLightbox('${item.src}', '${item.title}', '${item.location}')`}>
+            
+            <img 
+              src={item.src} 
+              alt={item.title} 
+              class="w-full object-cover group-hover:scale-110 transition-transform duration-500"
+            />
+
+            <!-- Dark Overlay on Hover -->
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent opacity-80 group-hover:opacity-95 transition-opacity p-6 flex flex-col justify-end">
+              <span class="text-xs font-bold text-rose-400 uppercase tracking-widest mb-1">{item.location}</span>
+              <h3 class="text-xl font-bold text-white leading-snug">{item.title}</h3>
+              <div class="mt-2 pt-2 border-t border-white/15 flex items-center justify-between text-xs text-slate-300">
+                <span>{item.client}</span>
+                <span class="text-sky-400 font-bold">Zoom 🔍</span>
+              </div>
+            </div>
+
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 3: CLIENT DOCUMENTATION RECAP NOTICE -->
+  <section class="py-16 bg-white border-t border-slate-200 text-center">
+    <div class="max-w-3xl mx-auto px-4 space-y-4">
+      <span class="px-3.5 py-1 bg-amber-100 text-amber-800 text-xs font-bold rounded-full uppercase">Dokumentasi Privat</span>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Arsip Video Drone & Album Lengkap Perusahaan</h2>
+      <p class="text-slate-600 text-sm">
+        Untuk alasan kerahasiaan dan privasi corporate client, arsip foto & video resolusi tinggi diberikan secara langsung melalui tautan cloud khusus.
+      </p>
+      <div class="pt-2">
+        <div class="client-data-tag">
+          ⚠️ [PERLU DATA CLIENT: Tautan Cloud Album Foto Klien Resmi]
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX MODAL CONTAINER (VANILLA JS) -->
+  <div id="lightbox-modal" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-md hidden items-center justify-center p-4">
+    <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white text-3xl font-bold hover:text-rose-400 transition-colors">
+      ✕
+    </button>
+    <div class="max-w-4xl w-full text-center space-y-4">
+      <img id="lightbox-img" src="" alt="Enlarged gallery photo" class="max-h-[80vh] mx-auto rounded-2xl shadow-2xl border border-white/20" />
+      <div>
+        <h3 id="lightbox-title" class="text-2xl font-bold text-white"></h3>
+        <p id="lightbox-loc" class="text-sm text-sky-400 font-semibold"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vanilla JS Script for Lightbox & Gallery Filters -->
+  <script is:inline>
+    function openLightbox(src, title, location) {
+      const modal = document.getElementById('lightbox-modal');
+      const img = document.getElementById('lightbox-img');
+      const titleEl = document.getElementById('lightbox-title');
+      const locEl = document.getElementById('lightbox-loc');
+
+      if (modal && img && titleEl && locEl) {
+        img.src = src;
+        titleEl.textContent = title;
+        locEl.textContent = location;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('lightbox-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    }
+
+    // Filter Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterBtns = document.querySelectorAll('#gal-filter-bar button');
+      const items = document.querySelectorAll('.gal-item');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const cat = btn.getAttribute('data-gal-filter');
+
+          filterBtns.forEach(b => {
+            b.classList.remove('bg-sky-500', 'text-white');
+            b.classList.add('bg-white/10', 'text-slate-200');
+          });
+          btn.classList.remove('bg-white/10', 'text-slate-200');
+          btn.classList.add('bg-sky-500', 'text-white');
+
+          items.forEach(item => {
+            const itemCat = item.getAttribute('data-gal-cat');
+            if (cat === 'all' || itemCat === cat) {
+              item.style.display = 'block';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  </script>
+
+</Layout>

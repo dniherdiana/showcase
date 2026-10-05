@@ -1,0 +1,67 @@
+---
+import { aboutData } from "../data/index.js";
+---
+
+<div class="space-y-10 story-scroll-item border-t border-white/10 pt-16">
+	<div class="text-center max-w-2xl mx-auto space-y-3">
+		<span class="text-xs font-mono font-bold uppercase tracking-widest text-[#0D9488]" data-i18n-en="How We Take Care of You" data-i18n-id="Komitmen Layanan Kami">
+			How We Take Care of You
+		</span>
+		<h2 class="font-heading text-2xl sm:text-4xl font-extrabold text-white uppercase" data-i18n-key="aboutPromisesTitle">
+			4 Things We Always Promise You
+		</h2>
+		<p class="text-xs text-white/60 font-sans max-w-lg mx-auto leading-relaxed" data-i18n-en="Designed from the ground up to ensure your journey is safe, effortless, comfortable, and deeply meaningful." data-i18n-id="Dirancang penuh perhatian untuk memastikan perjalanan Anda aman, nyaman, dan berkesan.">
+			Designed from the ground up to ensure your journey is safe, effortless, comfortable, and deeply meaningful.
+		</p>
+	</div>
+
+	<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+		{
+			aboutData.values.map((val) => (
+				<div class="relative p-8 rounded-2xl glass-card border border-white/15 hover:border-gold/50 space-y-6 flex flex-col justify-between transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-gold/15 group overflow-hidden bg-slate-900/80">
+					<!-- Top Glowing Accent Line -->
+					<div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-gold via-[#0D9488] to-transparent opacity-50 group-hover:opacity-100 transition-opacity"></div>
+					<!-- Ambient Subtle Glow Aura -->
+					<div class="absolute inset-0 bg-gradient-to-br from-gold/5 via-transparent to-[#0D9488]/5 pointer-events-none group-hover:opacity-100 transition-opacity"></div>
+
+					<div class="space-y-5 relative z-10">
+						<div class="flex items-center justify-between gap-4 border-b border-white/10 pb-5">
+							<div class="border-l-2 border-gold pl-3">
+								<h3
+									data-i18n-en={val.title}
+									data-i18n-id={val.title_id}
+									class="font-heading text-lg sm:text-xl font-extrabold text-white uppercase group-hover:text-gold transition-colors leading-snug"
+								>
+									{val.title}
+								</h3>
+							</div>
+						</div>
+
+						<p
+							data-i18n-en={val.description}
+							data-i18n-id={val.description_id}
+							class="text-xs sm:text-sm text-white/80 font-sans leading-relaxed font-light"
+						>
+							{val.description}
+						</p>
+
+						<!-- Informative Key Takeaway Feature Container -->
+						{val.features && (
+							<div class="p-4 rounded-xl bg-white/[0.03] border border-white/10 space-y-2.5 pt-3">
+								{val.features.map((feat, fIdx) => {
+									const feat_id = val.features_id?.[fIdx] || feat;
+									return (
+										<div class="flex items-center gap-3 text-xs text-white/90 font-sans font-medium">
+											<span class="w-4 h-4 rounded-full bg-gold/20 text-gold flex items-center justify-center text-[10px] font-mono font-bold shrink-0">✓</span>
+											<span data-i18n-en={feat} data-i18n-id={feat_id}>{feat}</span>
+										</div>
+									);
+								})}
+							</div>
+						)}
+					</div>
+				</div>
+			))
+		}
+	</div>
+</div>

@@ -1,0 +1,167 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProgramFilter from '../components/svelte/ProgramFilter.svelte';
+import ClientDataTag from '../components/ClientDataTag.astro';
+---
+
+<Layout 
+  title="Our Programs | Yayasan Bumi Bersama - 5 Core Pillars"
+  description="Explore our 5 core non-profit programs combining native forest conservation, rural eco-education, regenerative farming, health campaigns, and disaster preparedness."
+>
+
+  <!-- 1. HERO HEADER (Compact Action Header with Status Pill) -->
+  <section class="bg-paper pt-12 pb-16 border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="max-w-3xl space-y-4">
+        <div class="inline-flex items-center gap-2 bg-emerald-100 border border-emerald-300 text-emerald-900 px-3.5 py-1 rounded-full text-xs font-bold">
+          <span class="w-2 h-2 rounded-full bg-emerald-700 animate-pulse"></span>
+          <span>5 Active Field Action Domains</span>
+        </div>
+
+        <h1 class="text-4xl sm:text-5xl font-bold text-stone-900 leading-tight">
+          Combining Environmental Reforestation & <span class="font-serif italic font-normal text-emerald-800">Rural Self-Reliance.</span>
+        </h1>
+
+        <p class="text-base text-stone-600 leading-relaxed">
+          Every program is requested directly by village councils and designed alongside indigenous community leaders. We never impose top-down solutions. Filter our programs below to see location metrics and direct outcomes.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 2. INTERACTIVE FILTERABLE PROGRAMS SECTION -->
+  <section class="py-16 bg-paper border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <ProgramFilter client:visible initialCategory="all" />
+    </div>
+  </section>
+
+  <!-- 3. NON-STANDARD COMPONENT: DETAILED PROGRAM COMPARISON TABLE -->
+  <section class="py-20 bg-stone-100 border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs uppercase font-mono tracking-wider font-semibold text-emerald-800 block mb-1">Comparative Framework</span>
+        <h2 class="text-3xl font-bold text-stone-900">Program Scope & Resource Allocation Matrix</h2>
+        <p class="text-xs text-stone-600 mt-2">How resources and village participation are structured across our 5 action pillars.</p>
+      </div>
+
+      <div class="overflow-x-auto bg-white rounded-2xl border border-stone-200 shadow-sm">
+        <table class="w-full text-left text-xs sm:text-sm text-stone-700">
+          <thead class="bg-stone-900 text-white font-mono text-xs uppercase tracking-wider">
+            <tr>
+              <th class="p-4 sm:p-5">Program Pillar</th>
+              <th class="p-4 sm:p-5">Primary Field Focus</th>
+              <th class="p-4 sm:p-5">Key Target Metric</th>
+              <th class="p-4 sm:p-5">Village Leadership Role</th>
+              <th class="p-4 sm:p-5 text-right">Fund Share</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-stone-200 font-sans">
+            
+            <tr class="hover:bg-emerald-50/60 transition-colors">
+              <td class="p-4 sm:p-5 font-bold text-stone-900">
+                🌱 Environment & Reforestation
+              </td>
+              <td class="p-4 sm:p-5 text-stone-600">Native tree nurseries, watershed slope stabilization & river cleans</td>
+              <td class="p-4 sm:p-5 font-bold text-emerald-800">120,000+ saplings planted</td>
+              <td class="p-4 sm:p-5 text-stone-600">Customary Forest Elders Guild</td>
+              <td class="p-4 sm:p-5 font-mono font-bold text-emerald-800 text-right">38%</td>
+            </tr>
+
+            <tr class="hover:bg-emerald-50/60 transition-colors">
+              <td class="p-4 sm:p-5 font-bold text-stone-900">
+                📚 Rural Education
+              </td>
+              <td class="p-4 sm:p-5 text-stone-600">Off-grid solar digital pods, stewardship curriculum & school supplies</td>
+              <td class="p-4 sm:p-5 font-bold text-emerald-800">34 learning shelters build</td>
+              <td class="p-4 sm:p-5 text-stone-600">Village Youth & Teachers Union</td>
+              <td class="p-4 sm:p-5 font-mono font-bold text-emerald-800 text-right">24%</td>
+            </tr>
+
+            <tr class="hover:bg-emerald-50/60 transition-colors">
+              <td class="p-4 sm:p-5 font-bold text-stone-900">
+                🚜 Community Development
+              </td>
+              <td class="p-4 sm:p-5 text-stone-600">Regenerative agroforestry, organic soil revival & fair-trade marketing</td>
+              <td class="p-4 sm:p-5 font-bold text-emerald-800">80+ village cooperatives</td>
+              <td class="p-4 sm:p-5 text-stone-600">Farmer Cooperative Board</td>
+              <td class="p-4 sm:p-5 font-mono font-bold text-emerald-800 text-right">18%</td>
+            </tr>
+
+            <tr class="hover:bg-emerald-50/60 transition-colors">
+              <td class="p-4 sm:p-5 font-bold text-stone-900">
+                💧 Health Campaign
+              </td>
+              <td class="p-4 sm:p-5 text-stone-600">Gravity-fed mountain water pipelines & rural sanitation stations</td>
+              <td class="p-4 sm:p-5 font-bold text-emerald-800">9,500 residents with clean water</td>
+              <td class="p-4 sm:p-5 text-stone-600">Women’s Health Taskforce</td>
+              <td class="p-4 sm:p-5 font-mono font-bold text-emerald-800 text-right">12%</td>
+            </tr>
+
+            <tr class="hover:bg-emerald-50/60 transition-colors">
+              <td class="p-4 sm:p-5 font-bold text-stone-900">
+                🛡️ Disaster Relief
+              </td>
+              <td class="p-4 sm:p-5 text-stone-600">Emergency water filtration units, storm shelters & crisis preparedness</td>
+              <td class="p-4 sm:p-5 font-bold text-emerald-800">24 rapid deployments</td>
+              <td class="p-4 sm:p-5 text-stone-600">Village Volunteer First Responders</td>
+              <td class="p-4 sm:p-5 font-mono font-bold text-emerald-800 text-right">8%</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. FIELD IMPLEMENTATION WORKFLOW ROADMAP -->
+  <section class="py-20 bg-paper border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs uppercase font-mono tracking-wider font-semibold text-terracotta block mb-1">Standard Field Workflow</span>
+        <h2 class="text-3xl font-bold text-stone-900">Our 5-Step Community Co-Design Process</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-6 text-stone-800">
+        
+        <div class="bg-white p-5 rounded-2xl border border-stone-200 shadow-xs relative">
+          <div class="w-8 h-8 rounded-full bg-emerald-800 text-amber-300 font-bold flex items-center justify-center text-xs mb-3">1</div>
+          <h3 class="font-bold text-sm text-stone-900 mb-1">Village Invitation</h3>
+          <p class="text-xs text-stone-600 leading-relaxed">Village elders submit formal request to establish project.</p>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-stone-200 shadow-xs relative">
+          <div class="w-8 h-8 rounded-full bg-emerald-800 text-amber-300 font-bold flex items-center justify-center text-xs mb-3">2</div>
+          <h3 class="font-bold text-sm text-stone-900 mb-1">Eco Assessment</h3>
+          <p class="text-xs text-stone-600 leading-relaxed">3-month participatory mapping of native species & watershed.</p>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-stone-200 shadow-xs relative">
+          <div class="w-8 h-8 rounded-full bg-emerald-800 text-amber-300 font-bold flex items-center justify-center text-xs mb-3">3</div>
+          <h3 class="font-bold text-sm text-stone-900 mb-1">Co-Design Pact</h3>
+          <p class="text-xs text-stone-600 leading-relaxed">Signing community governance pact & seed budget allocation.</p>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-stone-200 shadow-xs relative">
+          <div class="w-8 h-8 rounded-full bg-emerald-800 text-amber-300 font-bold flex items-center justify-center text-xs mb-3">4</div>
+          <h3 class="font-bold text-sm text-stone-900 mb-1">Field Execution</h3>
+          <p class="text-xs text-stone-600 leading-relaxed">Villagers and volunteers execute planting and pod building.</p>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl border border-stone-200 shadow-xs relative">
+          <div class="w-8 h-8 rounded-full bg-emerald-800 text-amber-300 font-bold flex items-center justify-center text-xs mb-3">5</div>
+          <h3 class="font-bold text-sm text-stone-900 mb-1">Annual Public Audit</h3>
+          <p class="text-xs text-stone-600 leading-relaxed">Monitoring survival rates & releasing audited report.</p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</Layout>

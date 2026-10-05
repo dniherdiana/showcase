@@ -1,0 +1,147 @@
+---
+import { Image } from "astro:assets";
+import {
+	Calendar,
+	ArrowRight,
+	ShieldCheck,
+	Clock,
+	UserCheck,
+	Star,
+} from "lucide-astro";
+---
+
+<section
+	class="relative min-h-[92vh] flex items-center justify-center pt-10 pb-5 overflow-hidden bg-stone-950"
+>
+	<!-- Full-Bleed Media (Composition Type A: Full Bleed Editorial) -->
+	<div class="absolute inset-0 w-full h-full z-0">
+		<Image
+			src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&w=1920&q=80"
+			alt="Fasilitas diagnostik dan ruang tindakan klinis Klinik Estetika Alunê"
+			width={1920}
+			height={1080}
+			class="w-full h-full object-cover object-center scale-[1.02] transition-transform duration-1000 ease-out"
+			widths={[400, 800, 1200, 1920]}
+			sizes="100vw"
+			loading="eager"
+			fetchpriority="high"
+		/>
+
+		<!-- Overlay -->
+		<div
+			class="absolute inset-0 bg-gradient-to-b from-stone-950/60 via-stone-950/45 to-stone-950/75"
+		>
+		</div>
+		<div class="absolute inset-0 bg-stone-950/10 backdrop-blur-[1px]"></div>
+	</div>
+
+	<!-- Content Container -->
+	<div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 w-full text-white">
+		<!-- Centered Symmetrical Header Stack -->
+		<div class="max-w-4xl mx-auto text-center flex flex-col items-center">
+			<!-- MANDATORY Single <h1> for Page (Cinzel Serif Display) -->
+			<h1
+				class="text-2xl sm:text-3xl md:text-4xl font-medium font-heading text-white leading-[1.12] tracking-tight mb-8 uppercase [text-shadow:_0_2px_10px_rgba(0,0,0,0.9),_0_4px_24px_rgba(0,0,0,0.8)]"
+			>
+				Perawatan Kulit Berbasis Diagnosa Dokter Langsung Tanpa Pola Upsell
+			</h1>
+
+			<!-- Operational Lead Paragraph -->
+			<p
+				class="text-base md:text-lg font-body text-white max-w-3xl leading-relaxed mb-12 text-balance font-normal [text-shadow:_0_2px_8px_rgba(0,0,0,0.95),_0_4px_16px_rgba(0,0,0,0.85)]"
+			>
+				Klinik Estetika Alunê menyajikan perawatan kulit berbasis diagnosa dokter medis bersertifikat sejak kunjungan pertama. Tanpa tekanan target penjualan, tanpa sulap semalam, dan 100% minim downtime.
+			</p>
+
+			<!-- Action Button Pair -->
+			<div
+				class="flex flex-col sm:flex-row items-center justify-center gap-5 w-full sm:w-auto mb-10"
+			>
+				<a
+					href="https://wa.me/6281234567890?text=Halo%20Klinik%20Estetika%20Alun%C3%AA,%20saya%20ingin%20konsultasi%20jadwal%20dokter"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[var(--color-accent)] hover:bg-[#003820] text-white font-body font-medium text-xs tracking-widest uppercase rounded-[var(--radius-button)] transition-all duration-300 border border-[var(--color-accent)] shadow-lg shadow-emerald-950/50 [text-shadow:_0_1px_4px_rgba(0,0,0,0.6)]"
+				>
+					<Calendar class="w-4 h-4 text-white" />
+					<span>Reservasi WhatsApp</span>
+				</a>
+
+				<a
+					href="#alur-konsultasi"
+					class="inline-flex items-center justify-center gap-2 px-7 py-4 text-white hover:text-emerald-300 font-body font-medium text-xs tracking-widest uppercase transition-colors duration-200 group bg-black/40 hover:bg-black/60 border border-white/30 rounded-[var(--radius-button)] backdrop-blur-md shadow-lg [text-shadow:_0_1px_4px_rgba(0,0,0,0.8)]"
+				>
+					<span>Pelajari Alur Rekam Medis</span>
+					<ArrowRight
+						class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+					/>
+				</a>
+			</div>
+		</div>
+
+		<!-- Editorial Evidence Metrics Hairline Bar (NO Cards/Boxes) -->
+		<div
+			class="max-w-6xl mx-auto border-t border-white/20 pt-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+		>
+			<div class="flex flex-col space-y-2 border-b sm:border-b-0 sm:border-r border-white/20 pb-6 sm:pb-0 sm:pr-6">
+				<div class="flex items-center justify-between">
+					<span class="text-xl md:text-2xl font-semibold font-heading text-white tracking-tight [text-shadow:_0_2px_8px_rgba(0,0,0,0.95)]">
+						100%
+					</span>
+					<UserCheck class="w-5 h-5 text-emerald-400 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]" />
+				</div>
+				<h3 class="text-xs font-semibold font-heading text-white [text-shadow:_0_2px_6px_rgba(0,0,0,0.95)]">
+					Konsultasi Dokter Medis
+				</h3>
+				<p class="text-xs font-body text-white leading-relaxed [text-shadow:_0_1px_6px_rgba(0,0,0,0.95)]">
+					Bebas dari perantara beauty advisor / sales
+				</p>
+			</div>
+
+			<div class="flex flex-col space-y-2 border-b sm:border-b-0 sm:border-r border-white/20 pb-6 sm:pb-0 sm:pr-6">
+				<div class="flex items-center justify-between">
+					<span class="text-xl md:text-2xl font-semibold font-heading text-white tracking-tight [text-shadow:_0_2px_8px_rgba(0,0,0,0.95)]">
+						&lt; 4 Jam
+					</span>
+					<Clock class="w-5 h-5 text-emerald-400 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]" />
+				</div>
+				<h3 class="text-xs font-semibold font-heading text-white [text-shadow:_0_2px_6px_rgba(0,0,0,0.95)]">
+					Pemulihan Downtime
+				</h3>
+				<p class="text-xs font-body text-white leading-relaxed [text-shadow:_0_1px_6px_rgba(0,0,0,0.95)]">
+					Prosedur minim downtime tanpa perlu cuti
+				</p>
+			</div>
+
+			<div class="flex flex-col space-y-2 border-b sm:border-b-0 sm:border-r border-white/20 pb-6 sm:pb-0 sm:pr-6">
+				<div class="flex items-center justify-between">
+					<span class="text-xl md:text-2xl font-semibold font-heading text-white tracking-tight [text-shadow:_0_2px_8px_rgba(0,0,0,0.95)]">
+						3 Spesialis
+					</span>
+					<ShieldCheck class="w-5 h-5 text-emerald-400 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]" />
+				</div>
+				<h3 class="text-xs font-semibold font-heading text-white [text-shadow:_0_2px_6px_rgba(0,0,0,0.95)]">
+					Tim Medis Bersertifikat
+				</h3>
+				<p class="text-xs font-body text-white leading-relaxed [text-shadow:_0_1px_6px_rgba(0,0,0,0.95)]">
+					2 Dokter Estetika + 1 Konsulen Sp.D.V.E
+				</p>
+			</div>
+
+			<div class="flex flex-col space-y-2 last:border-none">
+				<div class="flex items-center justify-between">
+					<span class="text-xl md:text-2xl font-semibold font-heading text-white tracking-tight [text-shadow:_0_2px_8px_rgba(0,0,0,0.95)]">
+						4.9 / 5
+					</span>
+					<Star class="w-5 h-5 text-emerald-400 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]" />
+				</div>
+				<h3 class="text-xs font-semibold font-heading text-white [text-shadow:_0_2px_6px_rgba(0,0,0,0.95)]">
+					Penilaian Pasien Terverifikasi
+				</h3>
+				<p class="text-xs font-body text-white leading-relaxed [text-shadow:_0_1px_6px_rgba(0,0,0,0.95)]">
+					Berdasarkan ulasan platform booking resmi
+				</p>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,19 @@
+---
+const { pageNumber, headline, text_1, text_2 } = Astro.props;
+---
+
+<section class="flex gap-4">
+	<span class="text-6xl font-light text-text-muted/60 mt-2">
+		{pageNumber}
+	</span>
+	<div class="pt-2">
+		<h1 class="text-[9px] lg:text-[10px] uppercase text-heading/60 mb-2">
+			{headline}
+		</h1>
+		<h2 class="font-light text-text/60 leading-tight lg:text-lg text-base">
+			<span class="block">
+				{text_1}<em class="italic block">{text_2}</em>
+			</span>
+		</h2>
+	</div>
+</section>

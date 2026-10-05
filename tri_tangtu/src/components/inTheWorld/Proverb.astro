@@ -1,0 +1,14 @@
+---
+const { proverb, proverbTranslation } = Astro.props;
+---
+
+<article class="border-border my-3 border-l pl-5">
+	<p
+		class="text-primary text-lg leading-relaxed font-light tracking-wide italic lg:text-xl"
+	>
+		"{proverb}"
+	</p>
+	<p class="text-text text-sm leading-relaxed tracking-widest lg:text-base">
+		- {proverbTranslation}
+	</p>
+</article>

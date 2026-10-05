@@ -1,0 +1,70 @@
+---
+import { developerValuesContent } from "../../data/tentang/developerValues.js";
+---
+
+<section class="py-28 bg-canvas-default relative border-b border-slate-900">
+	<div class="max-w-7xl mx-auto px-6 lg:px-12 space-y-16">
+		<div data-reveal="fade" class="max-w-3xl space-y-4">
+			<span
+				class="text-xs font-mono text-amber-300 uppercase tracking-widest block"
+			>
+				<span class="border h-3 border-l bg-amber-400 justify-center mr-2"
+				></span>
+				{developerValuesContent.tag}
+			</span>
+			<h2
+				class="font-serif text-3xl sm:text-4xl lg:text-5xl text-slate-50 font-normal tracking-tight leading-[1.15]"
+			>
+				{developerValuesContent.headline}
+			</h2>
+			<p class="text-slate-300 text-base leading-relaxed font-normal">
+				{developerValuesContent.subtext}
+			</p>
+		</div>
+
+		<div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
+			{
+				developerValuesContent.values.map((v) => (
+					<div
+						data-reveal="zoom"
+						class={`md:col-span-${v.span} ${v.style === "featured" ? "bg-linear-to-b from-canvas-lift to-canvas-soft border-2 border-amber-400/50 p-8 sm:p-10 rounded-sm shadow-2xl" : "bg-canvas-raised border border-slate-800 p-8 sm:p-10 rounded-sm hover:border-slate-700 transition-colors"} flex flex-col justify-between space-y-8`}
+					>
+						<div class="space-y-4">
+							<div class="flex items-center justify-between text-xs font-mono text-amber-300">
+								<span>{v.number}</span>
+								<span>{v.category}</span>
+							</div>
+							<h3
+								class={`font-serif text-2xl sm:text-3xl ${v.style === "featured" ? "text-slate-50" : "text-slate-100"} font-normal`}
+							>
+								{v.title}
+							</h3>
+							<p class="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
+								{v.description}
+							</p>
+						</div>
+
+						{v.metrics && (
+							<div class="pt-6 border-t border-amber-500/20 grid grid-cols-2 gap-4 text-xs text-slate-200">
+								{v.metrics.map((m) => (
+									<div>
+										<span class="block text-amber-300 font-serif text-lg">
+											{m.value}
+										</span>
+										<span class="text-[11px] text-slate-400">{m.label}</span>
+									</div>
+								))}
+							</div>
+						)}
+
+						{v.guarantee && (
+							<div class="pt-6 border-t border-slate-800 text-xs text-emerald-400 font-mono">
+								{v.guarantee}
+							</div>
+						)}
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>

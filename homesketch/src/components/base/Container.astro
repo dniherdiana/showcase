@@ -1,0 +1,25 @@
+---
+interface Props {
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
+  class?: string;
+  as?: 'div' | 'section' | 'article' | 'header' | 'footer' | 'nav' | 'main';
+}
+
+const {
+  size = 'lg',
+  class: className = '',
+  as: Tag = 'div',
+} = Astro.props;
+
+const sizeMap = {
+  sm: 'max-w-4xl',
+  md: 'max-w-5xl',
+  lg: 'max-w-7xl',
+  xl: 'max-w-[1400px]',
+  full: 'max-w-full',
+};
+---
+
+<Tag class={`w-full ${sizeMap[size]} mx-auto px-6 sm:px-10 lg:px-16 ${className}`}>
+  <slot />
+</Tag>

@@ -1,0 +1,47 @@
+---
+const { quote } = Astro.props;
+---
+
+<div class="bg-bg w-full h-auto">
+	<div class="flex items-center gap-2 my-10 justify-center">
+		<div class="w-8 bg-text opacity-45 h-px"></div>
+		<p
+			class="text-[11px] tracking-[0.22em] uppercase text-text opacity-75 text-center"
+		>
+			Sanghyang Siksa Kandang Karesian, 1518 M
+		</p>
+		<div class="w-8 bg-text opacity-45 h-px"></div>
+	</div>
+
+	<!-- Card -->
+	<div class="relative mx-auto w-full max-w-2xl">
+		<div
+			class="relative border border-text rounded-sm p-6 md:p-10 bg-linear-to-r from-info to-success"
+		>
+			<!-- Ornament -->
+			<div class="text-heading opacity-80 text-3xl md:text-4xl mb-3">❧</div>
+
+			<blockquote
+				class="text-base text-heading font-light italic leading-relaxed"
+			>
+				<p>{quote}</p>
+			</blockquote>
+
+			<p
+				class="mt-6 text-heading text-[10px] tracking-[0.28em] uppercase opacity-85"
+			>
+				— Sanghyang Siksa Kandang Karesian
+			</p>
+		</div>
+
+		<!-- Corner accents -->
+		<div
+			class="absolute -bottom-3 -right-3 w-8 md:w-10 h-8 md:h-10 border-b border-r border-text opacity-50"
+		>
+		</div>
+		<div
+			class="absolute -top-3 -left-3 w-8 md:w-10 h-8 md:h-10 border-t border-l border-text opacity-50"
+		>
+		</div>
+	</div>
+</div>

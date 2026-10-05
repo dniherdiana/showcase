@@ -1,0 +1,126 @@
+export const homeData = {
+  hero: {
+    headline: 'Arsitektur Komersial Presisi yang Siap Dibangun Tanpa Pembengkakan Biaya.',
+    headlineAccent: 'Presisi yang Siap Dibangun',
+    subhead: 'Atelier Karsa merancang ruang F&B, ritel, dan kantor komersial dengan Gambar Kerja Detail lengkap, audit ketersediaan material lokal, serta garansi deviasi anggaran maksimal 5%.',
+    ctaPrimary: {
+      label: 'Jadwalkan Konsultasi Denah & Kelayakan Lahan',
+      href: '/kontak',
+    },
+    ctaSecondary: {
+      label: 'Telusuri 42 Proyek Komersial Selesai',
+      href: '/portofolio',
+    },
+    pinnedLocations: ['Jakarta', 'Bandung', 'Bali'],
+  },
+  metrics: [
+    {
+      number: '42',
+      label: 'Proyek Komersial Selesai Sejak 2021',
+      context: 'Kafe, restoran, butik ritel, dan kantor kreatif beroperasi di Jakarta, Bandung, dan Bali.',
+    },
+    {
+      number: '98%',
+      label: 'Ketepatan Jadwal Buka Operasional',
+      context: 'Bisnis klien buka sesuai tanggal target operasional tanpa kompromi sewa tempat.',
+    },
+    {
+      number: '< 5%',
+      label: 'Deviasi Anggaran Konstruksi (RAB)',
+      context: 'Biaya fisik di lapangan terkendali presisi terhadap estimasi tender awal.',
+    },
+    {
+      number: 'Rp450 Jt - Rp3.5 M',
+      label: 'Rentang Nilai Konstruksi Terkelola',
+      context: 'Portofolio eksekusi dari outlet ritel butik hingga kompleks restoran 500 m2.',
+    },
+  ],
+  manifesto: {
+    headline: 'Keindahan Desain 3D Tidak Bernilai Jika Kontraktor Gagal Membangunnya di Lapangan.',
+    paragraphs: [
+      'Banyak pemilik bisnis komersial mengalami kerugian waktu dan dana ratusan juta rupiah akibat desain yang hanya cantik di layar komputer. Gambar konsep tanpa detail sambungan konstruksi memaksa tukang menebak-nebak, sementara material impor yang langka membuat jadwal pembukaan molor berbulan-bulan.',
+      'Atelier Karsa didirikan atas satu prinsip operasional: setiap garis gambar arsitektur harus memiliki padanan teknis, ketersediaan material nyata di toko lokal, dan perhitungan biaya yang dapat dipertanggungjawabkan. Kami tidak menjual ilusi visual; kami memberikan cetak biru bisnis ruang yang siap menghasilkan profit sejak hari pertama beroperasi.',
+    ],
+    supervisionQuote: 'Satu Lead Architect yang sama memimpin inspeksi fisik berkala ke proyek setiap pekan, memastikan kontraktor bekerja presisi sesuai DED.',
+  },
+  featuredProjects: {
+    headline: 'Rekam Jejak 42 Ruang Komersial yang Beroperasi Nyata.',
+    subhead: 'Bedah metrik ruang, efisiensi anggaran, dan ketepatan waktu proyek F&B, ritel, dan kantor di tiga kota utama.',
+    projects: [
+      {
+        id: 'uma-sawah',
+        name: 'Uma Sawah Osteria & Lounge',
+        type: 'Restoran & Bar Semi-Terbuka',
+        location: 'Canggu, Bali',
+        area: '480 m2',
+        budget: 'Rp2.8 Miliar',
+        duration: '18 Minggu (Selesai H-3 Target Soft Opening)',
+        technicalResult: 'Deviasi RAB akhir 2.4%. Struktur kayu ulin daur ulang lokal dengan sistem sirkulasi dapur berkapasitas 120 pax bersamaan.',
+        imageKey: 'umaSawah',
+        rotation: '-rotate-1',
+      },
+      {
+        id: 'roster-roast',
+        name: 'Roster & Roast Specialty Coffee',
+        type: 'Kafe & Roastery Komersial',
+        location: 'Dago, Bandung',
+        area: '260 m2',
+        budget: 'Rp820 Juta',
+        duration: '10 Minggu Tepat Waktu',
+        technicalResult: 'Deviasi RAB akhir 3.1%. Peningkatan kapasitas duduk 28% lewat rekayasa alur bar kopi sentral dan ventilasi silang alami.',
+        imageKey: 'rosterRoast',
+        rotation: 'rotate-1',
+      },
+      {
+        id: 'sonder-atelier',
+        name: 'Sonder Atelier Flagship Store',
+        type: 'Butik Ritel Pakaian & Aksesori',
+        location: 'Senopati, Jakarta Selatan',
+        area: '185 m2',
+        budget: 'Rp1.15 Miliar',
+        duration: '8 Minggu Tepat Waktu',
+        technicalResult: 'Deviasi RAB akhir 1.8%. Tata pencahayaan CRI 97 terkalibrasi khusus display kain, furnitur kustom stainless steel lokal.',
+        imageKey: 'sonderAtelier',
+        rotation: '-rotate-2',
+      },
+      {
+        id: 'studio-kolabora',
+        name: 'Studio Kolabora Creative HQ',
+        type: 'Kantor Agensi & Studio Produksi',
+        location: 'Kemang, Jakarta Selatan',
+        area: '340 m2',
+        budget: 'Rp1.6 Miliar',
+        duration: '12 Minggu Tepat Waktu',
+        technicalResult: 'Deviasi RAB akhir 4.2%. Rekayasa akustik ruang editing STC 48 dan efisiensi pembagian beban pendingin ruangan (AC).',
+        imageKey: 'studioKolabora',
+        rotation: 'rotate-2',
+      },
+    ],
+  },
+  pillars: {
+    headline: 'Tiga Protokol Teknis yang Melindungi Investasi Ruang Anda.',
+    items: [
+      {
+        number: '01',
+        title: 'Gambar Kerja Detail (DED) 80+ Lembar & Audit Material Lokal',
+        description: 'Kami menyerahkan panduan konstruksi lengkap dari struktur, MEP, hingga detail furnitur kustom beserta nama merk dan distributor material yang terverifikasi stoknya di Bandung, Jakarta, dan Bali.',
+      },
+      {
+        number: '02',
+        title: 'Estimasi RAB Presisi dengan Deviasi Terkunci Maksimal 5%',
+        description: 'Dokumen Bill of Quantities (BoQ) kami merinci volume fisik hingga baut dan meter kabel, mencegah kontraktor mengajukan biaya tambahan tak terduga di tengah pekerjaan.',
+      },
+      {
+        number: '03',
+        title: 'Supervisi Lapangan Rutin Mingguan oleh Lead Architect',
+        description: 'Arsitek penanggung jawab proyek turun langsung memeriksa pembesian, elevasi lantai, dan kerapian instalasi teknis, menerbitkan evaluasi tertulis setiap hari Jumat.',
+      },
+    ],
+  },
+  closingCta: {
+    headline: 'Diskusikan Potensi Lahan Anda Sebelum Menandatangani Kontrak Sewa.',
+    subhead: 'Dapatkan telaah kelayakan teknis, estimasi kapasitas operasional, dan simulasi kebutuhan anggaran konstruksi bersama Lead Architect kami.',
+    buttonText: 'Jadwalkan Konsultasi Denah & Kelayakan Lahan',
+    href: '/kontak',
+  },
+};

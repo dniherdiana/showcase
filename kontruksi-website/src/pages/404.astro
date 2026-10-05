@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { ArrowRight } from 'lucide-astro';
+import { siteConfig } from '../data/site.js';
+---
+
+<Layout title={`Halaman Tidak Ditemukan | ${siteConfig.name}`}>
+  <Navbar />
+  <main class="pt-36 pb-24 lg:pt-44 lg:pb-32 bg-theme-bg" id="main-content">
+    <div class="editorial-container text-center max-w-2xl mx-auto space-y-6">
+      <div class="text-6xl font-serif text-theme-accent font-normal">404</div>
+      
+      <h1 class="text-3xl sm:text-4xl font-serif text-theme-primary font-normal leading-tight">
+        Halaman ini tidak ditemukan.
+      </h1>
+
+      <p class="text-theme-secondary text-base leading-relaxed">
+        Namun diskusi proyek pabrik Anda tetap siap dimulai bersama insinyur kami.
+      </p>
+
+      <div class="pt-4">
+        <a href="/kontak" class="btn-primary">
+          <span>Mulai Percakapan Proyek</span>
+          <ArrowRight class="w-5 h-5" />
+        </a>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>

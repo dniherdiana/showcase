@@ -1,0 +1,29 @@
+---
+import Container from '../base/Container.astro';
+import SectionHeader from '../base/SectionHeader.astro';
+import PortfolioGallery from '../islands/PortfolioGallery.svelte';
+import { images } from '../../assets/images/images';
+import { portofolioGallerySectionData } from './PortofolioGallerySection.data.js';
+
+const enrichedProjects = portofolioGallerySectionData.projects.map((p) => {
+  const meta = images[p.imageFile.toLowerCase()];
+  return {
+    ...p,
+    imageSrc: meta ? meta.src : '',
+  };
+});
+---
+
+<section class="py-20 lg:py-28 border-b border-[var(--color-border-hairline)] bg-[var(--color-canvas-light)]">
+  <Container size="xl" as="div" class="flex flex-col gap-14 lg:gap-16">
+    <!-- Header -->
+    <SectionHeader
+      title={portofolioGallerySectionData.heading}
+      subtitle={portofolioGallerySectionData.subheading}
+      level="h2"
+    />
+
+    <!-- Filterable Svelte Island -->
+    <PortfolioGallery client:visible projects={enrichedProjects} />
+  </Container>
+</section>

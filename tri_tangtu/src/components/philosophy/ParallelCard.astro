@@ -1,0 +1,17 @@
+---
+const { pillar, role, description, classMain } = Astro.props;
+---
+
+<section class={classMain}>
+	<div class="mb-4 flex items-start justify-between">
+		<div>
+			<h2 class="text-heading mb-1 block text-[9px] tracking-[0.3em] uppercase">
+				{pillar}
+			</h2>
+			<h3 class="font-display text-text text-2xl font-light">{role}</h3>
+		</div>
+	</div>
+	<p class="text-text text-base leading-relaxed font-light">
+		{description}
+	</p>
+</section>

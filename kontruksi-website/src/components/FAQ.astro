@@ -1,0 +1,53 @@
+---
+import { HelpCircle, ChevronDown } from 'lucide-astro';
+import { faqContent } from '../data/faq.js';
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqContent.items.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<section class="py-24 lg:py-32 bg-theme-bg border-b border-theme-border">
+  <div class="editorial-container">
+    
+    <div class="max-w-3xl mb-16 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-theme-surface border border-theme-border text-theme-accent text-xs font-semibold tracking-wider">
+        <HelpCircle class="w-4 h-4" />
+        <span>{faqContent.preheader}</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif text-theme-primary font-normal leading-tight">
+        {faqContent.title}
+      </h2>
+      <p class="text-theme-secondary text-base leading-relaxed">
+        {faqContent.subtitle}
+      </p>
+    </div>
+
+    <!-- Direct FAQs -->
+    <div class="max-w-4xl space-y-4">
+      {faqContent.items.map((faq) => (
+        <details class="surface-card rounded-sm border-theme-border p-6 group font-serif transition-all">
+          <summary class="text-lg sm:text-xl font-normal text-theme-primary cursor-pointer flex items-center justify-between gap-4 list-none">
+            <span>{faq.question}</span>
+            <ChevronDown class="w-5 h-5 text-theme-accent transition-transform group-open:rotate-180 shrink-0" />
+          </summary>
+          <div class="pt-4 text-theme-secondary font-sans text-sm sm:text-base leading-relaxed border-t border-theme-border mt-4">
+            {faq.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+
+  </div>
+</section>

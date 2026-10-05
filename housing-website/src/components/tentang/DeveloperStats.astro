@@ -1,0 +1,150 @@
+---
+import { developerStatsContent } from "../../data/tentang/developerStats.js";
+---
+
+<section
+	class="py-24 bg-canvas-default relative border-b border-slate-900 overflow-hidden"
+>
+	<div class="max-w-7xl mx-auto px-6 lg:px-12 space-y-16">
+		<div
+			data-reveal="fade"
+			class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-800 pb-8"
+		>
+			<div>
+				<span
+					class="text-xs font-mono text-amber-300 uppercase tracking-widest block"
+				>
+					<span class="border h-3 border-l bg-amber-400 justify-center mr-2"
+					></span>
+					{developerStatsContent.tag}
+				</span>
+				<h2
+					class="font-serif text-3xl sm:text-4xl text-slate-100 font-normal mt-1"
+				>
+					{developerStatsContent.headline}
+				</h2>
+			</div>
+			<p class="text-xs text-slate-400 max-w-sm">
+				{developerStatsContent.subtext}
+			</p>
+		</div>
+
+		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+			{
+				developerStatsContent.stats.map((s) => (
+					<div
+						data-reveal="zoom"
+						class={`p-8 bg-canvas-raised border rounded-sm space-y-3 shadow-xl ${s.featured ? "border-amber-400/30" : "border-slate-800 hover:border-slate-700 transition-colors"}`}
+					>
+						<span
+							class={`font-serif text-4xl sm:text-5xl block font-normal ${s.featured ? "text-amber-300" : "text-slate-100"}`}
+						>
+							{s.value}
+						</span>
+						<h3 class="text-sm font-semibold text-slate-100">{s.title}</h3>
+						<p class="text-xs text-slate-400 font-normal leading-relaxed">
+							{s.description}
+						</p>
+					</div>
+				))
+			}
+		</div>
+
+		<div data-reveal="right" class="pt-8 border-t border-slate-800/80 space-y-6">
+			<div
+				class="flex flex-col sm:flex-row sm:items-center justify-between gap-4"
+			>
+				<span
+					class="text-xs font-mono text-slate-300 uppercase tracking-widest"
+				>
+					KLIK NAMA BANK UNTUK INSPEKSI PROMO KPR KAWASAN:
+				</span>
+				<span class="text-[11px] font-mono text-amber-300">
+					{developerStatsContent.slaNote}
+				</span>
+			</div>
+
+			<div class="flex flex-wrap items-center gap-3">
+				{
+					developerStatsContent.banks.map((bank, i) => (
+						<button
+							type="button"
+							data-bank={bank.id}
+							class={`bank-tab-btn px-4 py-2.5 rounded-sm border text-xs font-mono font-semibold transition-all min-h-11 ${i === 0 ? "border-amber-400/80 bg-amber-500/10 text-amber-300" : "border-slate-800 bg-slate-900/60 text-slate-400 hover:text-slate-200"}`}
+						>
+							{bank.name}
+						</button>
+					))
+				}
+			</div>
+
+			<div
+				class="bg-canvas-panel border border-slate-800 p-6 rounded-sm space-y-4"
+			>
+				{
+					developerStatsContent.banks.map((bank, i) => (
+						<div
+							id={`bank-panel-${bank.id}`}
+							class={`bank-panel ${i === 0 ? "block" : "hidden"} space-y-2 text-xs text-slate-300`}
+						>
+							<div class="flex items-center justify-between font-mono text-amber-300 font-semibold border-b border-slate-800 pb-2">
+								<span>{bank.product}</span>
+								<span>{bank.rate}</span>
+							</div>
+							<p class="text-slate-200 font-normal leading-relaxed">
+								{bank.description}
+							</p>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		const bankBtns = document.querySelectorAll(".bank-tab-btn");
+		const bankPanels = document.querySelectorAll(".bank-panel");
+
+		bankBtns.forEach((btn) => {
+			btn.addEventListener("click", () => {
+				const bank = btn.getAttribute("data-bank");
+
+				bankBtns.forEach((b) => {
+					b.classList.remove(
+						"border-amber-400/80",
+						"bg-amber-500/10",
+						"text-amber-300",
+					);
+					b.classList.add(
+						"border-slate-800",
+						"bg-slate-900/60",
+						"text-slate-400",
+					);
+				});
+
+				btn.classList.remove(
+					"border-slate-800",
+					"bg-slate-900/60",
+					"text-slate-400",
+				);
+				btn.classList.add(
+					"border-amber-400/80",
+					"bg-amber-500/10",
+					"text-amber-300",
+				);
+
+				bankPanels.forEach((panel) => {
+					if (panel.id === "bank-panel-" + bank) {
+						panel.classList.remove("hidden");
+						panel.classList.add("block");
+					} else {
+						panel.classList.remove("block");
+						panel.classList.add("hidden");
+					}
+				});
+			});
+		});
+	});
+</script>

@@ -1,0 +1,191 @@
+---
+import { Mail, PhoneCall, MapPin, Send, Clock } from 'lucide-astro';
+import { kontakContent } from '../data/kontak.js';
+
+const { hero, contactCards, responsePromise, form } = kontakContent;
+---
+
+<section id="kontak" class="py-24 lg:py-32 bg-theme-bg border-b border-theme-border">
+  <div class="editorial-container">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+      
+      <!-- Left Column: Direct Contact Info -->
+      <div class="lg:col-span-5 space-y-8">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-theme-surface border border-theme-border text-theme-accent text-xs font-semibold tracking-wider mb-4">
+            <span>{hero.preheader}</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl lg:text-3xl font-serif text-theme-primary font-normal leading-snug">
+            {hero.title}
+          </h2>
+          <p class="text-theme-secondary text-base mt-4 leading-relaxed">
+            {hero.subheading}
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          {contactCards.map(card => {
+            const IconComp = card.type === 'phone' ? PhoneCall : card.type === 'email' ? Mail : MapPin;
+            return (
+              <div class="flex items-start gap-4 p-4 rounded-sm surface-card border-theme-border">
+                <div class="w-10 h-10 rounded-sm bg-theme-accent-bg border border-theme-accent/30 text-theme-accent flex items-center justify-center shrink-0">
+                  <IconComp class="w-5 h-5" />
+                </div>
+                <div>
+                  <div class="text-xs text-theme-secondary font-medium uppercase tracking-wider">{card.title}</div>
+                  <a href={card.href} target={card.type === 'phone' ? '_blank' : undefined} class="text-base font-bold text-theme-primary hover:text-theme-accent transition-colors">
+                    {card.value}
+                  </a>
+                  <div class={`text-xs mt-0.5 ${card.type === 'phone' ? 'text-theme-success' : 'text-theme-secondary'}`}>{card.note}</div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        <!-- Response Time Promise -->
+        <div class="p-4 rounded-sm bg-theme-surface border border-theme-border space-y-1">
+          <div class="text-xs font-bold text-theme-primary flex items-center gap-2">
+            <Clock class="w-4 h-4 text-theme-accent" />
+            <span>Janji Respon Cepat</span>
+          </div>
+          <p class="text-xs text-theme-secondary">
+            "{responsePromise}"
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Thoughtful Inquiry Form -->
+      <div class="lg:col-span-7">
+        <div class="surface-card p-6 sm:p-10 rounded-sm space-y-6">
+          <div class="border-b border-theme-border pb-4">
+            <h3 class="text-2xl font-serif text-theme-primary font-normal">{form.title}</h3>
+            <p class="text-theme-secondary text-sm mt-1">{form.subtitle}</p>
+          </div>
+
+          <form id="main-contact-form" onsubmit="return false;" class="space-y-5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label class="form-label" for="contact-name">Nama Lengkap Anda *</label>
+                <input type="text" id="contact-name" required placeholder="Nama lengkap Anda" class="form-input" />
+                <p class="text-xs text-theme-accent mt-1 hidden" id="contact-name-err">Mohon lengkapi Nama Anda.</p>
+              </div>
+
+              <div>
+                <label class="form-label" for="contact-email">Email Perusahaan *</label>
+                <input type="email" id="contact-email" required placeholder="your@email.com" class="form-input" />
+                <p class="text-xs text-theme-accent mt-1 hidden" id="contact-email-err">Mohon masukkan email perusahaan yang valid.</p>
+              </div>
+            </div>
+
+            <div>
+              <label class="form-label" for="contact-phone">Nomor WhatsApp *</label>
+              <input type="tel" id="contact-phone" required placeholder="0812xxxxxxxx" class="form-input" />
+              <p class="text-xs text-theme-accent mt-1 hidden" id="contact-phone-err">Mohon masukkan nomor WhatsApp yang valid.</p>
+            </div>
+
+            <div>
+              <label class="form-label" for="contact-goal">Apa yang ingin Anda bangun atau selesaikan? *</label>
+              <textarea id="contact-goal" rows="3" required placeholder="Jelaskan jenis pabrik, gudang, atau fasilitas yang Anda bayangkan..." class="form-input"></textarea>
+              <p class="text-xs text-theme-accent mt-1 hidden" id="contact-goal-err">Mohon berikan gambaran singkat mengenai proyek Anda.</p>
+            </div>
+
+            <div>
+              <label class="form-label" for="contact-past">Apa yang sudah berjalan — dan apa kendala Anda sebelumnya? (Opsional)</label>
+              <textarea id="contact-past" rows="2" placeholder="Contoh: Sudah ada lahan 3.000 m², pernah terkendala harga addendum kontraktor lama..." class="form-input"></textarea>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label class="form-label" for="contact-timeline">Target Jadwal Konstruksi *</label>
+                <select id="contact-timeline" class="form-input">
+                  {form.timelines.map(t => (
+                    <option value={t}>{t}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label class="form-label" for="contact-budget">Kisaran Anggaran Proyek *</label>
+                <select id="contact-budget" class="form-input">
+                  {form.budgets.map(b => (
+                    <option value={b}>{b}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label class="form-label" for="contact-notes">Catatan atau Berkas Teknis Lainnya (Opsional)</label>
+              <input type="text" id="contact-notes" placeholder="Contoh: Butuh survei lahan & pengujian tanah" class="form-input" />
+            </div>
+
+            <button 
+              type="button" 
+              id="btn-submit-contact"
+              class="btn-primary w-full py-4 text-base font-bold"
+            >
+              <Send class="w-5 h-5" />
+              <span>Kirimkan Inquiry Proyek Saya</span>
+            </button>
+
+            <!-- Success Message -->
+            <div id="contact-success-alert" class="hidden p-4 rounded-sm bg-theme-success-bg border border-theme-success/40 text-theme-success text-sm font-medium">
+              ✓ Terima kasih. Insinyur kami akan menghubungi Anda dalam waktu maksimal 24 jam kerja.
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const btnContact = document.getElementById('btn-submit-contact');
+  if (btnContact) {
+    btnContact.addEventListener('click', () => {
+      const nameEl = (document.getElementById('contact-name') as HTMLInputElement);
+      const emailEl = (document.getElementById('contact-email') as HTMLInputElement);
+      const phoneEl = (document.getElementById('contact-phone') as HTMLInputElement);
+      const goalEl = (document.getElementById('contact-goal') as HTMLTextAreaElement);
+      const pastEl = (document.getElementById('contact-past') as HTMLTextAreaElement)?.value || '';
+      const timelineEl = (document.getElementById('contact-timeline') as HTMLSelectElement)?.value || '';
+      const budgetEl = (document.getElementById('contact-budget') as HTMLSelectElement)?.value || '';
+      const notesEl = (document.getElementById('contact-notes') as HTMLInputElement)?.value || '';
+
+      const nameErr = document.getElementById('contact-name-err');
+      const emailErr = document.getElementById('contact-email-err');
+      const phoneErr = document.getElementById('contact-phone-err');
+      const goalErr = document.getElementById('contact-goal-err');
+
+      let hasErr = false;
+      if (!nameEl?.value) { if (nameErr) nameErr.classList.remove('hidden'); hasErr = true; } else { if (nameErr) nameErr.classList.add('hidden'); }
+      if (!emailEl?.value) { if (emailErr) emailErr.classList.remove('hidden'); hasErr = true; } else { if (emailErr) emailErr.classList.add('hidden'); }
+      if (!phoneEl?.value) { if (phoneErr) phoneErr.classList.remove('hidden'); hasErr = true; } else { if (phoneErr) phoneErr.classList.add('hidden'); }
+      if (!goalEl?.value) { if (goalErr) goalErr.classList.remove('hidden'); hasErr = true; } else { if (goalErr) goalErr.classList.add('hidden'); }
+
+      if (hasErr) return;
+
+      const text = `Halo Moving Co., Saya ${nameEl.value} (${emailEl.value}):\n` +
+        `- Rencana Bangunan: ${goalEl.value}\n` +
+        `- Kendala Lalu: ${pastEl}\n` +
+        `- Target Timeline: ${timelineEl}\n` +
+        `- Kisaran Anggaran: ${budgetEl}\n` +
+        `- Catatan: ${notesEl}\n` +
+        `Mohon diskusikan langkah selanjutnya. Terima kasih.`;
+
+      const waUrl = `https://wa.me/6281234567890?text=${encodeURIComponent(text)}`;
+
+      const alertEl = document.getElementById('contact-success-alert');
+      if (alertEl) alertEl.classList.remove('hidden');
+
+      setTimeout(() => {
+        window.open(waUrl, '_blank');
+      }, 1000);
+    });
+  }
+</script>

@@ -1,0 +1,30 @@
+export const testimonials = [
+  {
+    rating: '★★★★★',
+    badge: 'Penghuni Tahap I (2024)',
+    quote: '"Awalnya kami khawatir mengurus KPR pertama karena jadwal kerja kami yang padat. Tapi tim marketing benar-benar mengawal dari BI checking sampai penerbitan SP3K. Anak-anak sangat betah karena lingkungan tamannya aman tanpa lalu lalang kendaraan umum."',
+    image: 'resident1',
+    alt: 'Bpk. Hendra & Ibu Rina',
+    name: 'Bpk. Hendra & Ibu Rina',
+    detail: 'Penghuni Type 72 Deluxe · Blok B3',
+  },
+  {
+    rating: '★★★★★',
+    badge: 'KPR ABC Terverifikasi',
+    quote: '"Sirkulasi udara dan langit-langit ceiling tinggi di Type 72 membuat rumah terasa sejuk sepanjang hari tanpa perlu menyalakan AC terus-menerus. Akses tol 7 menit sangat membantu mobilitas kantor saya di pusat kota."',
+    image: 'resident2',
+    alt: 'Bpk. Aris & Keluarga',
+    name: 'Bpk. Aris & Keluarga',
+    detail: 'Penghuni Type 90 Executive · Blok A1',
+  },
+  {
+    rating: '★★★★★',
+    badge: 'Cash Bertahap 24 Bln',
+    quote: '"Skema Cash Bertahap in-house tanpa bunganya sangat membantu keuangan usaha saya. Garansi pemeliharaan 12 bulan juga terbukti responsif ketika kami minta perapihan minor setelah serah terima."',
+    image: null,
+    alt: null,
+    name: 'Ibu Clarissa S.',
+    detail: 'Penghuni Type 54 Serenity · Blok C7',
+    initial: 'C',
+  },
+]

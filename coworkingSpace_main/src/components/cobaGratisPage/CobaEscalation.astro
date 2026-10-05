@@ -1,0 +1,28 @@
+---
+import { cobaEscalationData } from './CobaEscalation.data.js';
+---
+
+<section class="py-20 md:py-28 bg-bg-base">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <div class="p-8 md:p-14 bg-bg-surface border-[1.5px] border-border-indie rounded-blob shadow-indie rotate-[-0.5deg]">
+      <h2 class="font-caveat text-3xl md:text-5xl font-bold text-text-primary leading-tight">
+        {cobaEscalationData.headline}
+      </h2>
+      
+      <p class="font-dmsans text-sm md:text-base text-text-secondary mt-6 leading-relaxed max-w-2xl mx-auto">
+        {cobaEscalationData.body}
+      </p>
+
+      <div class="mt-8">
+        <a
+          href={cobaEscalationData.cta.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-thunk inline-flex items-center justify-center bg-accent text-white font-dmsans font-bold text-sm h-12 px-8 rounded-full shadow-indie hover:bg-accent-hover"
+        >
+          {cobaEscalationData.cta.label}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

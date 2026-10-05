@@ -1,0 +1,63 @@
+---
+import { homeZoningData } from './HomeZoning.data.js';
+import { Headphones, Users, ShieldCheck } from 'lucide-astro';
+
+const icons = {
+  Headphones,
+  Users,
+  ShieldCheck
+};
+---
+
+<section class="py-20 md:py-24 bg-bg-base border-b border-border-indie">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="max-w-3xl">
+      <h2 class="font-caveat text-3xl md:text-5xl font-bold text-text-primary leading-tight">
+        {homeZoningData.headline}
+      </h2>
+      <p class="font-dmsans text-sm md:text-base text-text-secondary mt-4 leading-relaxed">
+        {homeZoningData.description}
+      </p>
+    </div>
+
+    <div class="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      <div class="lg:col-span-7 space-y-6">
+        {homeZoningData.zones.map((zone, index) => {
+          const IconComponent = icons[zone.icon as keyof typeof icons] || Users;
+          return (
+            <div class="bg-bg-surface p-6 rounded-blob border-[1.5px] border-border-indie shadow-indie card-thunk">
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-full bg-accent/10 text-accent flex items-center justify-center shrink-0 mt-1">
+                  <IconComponent class="w-5 h-5 text-accent" />
+                </div>
+                <div>
+                  <h3 class="font-dmsans text-lg font-bold text-text-primary">
+                    {zone.title}
+                  </h3>
+                  <p class="font-dmsans text-sm text-text-secondary mt-2 leading-relaxed">
+                    {zone.description}
+                  </p>
+                  <p class="font-dmsans text-xs text-accent font-semibold mt-3 flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+                    {zone.details}
+                  </p>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <div class="lg:col-span-5">
+        <div class="rotate-[-2deg] border-[1.5px] border-border-indie bg-white p-3 shadow-indie rounded-blob">
+          <img
+            src={homeZoningData.image}
+            alt={homeZoningData.imageAlt}
+            class="w-full aspect-4/3 md:aspect-square object-cover rounded-blob"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

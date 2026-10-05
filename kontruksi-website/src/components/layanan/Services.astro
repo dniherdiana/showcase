@@ -1,0 +1,165 @@
+---
+import { Building2, Ruler, Wrench, ArrowRight, HardHat, CheckCircle2, Clock, ShieldCheck, Layers } from 'lucide-astro';
+import { layananContent } from '../../data/layanan.js';
+
+const iconMap: Record<string, any> = {
+  Building2,
+  Layers,
+  Ruler,
+  Wrench
+};
+---
+
+<section id="layanan" class="py-24 lg:py-32 bg-theme-bg border-b border-theme-border">
+  <div class="editorial-container">
+    
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+      <div class="max-w-2xl space-y-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-sm bg-theme-surface border border-theme-border text-theme-accent text-xs font-semibold tracking-wider">
+          <HardHat class="w-4 h-4" />
+          <span>Spesialisasi Utama Klien</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif text-theme-primary font-normal leading-tight">
+          Layanan Konstruksi & Arsitektur Pabrik
+        </h2>
+        <p class="text-theme-secondary text-base leading-relaxed">
+          Pilih kategori spesialisasi di bawah untuk melihat rincian spesifikasi fisik, estimasi durasi pengerjaan, dan jaminan purna jual yang Anda dapatkan.
+        </p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0" id="service-tabs">
+        <button data-filter="all" class="service-tab-btn active px-4 py-2 rounded-sm bg-theme-accent text-theme-bg font-bold text-xs sm:text-sm transition-all whitespace-nowrap">
+          Semua Layanan
+        </button>
+        <button data-filter="manufaktur" class="service-tab-btn px-4 py-2 rounded-sm bg-theme-surface text-theme-secondary hover:text-theme-primary font-medium text-xs sm:text-sm border border-theme-border transition-all whitespace-nowrap">
+          Pabrik Manufaktur
+        </button>
+        <button data-filter="logistik" class="service-tab-btn px-4 py-2 rounded-sm bg-theme-surface text-theme-secondary hover:text-theme-primary font-medium text-xs sm:text-sm border border-theme-border transition-all whitespace-nowrap">
+          Gudang Logistik
+        </button>
+        <button data-filter="workshop" class="service-tab-btn px-4 py-2 rounded-sm bg-theme-surface text-theme-secondary hover:text-theme-primary font-medium text-xs sm:text-sm border border-theme-border transition-all whitespace-nowrap">
+          Hanggar & Workshop
+        </button>
+      </div>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8" id="services-grid">
+      {layananContent.servicesList.map(service => {
+        const IconComponent = iconMap[service.iconName] || Building2;
+        return (
+          <article 
+            data-category={service.id} 
+            class="service-card-item surface-card surface-card-hover p-6 sm:p-8 rounded-sm flex flex-col justify-between group border-theme-border"
+          >
+            <div class="space-y-5">
+              
+              <!-- Card Top Header (Proportional Icon, Badges & Title) -->
+              <div class="space-y-4 border-b border-theme-border pb-5">
+                
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <div class="flex items-center gap-2.5">
+                    <div class="w-10 h-10 rounded-sm bg-theme-accent-bg border border-theme-accent/30 text-theme-accent flex items-center justify-center shrink-0">
+                      <IconComponent class="w-5 h-5" />
+                    </div>
+                    <span class="text-[11px] font-semibold uppercase tracking-wider text-theme-accent bg-theme-accent-bg px-2.5 py-1 rounded-sm border border-theme-accent/30">
+                      {service.category}
+                    </span>
+                  </div>
+
+                  <div class="flex items-center gap-2 text-[11px] font-semibold">
+                    <span class="px-2 py-0.5 rounded-sm bg-theme-bg border border-theme-border text-theme-secondary flex items-center gap-1">
+                      <Clock class="w-3 h-3 text-theme-accent" />
+                      <span>{service.timeline}</span>
+                    </span>
+                    <span class="px-2 py-0.5 rounded-sm bg-theme-success-bg border border-theme-success/30 text-theme-success flex items-center gap-1">
+                      <ShieldCheck class="w-3 h-3" />
+                      <span>{service.guarantee}</span>
+                    </span>
+                  </div>
+                </div>
+
+                <h3 class="text-xl sm:text-2xl font-serif text-theme-primary font-normal leading-snug group-hover:text-theme-accent transition-colors">
+                  {service.title}
+                </h3>
+              </div>
+
+              <!-- Description -->
+              <p class="text-theme-secondary text-sm leading-relaxed">
+                {service.description}
+              </p>
+
+              <!-- Deliverables Checklist -->
+              <div class="p-4 rounded-sm bg-theme-bg border border-theme-border space-y-2.5">
+                <div class="text-[11px] font-semibold text-theme-primary uppercase tracking-wider">Cakupan Hasil Pengerjaan:</div>
+                <ul class="space-y-2 text-xs text-theme-secondary">
+                  {service.deliverables.map(item => (
+                    <li class="flex items-start gap-2">
+                      <CheckCircle2 class="w-3.5 h-3.5 text-theme-success shrink-0 mt-0.5" />
+                      <span class="text-theme-primary font-medium">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <!-- Tags -->
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                {service.tags.map(tag => (
+                  <span class="text-[11px] font-medium px-2 py-0.5 rounded-sm bg-theme-surface text-theme-secondary border border-theme-border">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+            </div>
+
+            <!-- Card Footer CTA (On mobile: Button on top full-width, Guarantee text UNDER button. On desktop: side-by-side) -->
+            <div class="pt-5 mt-6 border-t border-theme-border flex flex-col sm:flex-row-reverse sm:items-center sm:justify-between gap-3">
+              <a 
+                href={`https://wa.me/6281234567890?text=Halo%20Moving%20Co.,%20saya%20tertarik%20dengan%20layanan%20${encodeURIComponent(service.title)}`}
+                target="_blank"
+                class="btn-primary py-2.5 px-4 text-xs font-bold whitespace-nowrap shrink-0 inline-flex items-center justify-center sm:justify-start gap-1.5 w-full sm:w-auto"
+              >
+                <span>Konsultasi Layanan</span>
+                <ArrowRight class="w-3.5 h-3.5" />
+              </a>
+
+              <span class="text-xs text-theme-secondary text-center sm:text-left block sm:inline">
+                Garansi Maintenance 12 Bulan
+              </span>
+            </div>
+
+          </article>
+        );
+      })}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const serviceTabs = document.querySelectorAll('#service-tabs .service-tab-btn');
+  const serviceItems = document.querySelectorAll('#services-grid .service-card-item');
+
+  serviceTabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter');
+
+      serviceTabs.forEach(b => {
+        b.className = 'service-tab-btn px-4 py-2 rounded-sm bg-theme-surface text-theme-secondary hover:text-theme-primary font-medium text-xs sm:text-sm border border-theme-border transition-all whitespace-nowrap';
+      });
+      btn.className = 'service-tab-btn active px-4 py-2 rounded-sm bg-theme-accent text-theme-bg font-bold text-xs sm:text-sm transition-all whitespace-nowrap';
+
+      serviceItems.forEach(item => {
+        const cat = item.getAttribute('data-category');
+        if (filter === 'all' || cat === filter) {
+          (item as HTMLElement).style.display = 'flex';
+        } else {
+          (item as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

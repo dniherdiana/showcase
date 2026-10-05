@@ -1,0 +1,111 @@
+---
+import { Image } from 'astro:assets';
+import { homeData } from '../../data/home.data.js';
+
+import umaSawahImg from '../../images/uma-sawah-bali.jpg';
+import rosterRoastImg from '../../images/roster-roast-dago.jpg';
+import sonderImg from '../../images/sonder-senopati.jpg';
+import studioKolaboraImg from '../../images/studio-kolabora.jpg';
+
+const imageMap: Record<string, ImageMetadata> = {
+  umaSawah: umaSawahImg,
+  rosterRoast: rosterRoastImg,
+  sonderAtelier: sonderImg,
+  studioKolabora: studioKolaboraImg,
+};
+
+const { featuredProjects } = homeData;
+---
+
+<section class="w-full py-16 lg:py-24 bg-surface-panel/50 border-t border-border-sketch">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header: Single H2 without eyebrow -->
+    <div class="max-w-3xl mb-12 lg:mb-16">
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink-primary leading-tight">
+        {featuredProjects.headline}
+      </h2>
+      <p class="mt-4 text-base sm:text-lg text-ink-muted leading-relaxed">
+        {featuredProjects.subhead}
+      </p>
+    </div>
+
+    <!-- Asymmetric Scrapbook Project Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+      {featuredProjects.projects.map((project) => {
+        const photo = imageMap[project.imageKey];
+        return (
+          <div class:list={[
+            'group bg-surface-card sketch-border p-4 sm:p-5 shadow-sketch hover:shadow-floating transition-all duration-300 flex flex-col justify-between',
+            project.rotation
+          ]}>
+            <!-- Photo Showcase (Real estate > 60%) -->
+            <div class="relative overflow-hidden rounded-sm aspect-[16/10] mb-4 bg-surface-panel">
+              {photo && (
+                <Image
+                  src={photo}
+                  alt={`${project.name} - ${project.type} di ${project.location}`}
+                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              )}
+              <div class="absolute top-3 left-3 bg-surface-ground/90 backdrop-blur-xs px-2.5 py-1 rounded-full font-mono text-[11px] font-semibold text-ink-primary border border-border-sketch">
+                {project.location}
+              </div>
+              <div class="absolute top-3 right-3 bg-brand-accent text-white px-2.5 py-1 rounded-full font-mono text-[11px] font-bold">
+                {project.type}
+              </div>
+            </div>
+
+            <!-- Content & Key Facts -->
+            <div class="space-y-3 flex-1 flex flex-col justify-between">
+              <div>
+                <h3 class="font-display text-2xl font-bold text-ink-primary group-hover:text-brand-accent transition-colors">
+                  {project.name}
+                </h3>
+
+                <!-- Project Quick Stats Strip -->
+                <div class="grid grid-cols-3 gap-2 py-2 my-2 border-y border-border-sketch text-xs font-mono">
+                  <div>
+                    <span class="text-ink-muted block text-[10px]">LUAS</span>
+                    <span class="font-semibold text-ink-primary">{project.area}</span>
+                  </div>
+                  <div>
+                    <span class="text-ink-muted block text-[10px]">NILAI FISIK</span>
+                    <span class="font-semibold text-ink-primary">{project.budget}</span>
+                  </div>
+                  <div>
+                    <span class="text-ink-muted block text-[10px]">DEVIASI RAB</span>
+                    <span class="font-bold text-brand-accent">{project.technicalResult.match(/Deviasi RAB akhir [\d.]+%/) ? project.technicalResult.match(/Deviasi RAB akhir [\d.]+%/)![0].replace('Deviasi RAB akhir ', '') : '< 5%'}</span>
+                  </div>
+                </div>
+
+                <p class="text-xs text-ink-muted leading-relaxed line-clamp-3">
+                  {project.technicalResult}
+                </p>
+              </div>
+
+              <div class="pt-3 flex items-center justify-between text-xs font-mono text-ink-muted border-t border-border-sketch">
+                <span>{project.duration}</span>
+                <a
+                  href="/portofolio"
+                  class="text-brand-accent font-semibold hover:underline flex items-center gap-1"
+                >
+                  Bedah Studi Kasus &rarr;
+                </a>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- Section CTA -->
+    <div class="mt-12 text-center">
+      <a
+        href="/portofolio"
+        class="inline-flex items-center justify-center px-8 py-3.5 text-sm font-semibold tracking-wide text-ink-primary border-1.5 border-ink-primary hover:bg-surface-panel rounded-control transition-colors"
+      >
+        Telusuri Seluruh 42 Studi Kasus Komersial &rarr;
+      </a>
+    </div>
+  </div>
+</section>

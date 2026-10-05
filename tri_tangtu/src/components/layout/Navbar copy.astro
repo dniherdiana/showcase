@@ -1,0 +1,92 @@
+---
+const { currentLang, t } = Astro.props;
+
+const links = [
+	{ name: t.navbar.home, href: "/" },
+	{ name: t.navbar.philosophy, href: "/philosophy" },
+	{ name: t.navbar.inTheWorld, href: "/inTheWorld" },
+	{ name: t.navbar.about, href: "/about" },
+];
+
+// Toggle language dengan dynamic route
+const getToggleHref = () => {
+	const currentPath = Astro.url.pathname;
+
+	// Hapus /id atau /en dari path
+	let pathWithoutLang = currentPath.replace(/^\/(id|en)/, "");
+	if (pathWithoutLang === "") pathWithoutLang = "/";
+
+	if (currentLang === "id") {
+		return `/en${pathWithoutLang}`;
+	} else {
+		return `/id${pathWithoutLang}`;
+	}
+};
+
+// Buat href untuk navbar links
+
+const getLinkHref = (href: string) => {
+	if (href === "/") {
+		return currentLang === "en" ? "/en" : "/id";
+	}
+	return currentLang === "en" ? `/en${href}` : `/id${href}`;
+};
+
+const baseUrl = currentLang === "en" ? "/en" : "/id";
+---
+
+<nav
+	class="bg-bg flex h-16 w-full items-center justify-between px-5 lg:px-15 md:py-5"
+>
+	<a href={`${baseUrl}/`} class="text-heading text-2xl">
+		<span> Tritangtu</span></a
+	>
+
+	<div class="flex items-center gap-6">
+		<input
+			type="checkbox"
+			id="menu-toggle"
+			aria-label="Toggle navigation menu"
+			class="peer sr-only"
+		/>
+		<label
+			for="menu-toggle"
+			class="z-1000 flex cursor-pointer flex-col gap-1.5 md:hidden"
+		>
+			<span class="sr-only">Toggle menu</span>
+			<span
+				class="h-0.5 w-5 bg-heading transition-all duration-300 peer-checked:translate-y-2 peer-checked:rotate-45"
+			></span>
+			<span
+				class="h-0.5 w-5 bg-heading transition-all duration-300 peer-checked:opacity-0"
+			></span>
+			<span
+				class="h-0.5 w-5 bg-heading transition-all duration-300 peer-checked:-translate-y-2 peer-checked:-rotate-45"
+			></span>
+		</label>
+
+		<ul
+			class="fixed inset-0 flex -translate-y-full flex-col items-center justify-center gap-4 bg-bg transition-transform duration-500 peer-checked:translate-y-0 md:static md:flex md:translate-y-0 md:flex-row md:bg-transparent"
+		>
+			{
+				links.map((link) => (
+					<li>
+						<a
+							href={getLinkHref(link.href)}
+							class="text-text text-lg font-bold transition-colors hover:opacity-60 md:text-sm md:tracking-widest md:uppercase"
+						>
+							{link.name}
+						</a>
+					</li>
+				))
+			}
+		</ul>
+
+		<a
+			href={getToggleHref()}
+			class="relative z-1000 text-text bg-sky px-2 rounded-2xl font-bold no-underline hover:opacity-80 transition-opacity"
+		>
+			{currentLang === "id" ? "🇬🇧 EN" : "🇮🇩 ID"}
+		</a>
+	</div>
+</nav>

@@ -1,0 +1,149 @@
+<section class="py-24 bg-obsidian border-t border-white/10">
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+		<!-- Heading Rata Kiri dengan Nomor Section Visual -->
+		<div
+			class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8"
+		>
+			<div>
+				<span
+					class="font-mono text-xs text-bronze font-bold tracking-widest uppercase block mb-2"
+					>02 / PORTFOLIO HIGHLIGHTS</span
+				>
+				<h2 class="font-syne text-3xl sm:text-5xl font-bold text-concrete">
+					<span class="lang-id">Karya Arsitektur Terpilih</span>
+					<span class="lang-en">Featured Architectural Work</span>
+				</h2>
+			</div>
+			<p class="text-xs text-concrete-dark/70 font-mono max-w-xs">
+				Setiap karya lahir dari analisis mendalam karakter tapak, kebutuhan
+				bisnis, dan estetika bangunan bernilai seni tinggi.
+			</p>
+		</div>
+
+		<!-- Asymmetrical Overlapping Showcase Cards -->
+		<div class="space-y-20">
+			<!-- Showcase Item 1: Residential Large Focus -->
+			<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group">
+				<div
+					class="lg:col-span-7 img-hover-zoom relative border border-white/10 aspect-[16/10]"
+				>
+					<img
+						src={proj1Img}
+						alt="The Monolith Tropical Residence"
+						class="w-full h-full object-cover"
+					/>
+					<div
+						class="absolute top-4 left-4 bg-obsidian/90 backdrop-blur-md px-3 py-1.5 text-[10px] font-bold text-bronze uppercase tracking-widest border border-bronze/30"
+					>
+						Residential Modern & Tropical
+					</div>
+				</div>
+				<div
+					class="lg:col-span-5 space-y-6 lg:-ml-12 lg:z-10 bg-surface/95 backdrop-blur-xl border border-white/15 p-8 lg:p-10 shadow-2xl"
+				>
+					<div class="text-xs font-mono text-bronze uppercase tracking-wider">
+						Bandung, West Java &bull; 2024
+					</div>
+					<h3
+						class="font-syne text-2xl sm:text-3xl font-bold text-concrete group-hover:text-bronze transition-colors"
+					>
+						The Monolith Tropical Residence
+					</h3>
+					<p class="text-xs text-concrete-dark/80 leading-relaxed font-sans">
+						Hunian tropis seluas 550m² yang mengintegrasikan sirkulasi udara
+						mikro dan bukaan cahaya atrium tanpa mengorbankan privasi penghuni.
+					</p>
+
+					<div
+						class="grid grid-cols-2 gap-4 pt-4 border-t border-white/10 text-xs font-mono"
+					>
+						<div>
+							<span class="block text-subtle text-[10px] uppercase"
+								>Lingkup Kerja</span
+							>
+							<span class="text-concrete font-semibold">Design & Build</span>
+						</div>
+						<div>
+							<span class="block text-subtle text-[10px] uppercase"
+								>Hasil Utama</span
+							>
+							<span class="text-bronze font-semibold">Efisiensi Energi 40%</span
+							>
+						</div>
+					</div>
+
+					<a
+						href="/portfolio"
+						class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-bronze hover:text-bronze-light pt-2"
+					>
+						<span class="lang-id">Baca Case Study Lengkap &rarr;</span>
+						<span class="lang-en">Read Full Case Study &rarr;</span>
+					</a>
+				</div>
+			</div>
+
+			<!-- Showcase Item 2: Commercial Cafe Focus (Reversed Layout) -->
+			<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center group">
+				<div
+					class="lg:col-span-5 space-y-6 lg:-mr-12 lg:z-10 bg-surface/95 backdrop-blur-xl border border-white/15 p-8 lg:p-10 shadow-2xl order-2 lg:order-1"
+				>
+					<div class="text-xs font-mono text-bronze uppercase tracking-wider">
+						Ubud, Bali &bull; 2023
+					</div>
+					<h3
+						class="font-syne text-2xl sm:text-3xl font-bold text-concrete group-hover:text-bronze transition-colors"
+					>
+						Botanika Specialty Cafe Pavilion
+					</h3>
+					<p class="text-xs text-concrete-dark/80 leading-relaxed font-sans">
+						Desain tempat ngopi berkonsep komersial yang dirancang khusus untuk
+						memperpanjang durasi berkunjung pelanggan dan memaksimalkan sudut
+						visual fotogenik.
+					</p>
+
+					<div
+						class="grid grid-cols-2 gap-4 pt-4 border-t border-white/10 text-xs font-mono"
+					>
+						<div>
+							<span class="block text-subtle text-[10px] uppercase"
+								>Kategori</span
+							>
+							<span class="text-concrete font-semibold">Cafe Experience</span>
+						</div>
+						<div>
+							<span class="block text-subtle text-[10px] uppercase"
+								>Dampak Bisnis</span
+							>
+							<span class="text-bronze font-semibold"
+								>+220% Visitor Traffic</span
+							>
+						</div>
+					</div>
+
+					<a
+						href="/portfolio"
+						class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-bronze hover:text-bronze-light pt-2"
+					>
+						<span class="lang-id">Lihat Detail Story &rarr;</span>
+						<span class="lang-en">View Project Details &rarr;</span>
+					</a>
+				</div>
+
+				<div
+					class="lg:col-span-7 img-hover-zoom relative border border-white/10 aspect-[16/10] order-1 lg:order-2"
+				>
+					<img
+						src={proj2Img}
+						alt="Botanika Specialty Cafe Pavilion"
+						class="w-full h-full object-cover"
+					/>
+					<div
+						class="absolute top-4 right-4 bg-obsidian/90 backdrop-blur-md px-3 py-1.5 text-[10px] font-bold text-bronze uppercase tracking-widest border border-bronze/30"
+					>
+						Commercial Cafe Design
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

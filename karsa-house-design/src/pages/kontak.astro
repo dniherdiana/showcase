@@ -1,0 +1,31 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeroKontak from '../components/kontak/HeroKontak.astro';
+import BriefingForm from '../components/kontak/BriefingForm.svelte';
+import StudioList from '../components/kontak/StudioList.astro';
+import { kontakData } from '../data/kontak.data.js';
+import { siteIdentity } from '../data/site.data.js';
+
+const title = `Kontak & Kelayakan Lahan | ${siteIdentity.brandName}`;
+const description = 'Kirimkan briefing teknis ruang usaha komersial Anda untuk ditinjau oleh Lead Architect dalam 1 x 24 jam kerja.';
+---
+
+<Layout title={title} description={description} currentPath="/kontak">
+  <HeroKontak />
+
+  <section class="w-full py-16 lg:py-24 bg-surface-ground">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <!-- Form Column (Col 1-7) -->
+        <div class="lg:col-span-7">
+          <BriefingForm client:visible formConfig={kontakData.form} />
+        </div>
+
+        <!-- Studio Hubs Column (Col 8-12) -->
+        <div class="lg:col-span-5">
+          <StudioList />
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

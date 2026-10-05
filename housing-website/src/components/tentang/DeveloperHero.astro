@@ -1,0 +1,182 @@
+---
+import { Image } from "astro:assets";
+import park from "@assets/images/park.jpg";
+import { developerHeroContent } from "../../data/tentang/developerHero.js";
+---
+
+<section
+	class="relative pt-36 pb-28 bg-canvas-default overflow-hidden border-b border-slate-800/80"
+>
+	<div
+		class="absolute inset-0 bg-[linear-gradient(to_right,color-mix(in_srgb,var(--color-canvas-elevated)_8%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_srgb,var(--color-canvas-elevated)_8%,transparent)_1px,transparent_1px)] bg-size-[4rem_4rem] pointer-events-none"
+	>
+	</div>
+
+	<div
+		class="absolute top-20 left-1/2 -translate-x-1/2 w-175 h-100 bg-linear-to-tr from-amber-500/10 via-amber-600/5 to-transparent rounded-full blur-3xl pointer-events-none"
+	>
+	</div>
+
+	<div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10 space-y-16">
+		<div
+			class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-stretch"
+		>
+			<div
+				class="lg:col-span-7 flex flex-col justify-between space-y-8 hero-rv-about"
+			>
+				<div class="space-y-6">
+					<div
+						class="flex items-center gap-3 text-xs font-mono text-amber-400/90 tracking-widest uppercase"
+					>
+						<span class="border h-3 border-l bg-amber-400 justify-center"
+						></span>
+						<span>{developerHeroContent.eyebrow}</span>
+						<span class="w-8 h-px bg-amber-400/50"></span>
+						<span>{developerHeroContent.est}</span>
+					</div>
+
+					<h1
+						class="font-serif text-4xl sm:text-5xl lg:text-6xl text-slate-50 font-normal tracking-tight leading-[1.12]"
+					>
+						{developerHeroContent.headline}
+					</h1>
+
+					<p
+						class="text-slate-300 text-base sm:text-lg leading-relaxed font-normal"
+					>
+						{developerHeroContent.subtext}
+					</p>
+
+					<div class="pt-4 space-y-4">
+						<div
+							class="flex flex-wrap items-center gap-2 border-b border-slate-800 pb-3"
+							role="tablist"
+							aria-label="Sorotan Proyek"
+						>
+							{
+								developerHeroContent.tabs.map((tab, i) => (
+									<button
+										type="button"
+										id={`hero-tab-${tab.id}`}
+										role="tab"
+										aria-selected={i === 0 ? "true" : "false"}
+										aria-controls={`hero-panel-${tab.id}`}
+										data-hero-tab={tab.id}
+										class={`hero-tab-btn px-4 py-2 text-xs font-mono rounded-sm border transition-all min-h-11 ${i === 0 ? "border-amber-400/80 bg-amber-500/10 text-amber-300 font-semibold" : "border-slate-800 bg-slate-900/60 text-slate-400 hover:text-slate-200"}`}
+									>
+										{tab.label}
+									</button>
+								))
+							}
+						</div>
+
+						<div class="relative min-h-25 pt-2">
+							{
+								developerHeroContent.tabs.map((tab, i) => (
+									<div
+										id={`hero-panel-${tab.id}`}
+										role="tabpanel"
+										aria-labelledby={`hero-tab-${tab.id}`}
+										class={`hero-panel ${i === 0 ? "block" : "hidden"} text-xs text-slate-300 leading-relaxed space-y-2`}
+									>
+										<p class="text-slate-200 font-medium">{tab.content}</p>
+										<p class="text-slate-400">{tab.subtext}</p>
+									</div>
+								))
+							}
+						</div>
+					</div>
+				</div>
+
+				<div
+					class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-8 border-t border-slate-800/80"
+				>
+					{
+						developerHeroContent.metrics.map((m) => (
+							<div class="space-y-1">
+								<span class="block font-serif text-2xl text-amber-300">
+									{m.value}
+								</span>
+								<span class="text-xs text-slate-400 font-normal">
+									{m.label}
+								</span>
+							</div>
+						))
+					}
+				</div>
+			</div>
+
+			<div class="lg:col-span-5 relative flex flex-col justify-end hero-rv-about-img">
+				<div
+					class="relative rounded-sm overflow-hidden border border-slate-800 bg-slate-950 shadow-2xl group h-115"
+				>
+					<div class="w-full h-full">
+						<Image
+							src={park}
+							alt="Lanskap Kawasan Tropis Grand Samudra"
+							widths={[480, 768, 960]}
+							sizes="(min-width:1024px) 42vw, 100vw"
+							format="webp"
+							quality={45}
+							loading="eager"
+							fetchpriority="high"
+							decoding="async"
+							class="w-full h-full object-cover brightness-95 transition-transform duration-700 group-hover:scale-105"
+						/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		const tabs = document.querySelectorAll(".hero-tab-btn");
+		const panels = document.querySelectorAll(".hero-panel");
+
+		tabs.forEach((tab) => {
+			tab.addEventListener("click", () => {
+				const target = tab.getAttribute("data-hero-tab");
+
+				tabs.forEach((t) => {
+					t.classList.remove(
+						"border-amber-400/80",
+						"bg-amber-500/10",
+						"text-amber-300",
+						"font-semibold",
+					);
+					t.classList.add(
+						"border-slate-800",
+						"bg-slate-900/60",
+						"text-slate-400",
+					);
+					t.setAttribute("aria-selected", "false");
+				});
+
+				tab.classList.remove(
+					"border-slate-800",
+					"bg-slate-900/60",
+					"text-slate-400",
+				);
+				tab.classList.add(
+					"border-amber-400/80",
+					"bg-amber-500/10",
+					"text-amber-300",
+					"font-semibold",
+				);
+				tab.setAttribute("aria-selected", "true");
+
+				panels.forEach((p) => {
+					if (p.id === "hero-panel-" + target) {
+						p.classList.remove("hidden");
+						p.classList.add("block");
+					} else {
+						p.classList.remove("block");
+						p.classList.add("hidden");
+					}
+				});
+			});
+		});
+	});
+</script>

@@ -1,0 +1,98 @@
+---
+import { siteIdentity } from '../../data/site.data.js';
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '/' } = Astro.props;
+---
+
+<header class="sticky top-0 z-50 w-full bg-surface-ground/95 backdrop-blur-md border-b border-border-sketch transition-colors">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <!-- Brand Logo -->
+    <a href="/" class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-brand-accent rounded-lg p-1">
+      <div class="w-9 h-9 rounded-full bg-brand-accent text-surface-ground flex items-center justify-center font-display text-xl font-bold transition-transform group-hover:scale-105 shadow-sm">
+        K
+      </div>
+      <div class="flex flex-col">
+        <span class="font-display text-2xl font-bold tracking-tight text-ink-primary group-hover:text-brand-accent transition-colors leading-none">
+          {siteIdentity.brandName}
+        </span>
+        <span class="font-mono text-[10px] tracking-wider text-ink-muted uppercase">
+          Studio Arsitektur Presisi
+        </span>
+      </div>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <nav class="hidden md:flex items-center gap-1 lg:gap-2" aria-label="Navigasi Utama">
+      {siteIdentity.navLinks.map((link) => {
+        const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
+        return (
+          <a
+            href={link.href}
+            class:list={[
+              'px-3.5 py-1.5 text-sm font-medium transition-all rounded-full',
+              isActive
+                ? 'text-brand-accent bg-surface-panel font-semibold shadow-xs'
+                : 'text-ink-muted hover:text-ink-primary hover:bg-surface-panel/50'
+            ]}
+            aria-current={isActive ? 'page' : undefined}
+          >
+            {link.label}
+          </a>
+        );
+      })}
+    </nav>
+
+    <!-- Header Actions (Zero-JS Pure CSS Mobile Menu Trigger + CTA) -->
+    <div class="flex items-center gap-3">
+      <a
+        href={siteIdentity.primaryCta.href}
+        class="hidden sm:inline-flex items-center justify-center px-4 py-2 text-xs font-semibold uppercase tracking-wider text-white bg-brand-accent hover:bg-brand-accent-hover rounded-control transition-all shadow-sm hover:shadow-md active:scale-95"
+      >
+        {siteIdentity.primaryCta.label}
+      </a>
+
+      <!-- Mobile Menu Toggle (Pure CSS Checkbox Hack) -->
+      <div class="md:hidden relative">
+        <input type="checkbox" id="mobile-menu-toggle" class="peer sr-only" aria-label="Buka Menu" />
+        <label
+          for="mobile-menu-toggle"
+          class="flex flex-col justify-center items-center w-9 h-9 rounded-lg border border-border-sketch bg-surface-panel text-ink-primary cursor-pointer hover:bg-surface-ground transition-colors"
+          title="Buka Navigasi"
+        >
+          <span class="w-4 h-0.5 bg-ink-primary mb-1 transition-transform"></span>
+          <span class="w-4 h-0.5 bg-ink-primary mb-1 transition-opacity"></span>
+          <span class="w-4 h-0.5 bg-ink-primary transition-transform"></span>
+        </label>
+
+        <!-- Mobile Drawer -->
+        <div class="fixed inset-x-4 top-20 bg-surface-card border border-border-sketch rounded-2xl p-6 shadow-floating hidden peer-checked:flex flex-col gap-4 z-50 transition-all">
+          <nav class="flex flex-col gap-2" aria-label="Navigasi Mobile">
+            {siteIdentity.navLinks.map((link) => (
+              <a
+                href={link.href}
+                class="px-4 py-2.5 text-base font-medium text-ink-primary hover:text-brand-accent hover:bg-surface-panel rounded-xl transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+          <div class="pt-3 border-t border-border-sketch flex flex-col gap-2">
+            <a
+              href="/kontak"
+              class="w-full text-center py-3 text-sm font-semibold text-white bg-brand-accent hover:bg-brand-accent-hover rounded-control transition-colors"
+            >
+              Jadwalkan Konsultasi Denah
+            </a>
+            <p class="text-[11px] text-center text-ink-muted">
+              Studio Bandung, Jakarta, Bali
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>

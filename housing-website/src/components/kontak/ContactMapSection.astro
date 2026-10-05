@@ -1,0 +1,313 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import toll from "@assets/images/toll.jpg";
+import train from "@assets/images/train.jpg";
+import campus from "@assets/images/campus.jpg";
+import hospital from "@assets/images/hospital.jpg";
+import { contactMapContent } from "../../data/kontak/contactMapSection.js";
+
+const transitImages: Record<string, ImageMetadata> = {
+	toll,
+	train,
+	campus,
+	hospital,
+};
+---
+
+<section
+	id="location-map"
+	class="py-24 bg-canvas-default relative border-b border-slate-900 overflow-hidden"
+>
+	<div class="max-w-7xl mx-auto px-6 lg:px-12 space-y-16">
+		<div
+			data-reveal="fade"
+			class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-slate-800 pb-8"
+		>
+			<div>
+				<span
+					class="text-xs font-mono text-amber-300 uppercase tracking-widest block"
+				>
+					<span class="border h-3 border-l bg-amber-400 justify-center mr-2"
+					></span>
+					{contactMapContent.tag}
+				</span>
+				<h2
+					class="font-serif text-3xl sm:text-4xl text-slate-100 font-normal mt-1"
+				>
+					{contactMapContent.headline}
+				</h2>
+			</div>
+			<p class="text-xs text-slate-400 max-w-sm">{contactMapContent.subtext}</p>
+		</div>
+
+		<div
+			data-reveal="clip"
+			class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start lg:items-stretch"
+		>
+			<div
+				id="desktop-photo-wrapper"
+				class="lg:col-span-7 bg-canvas-raised border-2 border-slate-800 rounded-sm overflow-hidden shadow-2xl relative flex-col justify-between h-90 sm:h-110 lg:h-auto cursor-pointer group hidden lg:flex"
+			>
+				<div class="relative flex-1 bg-slate-950 overflow-hidden">
+					<Image
+						id="main-transit-img"
+						src={toll}
+						data-default-src={toll.src}
+						alt="Visual Gerbang Akses Tol Buah Batu"
+						loading="lazy"
+						format="webp"
+						quality={80}
+						class="w-full h-full object-cover filter brightness-90 contrast-105 transition-all duration-300 group-hover:scale-105"
+					/>
+					<div
+						class="absolute top-3 left-3 right-3 lg:right-auto z-10 px-3 sm:px-3.5 py-1.5 bg-canvas-default/90 border border-amber-400/40 rounded-sm max-w-[calc(100%-1.5rem)] lg:max-w-max"
+					>
+						<span
+							id="active-transit-label"
+							class="text-[10px] sm:text-xs font-mono text-amber-300 font-semibold uppercase tracking-tight sm:tracking-normal block leading-snug sm:leading-normal wrap-break-words"
+						>
+							{contactMapContent.transitCards[0].actionLabel}
+						</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="lg:col-span-5 space-y-3">
+				{
+					contactMapContent.transitCards.map((card, i) => (
+						<button
+							type="button"
+							data-reveal
+							data-transit-type={card.id}
+							data-img-src={transitImages[card.image]?.src}
+							data-img-label={card.actionLabel}
+							class={`transit-card w-full text-left p-4 bg-canvas-raised border-2 rounded-sm space-y-2 hover:border-amber-300 transition-all cursor-pointer focus:outline-none ${i === 0 ? "border-amber-400/80 opacity-100" : "border-slate-800 opacity-70 hover:border-slate-700"}`}
+						>
+							<div class="flex items-center gap-4">
+								<div class="w-16 h-14 sm:h-16 rounded overflow-hidden border border-slate-700 shrink-0 relative bg-slate-950">
+									<Image
+										src={transitImages[card.image]}
+										alt={card.title}
+										loading="lazy"
+										format="webp"
+										quality={80}
+										class="w-full h-full object-cover"
+									/>
+								</div>
+								<div class="flex-1 min-w-0 space-y-1">
+									<div class="flex items-center justify-between text-xs font-mono">
+										<span class="text-amber-300 font-semibold">
+											{card.label}
+										</span>
+										<span
+											class={`badge-pill px-2 py-0.5 rounded border text-xs ${i === 0 ? "text-amber-400 bg-amber-400/10 border-amber-400/30" : "text-slate-300 bg-slate-800 border-slate-700"}`}
+										>
+											{card.badge}
+										</span>
+									</div>
+									<h3 class="text-sm font-semibold text-slate-100">
+										{card.title}
+									</h3>
+									<div class="flex items-center gap-2 text-[11px] font-mono text-slate-400 pt-0.5">
+										<div class="flex-1 h-1.5 bg-slate-800 rounded-full overflow-hidden">
+											<div
+												class="h-full bg-amber-400 rounded-full"
+												style={`width: ${card.progress}%`}
+											/>
+										</div>
+										<span>{card.distance}</span>
+									</div>
+								</div>
+							</div>
+							<p class="text-xs text-slate-300 leading-relaxed font-normal">
+								{card.description}
+							</p>
+						</button>
+					))
+				}
+			</div>
+		</div>
+	</div>
+
+	<div
+		id="mobile-image-modal"
+		class="hidden fixed inset-0 z-100 bg-slate-950/80 p-4 sm:p-6 items-center justify-center animate-in fade-in duration-200"
+		role="dialog"
+		aria-modal="true"
+		aria-labelledby="mobile-modal-title"
+	>
+		<div
+			class="relative w-full max-w-lg bg-canvas-soft border-2 border-slate-700 rounded-lg p-5 sm:p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto"
+		>
+			<div
+				class="flex items-start justify-between gap-4 border-b border-slate-800 pb-3"
+			>
+				<div class="space-y-1">
+					<span
+						class="text-[11px] font-mono text-amber-300 uppercase tracking-wider block"
+						>PRATINJAU FOTO INFRASTRUKTUR</span
+					>
+					<h3
+						id="mobile-modal-title"
+						class="font-serif text-lg text-slate-100 font-medium"
+					>
+						Detail Akses Kawasan
+					</h3>
+				</div>
+				<button
+					type="button"
+					id="close-mobile-modal"
+					aria-label="Tutup Modal"
+					class="w-10 h-10 rounded-full bg-slate-800 hover:bg-amber-400 text-slate-100 hover:text-slate-950 border border-slate-600 text-xl font-bold flex items-center justify-center transition-colors cursor-pointer shrink-0 min-h-10"
+					>✕</button
+				>
+			</div>
+			<div
+				class="relative w-full h-52 sm:h-64 rounded overflow-hidden border border-slate-800 bg-slate-950"
+			>
+				<Image
+					id="mobile-modal-img"
+					src={toll}
+					alt="Pratinjau Foto Kawasan"
+					class="w-full h-full object-cover"
+				/>
+			</div>
+			<div class="p-3 bg-slate-950 rounded border border-slate-800">
+				<span
+					id="mobile-modal-label"
+					class="text-[11px] sm:text-xs font-mono text-amber-300 font-semibold block leading-snug warp-break-words"
+					>{contactMapContent.transitCards[0].actionLabel}</span
+				>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		const mainImg = document.getElementById(
+			"main-transit-img",
+		) as HTMLImageElement | null;
+		const labelDisplay = document.getElementById("active-transit-label");
+		const transitCards = document.querySelectorAll(".transit-card");
+		const desktopWrapper = document.getElementById("desktop-photo-wrapper");
+
+		const mobileModal = document.getElementById("mobile-image-modal");
+		const mobileModalImg = document.getElementById(
+			"mobile-modal-img",
+		) as HTMLImageElement | null;
+		const mobileModalLabel = document.getElementById("mobile-modal-label");
+		const closeMobileModal = document.getElementById("close-mobile-modal");
+
+		function openModal(imgSrc: string, imgLabel: string) {
+			if (mobileModal && mobileModalImg && mobileModalLabel) {
+				mobileModalImg.src = imgSrc;
+				mobileModalLabel.textContent = imgLabel;
+				mobileModal.classList.remove("hidden");
+				mobileModal.classList.add("flex");
+				document.body.style.overflow = "hidden";
+			}
+		}
+
+		function closeModal() {
+			if (mobileModal) {
+				mobileModal.classList.remove("flex");
+				mobileModal.classList.add("hidden");
+				document.body.style.overflow = "";
+			}
+		}
+
+		if (closeMobileModal) {
+			closeMobileModal.addEventListener("click", closeModal);
+		}
+
+		if (mobileModal) {
+			mobileModal.addEventListener("click", (e) => {
+				if (e.target === mobileModal) closeModal();
+			});
+		}
+
+		document.addEventListener("keydown", (e) => {
+			if (e.key === "Escape") closeModal();
+		});
+
+		function setActiveCard(card: Element, openMobile = false) {
+			const imgSrc = card.getAttribute("data-img-src");
+			const imgLabel = card.getAttribute("data-img-label");
+
+			if (
+				mainImg &&
+				imgSrc &&
+				mainImg.src !== window.location.origin + imgSrc
+			) {
+				mainImg.style.opacity = "0.4";
+				setTimeout(() => {
+					mainImg.src = imgSrc;
+					mainImg.style.opacity = "1";
+				}, 100);
+			}
+
+			if (labelDisplay && imgLabel) {
+				labelDisplay.textContent = imgLabel;
+			}
+
+			transitCards.forEach((c) => {
+				c.classList.remove("border-amber-400/80", "opacity-100");
+				c.classList.add("border-slate-800", "opacity-70");
+				const badge = c.querySelector(".badge-pill");
+				if (badge) {
+					badge.classList.remove(
+						"text-amber-400",
+						"bg-amber-400/10",
+						"border-amber-400/30",
+					);
+					badge.classList.add(
+						"text-slate-300",
+						"bg-slate-800",
+						"border-slate-700",
+					);
+				}
+			});
+
+			card.classList.remove("border-slate-800", "opacity-70");
+			card.classList.add("border-amber-400/80", "opacity-100");
+			const activeBadge = card.querySelector(".badge-pill");
+			if (activeBadge) {
+				activeBadge.classList.remove(
+					"text-slate-300",
+					"bg-slate-800",
+					"border-slate-700",
+				);
+				activeBadge.classList.add(
+					"text-amber-400",
+					"bg-amber-400/10",
+					"border-amber-400/30",
+				);
+			}
+
+			if (openMobile && window.innerWidth < 1024 && imgSrc && imgLabel) {
+				openModal(imgSrc, imgLabel);
+			}
+		}
+
+		if (desktopWrapper) {
+			desktopWrapper.addEventListener("click", () => {
+				const defaultSrc = mainImg?.getAttribute("data-default-src") || "";
+				const currentSrc = mainImg?.src || defaultSrc;
+				const currentLabel =
+					labelDisplay?.textContent || "FOTO KAWASAN TRANSIT";
+				if (window.innerWidth < 1024) {
+					openModal(currentSrc, currentLabel);
+				}
+			});
+		}
+
+		transitCards.forEach((card) => {
+			card.addEventListener("click", (e) => {
+				e.preventDefault();
+				setActiveCard(card, true);
+			});
+		});
+	});
+</script>

@@ -1,0 +1,28 @@
+---
+interface Props {
+	items?: string[];
+	class?: string;
+	slow?: boolean;
+	as?: 'div' | 'ul';
+}
+
+const { items = [], class: cls = '', slow = false, as = 'div' } = Astro.props as Props;
+const Tag = as as 'div' | 'ul';
+---
+
+<Tag class={`marquee overflow-hidden whitespace-nowrap select-none ${cls}`} aria-hidden="true">
+	<div class={`marquee-track ${slow ? 'marquee-track--slow' : ''}`}>
+		{
+			[0, 1].map(() => (
+				<div class="flex shrink-0 items-center">
+					{items.map((item: string) => (
+						<span class="flex items-center gap-3 px-6">
+							{item}
+							<span class="inline-block h-2 w-2 rotate-45 bg-current opacity-80"></span>
+						</span>
+					))}
+				</div>
+			))
+		}
+	</div>
+</Tag>

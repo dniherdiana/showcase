@@ -1,0 +1,71 @@
+---
+import { Image } from 'astro:assets';
+import Container from '../base/Container.astro';
+import SectionHeader from '../base/SectionHeader.astro';
+import Button from '../base/Button.astro';
+import imgSaras from '../../assets/images/project-saras.jpg';
+import imgUma from '../../assets/images/uma-sawah-bali.jpg';
+import imgSonder from '../../assets/images/sonder-senopati.jpg';
+import imgMenoreh from '../../assets/images/project-menoreh.jpg';
+import { homeShowcaseData } from './HomeShowcase.data.js';
+
+const imageMap: Record<string, ImageMetadata> = {
+  'project-saras.jpg': imgSaras,
+  'uma-sawah-bali.jpg': imgUma,
+  'sonder-senopati.jpg': imgSonder,
+  'project-menoreh.jpg': imgMenoreh,
+};
+---
+
+<section class="py-20 lg:py-28 border-b border-[var(--color-border-hairline)] bg-[var(--color-canvas-surface)]">
+  <Container size="xl" as="div" class="flex flex-col gap-14 lg:gap-16">
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <SectionHeader
+        title={homeShowcaseData.heading}
+        subtitle={homeShowcaseData.subheading}
+        level="h2"
+      />
+      <Button href={homeShowcaseData.cta.href} variant="ghost" class="shrink-0">
+        {homeShowcaseData.cta.label} &rarr;
+      </Button>
+    </div>
+
+    <!-- Asymmetric Editorial Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12">
+      {homeShowcaseData.projects.map((proj) => {
+        const imageAsset = imageMap[proj.image];
+        return (
+          <article class={`flex flex-col gap-4 md:col-span-12 ${proj.span} group`}>
+            <div class="relative overflow-hidden aspect-[16/10] bg-[var(--color-canvas-light)] border border-[var(--color-border-hairline)] shadow-sm">
+              {imageAsset && (
+                <Image
+                  src={imageAsset}
+                  alt={`Karya Arsitektur ${proj.title} oleh HomeSketch`}
+                  class="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-102"
+                  loading="lazy"
+                />
+              )}
+              <div class="absolute bottom-3 left-3 bg-[var(--color-canvas-dark)]/85 text-[var(--color-ink-light)] text-[11px] font-medium tracking-wide uppercase px-2.5 py-1 backdrop-blur-xs border border-white/10">
+                {proj.location}
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-1.5 pt-1">
+              <h3 class="font-serif text-xl sm:text-2xl font-semibold text-[var(--color-ink-primary)] group-hover:text-[var(--color-accent-terracotta)] transition-colors">
+                {proj.title}
+              </h3>
+              <div class="flex items-center justify-between text-xs text-[var(--color-ink-muted)]">
+                <span>{proj.category}</span>
+                <span class="font-mono text-[11px]">{proj.area} &middot; {proj.year}</span>
+              </div>
+              <p class="text-sm text-[var(--color-ink-muted)] leading-relaxed max-w-[62ch]">
+                {proj.description}
+              </p>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </Container>
+</section>

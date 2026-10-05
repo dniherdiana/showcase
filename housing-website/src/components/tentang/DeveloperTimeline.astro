@@ -1,0 +1,256 @@
+---
+import { developerTimelineContent } from "../../data/tentang/developerTimeline.js";
+---
+
+<section
+	class="py-28 bg-canvas-default relative border-b border-slate-900 overflow-hidden"
+>
+	<div class="max-w-7xl mx-auto px-6 lg:px-12 space-y-20">
+		<div data-reveal="right" class="max-w-3xl space-y-4">
+			<span
+				class="text-xs font-mono text-amber-300 uppercase tracking-widest block"
+			>
+				<span class="border h-3 border-l bg-amber-400 justify-center mr-2"
+				></span>
+				{developerTimelineContent.tag}
+			</span>
+			<h2
+				class="font-serif text-3xl sm:text-4xl lg:text-5xl text-slate-50 font-normal tracking-tight leading-[1.15]"
+			>
+				{developerTimelineContent.headline}
+			</h2>
+			<p class="text-slate-300 text-base leading-relaxed font-normal">
+				{developerTimelineContent.subtext}
+			</p>
+		</div>
+
+		<div data-reveal class="space-y-12">
+			{/* Timeline Buttons Grid / Column */}
+			<div
+				class="relative border-l border-slate-800 ml-3 lg:ml-0 lg:border-l-0 lg:border-t lg:pt-12 grid grid-cols-1 lg:grid-cols-4 gap-8"
+			>
+				{/* Progress line growing dynamically on scroll */}
+				<div
+					class="timeline-progress-line absolute left-0 top-0 bottom-0 w-0.5 bg-linear-to-b from-amber-300 via-amber-400 to-amber-500 lg:top-0 lg:left-0 lg:right-0 lg:w-full lg:h-0.5 pointer-events-none"
+				></div>
+
+				{
+					developerTimelineContent.milestones.map((m, i) => (
+						<button
+							type="button"
+							data-timeline-year={m.year}
+							data-reveal="up"
+							class="timeline-btn text-left pl-8 lg:pl-0 relative space-y-3 group cursor-pointer focus:outline-none min-h-11 transition-all"
+						>
+							<div
+								class={`timeline-dot absolute -left-1.5 top-2 lg:-top-12.75 lg:left-0 w-3.5 h-3.5 rounded-full ring-4 ring-canvas-default transition-all duration-300 group-hover:scale-125 ${
+									i === 0 ?
+										"bg-amber-400 shadow-[0_0_12px_rgba(251,191,36,0.8)] scale-110"
+									:	"bg-slate-600"
+								}`}
+							/>
+
+							<span
+								class={`font-serif text-4xl sm:text-5xl transition-colors block ${
+									i === 0 ?
+										"text-amber-300 font-normal"
+									:	"text-slate-500 font-light group-hover:text-amber-300"
+								}`}
+							>
+								{m.year}
+							</span>
+							<h3 class="font-serif text-xl text-slate-100 font-medium group-hover:text-amber-300 transition-colors">
+								{m.project} — {m.units}
+							</h3>
+							<span
+								class={`text-[11px] font-mono block ${
+									i === 0 ?
+										"text-amber-300"
+									:	"text-slate-400 group-hover:text-amber-300"
+								}`}
+							>
+								{m.badge} <span class="lg:hidden text-amber-400 font-semibold ml-1">· Ketuk Detail ➔</span>
+							</span>
+						</button>
+					))
+				}
+			</div>
+
+			{/* DESKTOP STAGE DETAIL CARD (Hidden on mobile) */}
+			<div
+				class="bg-canvas-panel border border-amber-400/40 p-8 sm:p-10 rounded-sm relative shadow-2xl transition-all duration-300 hidden lg:block"
+			>
+				{
+					developerTimelineContent.milestones.map((m, i) => (
+						<div
+							id={`timeline-stage-${m.year}`}
+							class={`timeline-stage ${i === 0 ? "block" : "hidden"} space-y-6`}
+						>
+							<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+								<div>
+									<span class="text-xs font-mono text-amber-300">
+										{m.category}
+									</span>
+									<h4 class="font-serif text-2xl text-slate-50 font-normal">
+										{m.title}
+									</h4>
+								</div>
+								<span class="text-xs font-mono px-3 py-1 bg-amber-400/10 text-amber-300 rounded border border-amber-400/30">
+									{m.detailBadge}
+								</span>
+							</div>
+
+							<p class="text-sm text-slate-300 leading-relaxed font-normal">
+								{m.description}
+							</p>
+
+							<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 text-xs text-slate-200">
+								{m.stats.map((s) => (
+									<div class="bg-slate-950 p-3.5 rounded border border-slate-800">
+										<span class="text-amber-300 font-mono block">
+											{s.value}
+										</span>
+										<span class="text-slate-400">{s.label}</span>
+									</div>
+								))}
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Mobile Timeline Modal (Vertically Centered & Clickable Close Button) -->
+<div
+	id="timeline-modal"
+	class="fixed inset-0 z-50 hidden flex-col items-center justify-center p-4 sm:p-6 lg:hidden"
+	role="dialog"
+	aria-modal="true"
+>
+	{/* Dark Backdrop */}
+	<div
+		class="fixed inset-0 bg-slate-950/85 backdrop-blur-xs z-0 cursor-pointer"
+		id="timeline-modal-backdrop"
+		data-modal-close
+	></div>
+
+	{/* Modal Card Content (Centered Vertically) */}
+	<div
+		class="relative z-10 bg-canvas-panel border border-amber-400/50 w-full max-w-lg rounded-xl p-6 sm:p-8 shadow-2xl space-y-4 max-h-[82vh] flex flex-col my-auto"
+	>
+		{/* Dedicated Top Right Close Button */}
+		<button
+			type="button"
+			id="close-timeline-modal-btn"
+			data-modal-close
+			class="absolute top-3 right-3 sm:top-4 sm:right-4 z-50 w-9 h-9 flex items-center justify-center text-slate-200 hover:text-white bg-slate-800 border border-slate-700 hover:border-amber-400/60 rounded-full transition-all cursor-pointer pointer-events-auto shadow-md"
+			aria-label="Tutup Detail Timeline"
+		>
+			✕
+		</button>
+
+		<div id="timeline-modal-content" class="overflow-y-auto pr-1 pt-2"></div>
+	</div>
+</div>
+
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		const btns = document.querySelectorAll(".timeline-btn");
+		const stages = document.querySelectorAll(".timeline-stage");
+		const modal = document.getElementById("timeline-modal");
+		const modalContent = document.getElementById("timeline-modal-content");
+		const closeBtn = document.getElementById("close-timeline-modal-btn");
+		const backdrop = document.getElementById("timeline-modal-backdrop");
+
+		function isMobile() {
+			return window.innerWidth < 1024;
+		}
+
+		function closeModal() {
+			modal?.classList.add("hidden");
+			modal?.classList.remove("flex");
+			document.body.style.overflow = "";
+		}
+
+		closeBtn?.addEventListener("click", (e) => {
+			e.stopPropagation();
+			closeModal();
+		});
+
+		backdrop?.addEventListener("click", closeModal);
+
+		document.querySelectorAll("[data-modal-close]").forEach((el) => {
+			el.addEventListener("click", closeModal);
+		});
+
+		document.addEventListener("keydown", (e) => {
+			if (e.key === "Escape" && !modal?.classList.contains("hidden")) {
+				closeModal();
+			}
+		});
+
+		btns.forEach((btn) => {
+			btn.addEventListener("click", () => {
+				const year = btn.getAttribute("data-timeline-year");
+
+				btns.forEach((b) => {
+					const yr = b.querySelector("span.font-serif");
+					const dot = b.querySelector(".timeline-dot");
+
+					if (yr) {
+						yr.classList.remove("text-amber-300", "font-normal");
+						yr.classList.add("text-slate-500", "font-light");
+					}
+					if (dot) {
+						dot.classList.remove(
+							"bg-amber-400",
+							"shadow-[0_0_12px_rgba(251,191,36,0.8)]",
+							"scale-110",
+						);
+						dot.classList.add("bg-slate-600");
+					}
+				});
+
+				const activeYr = btn.querySelector("span.font-serif");
+				const activeDot = btn.querySelector(".timeline-dot");
+				if (activeYr) {
+					activeYr.classList.remove("text-slate-500", "font-light");
+					activeYr.classList.add("text-amber-300", "font-normal");
+				}
+				if (activeDot) {
+					activeDot.classList.remove("bg-slate-600");
+					activeDot.classList.add(
+						"bg-amber-400",
+						"shadow-[0_0_12px_rgba(251,191,36,0.8)]",
+						"scale-110",
+					);
+				}
+
+				if (isMobile()) {
+					const stage = document.getElementById("timeline-stage-" + year);
+					if (stage && modalContent) {
+						const clone = stage.cloneNode(true) as HTMLElement;
+						clone.classList.remove("hidden");
+						clone.classList.add("block");
+						modalContent.replaceChildren(clone);
+						modal?.classList.remove("hidden");
+						modal?.classList.add("flex");
+						document.body.style.overflow = "hidden";
+					}
+				} else {
+					stages.forEach((stage) => {
+						if (stage.id === "timeline-stage-" + year) {
+							stage.classList.remove("hidden");
+							stage.classList.add("block");
+						} else {
+							stage.classList.remove("block");
+							stage.classList.add("hidden");
+						}
+					});
+				}
+			});
+		});
+	});
+</script>

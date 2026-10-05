@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import RuangHero from '../components/ruangKerjaPage/RuangHero.astro';
+import RuangPricing from '../components/ruangKerjaPage/RuangPricing.astro';
+import RuangMeeting from '../components/ruangKerjaPage/RuangMeeting.astro';
+import RuangOnboarding from '../components/ruangKerjaPage/RuangOnboarding.astro';
+
+const title = "Pilihan Ruang dan Harga - Ranting Creative Space";
+const description = "Daftar paket sewa meja harian, dedicated desk bulanan, dan ruang meeting tertutup dengan transparansi biaya penuh.";
+---
+
+<Layout title={title} description={description}>
+  <RuangHero />
+  <RuangPricing />
+  <RuangMeeting />
+  <RuangOnboarding />
+</Layout>

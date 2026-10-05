@@ -1,0 +1,320 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const therapists = [
+  {
+    name: "Dr. Clarissa Larasati, M.Biomed (AAM)",
+    role: "Head Aesthetics Physician",
+    exp: "12+ Tahun Pengalaman",
+    spec: "Laser & Anti-Aging Specialist",
+    img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    name: "Sinta Rahmawati, S.Tr.Keb",
+    role: "Senior Skin Therapist",
+    exp: "8+ Tahun Pengalaman",
+    spec: "Acne Purifying & Facial Sculpting",
+    img: "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    name: "Maya Kartika, C.S.T",
+    role: "Aroma Spa Master Practitioner",
+    exp: "10+ Tahun Pengalaman",
+    spec: "Holistic Body Relaxation & Massage",
+    img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=600&auto=format&fit=crop&q=80"
+  }
+];
+
+const galleryImages = [
+  { url: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&auto=format&fit=crop&q=80", title: "Ruang Treatment Eksklusif", size: "col-span-2 row-span-2" },
+  { url: "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=600&auto=format&fit=crop&q=80", title: "Lounge Relaksasi Premium", size: "col-span-1" },
+  { url: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&auto=format&fit=crop&q=80", title: "Area Vanity & Skin Check", size: "col-span-1" },
+  { url: "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=800&auto=format&fit=crop&q=80", title: "Peralatan Estetika Steril", size: "col-span-2" },
+];
+
+const faqs = [
+  {
+    q: "Apakah seluruh terapis di AURA memiliki sertifikasi resmi?",
+    a: "Ya, seluruh 25+ terapis kami wajib memegang sertifikasi estetika medis profesional dan melalui pelatihan penyegaran standar internasional setiap 6 bulan."
+  },
+  {
+    q: "Bagaimana standar steril dan kebersihan di AURA Beauty Lounge?",
+    a: "Setiap alat dan linen medis disterilisasi menggunakan autoklaf kelas medis. Kami menjamin penggunaan perlengkapan sekali pakai (single-use kit) untuk setiap klien."
+  },
+  {
+    q: "Apakah perlu membuat reservasi sebelum datang?",
+    a: "Sangat disarankan untuk melakukan booking reservasi minimal 1 hari sebelumnya agar memastikan ruang treatment eksklusif dan terapis pilihan Anda siap melayani."
+  },
+  {
+    q: "Apakah treatment di AURA aman untuk wanita hamil dan menyusui?",
+    a: "Kami menyediakan rangkaian treatment khusus 'Mom-to-Be Safety Care' menggunakan formulasi bahan alami bebas bahan kimia keras. Konsultasi dokter gratis tersedia sebelum treatment."
+  }
+];
+---
+
+<Layout
+  title="Tentang Kami | AURA Aesthetic & Beauty Lounge"
+  description="Mengenal profil AURA Beauty Lounge: 10+ tahun pengalaman, 25+ terapis profesional, galeri studio mewah, dan komitmen kebersihan tinggi."
+>
+  <!-- 1. Hero: Full-Bleed Dark Narrative Banner -->
+  <section class="relative py-20 lg:py-28 bg-[#0A080F] border-b border-pink-950/40 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="max-w-3xl space-y-6">
+        <span class="magazine-badge">PROFIL & DEDIKASI</span>
+        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
+          Cerita Di Balik <br />
+          <span class="text-gradient-vibrant">Perawatan Kecantikan Mewah</span> & Personal.
+        </h1>
+        <p class="text-base text-gray-300 leading-relaxed">
+          Kami menghadirkan pengalaman perawatan kecantikan yang mewah, nyaman, dan personal dengan didukung oleh terapis profesional, produk premium, serta standar kebersihan yang tinggi. Setiap treatment dirancang untuk memberikan hasil optimal sekaligus pengalaman relaksasi yang berkesan.
+        </p>
+      </div>
+
+      <!-- Proof Points Counter Strip -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-12 mt-12 border-t border-pink-950/60">
+        <div class="p-6 rounded-2xl bg-[#14101B] border border-pink-500/20">
+          <span class="text-3xl font-extrabold font-serif text-pink-400">10+ Thn</span>
+          <p class="text-xs text-gray-300 font-semibold mt-1">Dedikasi Perawatan Kecantikan</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-[#14101B] border border-pink-500/20">
+          <span class="text-3xl font-extrabold font-serif text-purple-400">15.000+</span>
+          <p class="text-xs text-gray-300 font-semibold mt-1">Klien Terlayani Dengan Puas</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-[#14101B] border border-pink-500/20">
+          <span class="text-3xl font-extrabold font-serif text-amber-400">25+</span>
+          <p class="text-xs text-gray-300 font-semibold mt-1">Terapis & Dokter Bersertifikat</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-[#14101B] border border-pink-500/20">
+          <span class="text-3xl font-extrabold font-serif text-emerald-400">4.9 / 5.0</span>
+          <p class="text-xs text-gray-300 font-semibold mt-1">Rating Kepuasan Pelanggan</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Section Shell: Vertical Timeline (Milestones 2016-2026) -->
+  <section class="py-20 bg-[#0E0B14] relative">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16 space-y-3">
+        <span class="text-xs font-bold text-pink-400 uppercase tracking-widest">Perjalanan 10+ Tahun</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-extrabold text-white">
+          Jejak Perkembangan AURA Beauty
+        </h2>
+      </div>
+
+      <div class="relative border-l-2 border-pink-500/30 ml-4 sm:ml-32 space-y-12">
+        
+        <!-- Timeline Item 1 -->
+        <div class="relative pl-8 sm:pl-12">
+          <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-pink-600 text-white font-bold text-xs flex items-center justify-center shadow-lg border-2 border-[#0E0B14]">
+            16
+          </div>
+          <span class="text-xs font-bold text-pink-400 tracking-wider">TAHUN 2016</span>
+          <h3 class="font-serif text-xl font-bold text-white mt-1">Pendirian Studio Pertama</h3>
+          <p class="text-xs sm:text-sm text-gray-300 mt-2 leading-relaxed">
+            Dimulai sebagai boutique spa privat dengan 3 terapis terampil dan fokus utama pada perawatan facial organik.
+          </p>
+        </div>
+
+        <!-- Timeline Item 2 -->
+        <div class="relative pl-8 sm:pl-12">
+          <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-purple-600 text-white font-bold text-xs flex items-center justify-center shadow-lg border-2 border-[#0E0B14]">
+            20
+          </div>
+          <span class="text-xs font-bold text-purple-400 tracking-wider">TAHUN 2020</span>
+          <h3 class="font-serif text-xl font-bold text-white mt-1">Integrasi Teknologi Aesthetic Medis</h3>
+          <p class="text-xs sm:text-sm text-gray-300 mt-2 leading-relaxed">
+            Menghadirkan mesin laser Diamond Glow dan HIFU Collagen Lifting dengan lisensi estetika medis resmi.
+          </p>
+        </div>
+
+        <!-- Timeline Item 3 -->
+        <div class="relative pl-8 sm:pl-12">
+          <div class="absolute -left-[17px] top-1.5 w-8 h-8 rounded-full bg-amber-600 text-white font-bold text-xs flex items-center justify-center shadow-lg border-2 border-[#0E0B14]">
+            26
+          </div>
+          <span class="text-xs font-bold text-amber-400 tracking-wider">TAHUN 2026 (SEKARANG)</span>
+          <h3 class="font-serif text-xl font-bold text-white mt-1">Pencapaian 15.000+ Pelanggan Setia</h3>
+          <p class="text-xs sm:text-sm text-gray-300 mt-2 leading-relaxed">
+            Kini didukung 25+ terapis profesional dan 50+ pilihan treatment lengkap dengan kepuasan rating 4.9/5.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Therapist Team Showcase & Certifications Placeholder -->
+  <section class="py-20 bg-[#0C0A10] relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 border-b border-pink-950/60 pb-6">
+        <div>
+          <span class="magazine-badge mb-2">Tim Ahli Kami</span>
+          <h2 class="font-serif text-3xl font-extrabold text-white mt-1">
+            25+ Terapis & Dokter Profesional
+          </h2>
+        </div>
+        <div>
+          <div class="client-data-badge">
+            ⚠️ [PERLU DATA CLIENT: Sertifikasi Resmi ISO & Aesthetics Board]
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {therapists.map((t) => (
+          <div class="group bg-[#15121E] rounded-3xl overflow-hidden border border-pink-950/80 hover:border-pink-500/50 transition-all duration-500 shadow-xl">
+            <div class="h-72 overflow-hidden relative">
+              <img src={t.img} alt={t.name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#15121E] via-transparent to-transparent"></div>
+              <span class="absolute top-4 left-4 bg-pink-600 text-white font-bold text-[10px] uppercase px-3 py-1 rounded-full">
+                {t.exp}
+              </span>
+            </div>
+            <div class="p-6 space-y-2">
+              <h3 class="font-serif text-lg font-bold text-white">{t.name}</h3>
+              <p class="text-xs font-bold text-pink-400">{t.role}</p>
+              <p class="text-xs text-gray-300">Spesialisasi: {t.spec}</p>
+              <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+                <span class="text-[10px] text-amber-300 font-semibold">★ Rating 4.98</span>
+                <button
+                  onclick="document.getElementById('booking-modal')?.classList.remove('hidden')"
+                  class="text-xs font-bold text-white bg-pink-950/60 hover:bg-pink-600 px-4 py-1.5 rounded-full border border-pink-500/30 transition-colors"
+                >
+                  Booking Terapis
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. Masonry Image Gallery Showcase -->
+  <section class="py-20 bg-[#0E0B14] relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+        <span class="magazine-badge">Suasana Studio</span>
+        <h2 class="font-serif text-3xl font-extrabold text-white">
+          Galeri Ruang & Kenyamanan
+        </h2>
+        <p class="text-xs text-gray-300">
+          Setiap sudut dirancang untuk menciptakan ketenangan pikiran dan privasi perawatan yang eksklusif.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {galleryImages.map((img) => (
+          <div class={`group relative rounded-2xl overflow-hidden border border-pink-950/60 shadow-xl h-64 ${img.size}`}>
+            <img src={img.url} alt={img.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0C0A10] via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+            <div class="absolute bottom-4 left-4 right-4">
+              <span class="text-xs font-bold text-white bg-black/60 px-3 py-1 rounded-full border border-white/20">
+                {img.title}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. FAQ Accordion Section -->
+  <section class="py-20 bg-[#0C0A10] relative">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12 space-y-3">
+        <span class="magazine-badge">Pertanyaan Umum</span>
+        <h2 class="font-serif text-3xl font-extrabold text-white">FAQ & Kebijakan Salon</h2>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq, idx) => (
+          <details class="group bg-[#15121E] border border-pink-950/80 rounded-2xl p-6 [&_summary::-webkit-details-marker]:hidden cursor-pointer transition-colors hover:border-pink-500/40">
+            <summary class="flex items-center justify-between font-serif text-base font-bold text-white">
+              <span>{faq.q}</span>
+              <span class="ml-4 transition-transform group-open:rotate-180 text-pink-400">▼</span>
+            </summary>
+            <p class="mt-4 text-xs sm:text-sm text-gray-300 leading-relaxed border-t border-white/10 pt-4">
+              {faq.a}
+            </p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Contact, Google Maps & Operating Hours Section -->
+  <section class="py-20 bg-[#0E0B14] relative border-t border-pink-950/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Contact Details -->
+        <div class="lg:col-span-6 space-y-6">
+          <span class="magazine-badge">Hubungi Kami</span>
+          <h2 class="font-serif text-3xl font-extrabold text-white">
+            Lokasi Studio & Jam Operasional
+          </h2>
+          <p class="text-xs text-gray-300">
+            Kunjungi studio kami atau nikmati layanan konsultasi langsung via WhatsApp.
+          </p>
+
+          <div class="space-y-4 pt-2">
+            <div class="p-4 rounded-xl bg-[#15121E] border border-pink-500/20">
+              <span class="block text-xs font-bold text-pink-400 uppercase">Alamat Studio Utama</span>
+              <span class="text-sm font-semibold text-white">Jl. Senopati No. 88, Kebayoran Baru, Jakarta Selatan</span>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[#15121E] border border-pink-500/20">
+              <span class="block text-xs font-bold text-pink-400 uppercase">Jam Operasional</span>
+              <span class="text-sm font-semibold text-white">Senin - Minggu: 09:00 - 20:00 WIB</span>
+            </div>
+
+            <div class="p-4 rounded-xl bg-[#15121E] border border-pink-500/20">
+              <span class="block text-xs font-bold text-pink-400 uppercase">Layanan Pelanggan WhatsApp</span>
+              <span class="text-sm font-semibold text-pink-300">+62 812-3456-7890 (Respon Cepat)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Google Maps Placeholder Card -->
+        <div class="lg:col-span-6">
+          <div class="p-6 rounded-3xl bg-[#15121E] border border-pink-500/30 space-y-4">
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+              <span class="text-xs font-bold text-white">Peta Lokasi Google Maps</span>
+              <span class="text-[10px] text-pink-400">Jakarta Selatan</span>
+            </div>
+
+            <!-- Map Mockup Graphic -->
+            <div class="h-64 rounded-2xl bg-gray-900 border border-white/10 relative overflow-hidden flex items-center justify-center text-center p-6">
+              <div class="absolute inset-0 opacity-30 bg-[radial-gradient(#E6007A_1px,transparent_1px)] [background-size:16px_16px]"></div>
+              <div class="relative z-10 space-y-2">
+                <span class="text-3xl">📍</span>
+                <h4 class="text-sm font-bold text-white">AURA Aesthetic & Beauty Lounge</h4>
+                <p class="text-xs text-gray-400">Jl. Senopati No. 88, Jakarta Selatan</p>
+                <div class="pt-2">
+                  <div class="client-data-badge">
+                    ⚠️ [PERLU DATA CLIENT: Google Maps Location Link]
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <a
+              href="https://wa.me/6281234567890?text=Halo%20Aura%20Beauty,%20saya%20butuh%20petunjuk%20arah%20ke%20salon"
+              target="_blank"
+              class="w-full py-3 text-center block font-bold text-xs text-white uppercase tracking-wider bg-pink-600 rounded-xl hover:bg-pink-500 transition-colors"
+            >
+              Buka Petunjuk Arah via WA
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,758 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ClientDataBadge from "../components/ClientDataBadge.astro";
+
+// Differentiators paraphrased for Home:
+// 1. Menangani event dari konsep hingga eksekusi tanpa perantara.
+// 2. Satu komando manajemen untuk tim kreatif & teknis operasional.
+// 3. Rekam jejak skala nasional untuk brand & perusahaan terkemuka.
+// 4. Perancangan berdasarkan target bisnis & ROI klien.
+// 5. Dokumentasi visual cinematic profesional sudah include.
+
+// Proof points literal:
+// Berdiri sejak 2015, 350+ event, 120+ perusahaan, 35+ profesional, 4.9/5 rating.
+---
+
+<Layout
+	title="Elevate Event Organizer | Experiential Event Management & Production"
+	description="Kami menciptakan perhelatan korporat, luxury wedding, exhibition, dan brand activation yang tak terlupakan dengan Modern Space Typography dan arsitektur panggung presisi."
+>
+	<!-- SECTION 1: CINEMATIC HERO (MASSIVE SPACE TYPOGRAPHY & OVERLAPPING LAYER FRAME) -->
+	<section
+		class="relative min-h-[92vh] flex items-center justify-center overflow-hidden pt-6 pb-24 border-b border-white/10"
+	>
+		<!-- Ambient Backdrop Light -->
+		<div
+			class="absolute top-1/4 -left-32 w-[550px] h-[550px] bg-accent-orange/15 rounded-full blur-[160px] pointer-events-none"
+		>
+		</div>
+		<div
+			class="absolute bottom-10 -right-20 w-[600px] h-[600px] bg-accent-lime/10 rounded-full blur-[180px] pointer-events-none"
+		>
+		</div>
+
+		<div class="max-w-7xl mx-auto px-4 sm:px-8 w-full relative z-10">
+			<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+				<!-- Hero Text Column (7 Cols) -->
+				<div class="lg:col-span-7 space-y-8">
+					<!-- Monospace Tag -->
+					<div
+						class="inline-flex items-center gap-3 bg-dark-surface border-l-2 border-accent-lime px-4 py-2"
+					>
+						<span class="w-2.5 h-2.5 bg-accent-lime rounded-none animate-pulse"
+						></span>
+						<span
+							class="text-xs font-mono text-text-main font-bold tracking-widest uppercase"
+						>
+							// CREATIVE EVENT AGENCY • EST. 2015
+						</span>
+					</div>
+
+					<!-- MASSIVE SPACE TYPOGRAPHY HEADLINE -->
+					<h1
+						class="text-4xl sm:text-6xl lg:text-8xl font-display font-extrabold text-text-main tracking-tighter leading-[0.86] uppercase"
+					>
+						MENGHIDUPKAN <br />
+						<span
+							class="text-transparent bg-clip-text bg-gradient-to-r from-accent-orange via-accent-lime to-white"
+						>
+							ATMOSFER
+						</span>
+						<br />
+						EVENT.
+					</h1>
+
+					<!-- Paraphrased Home Subheadline in Large Space Font -->
+					<p
+						class="text-xl sm:text-2xl text-text-muted max-w-2xl font-sans leading-relaxed tracking-tight"
+					>
+						Elevate merancang dan mengeksekusi perhelatan spektakuler dengan
+						pendekatan holistik — menyatukan ideasi kreatif kontemporer dan
+						presisi operasional lapangan dalam satu kendali manajemen.
+					</p>
+
+					<!-- Action Buttons & Space Mono Tag -->
+					<div class="flex flex-wrap items-center gap-5 pt-4">
+						<a
+							href="/contact"
+							class="px-9 py-5 bg-accent-orange text-dark-bg font-mono font-bold text-base hover:bg-accent-lime transition-all transform hover:-translate-y-1 shadow-2xl shadow-accent-orange/30 flex items-center gap-3"
+						>
+							<span>JADWALKAN MEETING</span>
+							<span class="text-xl">→</span>
+						</a>
+
+						<a
+							href="/portfolio"
+							class="px-8 py-5 border-2 border-white/20 text-text-main font-mono font-bold text-base hover:border-accent-lime hover:text-accent-lime transition-all flex items-center gap-3"
+						>
+							<span>JELAJAHI PORTFOLIO</span>
+							<span class="text-xs font-mono text-accent-lime">[350+]</span>
+						</a>
+					</div>
+
+					<!-- Proof Point Strip Bar -->
+					<div
+						class="pt-8 border-t border-white/10 grid grid-cols-3 gap-4 text-xs text-text-muted font-mono"
+					>
+						<div class="border-l-2 border-accent-orange pl-3">
+							<span class="text-white font-bold text-sm block">350+ EVENT</span>
+							<span>SUKSES DINIATKAN</span>
+						</div>
+						<div class="border-l-2 border-accent-lime pl-3">
+							<span class="text-white font-bold text-sm block"
+								>120+ KORPORASI</span
+							>
+							<span>SKALA NASIONAL</span>
+						</div>
+						<div class="border-l-2 border-accent-cyan pl-3">
+							<span class="text-white font-bold text-sm block"
+								>RATING 4.9/5</span
+							>
+							<span>KEPUASAN KLIEN</span>
+						</div>
+					</div>
+				</div>
+
+				<!-- Hero Visual Frame Column: CUSTOM STACKED FRAME-OVER-FRAME (NO GENERIC CARD) -->
+				<div class="lg:col-span-5 relative">
+					<div class="relative group">
+						<!-- Background Accent Frame Sheet -->
+						<div
+							class="absolute -inset-4 bg-accent-orange/20 border border-accent-orange/40 transform rotate-2 pointer-events-none"
+						>
+						</div>
+
+						<!-- Main Image Container -->
+						<div
+							class="relative overflow-hidden border-2 border-white/20 h-[540px]"
+						>
+							<img
+								src="https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1600&auto=format&fit=crop"
+								alt="Elevate Event Stage Production Lighting"
+								class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+							/>
+							<div
+								class="absolute inset-0 bg-gradient-to-t from-dark-bg via-dark-bg/30 to-transparent"
+							>
+							</div>
+						</div>
+
+						<!-- Floating Offset Frame Box (Non-Bootstrap Layout) -->
+						<div
+							class="absolute -bottom-8 -left-8 right-6 p-6 bg-dark-surface/60 border-l-4 border-accent-lime/60"
+						>
+							<div
+								class="flex items-center justify-between mb-2 font-mono text-xs"
+							>
+								<span class="text-accent-lime font-bold"
+									>// FEATURED STAGE REEL</span
+								>
+								<span class="text-text-muted">STAGE 360°</span>
+							</div>
+							<h3 class="font-display font-extrabold text-2xl text-text-main">
+								National Tech Summit Stage 2024
+							</h3>
+							<p class="text-xs font-mono text-text-muted mt-2">
+								Kapasitas 3.500 Peserta • BSD International Convention Center
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- SECTION 2: PROOF POINTS (MASSIVE SPACE MONO NUMBERS) -->
+	<section class="py-16 bg-dark-surface border-b border-white/10">
+		<div class="max-w-7xl mx-auto px-4 sm:px-8">
+			<div class="grid grid-cols-2 md:grid-cols-5 gap-8">
+				<div class="border-l-2 border-accent-orange pl-4">
+					<div
+						class="text-5xl sm:text-7xl font-mono font-bold text-accent-orange leading-none"
+					>
+						2015
+					</div>
+					<div
+						class="text-xs font-mono text-text-muted mt-2 uppercase tracking-widest"
+					>
+						Tahun Berdiri
+					</div>
+				</div>
+
+				<div class="border-l-2 border-accent-lime pl-4">
+					<div
+						class="text-5xl sm:text-7xl font-mono font-bold text-accent-lime leading-none"
+					>
+						350+
+					</div>
+					<div
+						class="text-xs font-mono text-text-muted mt-2 uppercase tracking-widest"
+					>
+						Event Diselenggarakan
+					</div>
+				</div>
+
+				<div class="border-l-2 border-white/30 pl-4">
+					<div
+						class="text-5xl sm:text-7xl font-mono font-bold text-text-main leading-none"
+					>
+						120+
+					</div>
+					<div
+						class="text-xs font-mono text-text-muted mt-2 uppercase tracking-widest"
+					>
+						Perusahaan Kepercayaan
+					</div>
+				</div>
+
+				<div class="border-l-2 border-accent-cyan pl-4">
+					<div
+						class="text-5xl sm:text-7xl font-mono font-bold text-accent-cyan leading-none"
+					>
+						35+
+					</div>
+					<div
+						class="text-xs font-mono text-text-muted mt-2 uppercase tracking-widest"
+					>
+						Tim Profesional In-House
+					</div>
+				</div>
+
+				<div class="border-l-2 border-amber-400 pl-4 col-span-2 md:col-span-1">
+					<div
+						class="text-5xl sm:text-7xl font-mono font-bold text-amber-400 leading-none"
+					>
+						4.9★
+					</div>
+					<div
+						class="text-xs font-mono text-text-muted mt-2 uppercase tracking-widest"
+					>
+						Rating Kepuasan Klien
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- SECTION 3: FEATURED EVENT SHOWCASE (CUSTOM EDITORIAL ASYMMETRIC STRIP CARDS - NO BOOTSTRAP GRID) -->
+	<section class="py-28 border-b border-white/10">
+		<div class="max-w-7xl mx-auto px-4 sm:px-8">
+			<div
+				class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-20"
+			>
+				<div>
+					<span
+						class="text-xs font-mono text-accent-lime uppercase tracking-widest block mb-2"
+						>// DOKUMENTASI EVENT TERPILIH</span
+					>
+					<h2
+						class="text-5xl sm:text-7xl font-display font-extrabold text-text-main tracking-tight uppercase leading-[0.9]"
+					>
+						REKAM JEJAK <br />
+						<span class="text-accent-orange">EKSEKUSI PRESTISIUS</span>
+					</h2>
+				</div>
+				<p class="text-text-muted max-w-md text-lg font-sans">
+					Setiap proyek adalah bukti nyata dari sinergi konsep desain spasial
+					yang kuat dan operasional lapangan yang disiplin.
+				</p>
+			</div>
+
+			<!-- CUSTOM EDITORIAL HORIZONTAL STRIP CARDS (NON-BOOTSTRAP / NON-CARD GRID) -->
+			<div class="space-y-12">
+				<!-- Project Strip 1 -->
+				<div
+					class="custom-card-layer p-8 sm:p-12 border-b border-white/10 group"
+				>
+					<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+						<div class="lg:col-span-3 space-y-2">
+							<span
+								class="text-xs font-mono text-accent-lime uppercase tracking-widest block"
+								>// CORPORATE EVENT</span
+							>
+							<span class="text-4xl font-mono font-bold text-white/30">01</span>
+							<div class="text-xs font-mono text-text-muted">
+								JAKARTA • 2024 • 3.000 AUDIENCE
+							</div>
+						</div>
+
+						<div class="lg:col-span-5 space-y-4">
+							<h3
+								class="text-3xl sm:text-4xl font-display font-extrabold text-text-main group-hover:text-accent-orange transition-colors"
+							>
+								Indonesia Future FinTech Summit
+							</h3>
+							<p class="text-text-muted text-base leading-relaxed">
+								Mendesain panggung LED kurva 360 derajat lengkap dengan lighting
+								show interaktif dan manajemen pendaftaran digital cepat untuk
+								eksekutif perbankan nasional.
+							</p>
+							<div
+								class="inline-block bg-accent-lime/10 text-accent-lime border border-accent-lime/30 px-3 py-1 font-mono text-xs font-bold"
+							>
+								HASIL: 99.4% SATISFACTION SCORE
+							</div>
+						</div>
+
+						<div
+							class="lg:col-span-4 relative h-64 overflow-hidden border-2 border-white/10"
+						>
+							<img
+								src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1200&auto=format&fit=crop"
+								alt="FinTech National Conference Stage"
+								class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+							/>
+						</div>
+					</div>
+				</div>
+
+				<!-- Project Strip 2 -->
+				<div
+					class="custom-card-layer p-8 sm:p-12 border-b border-white/10 group"
+				>
+					<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+						<div class="lg:col-span-3 space-y-2">
+							<span
+								class="text-xs font-mono text-accent-orange uppercase tracking-widest block"
+								>// LUXURY WEDDING</span
+							>
+							<span class="text-4xl font-mono font-bold text-white/30">02</span>
+							<div class="text-xs font-mono text-text-muted">
+								BALI • 2024 • 1.200 GUESTS
+							</div>
+						</div>
+
+						<div class="lg:col-span-5 space-y-4">
+							<h3
+								class="text-3xl sm:text-4xl font-display font-extrabold text-text-main group-hover:text-accent-orange transition-colors"
+							>
+								The Glasshouse Botanical Wedding
+							</h3>
+							<p class="text-text-muted text-base leading-relaxed">
+								Transformasi cliffside venue menjadi dome kaca raksasa
+								berornamen floral eksotis, lengkap dengan koordinasi rundown 45
+								pengisi acara dan protokol VIP.
+							</p>
+							<div
+								class="inline-block bg-accent-orange/10 text-accent-orange border border-accent-orange/30 px-3 py-1 font-mono text-xs font-bold"
+							>
+								HASIL: PERFECT RUNDOWN TIMING
+							</div>
+						</div>
+
+						<div
+							class="lg:col-span-4 relative h-64 overflow-hidden border-2 border-white/10"
+						>
+							<img
+								src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop"
+								alt="Royal Luxury Wedding Reception Design"
+								class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- SECTION 4: WHY CHOOSE US (CUSTOM CUTOUT LAYOUT) -->
+	<section class="py-28 bg-dark-surface border-b border-white/10 relative">
+		<div class="max-w-7xl mx-auto px-4 sm:px-8">
+			<div class="mb-20">
+				<span
+					class="text-xs font-mono text-accent-orange tracking-widest block mb-2"
+					>// DIFFERENTIATOR FOCUS</span
+				>
+				<h2
+					class="text-5xl sm:text-7xl font-display font-extrabold text-text-main uppercase leading-[0.9]"
+				>
+					ALASAN UTAMA MENJADIKAN KAMI <br />
+					<span class="text-accent-lime">MITRA EVENT STRATEGIS</span>
+				</h2>
+			</div>
+
+			<!-- CUSTOM CUTOUT TILE GRID (NOT TAILWIND UI DEFAULT CARDS) -->
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+				<div class="bg-dark-card border-l-4 border-accent-orange p-10 relative">
+					<span
+						class="text-6xl font-mono font-bold text-accent-orange/20 absolute top-6 right-6"
+						>01</span
+					>
+					<h3 class="text-3xl font-display font-extrabold text-text-main mb-4">
+						Konsep Hingga Eksekusi
+					</h3>
+					<p class="text-text-muted text-base leading-relaxed">
+						Menangani event dari konsep awal, perancangan 3D stage, rundown
+						teknis, hingga eksekusi akhir di lapangan tanpa melempar ke vendor
+						pihak ketiga yang membingungkan.
+					</p>
+				</div>
+
+				<div class="bg-dark-card border-l-4 border-accent-lime p-10 relative">
+					<span
+						class="text-6xl font-mono font-bold text-accent-lime/20 absolute top-6 right-6"
+						>02</span
+					>
+					<h3 class="text-3xl font-display font-extrabold text-text-main mb-4">
+						Satu Komando Manajemen
+					</h3>
+					<p class="text-text-muted text-base leading-relaxed">
+						Tim kreatif dan operasional berada dalam satu manajemen terpadu.
+						Komunikasi efisien, pengambilan keputusan cepat, dan koordinasi
+						vendor nasional yang solid.
+					</p>
+				</div>
+
+				<div class="bg-dark-card border-l-4 border-accent-cyan p-10 relative">
+					<span
+						class="text-6xl font-mono font-bold text-accent-cyan/20 absolute top-6 right-6"
+						>03</span
+					>
+					<h3 class="text-3xl font-display font-extrabold text-text-main mb-4">
+						Pendekatan Tujuan Bisnis
+					</h3>
+					<p class="text-text-muted text-base leading-relaxed">
+						Setiap detail acara dirancang berpatokan pada indikator keberhasilan
+						(KPI) bisnis klien — baik itu impresi media, keterikatan audiens,
+						maupun konversi brand.
+					</p>
+				</div>
+
+				<div
+					class="bg-dark-card border-l-4 border-white/50 p-10 relative flex flex-col justify-between"
+				>
+					<div>
+						<span
+							class="text-6xl font-mono font-bold text-white/20 absolute top-6 right-6"
+							>04</span
+						>
+						<h3
+							class="text-3xl font-display font-extrabold text-text-main mb-4"
+						>
+							Dokumentasi Sinematik Terintegrasi
+						</h3>
+						<p class="text-text-muted text-base leading-relaxed">
+							Setiap event mendapatkan liputan video cinematic 4K, fotografi
+							high-resolution, serta rangkuman reels siap rilis untuk publikasi
+							media dan arsip perusahaan Anda.
+						</p>
+					</div>
+					<div class="pt-6">
+						<a
+							href="/services"
+							class="inline-block px-6 py-3 bg-accent-lime text-dark-bg font-mono font-bold text-xs"
+						>
+							PELAJARI LAYANAN LENGKAP →
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- SECTION 5: EVENT CATEGORIES (MAGAZINE STYLE ASYMMETRIC BENTO) -->
+	<section class="py-28 border-b border-white/10">
+		<div class="max-w-7xl mx-auto px-4 sm:px-8">
+			<div class="max-w-3xl mb-16 space-y-4">
+				<span
+					class="text-xs font-mono text-accent-lime uppercase tracking-widest block"
+					>// SPEKTRUM KEAHLIAN</span
+				>
+				<h2
+					class="text-5xl sm:text-7xl font-display font-extrabold text-text-main uppercase leading-[0.9]"
+				>
+					KATEGORI EVENT UTAMA
+				</h2>
+			</div>
+
+			<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+				<!-- Large Category 1 -->
+				<div
+					class="lg:col-span-8 relative border-2 border-white/15 h-96 group overflow-hidden"
+				>
+					<img
+						src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=800&auto=format&fit=crop"
+						alt="Corporate Event Stage Presentation"
+						class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+					/>
+					<div
+						class="absolute inset-0 bg-gradient-to-t from-dark-bg via-dark-bg/50 to-transparent"
+					>
+					</div>
+					<div class="absolute bottom-8 left-8 right-8">
+						<span
+							class="text-xs font-mono text-accent-lime font-bold uppercase block mb-1"
+							>// C-LEVEL & ANNUAL GALA</span
+						>
+						<h3 class="text-4xl font-display font-extrabold text-text-main">
+							Corporate Event
+						</h3>
+						<p class="text-text-muted text-base max-w-xl mt-2">
+							Konferensi nasional, seminar kepemimpinan, town hall hibrida, dan
+							malam penganugerahan korporasi skala besar.
+						</p>
+					</div>
+				</div>
+
+				<!-- Large Category 2 -->
+				<div
+					class="lg:col-span-4 relative border-2 border-white/15 h-96 group overflow-hidden"
+				>
+					<img
+						src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=800&auto=format&fit=crop"
+						alt="Luxury Wedding Setup"
+						class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+					/>
+					<div
+						class="absolute inset-0 bg-gradient-to-t from-dark-bg via-dark-bg/50 to-transparent"
+					>
+					</div>
+					<div class="absolute bottom-8 left-8 right-8">
+						<span
+							class="text-xs font-mono text-accent-orange font-bold uppercase block mb-1"
+							>// BESPOKE RECEPTION</span
+						>
+						<h3 class="text-3xl font-display font-extrabold text-text-main">
+							Wedding Organizer
+						</h3>
+						<p class="text-text-muted text-sm mt-2">
+							Pernikahan mewah dengan perhatian khusus pada detail estetik dan
+							rundowns presisi.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- SECTION 6: BEHIND THE SCENES (PHOTOGRAPHY GALLERY) -->
+	<section class="py-28 bg-dark-surface border-b border-white/10">
+		<div class="max-w-7xl mx-auto px-4 sm:px-8">
+			<div
+				class="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16"
+			>
+				<div>
+					<span
+						class="text-xs font-mono text-accent-lime uppercase tracking-widest block mb-2"
+						>// DI BALIK LAYAR ELEVATE</span
+					>
+					<h2
+						class="text-5xl sm:text-7xl font-display font-extrabold text-text-main uppercase leading-[0.9]"
+					>
+						PRESISI KREW & PRODUKSI
+					</h2>
+				</div>
+				<p class="text-text-muted max-w-md text-base font-sans">
+					Keberhasilan panggung spektakuler didorong oleh disiplin tinggi tim
+					teknikal, audio engineer, lighting designer, dan floor manager kami di
+					lapangan.
+				</p>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+				<div
+					class="border-2 border-white/10 h-80 relative overflow-hidden group"
+				>
+					<img
+						src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=1000&auto=format&fit=crop"
+						alt="Audio Engineer at Control Console"
+						class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+					/>
+					<div class="absolute inset-0 bg-dark-bg/60"></div>
+					<div class="absolute bottom-6 left-6 right-6">
+						<span class="text-xs font-mono text-accent-orange uppercase block"
+							>// AUDIO ENGINE CONTROL</span
+						>
+						<h4 class="font-display font-bold text-xl text-text-main mt-1">
+							Manajemen Sound System Multi-Channel
+						</h4>
+					</div>
+				</div>
+
+				<div
+					class="border-2 border-white/10 h-80 relative overflow-hidden group"
+				>
+					<img
+						src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=1000&auto=format&fit=crop"
+						alt="Lighting Rigging Technicians"
+						class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+					/>
+					<div class="absolute inset-0 bg-dark-bg/60"></div>
+					<div class="absolute bottom-6 left-6 right-6">
+						<span class="text-xs font-mono text-accent-lime uppercase block"
+							>// STAGE LIGHTING RIGGING</span
+						>
+						<h4 class="font-display font-bold text-xl text-text-main mt-1">
+							Kalibrasi DMX Lighting & Special FX
+						</h4>
+					</div>
+				</div>
+
+				<div
+					class="border-2 border-white/10 h-80 relative overflow-hidden group"
+				>
+					<img
+						src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?q=80&w=1000&auto=format&fit=crop"
+						alt="Crowd Confetti Moment Execution"
+						class="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-105"
+					/>
+					<div class="absolute inset-0 bg-dark-bg/60"></div>
+					<div class="absolute bottom-6 left-6 right-6">
+						<span class="text-xs font-mono text-accent-cyan uppercase block"
+							>// CLIMAX EVENT EXECUTION</span
+						>
+						<h4 class="font-display font-bold text-xl text-text-main mt-1">
+							Eksekusi Momen Puncak & Pyro FX
+						</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- SECTION 7: FAQ ACCORDION -->
+	<section class="py-28 border-b border-white/10">
+		<div class="max-w-4xl mx-auto px-4 sm:px-8">
+			<div class="mb-16">
+				<span
+					class="text-xs font-mono text-accent-orange uppercase tracking-widest block mb-2"
+					>// PERTANYAAN UMUM</span
+				>
+				<h2
+					class="text-5xl sm:text-6xl font-display font-extrabold text-text-main uppercase"
+				>
+					FAQ SEPUTAR ELEVATE
+				</h2>
+			</div>
+
+			<div class="space-y-4" id="faq-accordion">
+				<div
+					class="bg-dark-surface border-l-4 border-accent-orange overflow-hidden"
+				>
+					<button
+						class="w-full p-6 text-left flex items-center justify-between font-display font-bold text-xl text-text-main focus:outline-none faq-btn"
+					>
+						<span
+							>Berapa lama idealnya waktu persiapan untuk sebuah corporate event
+							/ exhibition?</span
+						>
+						<span class="faq-icon text-accent-orange font-mono text-2xl">+</span
+						>
+					</button>
+					<div
+						class="px-6 pb-6 text-text-muted text-base leading-relaxed hidden faq-content border-t border-white/5 pt-4 font-sans"
+					>
+						Idealnya 1 hingga 3 bulan sebelum hari-H untuk event skala menengah
+						hingga besar (500 - 3.000 peserta). Namun, tim reaksi cepat Elevate
+						mampu menangani persiapan darurat (fast-track) dalam waktu 2-3
+						minggu tergantung spesifikasi teknis panggung dan izin venue.
+					</div>
+				</div>
+
+				<div
+					class="bg-dark-surface border-l-4 border-accent-lime overflow-hidden"
+				>
+					<button
+						class="w-full p-6 text-left flex items-center justify-between font-display font-bold text-xl text-text-main focus:outline-none faq-btn"
+					>
+						<span
+							>Apakah Elevate melayani penyelenggaraan event di luar
+							Jabodetabek?</span
+						>
+						<span class="faq-icon text-accent-lime font-mono text-2xl">+</span>
+					</button>
+					<div
+						class="px-6 pb-6 text-text-muted text-base leading-relaxed hidden faq-content border-t border-white/5 pt-4 font-sans"
+					>
+						Ya! Kami berpengalaman menyelenggarakan perhelatan skala nasional di
+						seluruh wilayah Indonesia (seperti Bali, Surabaya, Medan, Makassar,
+						dan Balikpapan) didukung jaringan mitra vendor logistik nasional
+						yang solid.
+					</div>
+				</div>
+
+				<div
+					class="bg-dark-surface border-l-4 border-accent-cyan overflow-hidden"
+				>
+					<button
+						class="w-full p-6 text-left flex items-center justify-between font-display font-bold text-xl text-text-main focus:outline-none faq-btn"
+					>
+						<span
+							>Bagaimana transparansi penganggaran dan sistem pembayaran di
+							Elevate?</span
+						>
+						<span class="faq-icon text-accent-cyan font-mono text-2xl">+</span>
+					</button>
+					<div
+						class="px-6 pb-6 text-text-muted text-base leading-relaxed hidden faq-content border-t border-white/5 pt-4 font-sans"
+					>
+						Kami menerapkan transparansi penuh pada Rencana Anggaran Biaya (RAB)
+						tanpa ada biaya tersembunyi. Skema pembayaran terbagi dalam termin
+						DP awal, termin progres panggung 50%, dan pelunasan pasca eksekusi
+						acara.
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- SECTION 8: CTA BAND -->
+	<section class="py-28 relative">
+		<div class="max-w-5xl mx-auto px-4 sm:px-8 text-center">
+			<div
+				class="bg-dark-surface p-12 sm:p-20 border-2 border-accent-orange relative"
+			>
+				<span
+					class="text-xs font-mono text-accent-lime uppercase tracking-widest block mb-4"
+					>// AGENDAKAN KONSULTASI SEKARANG</span
+				>
+				<h2
+					class="text-5xl sm:text-7xl font-display font-extrabold text-text-main tracking-tight uppercase mb-8 leading-[0.9]"
+				>
+					WUJUDKAN EVENT IMPIAN <br />
+					<span class="text-accent-orange">BERSAMA ELEVATE</span>
+				</h2>
+
+				<div class="flex flex-wrap items-center justify-center gap-6">
+					<a
+						href="/contact"
+						class="px-10 py-5 bg-accent-orange text-dark-bg font-mono font-bold text-lg hover:bg-accent-lime transition-all"
+					>
+						JADWALKAN MEETING SEKARANG →
+					</a>
+					<a
+						href="https://wa.me/6281234567890"
+						target="_blank"
+						class="px-10 py-5 border-2 border-white/20 text-text-main font-mono font-bold text-lg hover:border-accent-lime transition-all"
+					>
+						WHATSAPP DIRECT LINE
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script>
+		const faqBtns = document.querySelectorAll(".faq-btn");
+		faqBtns.forEach((btn) => {
+			btn.addEventListener("click", () => {
+				const content = btn.nextElementSibling;
+				const icon = btn.querySelector(".faq-icon");
+				if (content && icon) {
+					const isHidden = content.classList.contains("hidden");
+					document
+						.querySelectorAll(".faq-content")
+						.forEach((c) => c.classList.add("hidden"));
+					document
+						.querySelectorAll(".faq-icon")
+						.forEach((i) => (i.textContent = "+"));
+
+					if (isHidden) {
+						content.classList.remove("hidden");
+						icon.textContent = "−";
+					}
+				}
+			});
+		});
+	</script>
+</Layout>

@@ -1,0 +1,102 @@
+---
+import Container from '../base/Container.astro';
+import Button from '../base/Button.astro';
+import { navbarData } from './Navbar.data.js';
+
+const pathname = Astro.url.pathname;
+const normalizedPath = pathname.replace(/\/$/, '') || '/';
+---
+
+<header class="sticky top-0 z-50 w-full bg-[var(--color-canvas-light)]/92 backdrop-blur-md border-b border-[var(--color-border-hairline)]">
+  <Container size="xl" as="nav" class="flex items-center justify-between h-20">
+    <!-- Brand Logo -->
+    <a href={navbarData.brand.href} class="flex flex-col group py-2 focus-visible:outline-2 focus-visible:outline-[var(--color-accent-terracotta)]">
+      <span class="font-serif text-xl sm:text-2xl font-bold tracking-tight text-[var(--color-ink-primary)] group-hover:text-[var(--color-accent-terracotta)] transition-colors">
+        {navbarData.brand.name}
+      </span>
+      <span class="text-[10px] tracking-[0.16em] uppercase text-[var(--color-ink-muted)]">
+        Studio Arsitektur
+      </span>
+    </a>
+
+    <!-- Desktop Navigation Links -->
+    <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-[var(--color-ink-primary)]">
+      {navbarData.links.map((link) => {
+        const isActive = normalizedPath === link.href || (link.href !== '/' && normalizedPath.startsWith(link.href));
+        return (
+          <li>
+            <a
+              href={link.href}
+              class={`py-2 transition-colors relative focus-visible:outline-2 focus-visible:outline-[var(--color-accent-terracotta)] ${
+                isActive
+                  ? 'text-[var(--color-accent-terracotta)] font-semibold'
+                  : 'text-[var(--color-ink-primary)] hover:text-[var(--color-accent-terracotta)]'
+              }`}
+            >
+              {link.label}
+              {isActive && (
+                <span class="absolute bottom-0 left-0 w-full h-[2px] bg-[var(--color-accent-terracotta)]" />
+              )}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+
+    <!-- CTA & Mobile Trigger -->
+    <div class="flex items-center gap-4">
+      <Button
+        href={navbarData.cta.href}
+        variant="primary"
+        size="sm"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hidden sm:inline-flex"
+      >
+        {navbarData.cta.label}
+      </Button>
+
+      <!-- Mobile Menu Dropdown using pure details/summary -->
+      <details class="md:hidden relative group">
+        <summary class="list-none p-2 cursor-pointer text-[var(--color-ink-primary)] hover:text-[var(--color-accent-terracotta)] focus-visible:outline-2 focus-visible:outline-[var(--color-accent-terracotta)]" aria-label="Buka Menu Navigasi">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </summary>
+        <div class="absolute right-0 top-full mt-2 w-64 p-5 bg-[var(--color-canvas-light)] border border-[var(--color-border-hairline)] shadow-xl flex flex-col gap-4">
+          <ul class="flex flex-col gap-3 text-sm font-medium">
+            {navbarData.links.map((link) => {
+              const isActive = normalizedPath === link.href || (link.href !== '/' && normalizedPath.startsWith(link.href));
+              return (
+                <li>
+                  <a
+                    href={link.href}
+                    class={`block py-1.5 transition-colors ${
+                      isActive
+                        ? 'text-[var(--color-accent-terracotta)] font-semibold'
+                        : 'text-[var(--color-ink-primary)] hover:text-[var(--color-accent-terracotta)]'
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+          <div class="pt-3 border-t border-[var(--color-border-hairline)]">
+            <Button
+              href={navbarData.cta.href}
+              variant="primary"
+              size="sm"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full"
+            >
+              {navbarData.cta.label}
+            </Button>
+          </div>
+        </div>
+      </details>
+    </div>
+  </Container>
+</header>

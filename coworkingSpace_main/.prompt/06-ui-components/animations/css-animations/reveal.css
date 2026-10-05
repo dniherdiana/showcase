@@ -1,0 +1,80 @@
+/*
+  ANIMATION SYSTEM: IMAGE REVEAL MASKING & SCROLL SLIDE
+
+  To use this reveal animation system in your template:
+  1. Wrap your image in a container with the class `.image-reveal-container` and select a direction modifier:
+     - `.reveal-left-to-right` (default)
+     - `.reveal-right-to-left`
+     - `.reveal-top-to-bottom`
+     - `.reveal-bottom-to-top`
+  2. Set a background color on the container (the color will serve as the transition card before the image loads).
+  3. Ensure you have an Intersection Observer or class manager adding `.in-view` to trigger the animation.
+*/
+
+.image-reveal-container {
+	position: relative;
+	overflow: hidden;
+	display: block; /* Ensures proper wrapping around block images */
+}
+
+/* Base Mask Overlay */
+.image-reveal-container::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: var(--color-surface-soft, #efece6); /* Uses theme variable or fallback */
+	z-index: 2;
+	pointer-events: none;
+	transition: transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Modifier 1: Left to Right (mask shrinks to the right) */
+.image-reveal-container.reveal-left-to-right::after,
+.image-reveal-container::after {
+	/* Default state */
+	transform: scaleX(1);
+	transform-origin: right;
+}
+.image-reveal-container.reveal-left-to-right.in-view::after,
+.image-reveal-container.in-view::after {
+	transform: scaleX(0);
+}
+
+/* Modifier 2: Right to Left (mask shrinks to the left) */
+.image-reveal-container.reveal-right-to-left::after {
+	transform: scaleX(1);
+	transform-origin: left;
+}
+.image-reveal-container.reveal-right-to-left.in-view::after {
+	transform: scaleX(0);
+}
+
+/* Modifier 3: Top to Bottom (mask shrinks to the bottom) */
+.image-reveal-container.reveal-top-to-bottom::after {
+	transform: scaleY(1);
+	transform-origin: bottom;
+}
+.image-reveal-container.reveal-top-to-bottom.in-view::after {
+	transform: scaleY(0);
+}
+
+/* Modifier 4: Bottom to Top (mask shrinks to the top) */
+.image-reveal-container.reveal-bottom-to-top::after {
+	transform: scaleY(1);
+	transform-origin: top;
+}
+.image-reveal-container.reveal-bottom-to-top.in-view::after {
+	transform: scaleY(0);
+}
+
+/* High-fidelity zoom transition for images inside the container */
+.image-reveal-container img {
+	transition: transform 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+	will-change: transform;
+}
+.image-reveal-container.in-view img {
+	transform: scale(1.03); /* Subtle fluid zoom upon reveal */
+}

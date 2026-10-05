@@ -1,0 +1,65 @@
+---
+import { Image } from 'astro:assets';
+import Container from '../base/Container.astro';
+import SectionHeader from '../base/SectionHeader.astro';
+import HairlineDivider from '../base/HairlineDivider.astro';
+import imgTeak from '../../assets/images/material-teak.jpg';
+import imgAndesite from '../../assets/images/material-andesite.jpg';
+import imgTerracotta from '../../assets/images/material-terracotta.jpg';
+import imgSamples from '../../assets/images/material-samples.jpg';
+import { homeMaterialsData } from './HomeMaterials.data.js';
+
+const imageMap: Record<string, ImageMetadata> = {
+  'material-teak.jpg': imgTeak,
+  'material-andesite.jpg': imgAndesite,
+  'material-terracotta.jpg': imgTerracotta,
+  'material-samples.jpg': imgSamples,
+};
+---
+
+<section class="py-20 lg:py-28 border-b border-[var(--color-border-dark-hairline)] bg-[var(--color-canvas-dark)] text-[var(--color-ink-light)]">
+  <Container size="xl" as="div" class="flex flex-col gap-14 lg:gap-16">
+    <!-- Header -->
+    <SectionHeader
+      title={homeMaterialsData.heading}
+      subtitle={homeMaterialsData.subheading}
+      level="h2"
+      dark={true}
+    />
+
+    <!-- Materials Grid with Large Tactile Imagery -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      {homeMaterialsData.materials.map((mat) => {
+        const imageAsset = imageMap[mat.image];
+        return (
+          <article class="flex flex-col gap-4 border border-[var(--color-border-dark-hairline)] bg-[var(--color-canvas-dark-surface)] p-5">
+            <div class="relative aspect-square overflow-hidden border border-[var(--color-border-dark-hairline)]">
+              {imageAsset && (
+                <Image
+                  src={imageAsset}
+                  alt={`Sampel Material ${mat.name}`}
+                  class="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
+                  loading="lazy"
+                />
+              )}
+            </div>
+            <div class="flex flex-col gap-2 pt-1">
+              <h3 class="font-serif text-base font-bold text-[var(--color-ink-light)] leading-snug">
+                {mat.name}
+              </h3>
+              <span class="text-[10px] uppercase tracking-widest text-[var(--color-accent-sage)] font-semibold">
+                {mat.origin}
+              </span>
+              <p class="text-xs text-[var(--color-ink-light-muted)] leading-relaxed">
+                {mat.role}
+              </p>
+              <p class="text-[11px] text-[var(--color-ink-light-muted)]/80 italic pt-1 border-t border-[var(--color-border-dark-hairline)]">
+                {mat.texture}
+              </p>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </Container>
+</section>

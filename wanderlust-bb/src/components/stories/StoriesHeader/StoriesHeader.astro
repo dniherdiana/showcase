@@ -1,0 +1,32 @@
+---
+interface Props {
+	badge?: string;
+	title?: string;
+	issueText?: string;
+	subtitle?: string;
+}
+
+const {
+	badge = "Travel Journal",
+	title = "Wanderlust Stories",
+	issueText = "Summer Edition",
+	subtitle = "Real travel stories, photo essays, and peaceful itineraries written by travelers and local guides.",
+} = Astro.props;
+---
+
+<div class="border-b border-white/10 pb-8 story-scroll-item flex flex-col md:flex-row md:items-end justify-between gap-6">
+	<div>
+		<span class="text-xs font-mono font-bold uppercase tracking-widest text-[#0D9488]" data-i18n-key="storiesBadge">
+			✦ {badge}
+		</span>
+		<h1 data-i18n-key="storiesTitle" class="font-serif text-4xl sm:text-6xl font-extrabold tracking-tight text-white mt-1.5 uppercase">
+			{title}
+		</h1>
+	</div>
+	<div class="text-right flex flex-col items-start md:items-end gap-1">
+		<span class="text-xs font-mono text-gold uppercase font-bold" data-i18n-key="storiesIssueText">{issueText}</span>
+		<p data-i18n-key="storiesSubtitle" class="text-xs text-slate-300 max-w-sm font-sans leading-relaxed">
+			{subtitle}
+		</p>
+	</div>
+</div>

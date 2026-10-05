@@ -1,0 +1,56 @@
+---
+import { Scale, Building2, HeartHandshake, ShieldCheck, Layers } from 'lucide-astro';
+import { tentangKamiContent } from '../../data/tentang-kami.js';
+
+const { principles } = tentangKamiContent;
+
+const icons = [Scale, Building2, HeartHandshake, ShieldCheck];
+---
+
+<section class="py-24 lg:py-32 bg-theme-bg border-b border-theme-border">
+  <div class="editorial-container space-y-16">
+    
+    <!-- Section Header -->
+    <div class="max-w-3xl space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-theme-surface border border-theme-border text-theme-accent text-xs font-semibold uppercase tracking-wider">
+        <Layers class="w-4 h-4" />
+        <span>Pilar Ideologi Utama</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif text-theme-primary font-normal leading-tight">
+        Prinsip Kerja Utuh (Principles)
+      </h2>
+      <p class="text-theme-secondary text-base leading-relaxed">
+        Empat pilar utama yang mengarahkan setiap keputusan perancangan, pemilihan tonase baja, dan pelaksanaan fisik proyek di lapangan.
+      </p>
+    </div>
+
+    <!-- 4 Principles Card Grid (Icon and Heading Inline) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {principles.map((p, index) => {
+        const IconComponent = icons[index % icons.length];
+
+        return (
+          <div class="surface-card surface-card-hover p-8 sm:p-10 rounded-sm border border-theme-border space-y-4 group transition-all duration-300 flex flex-col justify-between">
+            <div class="space-y-4">
+              <!-- Icon and Heading Inline -->
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-sm bg-theme-bg border border-theme-border flex items-center justify-center text-theme-accent group-hover:bg-theme-accent group-hover:text-theme-bg transition-colors duration-300 shrink-0">
+                  <IconComponent class="w-6 h-6 stroke-[2]" />
+                </div>
+                <h3 class="text-xl sm:text-2xl font-serif text-theme-primary font-normal group-hover:text-theme-accent transition-colors leading-snug">
+                  {p.title}
+                </h3>
+              </div>
+
+              <!-- Description -->
+              <p class="text-theme-secondary text-sm sm:text-base leading-relaxed pt-1">
+                {p.description}
+              </p>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+  </div>
+</section>

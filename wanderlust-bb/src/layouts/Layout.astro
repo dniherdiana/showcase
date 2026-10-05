@@ -1,0 +1,433 @@
+---
+import "../styles/fonts.css";
+import "../styles/global.css";
+
+import Navbar from "../components/layout/Navbar/Navbar.astro";
+import Footer from "../components/layout/Footer/Footer.astro";
+import { getImage } from "astro:assets";
+import defaultHeroBg from "../assets/images/private-jet.jpg";
+
+interface Props {
+	title?: string;
+	description?: string;
+	currentPath?: string;
+}
+
+const {
+	title = "Wanderlust — Discover Your Next Journey",
+	description = "Curated luxury journeys, handpicked travel destinations, and immersive global experiences.",
+	currentPath = "/",
+} = Astro.props;
+
+const heroBgPreload =
+	currentPath === "/" ?
+		await getImage({
+			src: defaultHeroBg,
+			width: 1024,
+			format: "webp",
+			quality: 20,
+		})
+	:	null;
+---
+
+<!doctype html>
+<html lang="en" class="dark">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+		<!-- Preload critical self-hosted above-the-fold fonts -->
+		<link
+			rel="preload"
+			as="font"
+			type="font/woff2"
+			href="/fonts/plus-jakarta-sans-latin-400-normal.woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			as="font"
+			type="font/woff2"
+			href="/fonts/plus-jakarta-sans-latin-700-normal.woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			as="font"
+			type="font/woff2"
+			href="/fonts/cormorant-garamond-latin-400-normal.woff2"
+			crossorigin
+		/>
+
+		{
+			heroBgPreload && (
+				<link
+					rel="preload"
+					as="image"
+					href={heroBgPreload.src}
+					fetchpriority="high"
+					type="image/webp"
+				/>
+			)
+		}
+
+		<slot name="head" />
+
+		<script is:inline>
+			// Anti-FOUC: read the saved language synchronously before first paint
+			// so translated text stays hidden until the correct language is applied.
+			try {
+				var savedLang = localStorage.getItem("wanderlust_lang") || "en";
+				document.documentElement.setAttribute("lang", savedLang);
+				window.__wanderlustLang = savedLang;
+				if (savedLang !== "en") {
+					document.documentElement.classList.add("i18n-pending");
+				}
+			} catch (e) {}
+		</script>
+	</head>
+	<body
+		class="selection:bg-gold relative flex min-h-screen flex-col justify-between overflow-x-hidden bg-slate-900 font-sans text-white selection:text-slate-900"
+	>
+		<!-- Shared Navigation -->
+		<Navbar currentPath={currentPath} />
+
+		<!-- Main Page Content -->
+		<main class="relative z-10 flex-1">
+			<slot />
+		</main>
+
+		<!-- Shared Footer -->
+		<Footer />
+
+		<!-- Lenis Ultra Smooth Scroll & Intersection Observer Script -->
+		<script>
+			import Lenis from "lenis";
+
+			let lenisInstance: Lenis | null = null;
+
+			function initLenisSmoothScroll() {
+				if (lenisInstance) {
+					lenisInstance.destroy();
+					lenisInstance = null;
+				}
+
+				const isReducedMotion = window.matchMedia(
+					"(prefers-reduced-motion: reduce)",
+				).matches;
+
+				if (isReducedMotion) return;
+
+				// Keep smooth scrolling off the critical load path entirely:
+				// constructing Lenis sets up a ResizeObserver and reads layout
+				// properties (clientWidth/scrollHeight), so defer construction
+				// until the user's first scroll-related input.
+				const inputEvents = ["wheel", "touchstart", "keydown"];
+
+				function startSmoothScroll() {
+					if (lenisInstance) return;
+					inputEvents.forEach((ev) =>
+						window.removeEventListener(ev, startSmoothScroll, {
+							passive: true,
+						}),
+					);
+
+					lenisInstance = new Lenis({
+						duration: 1.1,
+						easing: (t: number) =>
+							Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+						orientation: "vertical",
+						gestureOrientation: "vertical",
+						smoothWheel: true,
+						wheelMultiplier: 1.0,
+						touchMultiplier: 1.5,
+						infinite: false,
+					});
+
+					requestAnimationFrame(raf);
+				}
+
+				function raf(time: number) {
+					lenisInstance?.raf(time);
+					requestAnimationFrame(raf);
+				}
+
+				inputEvents.forEach((ev) =>
+					window.addEventListener(ev, startSmoothScroll, { passive: true }),
+				);
+
+				// Smooth scroll for anchor links using Lenis
+				document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+					anchor.addEventListener("click", (e) => {
+						const href = anchor.getAttribute("href");
+						if (href && href.startsWith("#") && href.length > 1) {
+							const target = document.querySelector(href);
+							if (target) {
+								e.preventDefault();
+								startSmoothScroll();
+								if (lenisInstance) {
+									lenisInstance.scrollTo(target as HTMLElement, {
+										offset: -80,
+									});
+								}
+							}
+						}
+					});
+				});
+			}
+
+			function initScrollStoryObserver() {
+				const isReducedMotion = window.matchMedia(
+					"(prefers-reduced-motion: reduce)",
+				).matches;
+
+				if (isReducedMotion) {
+					revealAllElements();
+					return;
+				}
+
+				requestAnimationFrame(() => {
+					processTextStorytelling();
+					setupIntersectionObserver();
+				});
+			}
+
+			function revealAllElements() {
+				document
+					.querySelectorAll(
+						".story-scroll-item, .travel-soul-reveal-heading, .story-scroll-section, .story-word",
+					)
+					.forEach((el) => el.classList.add("is-revealed", "is-illuminated"));
+			}
+
+			function processTextStorytelling() {
+				const containers = document.querySelectorAll<HTMLElement>(
+					".story-text-reveal, .story-quote-reveal",
+				);
+
+				containers.forEach((container) => {
+					if (container.dataset.storyProcessed === "true") return;
+					container.dataset.storyProcessed = "true";
+
+					const text = container.textContent || "";
+					const words = text.trim().split(/\s+/);
+					const fragment = document.createDocumentFragment();
+
+					words.forEach((word, idx) => {
+						const span = document.createElement("span");
+						span.className = "story-word";
+						span.textContent = word;
+						span.style.transitionDelay = `${(idx % 12) * 0.04}s`;
+						fragment.appendChild(span);
+					});
+
+					container.replaceChildren(fragment);
+				});
+			}
+
+			function setupIntersectionObserver() {
+				const observer = new IntersectionObserver(
+					(entries, obs) => {
+						entries.forEach((entry) => {
+							if (!entry.isIntersecting) return;
+
+							const target = entry.target;
+							target.classList.add("is-revealed");
+
+							if (
+								target.classList.contains("story-text-reveal") ||
+								target.classList.contains("story-quote-reveal")
+							) {
+								animateWords(target);
+							}
+
+							obs.unobserve(target);
+						});
+					},
+					{ rootMargin: "0px 0px -40px 0px", threshold: 0.1 },
+				);
+
+				const targets = document.querySelectorAll<HTMLElement>(
+					".story-scroll-item, .travel-soul-reveal-heading, .story-scroll-section, .story-text-reveal, .story-quote-reveal",
+				);
+
+				targets.forEach((el) => {
+					observer.observe(el);
+				});
+			}
+
+			function animateWords(target: Element) {
+				const words = target.querySelectorAll(".story-word");
+				words.forEach((word, index) => {
+					setTimeout(() => {
+						word.classList.add("is-illuminated");
+						if (index % 5 === 0) word.classList.add("is-highlighted");
+					}, index * 35);
+				});
+			}
+
+			function init() {
+				initLenisSmoothScroll();
+				initScrollStoryObserver();
+			}
+
+			if (document.readyState === "loading") {
+				document.addEventListener("DOMContentLoaded", init);
+			} else {
+				init();
+			}
+			document.addEventListener("astro:page-load", init);
+		</script>
+
+		<!-- Language Switcher / i18n (moved from Navbar so the Navbar stays zero-JS) -->
+		<script>
+			import { translations } from "../components/layout/i18n.data.js";
+
+			function initLangSwitcher() {
+				const enBtns = [
+					document.getElementById("lang-btn-en"),
+					document.getElementById("mobile-lang-en"),
+				];
+				const idBtns = [
+					document.getElementById("lang-btn-id"),
+					document.getElementById("mobile-lang-id"),
+				];
+
+				function setLanguage(lang: "en" | "id") {
+					localStorage.setItem("wanderlust_lang", lang);
+
+					if (lang === "en") {
+						enBtns.forEach((b) => {
+							b?.classList.add("text-gold", "font-bold");
+							b?.classList.remove("text-white/70");
+						});
+						idBtns.forEach((b) => {
+							b?.classList.remove("text-gold", "font-bold");
+							b?.classList.add("text-white/70");
+						});
+					} else {
+						idBtns.forEach((b) => {
+							b?.classList.add("text-gold", "font-bold");
+							b?.classList.remove("text-white/70");
+						});
+						enBtns.forEach((b) => {
+							b?.classList.remove("text-gold", "font-bold");
+							b?.classList.add("text-white/70");
+						});
+					}
+
+					const dict = translations[lang];
+					document
+						.querySelectorAll<HTMLElement>("[data-i18n-key]")
+						.forEach((el) => {
+							const key = el.getAttribute(
+								"data-i18n-key",
+							) as keyof typeof dict;
+							if (key && dict[key]) {
+								if (el.tagName === "INPUT") {
+									(el as HTMLInputElement).placeholder = dict[key];
+								} else if (el.hasAttribute("data-i18n-html")) {
+									el.innerHTML = dict[key];
+								} else {
+									el.textContent = dict[key];
+								}
+							}
+						});
+
+					document
+						.querySelectorAll<HTMLElement>("[data-i18n-id]")
+						.forEach((el) => {
+							const textEn = el.getAttribute("data-i18n-en");
+							const textId = el.getAttribute("data-i18n-id");
+							const target = lang === "id" ? textId : textEn;
+							if (target) {
+								if (el.tagName === "INPUT") {
+									(el as HTMLInputElement).placeholder = target;
+								} else if (el.hasAttribute("data-i18n-html")) {
+									el.innerHTML = target;
+								} else {
+									el.textContent = target;
+								}
+							}
+						});
+
+					const categoryMap: Record<string, string> = {
+						"All Destinations": "Semua Destinasi",
+						"Coastal Luxury": "Pantai & Pesisir",
+						"Cultural Heritage": "Warisan Budaya",
+						"Wilderness": "Alam & Alam Liar",
+						"Alpine Luxury": "Pegunungan & Salju",
+						"Private Aviation": "Penerbangan Privat",
+						"Yachting & Deep Sea": "Kapal Pesiar & Laut",
+						"All Stories": "Semua Cerita",
+						"Coastal Escapes": "Liburan Pesisir",
+						"Wilderness & Trekking": "Alam & Petualangan",
+						"Practical Travel Tips": "Tips Perjalanan",
+					};
+
+					document
+						.querySelectorAll<HTMLElement>(".dest-category-btn")
+						.forEach((btn) => {
+							const catEn = btn.getAttribute(
+								"data-destination-category-btn",
+							);
+							if (catEn && categoryMap[catEn]) {
+								btn.textContent =
+									lang === "id" ? categoryMap[catEn] : catEn;
+							}
+						});
+
+					document
+						.querySelectorAll<HTMLElement>(".story-category-btn")
+						.forEach((btn) => {
+							const catEn = btn.getAttribute("data-category");
+							if (catEn && categoryMap[catEn]) {
+								btn.textContent =
+									lang === "id" ? categoryMap[catEn] : catEn;
+							}
+						});
+
+					document
+						.querySelectorAll<HTMLElement>("[data-category-badge]")
+						.forEach((el) => {
+							const catEn = el.getAttribute("data-category-badge");
+							if (catEn && categoryMap[catEn]) {
+								el.textContent =
+									lang === "id" ? categoryMap[catEn] : catEn;
+							}
+						});
+
+					window.dispatchEvent(
+						new CustomEvent("wanderlust:langchange", {
+							detail: { lang },
+						}),
+					);
+					document.documentElement.classList.remove("i18n-pending");
+				}
+
+				const savedLang =
+					((window as any).__wanderlustLang as "en" | "id") ||
+					((localStorage.getItem("wanderlust_lang") as "en" | "id") ||
+						"en");
+				setLanguage(savedLang);
+
+				enBtns.forEach((b) =>
+					b?.addEventListener("click", () => setLanguage("en")),
+				);
+				idBtns.forEach((b) =>
+					b?.addEventListener("click", () => setLanguage("id")),
+				);
+			}
+
+			if (document.readyState === "loading") {
+				document.addEventListener("DOMContentLoaded", initLangSwitcher);
+			} else {
+				initLangSwitcher();
+			}
+			document.addEventListener("astro:page-load", initLangSwitcher);
+		</script>
+	</body>
+</html>

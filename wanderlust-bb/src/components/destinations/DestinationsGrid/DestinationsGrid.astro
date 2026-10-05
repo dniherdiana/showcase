@@ -1,0 +1,51 @@
+---
+import DestinationCard from "../../shared/DestinationCard/DestinationCard.astro";
+import { destinationsData } from "../data/index.js";
+
+interface Props {
+	destinations?: typeof destinationsData;
+}
+
+const { destinations = destinationsData } = Astro.props;
+---
+
+<div class="space-y-8">
+	<div
+		class="flex items-end justify-between gap-4 border-b border-white/10 pb-5"
+	>
+		<div class="space-y-1">
+			<span
+				class="text-[10px] font-mono font-bold tracking-widest text-[#0D9488] uppercase"
+				data-i18n-en="✦ Curated Collection"
+				data-i18n-id="✦ Koleksi Pilihan"
+			>
+				✦ Curated Collection
+			</span>
+			<h2
+				class="font-serif text-2xl font-extrabold tracking-tight text-white uppercase sm:text-3xl"
+				data-i18n-en="Luxury Destinations"
+				data-i18n-id="Destinasi Mewah"
+			>
+				Luxury Destinations
+			</h2>
+		</div>
+	</div>
+
+	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+		{destinations.map((dest) => <DestinationCard {...dest} />)}
+	</div>
+
+	<!-- Empty Search / Filter State Message -->
+	<div id="no-destinations-msg" class="hidden py-16 text-center space-y-3 border border-white/10 rounded-lg glass-card">
+		<p class="text-sm font-sans text-white/60" data-i18n-key="noDestFound">No destination packages found matching your search.</p>
+		<button
+			id="reset-destination-filter-btn"
+			type="button"
+			data-i18n-en="View All Destinations"
+			data-i18n-id="Lihat Semua Destinasi"
+			class="text-xs font-mono font-bold text-gold uppercase hover:underline cursor-pointer"
+		>
+			View All Destinations
+		</button>
+	</div>
+</div>

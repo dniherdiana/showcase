@@ -1,0 +1,310 @@
+/* ==========================================================================
+   SCROLL-DRIVEN & VIEWPORT REVEAL ANIMATIONS
+   Grand Samudra Residence - Real Estate Scroll Architecture
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. HERO SECTIONS (Crisp & High Quality Initial Render)
+   -------------------------------------------------------------------------- */
+
+.hero-rv-home,
+.hero-rv-home-img,
+.hero-rv-about,
+.hero-rv-about-img,
+.hero-rv-property,
+.hero-rv-contact,
+.hero-rv-contact-img {
+  will-change: transform, opacity;
+}
+
+.hero-rv-home,
+.hero-rv-about,
+.hero-rv-property,
+.hero-rv-contact {
+  animation: heroTextReveal 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.hero-rv-home-img,
+.hero-rv-about-img,
+.hero-rv-contact-img {
+  animation: heroImgReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes heroTextReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroImgReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .hero-rv-home-img,
+  .hero-rv-about-img,
+  .hero-rv-contact-img {
+    animation: heroScrollParallax linear both;
+    animation-timeline: view(exit);
+    animation-range: exit 0% exit 100%;
+  }
+
+  @keyframes heroScrollParallax {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(35px);
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. REVEAL UP SCROLL ANIMATIONS (All Under The Fold Elements)
+   -------------------------------------------------------------------------- */
+
+[data-reveal],
+.story-beat,
+.timeline-btn,
+.af-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+/* Guaranteed 100% Brightness and Full Opacity Once Revealed */
+[data-reveal].is-revealed,
+.story-beat.is-revealed,
+.timeline-btn.is-revealed,
+.af-reveal.is-revealed {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  filter: none !important;
+}
+
+/* Desktop Staggered Delay for Story Beats & Timeline Items */
+@media (min-width: 1024px) {
+  .story-beat:nth-child(2) { transition-delay: 0.15s; }
+  .story-beat:nth-child(3) { transition-delay: 0.3s; }
+
+  .timeline-btn:nth-child(2) { transition-delay: 0.1s; }
+  .timeline-btn:nth-child(3) { transition-delay: 0.2s; }
+  .timeline-btn:nth-child(4) { transition-delay: 0.3s; }
+  .timeline-btn:nth-child(5) { transition-delay: 0.4s; }
+}
+
+/* Native CSS View-Timeline Enhancement */
+@supports (animation-timeline: view()) {
+  [data-reveal],
+  .story-beat,
+  .timeline-btn,
+  .af-reveal {
+    animation: storyScrollRevealUp linear both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 35%;
+  }
+
+  @keyframes storyScrollRevealUp {
+    0% {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. ABOUT FEATURE TIMELINE ANIMATIONS (HOME PAGE INDEX.ASTRO)
+   -------------------------------------------------------------------------- */
+
+.af-item {
+  will-change: transform, opacity;
+}
+
+@supports (animation-timeline: view()) {
+  /* Timeline Vertical Line Draw on Scroll */
+  .af-timeline-line {
+    animation: drawAfTimelineLine linear both;
+    animation-timeline: view();
+    animation-range: entry 15% cover 75%;
+    transform-origin: top center;
+  }
+
+  @keyframes drawAfTimelineLine {
+    0% {
+      transform: scaleY(0);
+      opacity: 0.1;
+    }
+    100% {
+      transform: scaleY(1);
+      opacity: 1;
+    }
+  }
+
+  /* Staggered Timeline Node Reveals as User Scrolls Down */
+  .af-item:nth-child(2) {
+    animation: afItemReveal linear both;
+    animation-timeline: view();
+    animation-range: entry 15% cover 40%;
+  }
+
+  .af-item:nth-child(3) {
+    animation: afItemReveal linear both;
+    animation-timeline: view();
+    animation-range: entry 25% cover 50%;
+  }
+
+  .af-item:nth-child(4) {
+    animation: afItemReveal linear both;
+    animation-timeline: view();
+    animation-range: entry 35% cover 60%;
+  }
+
+  @keyframes afItemReveal {
+    0% {
+      opacity: 0;
+      transform: translateY(40px) translateX(-15px);
+      filter: blur(4px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) translateX(0);
+      filter: blur(0);
+    }
+  }
+
+  /* Timeline Dot Glowing Light Pulse on Scroll */
+  .af-dot {
+    animation: afDotGlow linear both;
+    animation-timeline: view();
+    animation-range: entry 20% cover 45%;
+  }
+
+  @keyframes afDotGlow {
+    0% {
+      transform: scale(0.6);
+      box-shadow: 0 0 0 rgba(251, 191, 36, 0);
+    }
+    50% {
+      transform: scale(1.3);
+      box-shadow: 0 0 16px rgba(251, 191, 36, 0.9);
+    }
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 8px rgba(251, 191, 36, 0.5);
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   4. DEVELOPER TIMELINE PROGRESS LINE SCROLL GROWTH
+   -------------------------------------------------------------------------- */
+
+.timeline-progress-line {
+  transform-origin: top left;
+  transform: scaleY(0);
+  opacity: 0.2;
+  transition: transform 1s ease-out, opacity 0.8s ease-out;
+}
+
+.timeline-progress-line.is-revealed {
+  transform: scaleY(1) !important;
+  opacity: 1 !important;
+}
+
+@media (min-width: 1024px) {
+  .timeline-progress-line {
+    transform-origin: left center;
+    transform: scaleX(0);
+  }
+
+  .timeline-progress-line.is-revealed {
+    transform: scaleX(1) !important;
+    opacity: 1 !important;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  .timeline-progress-line {
+    animation: drawTimelineLineY linear both;
+    animation-timeline: view();
+    animation-range: entry 10% exit 80%;
+  }
+
+  @media (min-width: 1024px) {
+    .timeline-progress-line {
+      animation: drawTimelineLineX linear both;
+      animation-timeline: view();
+      animation-range: entry 15% exit 75%;
+    }
+  }
+
+  @keyframes drawTimelineLineY {
+    0% {
+      transform: scaleY(0);
+      opacity: 0.2;
+    }
+    100% {
+      transform: scaleY(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes drawTimelineLineX {
+    0% {
+      transform: scaleX(0);
+      opacity: 0.2;
+    }
+    100% {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. TIMELINE DOT GLOW & STAGE CARD TRANSITION
+   -------------------------------------------------------------------------- */
+
+.timeline-dot,
+.af-reveal .rounded-full {
+  transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+}
+
+.timeline-btn:hover .timeline-dot,
+.af-reveal:hover .rounded-full {
+  box-shadow: 0 0 16px rgba(251, 191, 36, 0.8);
+  transform: scale(1.25);
+}
+
+.timeline-stage {
+  animation: stageFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes stageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

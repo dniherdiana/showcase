@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+import { aboutData } from "../data/index.js";
+---
+
+<div class="space-y-8 story-scroll-item border-t border-white/10 pt-16">
+	<div class="text-center max-w-2xl mx-auto space-y-3">
+		<span class="text-xs font-mono font-bold uppercase tracking-widest text-[#0D9488]" data-i18n-key="aboutTestimonialsTitle">What Our Guests Say</span>
+		<h2 class="font-heading text-2xl sm:text-4xl font-extrabold text-white uppercase" data-i18n-key="aboutTestimonialsTitle">What Our Guests Say</h2>
+		<p class="text-xs text-white/60 font-sans max-w-lg mx-auto" data-i18n-en="Real experiences and feedback from travelers who explored the world with us." data-i18n-id="Pengalaman dan ulasan nyata dari para tamu yang menjelajahi dunia bersama kami.">Real experiences and feedback from travelers who explored the world with us.</p>
+	</div>
+
+	<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+		{
+			aboutData.testimonials.map((t) => (
+				<div class="p-6 rounded-lg glass-card border border-white/15 space-y-4 flex flex-col justify-between relative hover:border-gold/40 transition-colors">
+					<div class="space-y-3">
+						<div class="flex items-center gap-3 border-b border-white/10 pb-3">
+							<div class="w-12 h-12 rounded-full overflow-hidden border border-gold/40 flex-shrink-0">
+								<Image src={t.avatar} alt={t.author} width={128} quality={50} format="webp" class="w-full h-full object-cover" />
+							</div>
+							<div>
+								<h3 class="font-heading text-xs font-bold text-white uppercase">{t.author}</h3>
+								<span class="text-[10px] font-mono text-gold block">{t.location}</span>
+							</div>
+						</div>
+
+						<p
+							data-i18n-en={`"${t.quote}"`}
+							data-i18n-id={`"${t.quote_id}"`}
+							class="text-xs text-white/80 font-sans italic leading-relaxed pt-1"
+						>
+							"{t.quote}"
+						</p>
+					</div>
+
+					<div class="pt-2 border-t border-white/10">
+						<span
+							data-i18n-en={`Journey: ${t.trip}`}
+							data-i18n-id={`Perjalanan: ${t.trip_id}`}
+							class="text-[10px] font-mono text-[#0D9488] uppercase block"
+						>Journey: {t.trip}</span>
+					</div>
+				</div>
+			))
+		}
+	</div>
+</div>

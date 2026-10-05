@@ -1,0 +1,29 @@
+---
+const { class: className, name, tag, role, description } = Astro.props;
+---
+
+<section class={className}>
+	<div
+		class="border-border/30 relative flex h-full flex-col justify-between border p-4"
+	>
+		<div>
+			<div class="mb-4 flex items-center gap-2.5">
+				<div class="bg-text h-1.5 w-1.5 rounded-full"></div>
+				<span
+					class="text-heading text-[9px] tracking-widest uppercase lg:text-[10px]"
+				>
+					{tag}
+				</span>
+			</div>
+			<h2 class="text-text mb-2 text-3xl tracking-wider">
+				{name}
+			</h2>
+			<h3 class="text-heading mb-5 text-[11px] tracking-widest uppercase">
+				{role}
+			</h3>
+			<p class="text-text text-base leading-relaxed font-light italic">
+				{description}
+			</p>
+		</div>
+	</div>
+</section>

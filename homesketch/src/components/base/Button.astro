@@ -1,0 +1,53 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'dark';
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+  target?: string;
+  rel?: string;
+  type?: 'button' | 'submit' | 'reset';
+  [key: string]: any;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  class: className = '',
+  target,
+  rel,
+  type = 'button',
+  ...rest
+} = Astro.props;
+
+const baseStyles = 'btn-thunk inline-flex items-center justify-center font-medium tracking-wide transition-all select-none cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-accent-terracotta)]';
+
+const sizeStyles = {
+  sm: 'h-10 px-5 text-xs uppercase tracking-wider',
+  md: 'h-12 px-7 text-sm',
+  lg: 'h-14 px-9 text-base',
+};
+
+const variantStyles = {
+  primary: 'bg-[var(--color-ink-primary)] text-[var(--color-ink-light)] hover:bg-[var(--color-accent-terracotta)] shadow-xs',
+  secondary: 'bg-[var(--color-canvas-surface)] text-[var(--color-ink-primary)] border border-[var(--color-border-hairline)] hover:border-[var(--color-accent-terracotta)] hover:text-[var(--color-accent-terracotta)]',
+  outline: 'bg-transparent text-[var(--color-ink-primary)] border border-[var(--color-ink-primary)] hover:bg-[var(--color-ink-primary)] hover:text-[var(--color-ink-light)]',
+  ghost: 'bg-transparent text-[var(--color-ink-primary)] hover:text-[var(--color-accent-terracotta)] hover:underline underline-offset-4',
+  dark: 'bg-[var(--color-ink-light)] text-[var(--color-canvas-dark)] hover:bg-[var(--color-accent-terracotta)] hover:text-white shadow-xs',
+};
+
+const computedClass = `${baseStyles} ${sizeStyles[size]} ${variantStyles[variant]} ${className}`;
+---
+
+{
+  href ? (
+    <a href={href} class={computedClass} target={target} rel={rel} {...rest}>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class={computedClass} {...rest}>
+      <slot />
+    </button>
+  )
+}

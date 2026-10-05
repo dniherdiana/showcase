@@ -1,0 +1,301 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import {
+	storiesData,
+	featuredStoryData,
+} from "../../components/stories/data/index.js";
+
+export async function getStaticPaths() {
+	const allArticles = [featuredStoryData, ...storiesData];
+	return allArticles.map((story) => ({
+		params: { slug: story.slug },
+		props: { story },
+	}));
+}
+
+const { story } = Astro.props;
+const relatedStories = storiesData
+	.filter((s) => s.slug !== story.slug)
+	.slice(0, 2);
+---
+
+<Layout title={`${story.title} — Wanderlust Magazine`} currentPath="/stories">
+	<article class="mx-auto max-w-7xl space-y-12 px-[5%] py-16">
+		<!-- Back Button -->
+		<div class="story-scroll-item">
+			<a
+				href="/stories"
+				class="text-gold hover:text-gold-light inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase transition-colors"
+			>
+				<span data-i18n-key="backToStories">← Back to Stories</span>
+			</a>
+		</div>
+
+		<!-- Magazine Article Header Spread -->
+		<header
+			class="story-scroll-item max-w-3xl space-y-6 border-b border-white/15 pb-8"
+		>
+			<div class="flex items-center gap-3 text-xs">
+				<span
+					data-category-badge={story.category}
+					class="rounded border border-[#0D9488]/40 bg-[#0A0F15] px-3 py-1 font-mono font-bold tracking-wider text-[#0D9488] uppercase"
+				>
+					{story.category}
+				</span>
+				<span class="text-white/40">•</span>
+				<span class="text-gold font-mono font-semibold">{story.date}</span>
+			</div>
+
+			<h1
+				data-i18n-en={story.title}
+				data-i18n-id={story.title_id}
+				class="font-heading text-3xl leading-tight font-black text-white uppercase sm:text-5xl lg:text-6xl"
+			>
+				{story.title}
+			</h1>
+
+			<div
+				class="flex items-center justify-between border-t border-white/10 pt-4 font-sans text-xs text-white/60"
+			>
+				<div class="flex items-center gap-3">
+					<div
+						class="bg-gold/20 border-gold/40 text-gold flex h-8 w-8 items-center justify-center rounded-full border font-mono font-bold"
+					>
+						{story.author.charAt(0)}
+					</div>
+					<div>
+						<p class="font-bold tracking-wider text-white uppercase">
+							{story.author}
+						</p>
+						<p
+							data-i18n-key="correspondent"
+							class="font-mono text-[10px] text-white/50"
+						>
+							Correspondent
+						</p>
+					</div>
+				</div>
+				<span class="text-gold font-mono font-semibold">{story.readTime}</span>
+			</div>
+		</header>
+
+		<!-- Main Magazine Article Content -->
+		<div class="grid grid-cols-1 items-start gap-12 lg:grid-cols-12">
+			<!-- Main Article Body -->
+			<div class="space-y-8 lg:col-span-8">
+				<!-- Cover Image Spread -->
+				<div
+					class="story-scroll-item relative block h-72 w-full overflow-hidden rounded sm:h-96 md:h-120"
+				>
+					<Image
+						src={story.image}
+						alt={story.title}
+						class="h-full w-full object-cover"
+						widths={[480, 768, 1024]}
+						sizes="(min-width: 1024px) 720px, 100vw"
+						quality={40}
+						fetchpriority="high"
+					/>
+				</div>
+
+				<!-- Article Body Content -->
+				<div
+					data-i18n-html
+					data-i18n-en={story.content}
+					data-i18n-id={story.content_id || story.content}
+					class="story-scroll-item space-y-6 border-y border-white/10 py-10 font-sans text-base leading-relaxed font-normal text-white/90 sm:text-lg"
+				>
+					<div set:html={story.content} />
+				</div>
+
+				<!-- Author Sign-Off Section -->
+				<div
+					class="story-scroll-item flex items-center justify-between gap-4 border-b border-white/10 py-6"
+				>
+					<div>
+						<p
+							data-i18n-key="dispatchBy"
+							class="font-mono text-[10px] font-bold tracking-widest text-[#0D9488] uppercase"
+						>
+							Dispatch By
+						</p>
+						<h2
+							class="font-heading mt-1 text-xl font-extrabold text-white uppercase"
+						>
+							{story.author}
+						</h2>
+						<p
+							data-i18n-key="authorBio"
+							class="mt-1 font-sans text-xs text-white/60"
+						>
+							Reporting on extraordinary journeys, remote wilderness, and
+							regional culture.
+						</p>
+					</div>
+					<a
+						href="/destinations"
+						data-i18n-key="exploreRoutes"
+						class="bg-gold hover:bg-gold-light hidden rounded px-5 py-2.5 text-xs font-bold tracking-wider text-slate-950 uppercase shadow-md transition-all sm:inline-block"
+					>
+						Explore Routes
+					</a>
+				</div>
+			</div>
+
+			<!-- Sticky Magazine Sidebar Column -->
+			<aside class="space-y-8 lg:sticky lg:top-28 lg:col-span-4">
+				<!-- Article Quick Info Box -->
+				<div
+					class="story-scroll-item space-y-4 rounded border border-white/15 bg-slate-950/60 p-6"
+				>
+					<span
+						data-i18n-key="articleIndex"
+						class="font-mono text-[10px] font-bold tracking-widest text-[#0D9488] uppercase"
+						>Article Index</span
+					>
+					<h3
+						data-i18n-key="storyHighlights"
+						class="font-heading text-base font-bold text-white uppercase"
+					>
+						Story Highlights
+					</h3>
+					<ul
+						class="list-disc space-y-2.5 border-t border-white/10 pt-3 pl-4 font-sans text-xs text-white/70"
+					>
+						<li data-i18n-key="storyHighlight1">
+							Curated regional perspectives & local culture.
+						</li>
+						<li data-i18n-key="storyHighlight2">
+							Handpicked accommodation & dining spots.
+						</li>
+						<li data-i18n-key="storyHighlight3">
+							Tailor-made itinerary recommendations.
+						</li>
+					</ul>
+				</div>
+
+				<!-- Destination Booking CTA Box -->
+				<div
+					class="border-gold/30 story-scroll-item space-y-4 rounded border bg-slate-900/90 p-6 text-center"
+				>
+					<span
+						data-i18n-key="customExpeditions"
+						class="text-gold font-mono text-[10px] font-bold tracking-widest uppercase"
+						>Custom Expeditions</span
+					>
+					<h3
+						data-i18n-key="informedByStory"
+						class="font-heading text-lg font-extrabold text-white uppercase"
+					>
+						Informed by Story
+					</h3>
+					<p
+						data-i18n-key="customExpeditionsDesc"
+						class="font-sans text-xs leading-relaxed text-white/60"
+					>
+						Want to experience this exact route? Speak with our travel
+						specialists for a tailor-made itinerary.
+					</p>
+					<a
+						href="/#book"
+						data-i18n-key="consultSpecialist"
+						class="bg-gold hover:bg-gold-light shadow-gold/20 inline-block w-full rounded py-3 text-xs font-bold tracking-wider text-slate-950 uppercase shadow-md transition-colors"
+					>
+						Consult Specialist
+					</a>
+				</div>
+
+				<!-- Related Dispatches Sidebar List -->
+				{
+					relatedStories.length > 0 && (
+						<div class="story-scroll-item space-y-6 border-t border-white/10 pt-6">
+							<div class="flex items-center justify-between">
+								<h3
+									data-i18n-key="relatedDispatches"
+									class="font-heading text-xs font-extrabold tracking-widest text-[#0D9488] uppercase"
+								>
+									Related Dispatches
+								</h3>
+								<span
+									data-i18n-key="recommended"
+									class="font-mono text-[10px] text-white/40 uppercase"
+								>
+									Recommended
+								</span>
+							</div>
+
+							<div class="space-y-8">
+								{relatedStories.map((item) => (
+									<article class="group space-y-3 border-b border-white/10 pb-6">
+										<a
+											href={`/stories/${item.slug}`}
+											class="relative block aspect-video w-full overflow-hidden rounded"
+										>
+											<Image
+												src={item.image}
+												alt={item.title}
+												class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+												widths={[240, 480, 720]}
+												sizes="400px"
+												quality={40}
+												loading="lazy"
+											/>
+											<span
+												data-category-badge={item.category}
+												class="absolute top-2.5 left-2.5 rounded border border-[#0D9488]/40 bg-[#0A0F15]/90 px-2 py-0.5 font-mono text-[9px] font-bold tracking-wider text-[#0D9488] uppercase"
+											>
+												{item.category}
+											</span>
+										</a>
+
+										<div class="space-y-2">
+											<div class="flex items-center gap-2 font-sans text-[11px] tracking-wide text-white/50">
+												<span>
+													<span data-i18n-key="byAuthor">By</span> {item.author}
+												</span>
+												<span>&bull;</span>
+												<span class="text-gold font-mono">{item.readTime}</span>
+											</div>
+
+											<h4 class="font-heading group-hover:text-gold text-base leading-snug font-extrabold text-white transition-colors">
+												<a
+													href={`/stories/${item.slug}`}
+													data-i18n-en={item.title}
+													data-i18n-id={item.title_id}
+												>
+													{item.title}
+												</a>
+											</h4>
+
+											<p
+												data-i18n-en={item.excerpt}
+												data-i18n-id={item.excerpt_id}
+												class="line-clamp-2 font-sans text-xs leading-relaxed text-white/60"
+											>
+												{item.excerpt}
+											</p>
+
+											<div class="pt-1">
+												<a
+													href={`/stories/${item.slug}`}
+													data-i18n-key="readStory"
+													class="text-gold hover:text-gold-light inline-flex items-center gap-1.5 text-[11px] font-bold tracking-widest uppercase transition-colors"
+												>
+													Read Story
+													<span class="transition-transform group-hover:translate-x-1">
+														→
+													</span>
+												</a>
+											</div>
+										</div>
+									</article>
+								))}
+							</div>
+						</div>
+					)
+				}
+			</aside>
+		</div>
+	</article>
+</Layout>

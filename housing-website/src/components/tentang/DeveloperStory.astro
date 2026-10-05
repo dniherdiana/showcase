@@ -1,0 +1,176 @@
+---
+import { Image } from "astro:assets";
+import drainage from "@assets/images/drainage.jpg";
+import resident1 from "@assets/images/resident1.jpg";
+import { developerStoryContent } from "../../data/tentang/developerStory.js";
+---
+
+<section
+	class="py-28 bg-canvas-default relative border-b border-slate-900 overflow-hidden"
+>
+	<div
+		class="absolute inset-0 bg-[linear-gradient(to_right,color-mix(in_srgb,var(--color-canvas-elevated)_8%,transparent)_1px,transparent_1px),linear-gradient(to_bottom,color-mix(in_srgb,var(--color-canvas-elevated)_8%,transparent)_1px,transparent_1px)] bg-size-[4rem_4rem] pointer-events-none"
+	>
+	</div>
+
+	<div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10 space-y-24">
+		<div data-reveal="fade" class="max-w-3xl space-y-5">
+			<span
+				class="text-xs font-mono text-amber-300 uppercase tracking-widest block"
+			>
+				<span class="border h-3 border-l bg-amber-400 justify-center mr-2"
+				></span>
+				{developerStoryContent.tag}
+			</span>
+			<h2
+				class="font-serif text-3xl sm:text-4xl lg:text-5xl text-slate-100 font-normal leading-[1.15] tracking-tight"
+			>
+				{developerStoryContent.headline}
+			</h2>
+		</div>
+
+		<div data-reveal class="relative">
+			<div
+				class="relative rounded-sm overflow-hidden border border-slate-800 shadow-2xl h-80 sm:h-104"
+			>
+				<div class="absolute inset-0">
+					<Image
+						src={drainage}
+						alt="Konstruksi Drainase dan Utilitas Bawah Tanah"
+						loading="lazy"
+						format="webp"
+						quality={80}
+						class="w-full h-full object-cover"
+					/>
+				</div>
+				<div
+					class="absolute inset-0 bg-linear-to-t from-slate-950/95 via-slate-950/20 to-transparent"
+				>
+				</div>
+				<blockquote class="absolute bottom-0 left-0 right-0 p-8 lg:p-12">
+					<p
+						class="font-serif italic text-xl sm:text-2xl text-slate-100 max-w-3xl leading-snug"
+					>
+						“{developerStoryContent.quote}”
+					</p>
+					<footer
+						class="mt-4 text-xs font-mono text-amber-300 uppercase tracking-widest"
+					>
+						{developerStoryContent.quoteKicker}
+					</footer>
+				</blockquote>
+			</div>
+
+			<div
+				class="hidden sm:block absolute -bottom-10 -right-4 z-20 w-64 rounded-sm overflow-hidden border-2 border-amber-400/60 shadow-2xl bg-slate-950 rotate-2 hover:rotate-0 transition-transform duration-500"
+			>
+				<Image
+					src={resident1}
+					alt="Kehidupan Keluarga di Cluster"
+					loading="lazy"
+					format="webp"
+					quality={80}
+					class="w-full h-44 object-cover"
+				/>
+				<div
+					class="p-3 bg-canvas-raised border-t border-slate-800 text-[11px] font-mono text-amber-300"
+				>
+					FOKUS KUALITAS HIDUP PENGHUNI
+				</div>
+			</div>
+		</div>
+
+		<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+			<div class="lg:col-span-4 order-2 lg:order-1">
+				<div class="lg:sticky lg:top-28 space-y-8">
+					<div data-reveal class="space-y-2">
+						<span
+							class="text-xs font-mono text-amber-300 uppercase tracking-widest block"
+						>
+							<span class="border h-3 border-l bg-amber-400 justify-center mr-2"
+							></span>
+							Bab dalam Perjalanan
+						</span>
+						<h3
+							class="font-serif text-2xl text-slate-100 font-normal leading-snug"
+						>
+							Dari kontras industri hingga hasil yang terukur.
+						</h3>
+					</div>
+					<!-- <nav data-reveal class="space-y-2" aria-label="Navigasi kisah">
+						{
+							developerStoryContent.chapters.map((c) => (
+								<a
+									href={`#story-${c.number}`}
+									data-story-nav={c.number}
+									class="story-nav group flex items-center gap-4 p-3 rounded-sm border border-transparent transition-all duration-300"
+								>
+									<span class="font-mono text-sm text-slate-500 group-hover:text-amber-300">
+										{c.number}
+									</span>
+									<span class="text-sm text-slate-400 group-hover:text-slate-100">
+										{c.title}
+									</span>
+								</a>
+							))
+						}
+					</nav> -->
+				</div>
+			</div>
+
+			<div class="lg:col-span-8 order-1 lg:order-2 space-y-20">
+				{
+					developerStoryContent.chapters.map((c) => (
+						<article
+							id={`story-${c.number}`}
+							data-story-beat={c.number}
+							data-reveal="left"
+							class="story-beat relative pl-10 lg:pl-12"
+						>
+							<div class="absolute left-0 top-1 bottom-0 w-px bg-linear-to-b from-amber-400/50 via-slate-800 to-transparent" />
+							<div class="absolute left-0 top-1 w-6 h-6 -translate-x-1/2 rounded-full border-2 border-amber-400/60 bg-slate-950" />
+
+							<div class="space-y-4">
+								<div class="flex items-center gap-3">
+									<span class="font-mono text-3xl text-amber-300 italic font-light">
+										{c.number}
+									</span>
+									<span class="text-xs font-mono uppercase tracking-widest text-slate-400">
+										{c.kicker}
+									</span>
+								</div>
+								<h3 class="font-serif text-2xl sm:text-3xl text-slate-100 font-normal leading-snug">
+									{c.title}
+								</h3>
+								<p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl">
+									{c.text}
+								</p>
+							</div>
+						</article>
+					))
+				}
+			</div>
+		</div>
+
+		<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+			{
+				developerStoryContent.pillars.map((p, i) => (
+					<div
+						data-reveal={i % 2 === 0 ? "zoom" : "fade"}
+						class="group p-6 rounded-sm border border-slate-800 bg-canvas-raised/60 hover:border-amber-400/40 transition-all duration-300 space-y-3"
+					>
+						<span class="flex w-10 h-10 items-center justify-center rounded-full border border-amber-400/40 text-amber-300 font-serif">
+							{String(i + 1).padStart(2, "0")}
+						</span>
+						<h4 class="font-serif text-xl text-slate-100 group-hover:text-amber-300 transition-colors">
+							{p.title}
+						</h4>
+						<p class="text-xs text-slate-400 leading-relaxed">
+							{p.description}
+						</p>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>

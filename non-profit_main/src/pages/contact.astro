@@ -1,0 +1,98 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/svelte/ContactForm.svelte';
+import ClientDataTag from '../components/ClientDataTag.astro';
+---
+
+<Layout 
+  title="Contact Us | Yayasan Bumi Bersama - Field Stations & Secretariat"
+  description="Connect with Yayasan Bumi Bersama operations team, field station leaders, or volunteer coordinators."
+>
+
+  <!-- 1. FOCUSED HUB HEADER -->
+  <section class="bg-paper pt-12 pb-16 border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="max-w-3xl space-y-4">
+        <span class="text-xs uppercase font-mono tracking-wider font-semibold text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full border border-emerald-300">
+          Direct Field Contact Hub
+        </span>
+        <h1 class="text-4xl sm:text-5xl font-bold text-stone-900 leading-tight">
+          Let’s Talk About <span class="font-serif italic font-normal text-emerald-800">Field Collaboration.</span>
+        </h1>
+        <p class="text-base text-stone-600 leading-relaxed">
+          Whether you have questions about our 96% program allocation, want to visit a partner village, or discuss corporate partnership, our field operations team is ready to respond.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 2. CONTACT FORM & OFFICE STATIONS GRID -->
+  <section class="py-16 bg-stone-100 border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Interactive Contact Form (7 cols) -->
+        <div class="lg:col-span-7">
+          <ContactForm client:visible />
+        </div>
+
+        <!-- Office & Field Stations Details (5 cols) -->
+        <div class="lg:col-span-5 space-y-6">
+          
+          <!-- Main Secretariat Card -->
+          <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-3">
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-bold text-stone-900">Main Secretariat Office</h3>
+              <span class="text-xs bg-emerald-100 text-emerald-900 font-bold px-2.5 py-0.5 rounded-full">Headquarters</span>
+            </div>
+            
+            <p class="text-xs text-stone-600 leading-relaxed">
+              <strong class="text-stone-900 block mb-1">Yayasan Bumi Bersama</strong>
+              <ClientDataTag text="Alamat Kantor Pusat Secretariat" />
+            </p>
+
+            <div class="space-y-1.5 pt-2 text-xs text-stone-700">
+              <p>📞 Phone / WA: <a href="tel:+6281234567890" class="font-bold hover:text-emerald-800">+62 812-3456-7890</a></p>
+              <p>✉️ General Email: <a href="mailto:info@bumibersama.org" class="font-bold hover:text-emerald-800">info@bumibersama.org</a></p>
+              <p>🕒 Office Hours: Mon – Fri, 08:30 – 17:00 (WITA / WIB)</p>
+            </div>
+          </div>
+
+          <!-- Field Stations Card -->
+          <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4">
+            <h3 class="text-lg font-bold text-stone-900">Regional Field Stations</h3>
+
+            <div class="space-y-3 text-xs">
+              <div class="p-3 bg-stone-50 rounded-xl border border-stone-200">
+                <span class="font-bold text-emerald-800 block">Highland Reforestation Station</span>
+                <span class="text-stone-600">Desa Sambangan Field Base • Watershed Zone 1</span>
+              </div>
+
+              <div class="p-3 bg-stone-50 rounded-xl border border-stone-200">
+                <span class="font-bold text-emerald-800 block">Coastal Mangrove Sanctuary Base</span>
+                <span class="text-stone-600">Teluk Hijau Estuary Center • Watershed Zone 2</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Social Media & WhatsApp Quick Bar -->
+          <div class="bg-stone-900 text-white p-6 rounded-2xl border border-stone-800 space-y-3 text-xs">
+            <h4 class="font-bold text-amber-300 uppercase tracking-wider text-xs">Direct Channel Links</h4>
+            <div class="space-y-2 text-stone-300">
+              <p>📷 Instagram: <ClientDataTag text="Handle Instagram @bumibersama" /></p>
+              <p>💼 LinkedIn: <ClientDataTag text="Halaman LinkedIn Yayasan Bumi Bersama" /></p>
+              <p>💬 WhatsApp Coordinator: <ClientDataTag text="Nomor WA Field Coordinator" /></p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+</Layout>

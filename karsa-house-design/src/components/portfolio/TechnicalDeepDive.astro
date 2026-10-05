@@ -1,0 +1,69 @@
+---
+import { Image } from 'astro:assets';
+import dedImg from '../../images/ded-blueprints.jpg';
+import inspectionImg from '../../images/architect-inspection.jpg';
+---
+
+<section class="w-full py-16 lg:py-24 bg-surface-panel border-t border-border-sketch">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-12">
+      <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink-primary leading-tight">
+        Mengapa 42 Proyek Kami Berhasil Mengunci Deviasi RAB di Bawah 5%?
+      </h2>
+      <p class="mt-4 text-base text-ink-muted leading-relaxed">
+        Perbandingan standar eksekusi teknis Atelier Karsa dengan kebiasaan umum industri desain komersial.
+      </p>
+    </div>
+
+    <!-- Comparison Grid with Open Hairline Structure (Anti-Box Fatigue) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-start">
+      <!-- Left Column: Common Industry Pitfalls (Acknowledged with respect & clarity) -->
+      <div class="p-6 bg-surface-card sketch-border space-y-4">
+        <span class="inline-block px-3 py-1 bg-ink-primary/5 text-ink-muted font-mono text-xs font-semibold rounded">
+          Pola Umum Industri
+        </span>
+        <h3 class="text-xl font-bold text-ink-primary">
+          Gambar Konsep Tanpa Rincian MEP & Audit Material Lokal
+        </h3>
+        <ul class="space-y-3 text-xs sm:text-sm text-ink-muted leading-relaxed">
+          <li class="flex items-start gap-2">
+            <span class="text-ink-muted mt-0.5">•</span>
+            <span>Render 3D hanya memperlihatkan tampak visual tanpa gambar potongan sambungan joinery dan skema utilitas pipa/kabel.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-ink-muted mt-0.5">•</span>
+            <span>RAB dihitung berdasarkan estimasi meter persegi kasar, memicu pembengkakan 50% hingga 100% saat tender kontraktor.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-ink-muted mt-0.5">•</span>
+            <span>Arsitek tidak hadir di lapangan secara teratur, membiarkan kontraktor mengambil keputusan improvisasi yang berisiko.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Right Column: The Atelier Karsa Standard -->
+      <div class="p-6 bg-surface-card sketch-border border-brand-accent/40 space-y-4 shadow-sketch">
+        <span class="inline-block px-3 py-1 bg-brand-accent text-white font-mono text-xs font-semibold rounded">
+          Standar Atelier Karsa
+        </span>
+        <h3 class="text-xl font-bold text-ink-primary">
+          Blueprint DED 80+ Lembar & Supervisi Mingguan Lead Architect
+        </h3>
+        <ul class="space-y-3 text-xs sm:text-sm text-ink-primary leading-relaxed">
+          <li class="flex items-start gap-2">
+            <span class="text-brand-accent font-bold mt-0.5">•</span>
+            <span>Setiap gambar kerja mengikat kontraktor dengan detail elevasi, spesifikasi sakelar, jalur pipa grease trap, dan beban listrik.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-brand-accent font-bold mt-0.5">•</span>
+            <span>Dokumen Bill of Quantities (BoQ) merinci volume material hingga satuan terkecil dengan audit harga distributor lokal.</span>
+          </li>
+          <li class="flex items-start gap-2">
+            <span class="text-brand-accent font-bold mt-0.5">•</span>
+            <span>Lead Architect yang merancang proyek turun langsung setiap hari Jumat untuk menandatangani Berita Acara Supervisi.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

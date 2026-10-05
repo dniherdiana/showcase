@@ -1,0 +1,254 @@
+---
+import { contactInfoCardsContent } from "../../data/kontak/contactInfoCards.js";
+---
+
+<section class="py-24 bg-canvas-default relative border-b border-slate-900">
+	<div class="max-w-7xl mx-auto px-6 lg:px-12 space-y-16">
+		<div data-reveal="fade" class="max-w-2xl space-y-3">
+			<span
+				class="text-xs font-mono text-amber-300 uppercase tracking-widest block"
+			>
+				<span class="border h-2 border-l bg-amber-400 justify-center mr-2"
+				></span>
+				{contactInfoCardsContent.tag}
+			</span>
+			<h2
+				class="font-serif text-3xl sm:text-4xl text-slate-50 font-normal tracking-tight"
+			>
+				{contactInfoCardsContent.headline}
+			</h2>
+			<p
+				class="text-slate-300 text-sm sm:text-base leading-relaxed font-normal"
+			>
+				{contactInfoCardsContent.subtext}
+			</p>
+		</div>
+
+		<div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
+			{
+				contactInfoCardsContent.cards.map((card, i) => {
+					if (card.id === "gallery") {
+						return (
+							<div
+								data-reveal="zoom"
+								class="md:col-span-7 bg-linear-to-b from-canvas-lift to-canvas-soft border-2 border-amber-400/50 p-8 sm:p-10 rounded-sm flex flex-col justify-between space-y-8 shadow-2xl"
+							>
+								<div class="space-y-4">
+									<div class="flex items-center justify-between text-xs font-mono text-amber-300">
+										<span>{card.type}</span>
+										<span>{card.label}</span>
+									</div>
+									<h3 class="font-serif text-2xl sm:text-3xl text-slate-50 font-normal">
+										{card.title}
+									</h3>
+									<p class="text-slate-300 text-sm sm:text-base leading-relaxed font-normal">
+										{card.description}
+									</p>
+								</div>
+								<div class="relative rounded-sm overflow-hidden border border-slate-800 shadow-lg bg-slate-950 h-80 sm:h-96" id="map-facade-container">
+									<div id="map-placeholder" class="absolute inset-0 flex flex-col items-center justify-center bg-[radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--color-amber-500)_10%,transparent)_0%,transparent_70%)] text-center p-6 transition-opacity duration-300">
+										<div class="w-12 h-12 rounded-full bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-300 mb-3">
+											<svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+										</div>
+										<span class="text-sm font-semibold text-slate-100 mb-1">Peta Lokasi Marketing Gallery</span>
+										<span class="text-xs text-slate-400 mb-4 max-w-xs">{card.title}</span>
+										<button
+											type="button"
+											id="load-map-btn"
+											class="px-5 py-2.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-semibold text-xs rounded-sm transition-all shadow-md cursor-pointer"
+										>
+											Tampilkan Peta Interaktif
+										</button>
+									</div>
+									<iframe
+										id="google-map-iframe"
+										title="Peta Lokasi Grand Samudra Residence"
+										data-src={card.mapEmbedSrc}
+										class="w-full h-full border-0 hidden"
+										loading="lazy"
+										referrerpolicy="no-referrer-when-downgrade"
+										allowfullscreen
+									/>
+								</div>
+								<div class="pt-6 border-t border-amber-500/20 flex flex-wrap items-center justify-between gap-4 text-xs">
+									<span class="text-slate-300">{card.footerText}</span>
+									<a
+										href={card.mapHref}
+										target="_blank"
+										rel="noopener noreferrer"
+										class="px-5 py-2.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-semibold rounded-sm transition-colors"
+									>
+										{card.footerCta}
+									</a>
+								</div>
+							</div>
+						);
+					}
+					if (card.id === "whatsapp") {
+						return (
+							<div
+								data-reveal="left"
+								class="md:col-span-5 bg-canvas-raised border border-slate-800 p-8 sm:p-10 rounded-sm flex flex-col justify-between space-y-8 hover:border-slate-700 transition-colors"
+							>
+								<div class="space-y-4">
+									<div class="flex items-center justify-between text-xs font-mono text-slate-400">
+										<span>{card.type}</span>
+										<span>{card.label}</span>
+									</div>
+									<h3 class="font-serif text-2xl sm:text-3xl text-slate-100 font-normal">
+										{card.title}
+									</h3>
+									<div class="space-y-3 pt-2 text-xs text-slate-200">
+										{card.contacts?.map((c) => (
+											<div class="p-3 bg-slate-950 rounded border border-slate-800/80 flex items-center justify-between">
+												<div>
+													<span
+														class={`${c.statusStyle === "online" ? "text-amber-300" : "text-slate-200"} font-mono block`}
+													>
+														{c.number}
+													</span>
+													<span class="text-[11px] text-slate-400">
+														{c.label}
+													</span>
+												</div>
+												<span
+													class={`text-[10px] font-mono font-semibold ${c.statusStyle === "online" ? "text-emerald-400" : "text-slate-400"}`}
+												>
+													{c.status}
+												</span>
+											</div>
+										))}
+									</div>
+								</div>
+								<a
+									href="https://wa.me/6281234567890?text=Halo%20Tim%20Marketing%20Grand%20Samudra,%20saya%20ingin%20tanya%20ketersediaan%20unit"
+									target="_blank"
+									rel="noopener noreferrer"
+									class="w-full py-3 bg-slate-900 border border-slate-700 hover:border-amber-400/60 text-slate-100 text-center text-xs font-semibold rounded-sm transition-colors min-h-11 block"
+								>
+									{card.waCta}
+								</a>
+							</div>
+						);
+					}
+					if (card.id === "email") {
+						return (
+							<div
+								data-reveal="fade"
+								class="md:col-span-5 bg-canvas-raised border border-slate-800 p-8 sm:p-10 rounded-sm flex flex-col justify-between space-y-8 hover:border-slate-700 transition-colors"
+							>
+								<div class="space-y-4">
+									<div class="flex items-center justify-between text-xs font-mono text-slate-400">
+										<span>{card.type}</span>
+										<span>{card.label}</span>
+									</div>
+									<h3 class="font-serif text-2xl sm:text-3xl text-slate-100 font-normal">
+										{card.title}
+									</h3>
+									<p class="text-xs text-slate-300 leading-relaxed font-normal">
+										{card.description}
+									</p>
+									<div class="space-y-1.5 pt-1 text-xs font-mono text-amber-300">
+										{card.emails?.map((e) => (
+											<p>• {e}</p>
+										))}
+									</div>
+								</div>
+								<div class="pt-6 border-t border-slate-800 text-xs text-slate-400">
+									{card.footerNote}
+								</div>
+							</div>
+						);
+					}
+					if (card.id === "hours") {
+						return (
+							<div
+								data-reveal="right"
+								class="md:col-span-5 bg-canvas-raised border border-slate-800 p-8 sm:p-10 rounded-sm flex flex-col justify-between space-y-8 hover:border-slate-700 transition-colors"
+							>
+								<div class="space-y-4">
+									<div class="flex items-center justify-between text-xs font-mono text-amber-300">
+										<span>{card.type}</span>
+										<span>{card.label}</span>
+									</div>
+									<h3 class="font-serif text-2xl sm:text-3xl text-slate-100 font-normal">
+										{card.title}
+									</h3>
+									<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 text-xs text-slate-200">
+										{card.schedules?.map((s) => (
+											<div class="p-3.5 bg-slate-950 rounded border border-slate-800/80">
+												<span class="block text-amber-300 font-mono font-semibold">
+													{s.days}
+												</span>
+												<span class="text-slate-300 text-sm">{s.time}</span>
+												<span class="block text-[11px] text-slate-400 mt-1">
+													{s.note}
+												</span>
+											</div>
+										))}
+									</div>
+								</div>
+								<div class="pt-6 border-t border-slate-800 flex items-center justify-between text-xs text-slate-300">
+									<span>{card.footerText}</span>
+									<span class="text-emerald-400 font-mono">
+										{card.footerTag}
+									</span>
+								</div>
+							</div>
+						);
+					}
+					return null;
+				})
+			}
+		</div>
+	</div>
+</section>
+
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		const loadMapBtn = document.getElementById("load-map-btn");
+		const mapIframe = document.getElementById(
+			"google-map-iframe",
+		) as HTMLIFrameElement | null;
+		const mapPlaceholder = document.getElementById("map-placeholder");
+		let isMapLoaded = false;
+
+		function loadMap() {
+			if (isMapLoaded || !mapIframe) return;
+			isMapLoaded = true;
+			const mapSrc = mapIframe.getAttribute("data-src");
+			if (mapSrc) {
+				mapIframe.src = mapSrc;
+				mapIframe.classList.remove("hidden");
+				if (mapPlaceholder) {
+					mapPlaceholder.classList.add("hidden");
+				}
+			}
+		}
+
+		if (loadMapBtn) {
+			loadMapBtn.addEventListener("click", loadMap);
+		}
+
+		if (mapIframe && "IntersectionObserver" in window) {
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							if ("requestIdleCallback" in window) {
+								(window as any).requestIdleCallback(() =>
+									setTimeout(loadMap, 1200),
+								);
+							} else {
+								setTimeout(loadMap, 1800);
+							}
+							observer.disconnect();
+						}
+					});
+				},
+				{ rootMargin: "200px" },
+			);
+			observer.observe(mapIframe);
+		}
+	});
+</script>

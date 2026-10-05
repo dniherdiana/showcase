@@ -1,0 +1,331 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ClientDataBadge from '../components/ClientDataBadge.astro';
+
+const services = [
+  {
+    id: "corporate",
+    title: "Corporate Event",
+    subtitle: "Townhall, AGM, C-Suite Forum & Awarding Night",
+    img: "https://images.unsplash.com/photo-1558008258-3256797b43f3?q=80&w=900&auto=format&fit=crop",
+    desc: "Penyelenggaraan acara perusahaan formal dan semi-formal yang membutuhkan tingkat ketepatan tinggi, keamanan data VIP, serta penyampaian narasi kepemimpinan yang berwibawa.",
+    scope: [
+      "Perancangan Konsep & Visual Stage 3D",
+      "Sistem Registrasi Digital & Badging QR",
+      "Manajemen VIP & Protokol Eksekutif",
+      "Live Broadcast Multi-Camera 4K",
+      "Dokumentasi Foto & Video Highlight"
+    ]
+  },
+  {
+    id: "wedding",
+    title: "Wedding Organizer",
+    subtitle: "Bespoke Luxury Reception & International Wedding",
+    img: "https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=900&auto=format&fit=crop",
+    desc: "Pendampingan holistik dari pemilihan tema arsitektur pernikahan, manajemen anggaran, gladi bersih, hingga koordinasi tim keluarga dan vendor kuliner.",
+    scope: [
+      "Bespoke Spatial Design & Floral Installation",
+      "Time-Lock Rundown Management",
+      "Pengawalan Protokol Keluarga & Tamu VVIP",
+      "Audio Engineering & Atmospheric Lighting",
+      "Cinematic Pre-wedding & Wedding Day Film"
+    ]
+  },
+  {
+    id: "exhibition",
+    title: "Exhibition & MICE",
+    subtitle: "Pameran Dagang, Expo Otomotif & Paviliun Negara",
+    img: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?q=80&w=900&auto=format&fit=crop",
+    desc: "Produksi stan eksibisi dan tata ruang pameran skala besar yang mengoptimalkan alur lalu lintas pengunjung serta keselamatan instalasi listrik high-voltage.",
+    scope: [
+      "Master Layout Plan & Flow Simulation",
+      "Konstruksi Booth Custom Modular & Rigid",
+      "Manajemen Keamanan & Lisensi Venue",
+      "Sistem Sound Controller & Lighting Rigging",
+      "Penyediaan Sales Usher & Multilingual Host"
+    ]
+  },
+  {
+    id: "launch",
+    title: "Product Launch",
+    subtitle: "Peluncuran Otomotif, Tech Gadget & FMCG",
+    img: "https://images.unsplash.com/photo-1544717305-2782549b5136?q=80&w=900&auto=format&fit=crop",
+    desc: "Pengalaman pengenalan produk baru yang menggugah emosi media dan konsumen melalui teknologi proyeksi 3D, efek panggung dramatis, dan manajemen jurnalis.",
+    scope: [
+      "Holographic Projection & LED Wall Mapping",
+      "Unveiling Kinetic Stage Rigging",
+      "Manajemen Media & Konferensi Pers",
+      "Product Experience Zone Activation",
+      "KOL & Influencer Management"
+    ]
+  },
+  {
+    id: "brand",
+    title: "Brand Activation",
+    subtitle: "Experiential Pop-Up Booth & Mall Roadshow",
+    img: "https://images.unsplash.com/photo-1574391884720-bbc3740c59d1?q=80&w=900&auto=format&fit=crop",
+    desc: "Mendekatkan konsumen dengan brand Anda melalui interaksi fisik yang menyenangkan, kompetisi interaktif, dan instalasi foto yang instagrammable.",
+    scope: [
+      "Pop-Up Architecture & Booth Fabrication",
+      "Interactive Touchscreen & AR Engagement",
+      "Promotional Crew & Event Ambassador",
+      "Izin Operasional Space Publik & Mal",
+      "Laporan Real-Time Traffic & Leads Data"
+    ]
+  },
+  {
+    id: "gathering",
+    title: "Gathering & Gala",
+    subtitle: "Employee Gathering, Outbound & Customer Night",
+    img: "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?q=80&w=900&auto=format&fit=crop",
+    desc: "Mempererat kebersamaan tim dan apresiasi pelanggan setia melalui acara keakraban dengan hiburan musik, permainan interaktif, dan gala malam istimewa.",
+    scope: [
+      "Theme Concept & Costume Choreography",
+      "Talent Booking (Artis, MC, Stand-up)",
+      "Logistik & Transportasi Peserta",
+      "Doorprize & Gala Awards System",
+      "Team Building & Master Facilitator"
+    ]
+  },
+  {
+    id: "production",
+    title: "Event Production & AV",
+    subtitle: "Panggung, Structural Rigging, LED Wall & Sound System",
+    img: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=900&auto=format&fit=crop",
+    desc: "Dukungan infrastruktur teknikal panggung mandiri bagi perusahaan yang membutuhkan perlengkapan audio-visual kelas wahid tanpa pusing mencari vendor terpisah.",
+    scope: [
+      "Indoor & Outdoor Truss Stage Construction",
+      "Line Array Sound System 50.000 Watt+",
+      "P2.5 / P3.9 Outdoor Ultra-HD LED Screen",
+      "Moving Head Beam & DMX FX Lighting",
+      "Genset Quiet-Type Backup Power System"
+    ]
+  }
+];
+---
+
+<Layout 
+  title="Layanan & Speciality | Elevate Event Organizer"
+  description="Layanan terpadu Event Organizer: Corporate Event, Luxury Wedding, Exhibition, Product Launch dengan Modern Space Typography."
+>
+
+  <!-- HERO SERVICES: MASSIVE SPACE TYPOGRAPHY -->
+  <section class="py-20 border-b border-white/10 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 text-xs font-mono text-accent-orange bg-dark-card border-l-2 border-accent-orange px-3 py-1.5">
+            <span>// KATALOG LAYANAN UTAMA</span> • <span>END-TO-END EXECUTION</span>
+          </div>
+
+          <h1 class="text-6xl sm:text-8xl lg:text-9xl font-display font-extrabold text-text-main tracking-tighter leading-[0.86] uppercase">
+            SPEKTRUM <br />
+            <span class="text-accent-lime">LAYANAN EVENT</span>
+          </h1>
+
+          <p class="text-text-muted text-xl leading-relaxed max-w-2xl">
+            Dari perencanaan strategis di atas kertas hingga penataan teknikal panggung di lokasi. Solusi produksi tanpa celah untuk segala skala perhelatan.
+          </p>
+        </div>
+
+        <div class="lg:col-span-5 relative">
+          <div class="border-2 border-white/15 h-[340px] relative overflow-hidden">
+            <img 
+              src="https://images.unsplash.com/photo-1561489413-985b06da5bee?q=80&w=1600&auto=format&fit=crop" 
+              alt="Services Infrastructure Rigging" 
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-dark-bg/60"></div>
+            <div class="absolute bottom-6 left-6 right-6">
+              <span class="text-xs font-mono text-accent-lime font-bold uppercase block mb-1">// PRODUKSI MANDIRI</span>
+              <h3 class="text-xl font-display font-extrabold text-text-main">
+                Peralatan Rigging & AV Standar Internasional
+              </h3>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE CATALOG SPLIT INDEX -->
+  <section class="py-20 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+        
+        <div class="lg:col-span-4 space-y-3">
+          <span class="text-xs font-mono text-text-muted uppercase tracking-widest block mb-4">// PILIH SPESIALISASI LAYANAN:</span>
+          {services.map((srv, idx) => (
+            <button 
+              class={`service-tab-btn w-full text-left p-5 border-l-4 transition-all flex items-center justify-between group font-mono text-sm ${
+                idx === 0 
+                  ? 'bg-accent-orange text-dark-bg border-accent-orange font-bold' 
+                  : 'bg-dark-card text-text-main border-white/10 hover:border-accent-lime'
+              }`}
+              data-service-id={srv.id}
+            >
+              <div class="flex items-center gap-3">
+                <span class="opacity-75">0{idx + 1}.</span>
+                <span class="font-display font-extrabold text-lg">{srv.title}</span>
+              </div>
+              <span class="text-xl group-hover:translate-x-1 transition-transform">→</span>
+            </button>
+          ))}
+        </div>
+
+        <div class="lg:col-span-8">
+          {services.map((srv, idx) => (
+            <div 
+              class={`service-detail-panel bg-dark-surface p-10 border-l-4 border-accent-lime ${idx === 0 ? 'block' : 'hidden'}`}
+              id={`panel-${srv.id}`}
+            >
+              <div class="relative h-80 overflow-hidden mb-8 border-2 border-white/10">
+                <img src={srv.img} alt={srv.title} class="w-full h-full object-cover" />
+                <div class="absolute inset-0 bg-dark-bg/60"></div>
+                <div class="absolute bottom-6 left-6 right-6">
+                  <span class="text-xs font-mono text-accent-lime font-bold uppercase block">// {srv.subtitle}</span>
+                  <h3 class="text-4xl font-display font-extrabold text-text-main mt-1">{srv.title}</h3>
+                </div>
+              </div>
+
+              <div class="space-y-8">
+                <div>
+                  <h4 class="font-mono font-bold text-text-main text-sm uppercase mb-2">// DESKRIPSI LAYANAN</h4>
+                  <p class="text-text-muted text-lg leading-relaxed font-sans">{srv.desc}</p>
+                </div>
+
+                <div class="border-t border-white/10 pt-8">
+                  <h4 class="font-mono font-bold text-accent-orange text-sm uppercase tracking-wider mb-6">
+                    CAKUPAN KERJA (SCOPE OF WORK)
+                  </h4>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {srv.scope.map((item) => (
+                      <div class="bg-dark-card p-4 border-l-2 border-accent-lime flex items-start gap-3">
+                        <span class="text-accent-lime font-mono font-bold text-base">✓</span>
+                        <span class="text-text-main text-sm font-medium">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div class="pt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+                  <div class="text-xs font-mono text-text-muted">
+                    *Dapat disesuaikan dengan anggaran & KPI bisnis klien.
+                  </div>
+                  <a 
+                    href={`/contact?service=${srv.id}`} 
+                    class="px-8 py-4 bg-accent-lime text-dark-bg font-mono font-bold text-sm hover:bg-white transition-all"
+                  >
+                    KONSULTASIKAN LAYANAN INI →
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          ))}
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EQUIPMENT SPECIFICATION TABLE -->
+  <section class="py-24 bg-dark-surface border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8">
+      
+      <div class="mb-16">
+        <span class="text-xs font-mono text-accent-lime uppercase tracking-widest block mb-2">// INFRASTRUKTUR TEKNIKAL</span>
+        <h2 class="text-4xl sm:text-6xl font-display font-extrabold text-text-main uppercase">
+          PERALATAN IN-HOUSE ELEVATE
+        </h2>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse min-w-[650px] font-mono text-sm">
+          <thead>
+            <tr class="border-b-2 border-white/20 bg-dark-card">
+              <th class="p-5 text-accent-orange uppercase">PERALATAN</th>
+              <th class="p-5 text-text-main uppercase">SPESIFIKASI UNIT</th>
+              <th class="p-5 text-accent-lime uppercase">KAPASITAS MAKSIMAL</th>
+              <th class="p-5 text-text-main uppercase">JAMINAN KEAMANAN</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/10">
+            <tr class="hover:bg-white/5">
+              <td class="p-5 font-bold text-white">Sound System</td>
+              <td class="p-5">Line Array RCF & L-Acoustics K2 Series</td>
+              <td class="p-5 text-accent-lime">Hingga 50.000 Watt (Outdoors)</td>
+              <td class="p-5">Dual Backup Mixer & Signal Line</td>
+            </tr>
+            <tr class="hover:bg-white/5">
+              <td class="p-5 font-bold text-white">Visual Screen</td>
+              <td class="p-5">Outdoor P2.6 / P3.9 Ultra-HD LED Wall</td>
+              <td class="p-5 text-accent-lime">150 m² Total Screen Area</td>
+              <td class="p-5">Novastar Video Processor Backup</td>
+            </tr>
+            <tr class="hover:bg-white/5">
+              <td class="p-5 font-bold text-white">Lighting Rigging</td>
+              <td class="p-5">Beam 380W, LED Wash & Kinetic Spheres</td>
+              <td class="p-5 text-accent-lime">120 Unit Moving Heads</td>
+              <td class="p-5">MA Lighting Console Control</td>
+            </tr>
+            <tr class="hover:bg-white/5">
+              <td class="p-5 font-bold text-white">Power Supply</td>
+              <td class="p-5">Silent Generator Set Cummins Engine</td>
+              <td class="p-5 text-accent-lime">250 kVA Synchronized Units</td>
+              <td class="p-5">Auto-Switch ATS Under 0.5s</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-8">
+      <h2 class="text-4xl sm:text-6xl font-display font-extrabold text-text-main uppercase mb-6 leading-[0.9]">
+        BUTUH LAYANAN EVENT DENGAN <br />
+        <span class="text-accent-orange">SPESIFIKASI KHUSUS?</span>
+      </h2>
+      <a href="/contact" class="inline-block px-10 py-5 bg-accent-orange text-dark-bg font-mono font-bold text-lg hover:bg-accent-lime transition-all">
+        HUBUNGI TIM SPESIALIS LAYANAN →
+      </a>
+    </div>
+  </section>
+
+  <script>
+    const tabBtns = document.querySelectorAll('.service-tab-btn');
+    const detailPanels = document.querySelectorAll('.service-detail-panel');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-service-id');
+
+        tabBtns.forEach(b => {
+          b.classList.remove('bg-accent-orange', 'text-dark-bg', 'border-accent-orange', 'font-bold');
+          b.classList.add('bg-dark-card', 'text-text-main', 'border-white/10');
+        });
+
+        btn.classList.add('bg-accent-orange', 'text-dark-bg', 'border-accent-orange', 'font-bold');
+        btn.classList.remove('bg-dark-card', 'text-text-main');
+
+        detailPanels.forEach(panel => {
+          if (panel.id === `panel-${targetId}`) {
+            panel.classList.remove('hidden');
+            panel.classList.add('block');
+          } else {
+            panel.classList.add('hidden');
+            panel.classList.remove('block');
+          }
+        });
+      });
+    });
+  </script>
+
+</Layout>

@@ -1,0 +1,179 @@
+---
+import Layout from "../layouts/Layout.astro";
+import DestinationsHeader from "../components/destinations/DestinationsHeader/DestinationsHeader.astro";
+import DestinationsFilterBar from "../components/destinations/DestinationsFilterBar/DestinationsFilterBar.astro";
+import DestinationsGrid from "../components/destinations/DestinationsGrid/DestinationsGrid.astro";
+import DestinationModal from "../components/destinations/DestinationModal/DestinationModal.astro";
+import BookingBanner from "../components/shared/BookingBanner/BookingBanner.astro";
+---
+
+<Layout
+	title="Destinations & Luxury Hotels — Wanderlust Travel"
+	currentPath="/destinations"
+>
+	<div class="mx-auto max-w-7xl space-y-12 px-[5%] py-16">
+		<DestinationsHeader />
+		<DestinationsFilterBar />
+		<DestinationsGrid />
+		<BookingBanner />
+	</div>
+
+	<!-- Interactive Luxury Destination Specs & Hotel Quick View Modal -->
+	<DestinationModal />
+</Layout>
+
+<script>
+	function initDestinationFilter() {
+		const categoryBtns = document.querySelectorAll(".dest-category-btn");
+		const regionBtns = document.querySelectorAll(".dest-region-btn");
+		const searchInput = document.getElementById(
+			"destination-search-input",
+		) as HTMLInputElement | null;
+		const countIndicator = document.getElementById("dest-count-indicator");
+		const cards = document.querySelectorAll<HTMLElement>(
+			".destination-card-item",
+		);
+		const noResultsMsg = document.getElementById("no-destinations-msg");
+		const resetBtn = document.getElementById("reset-destination-filter-btn");
+
+		if (!cards.length) return;
+
+		const urlParams = new URLSearchParams(window.location.search);
+		const catParam = urlParams.get("cat")?.toLowerCase();
+
+		const paramMap: Record<string, string> = {
+			indonesia: "Indonesian Wonders",
+			bali: "Indonesian Wonders",
+			komodo: "Indonesian Wonders",
+			coastal: "Coastal Luxury",
+			luxury: "Coastal Luxury",
+			beach: "Coastal Luxury",
+			wilderness: "Wilderness & Safari",
+			safari: "Wilderness & Safari",
+			nature: "Wilderness & Safari",
+			culture: "Cultural Heritage",
+			heritage: "Cultural Heritage",
+			private: "Private Aviation & Yachting",
+			yachting: "Private Aviation & Yachting",
+			alpine: "Alpine Luxury",
+		};
+
+		let currentCategory =
+			(catParam && paramMap[catParam]) || "All Destinations";
+		let currentRegion = "All Regions";
+		let currentSearchQuery = "";
+
+		function filterDestinations() {
+			let visibleCount = 0;
+
+			// Update category button active styles
+			categoryBtns.forEach((btn) => {
+				const cat = btn.getAttribute("data-destination-category-btn");
+				if (cat === currentCategory) {
+					btn.classList.remove("border-transparent", "text-white/70");
+					btn.classList.add("border-gold", "text-gold", "font-bold");
+				} else {
+					btn.classList.remove("border-gold", "text-gold", "font-bold");
+					btn.classList.add("border-transparent", "text-white/70");
+				}
+			});
+
+			// Update region button active styles
+			regionBtns.forEach((btn) => {
+				const reg = btn.getAttribute("data-destination-region-btn");
+				if (reg === currentRegion) {
+					btn.classList.remove("border-transparent", "text-white/60");
+					btn.classList.add("border-teal-400", "text-teal-400", "font-bold");
+				} else {
+					btn.classList.remove("border-teal-400", "text-teal-400", "font-bold");
+					btn.classList.add("border-transparent", "text-white/60");
+				}
+			});
+
+			cards.forEach((card) => {
+				const cardCategory =
+					card.getAttribute("data-destination-category") || "";
+				const cardRegion = card.getAttribute("data-destination-region") || "";
+				const cardTitle = card.getAttribute("data-destination-title") || "";
+				const cardCountry = card.getAttribute("data-destination-country") || "";
+				const rawJson = card.getAttribute("data-destination-json") || "";
+
+				let cardHotel = "";
+				try {
+					if (rawJson) {
+						const parsed = JSON.parse(rawJson);
+						cardHotel = (parsed.hotelName || "").toLowerCase();
+					}
+				} catch (e) {}
+
+				const matchesCategory =
+					currentCategory === "All Destinations" ||
+					cardCategory === currentCategory;
+				const matchesRegion =
+					currentRegion === "All Regions" || cardRegion === currentRegion;
+
+				const queryLower = currentSearchQuery.toLowerCase();
+				const matchesSearch =
+					!currentSearchQuery ||
+					cardTitle.includes(queryLower) ||
+					cardCountry.includes(queryLower) ||
+					cardHotel.includes(queryLower);
+
+				if (matchesCategory && matchesRegion && matchesSearch) {
+					card.style.display = "";
+					visibleCount++;
+				} else {
+					card.style.display = "none";
+				}
+			});
+
+			if (countIndicator) {
+				countIndicator.textContent = `Showing ${visibleCount} Luxury Destinations`;
+			}
+
+			if (noResultsMsg) {
+				if (visibleCount === 0) {
+					noResultsMsg.classList.remove("hidden");
+				} else {
+					noResultsMsg.classList.add("hidden");
+				}
+			}
+		}
+
+		categoryBtns.forEach((btn) => {
+			btn.addEventListener("click", () => {
+				currentCategory =
+					btn.getAttribute("data-destination-category-btn") ||
+					"All Destinations";
+				filterDestinations();
+			});
+		});
+
+		regionBtns.forEach((btn) => {
+			btn.addEventListener("click", () => {
+				currentRegion =
+					btn.getAttribute("data-destination-region-btn") || "All Regions";
+				filterDestinations();
+			});
+		});
+
+		searchInput?.addEventListener("input", (e) => {
+			currentSearchQuery = (e.target as HTMLInputElement).value.trim();
+			filterDestinations();
+		});
+
+		resetBtn?.addEventListener("click", () => {
+			currentCategory = "All Destinations";
+			currentRegion = "All Regions";
+			currentSearchQuery = "";
+			if (searchInput) searchInput.value = "";
+			filterDestinations();
+		});
+
+		// Apply initial filter from URL params
+		filterDestinations();
+	}
+
+	document.addEventListener("DOMContentLoaded", initDestinationFilter);
+	document.addEventListener("astro:page-load", initDestinationFilter);
+</script>

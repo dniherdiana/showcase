@@ -1,0 +1,449 @@
+---
+import Layout from '../components/Layout.astro';
+import Icon from '../components/Icon.astro';
+import Marquee from '../components/Marquee.astro';
+import Reveal from '../components/Reveal.astro';
+import Placeholder from '../components/Placeholder.astro';
+import BeforeAfter from '../components/svelte/BeforeAfter.svelte';
+import TestimonialCarousel from '../components/svelte/TestimonialCarousel.svelte';
+import { IMG, brand, proof, testimonials } from '../data/site.js';
+
+const serviceBento = [
+	{ img: IMG.bentoFacial, title: 'Perawatan Wajah', href: '/layanan', tag: 'Facial', size: 'lg' },
+	{ img: IMG.bentoHair, title: 'Rambut & Scalp', href: '/layanan', tag: 'Hair', size: 'md' },
+	{ img: IMG.bentoNail, title: 'Nail & Hand', href: '/layanan', tag: 'Nail', size: 'md' },
+	{ img: IMG.bentoBody, title: 'Body & Relax', href: '/layanan', tag: 'Body', size: 'sm' },
+];
+
+const checkpoints = [
+	'Konsultasi & skin check personal sebelum setiap treatment',
+	'Protokol sterilisasi autoclave di depan klien',
+	'Terapis bersertifikasi dengan pembinaan berkelanjutan',
+	'Produk premium yang lolos uji dermatologis',
+];
+
+const insta = [
+	{ img: IMG.insta1, alt: 'Kuas makeup premium di atas meja marmer' },
+	{ img: IMG.insta2, alt: 'Produk kecantikan dengan tekstur krim' },
+	{ img: IMG.insta3, alt: 'Swatch warna lipstik di kulit tangan' },
+	{ img: IMG.insta4, alt: 'Tata letak alat kecantikan profesional' },
+];
+
+const ticket = [
+	'Facial Glow', 'Keratin', 'Manicure', 'Hot Stone', 'Hair Spa', 'Anti-Aging', 'Gold 24K', 'Scalp Detox',
+];
+---
+
+<Layout
+	title="Beranda"
+	description="Ritual kecantikan yang terasa seperti karya seni. Treatment premium, terapis profesional, dan standar kebersihan tinggi di Nama Beauty Salon."
+	ogImage={IMG.heroMain}
+>
+	<!-- ============ HERO — immersive, asymmetric, layered ============ -->
+	<section class="relative overflow-hidden pt-10 pb-16 lg:pt-16 lg:pb-24">
+		<div class="pointer-events-none absolute -left-24 top-10 h-96 w-96 rounded-full bg-pink/30 blur-3xl"></div>
+		<div class="pointer-events-none absolute -right-24 top-40 h-[28rem] w-[28rem] rounded-full bg-violet/25 blur-3xl"></div>
+		<div class="pointer-events-none absolute left-1/3 bottom-0 h-64 w-64 rounded-full bg-lime/40 blur-3xl"></div>
+
+		<div class="relative mx-auto grid max-w-[1400px] items-center gap-14 px-5 lg:grid-cols-12 lg:gap-8 lg:px-10">
+			<div class="lg:col-span-7">
+				<Reveal>
+					<div class="flex flex-wrap items-center gap-3">
+						<span class="sticker sticker--pink" style="--tilt:-2deg">
+							<Icon name="sparkles" class="h-3.5 w-3.5" /> Beauty Salon & Aesthetic Care
+						</span>
+						<span class="sticker sticker--lime" style="--tilt:1deg">Est. 2015 — Jakarta</span>
+					</div>
+				</Reveal>
+
+				<Reveal delay={80}>
+					<h1 class="mt-7 font-display text-[2.7rem] font-black leading-[0.95] tracking-tight text-ink sm:text-6xl lg:text-[4.6rem]">
+						Kecantikan bukan
+						<br />
+						<span class="italic text-pink">sekadar hasil,</span>
+						<br />
+						itu <span class="relative inline-block">
+							<span class="relative z-10">ritual</span>
+							<span class="absolute inset-x-0 bottom-1 z-0 h-4 -rotate-1 bg-lime"></span>
+						</span> yang berkesan.
+					</h1>
+				</Reveal>
+
+				<Reveal delay={160}>
+					<p class="mt-7 max-w-xl font-sans text-base leading-relaxed text-ink/70 sm:text-lg">
+						Kami menghadirkan pengalaman perawatan kecantikan yang mewah, nyaman, dan personal —
+						didukung terapis profesional, produk premium, serta standar kebersihan yang tinggi.
+						Setiap treatment dirancang untuk hasil optimal sekaligus relaksasi yang berkesan.
+					</p>
+				</Reveal>
+
+				<Reveal delay={240}>
+					<div class="mt-9 flex flex-wrap items-center gap-4">
+						<a href="/kontak" class="btn btn--pink text-base">
+							<Icon name="calendar" class="h-5 w-5" /> Booking Sekarang
+						</a>
+						<a href="/treatment" class="btn btn--ghost text-base">
+							Lihat Treatment <Icon name="arrow-right" class="h-5 w-5" />
+						</a>
+					</div>
+				</Reveal>
+
+				<Reveal delay={320}>
+					<div class="mt-10 flex flex-wrap items-center gap-5">
+						<div class="flex -space-x-3">
+							{
+								[IMG.av1, IMG.av2, IMG.av3].map((a) => (
+									<img src={a} alt="" loading="lazy" class="h-11 w-11 rounded-full border-2 border-cream object-cover" />
+								))
+							}
+							<span class="grid h-11 w-11 place-items-center rounded-full border-2 border-cream bg-violet font-sans text-[0.6rem] font-bold text-cream">15rb+</span>
+						</div>
+						<div>
+							<div class="flex gap-0.5 text-pink" aria-label="Rating 4.9 dari 5">
+								{[1, 2, 3, 4, 5].map(() => <Icon name="star" class="h-4 w-4 fill-current" />)}
+							</div>
+							<p class="font-sans text-xs font-bold text-ink/70">4.9/5 — dari 15.000+ pelanggan puas</p>
+						</div>
+					</div>
+				</Reveal>
+			</div>
+
+			{/* Layered image composition */}
+			<div class="relative lg:col-span-5" data-reveal="scale">
+				<span class="outline-text outline-text--pink pointer-events-none absolute -top-10 right-0 select-none font-display text-7xl font-black lg:text-8xl" aria-hidden="true">GLOW</span>
+
+				<div class="relative mx-auto max-w-md">
+					<div class="img-frame rotate-2 overflow-hidden rounded-[var(--radius-blob)]" style="--tilt:2deg">
+						<img src={IMG.heroMain} alt="Wanita sedang merias bibir dengan kuas di Nama Beauty Salon" class="aspect-[4/5] w-full object-cover" />
+					</div>
+
+					{/* floating salon card */}
+					<div class="card-raise absolute -left-8 top-10 hidden w-44 -rotate-6 sm:block" data-reveal="left" style="--reveal-delay:200ms">
+						<div class="img-frame rounded-2xl">
+							<img src={IMG.heroInner} alt="Interior salon Nama Beauty Salon yang hangat" class="aspect-square w-full object-cover" loading="lazy" />
+						</div>
+						<span class="sticker sticker--cream absolute -bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap" style="--tilt:-2deg">
+							Ruang hangat ✦
+						</span>
+					</div>
+
+					{/* floating serum card */}
+					<div class="card-raise absolute -bottom-10 -right-6 w-48 rotate-3 sm:-right-10" data-reveal="right" style="--reveal-delay:320ms">
+						<div class="ticket flex items-center gap-3 p-3">
+							<div class="img-frame h-16 w-16 shrink-0 rounded-xl">
+								<img src={IMG.heroSerum} alt="Serum wajah premium dengan dropper" class="h-full w-full object-cover" loading="lazy" />
+							</div>
+							<div>
+								<p class="font-sans text-[0.6rem] font-bold uppercase tracking-widest text-pink">Produk Premium</p>
+								<p class="font-display text-sm font-bold leading-tight">Serum vitamin C</p>
+							</div>
+						</div>
+					</div>
+
+					<span class="sticker sticker--violet absolute -top-6 -left-4 rotate-[-8deg] lg:-left-10" data-reveal="blur" style="--reveal-delay:120ms">
+						<Icon name="shield" class="h-3.5 w-3.5" /> Steril & Bersertifikat
+					</span>
+
+					<span class="absolute -right-2 -bottom-4 grid h-16 w-16 place-items-center rounded-full border-2 border-ink bg-lime text-ink shadow-[var(--shadow-sticker)] animate-spin-slow" aria-hidden="true">
+						<Icon name="sparkles" class="h-6 w-6" />
+					</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="relative mx-auto mt-16 max-w-[1400px] px-5 lg:px-10">
+			<div class="flex items-center gap-3 font-sans text-[0.7rem] font-bold uppercase tracking-[0.3em] text-ink/50">
+				<Icon name="arrow-down" class="h-4 w-4 animate-bounce" /> Scroll untuk menjelajah
+			</div>
+		</div>
+	</section>
+
+	<!-- ============ MARQUEE ============ -->
+	<section class="border-y-4 border-ink bg-pink text-cream" aria-label="Layanan unggulan">
+		<Marquee items={ticket} class="py-4 font-display text-xl font-black italic uppercase tracking-wide sm:text-2xl" />
+	</section>
+
+	<!-- ============ PROOF — editorial stat strip (bukan grid rata) ============ -->
+	<section class="border-b-2 border-ink bg-cream py-16 lg:py-24">
+		<div class="mx-auto max-w-[1400px] px-5 lg:px-10">
+			<div class="grid gap-10 lg:grid-cols-12 lg:items-center">
+				<div class="lg:col-span-4">
+					<Reveal>
+						<p class="font-sans text-[0.7rem] font-bold uppercase tracking-[0.3em] text-pink">Angka yang kami banggakan</p>
+						<h2 class="mt-4 font-display text-4xl font-black leading-tight sm:text-5xl">
+							Kepercayaan <span class="italic text-violet">dibuktikan</span> dengan waktu.
+						</h2>
+					</Reveal>
+				</div>
+				<div class="lg:col-span-8">
+					<div class="rule-list">
+						{
+							proof.map((p, i) => (
+								<li data-reveal style={`--reveal-delay:${i * 70}ms`}>
+									<span class="mag-number text-5xl text-ink sm:text-6xl">{p.value}</span>
+									<span class="ml-6 flex-1 font-sans text-sm font-bold uppercase tracking-widest text-ink/60">{p.label}</span>
+									<span class="hidden font-display text-2xl italic text-pink sm:block">{String(i + 1).padStart(2, '0')}</span>
+								</li>
+							))
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ============ BENTO SERVICES ============ -->
+	<section class="relative overflow-hidden py-20 lg:py-28">
+		<span class="outline-text pointer-events-none absolute right-4 top-10 select-none font-display text-[10rem] font-black opacity-20 lg:text-[16rem]" aria-hidden="true">SERVIS</span>
+		<div class="relative mx-auto max-w-[1400px] px-5 lg:px-10">
+			<div class="grid gap-12 lg:grid-cols-12">
+				<div class="lg:col-span-5">
+					<Reveal>
+						<span class="sticker sticker--violet" style="--tilt:-1deg"><Icon name="sparkles" class="h-3.5 w-3.5" /> Empat dunia perawatan</span>
+						<h2 class="mt-6 font-display text-4xl font-black leading-[1.05] sm:text-6xl">
+							Satu ruang, <span class="italic text-pink">empat</span> dunia perawatan.
+						</h2>
+						<p class="mt-6 max-w-md font-sans text-base leading-relaxed text-ink/70">
+							Dari ritual wajah hingga pijat relaksasi mendalam — setiap lini dirancang tim
+							yang terspesialisasi, dengan satu janji yang sama: hasil optimal tanpa mengorbankan kenyamanan.
+						</p>
+						<a href="/layanan" class="pill-link mt-8">
+							Jelajahi semua layanan <Icon name="arrow-right" />
+						</a>
+					</Reveal>
+				</div>
+
+				<div class="grid gap-4 sm:grid-cols-2 lg:col-span-7">
+					{
+						serviceBento.map((s, i) => (
+							<a
+								href={s.href}
+								class:list={[
+									'card-raise group relative overflow-hidden rounded-[var(--radius-blob)] border-2 border-ink shadow-[var(--shadow-sticker)]',
+									s.size === 'lg' ? 'sm:row-span-2' : '',
+								]}
+								data-reveal
+								style={`--reveal-delay:${i * 90}ms`}
+							>
+								<img src={s.img} alt={s.title} loading="lazy" class:list={[
+									'w-full object-cover',
+									s.size === 'lg' ? 'aspect-[3/4] h-full sm:aspect-auto' : 'aspect-[4/3]',
+								]} />
+								<div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/10 to-transparent"></div>
+								<span class="sticker sticker--lime absolute left-4 top-4" style="--tilt:-3deg">{s.tag}</span>
+								<div class="absolute inset-x-0 bottom-0 p-5">
+									<h3 class="font-display text-2xl font-black text-cream">{s.title}</h3>
+									<span class="mt-2 inline-flex items-center gap-2 font-sans text-xs font-bold uppercase tracking-widest text-lime opacity-0 transition-all duration-300 group-hover:opacity-100">
+										Mulai dari sini <Icon name="arrow-up-right" class="h-4 w-4" />
+									</span>
+								</div>
+							</a>
+						))
+					}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ============ FEATURED TREATMENT + BEFORE/AFTER ============ -->
+	<section class="border-y-4 border-ink bg-cream-2 py-20 lg:py-28">
+		<div class="mx-auto grid max-w-[1400px] items-center gap-14 px-5 lg:grid-cols-2 lg:px-10">
+			<div class="order-2 lg:order-1" data-reveal="left">
+				<BeforeAfter before={IMG.before} after={IMG.after} beforeLabel="Sebelum" afterLabel="Sesudah" client:visible />
+			</div>
+			<div class="order-1 lg:order-2">
+				<Reveal>
+					<span class="sticker sticker--pink" style="--tilt:2deg"><Icon name="flame" class="h-3.5 w-3.5" /> Treatment Terpopuler</span>
+					<h2 class="mt-6 font-display text-4xl font-black leading-[1.05] sm:text-5xl">
+						Signature Glow Facial —<br />
+						<span class="italic text-pink">bukti</span> ada di wajahmu.
+					</h2>
+				</Reveal>
+				<Reveal delay={100}>
+					<p class="drop-cap mt-6 font-sans text-base leading-relaxed text-ink/75">
+						Deep cleanse, eksfoliasi enzim lembut, dan lapisan hidrasi intensif yang dirancang
+						tahap demi tahap oleh terapis senior kami. Bukan sekadar cerah sesaat — hasilnya
+						bertahan karena kami memperbaiki fondasi kulit, bukan hanya permukaannya.
+					</p>
+					<ul class="mt-6 space-y-3">
+						{
+							checkpoints.slice(0, 2).map((c) => (
+								<li class="flex items-start gap-3 font-sans text-sm text-ink/80">
+									<span class="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-lime border-2 border-ink">
+										<Icon name="check" class="h-3.5 w-3.5" />
+									</span>
+									{c}
+								</li>
+							))
+						}
+					</ul>
+				</Reveal>
+				<Reveal delay={180}>
+					<div class="mt-8 flex flex-wrap items-center gap-4">
+						<a href="/treatment" class="btn btn--violet">Lihat Treatment <Icon name="arrow-right" class="h-5 w-5" /></a>
+						<span class="flex items-center gap-2 font-sans text-xs font-bold uppercase tracking-widest text-ink/60">
+							<Icon name="clock" class="h-4 w-4 text-pink" /> 60 menit · mulai dari
+							<Placeholder />
+						</span>
+					</div>
+				</Reveal>
+			</div>
+		</div>
+	</section>
+
+	<!-- ============ PULL QUOTE ============ -->
+	<section class="bg-violet py-20 text-cream lg:py-24">
+		<div class="mx-auto max-w-5xl px-5 text-center lg:px-10">
+			<Reveal>
+				<Icon name="quote" class="mx-auto h-14 w-14 text-lime" />
+				<blockquote class="mt-6 font-display text-3xl font-medium italic leading-tight sm:text-5xl">
+					“Setiap treatment kami rancang seperti <span class="text-lime">karya seni</span> —
+					hasil optimal, dan kenangan yang ingin kamu ulangi.”
+				</blockquote>
+				<div class="mt-8">
+					<span class="sticker sticker--cream" style="--tilt:-2deg">Tim Nama Beauty Salon</span>
+				</div>
+			</Reveal>
+		</div>
+	</section>
+
+	<!-- ============ WHY US — vertical list + image ============ -->
+	<section class="py-20 lg:py-28">
+		<div class="mx-auto grid max-w-[1400px] items-start gap-14 px-5 lg:grid-cols-12 lg:px-10">
+			<div class="lg:col-span-5 lg:sticky lg:top-28">
+				<Reveal>
+					<span class="sticker sticker--lime" style="--tilt:-2deg">Kenapa memilih kami</span>
+					<h2 class="mt-6 font-display text-4xl font-black leading-[1.05] sm:text-6xl">
+						Standar tinggi, <span class="italic text-violet">rasa</span> seperti di rumah.
+					</h2>
+					<div class="img-frame mt-10 rotate-[-2deg] overflow-hidden rounded-[var(--radius-blob)]">
+						<img src={IMG.featureLips} alt="Aplikasi lipstik merah oleh terapis profesional" loading="lazy" class="aspect-[4/3] w-full object-cover" />
+					</div>
+					<span class="sticker sticker--pink mt-6 block w-fit" style="--tilt:2deg"><Icon name="shield" class="h-3.5 w-3.5" /> Protokol kebersihan rumah sakit</span>
+				</Reveal>
+			</div>
+			<div class="lg:col-span-7">
+				<div class="rule-list">
+					{
+						checkpoints.map((c, i) => (
+							<li data-reveal style={`--reveal-delay:${i * 90}ms`}>
+								<span class="mag-number text-4xl text-pink">{String(i + 1).padStart(2, '0')}</span>
+								<span class="flex-1 font-display text-xl font-bold sm:text-2xl">{c}</span>
+								<span class="hidden h-10 w-10 shrink-0 place-items-center rounded-full border-2 border-ink bg-lime sm:grid">
+									<Icon name="check" class="h-5 w-5" />
+								</span>
+							</li>
+						))
+					}
+				</div>
+				<Reveal delay={120}>
+					<div class="mt-10 rounded-[var(--radius-blob)] border-2 border-ink bg-violet-soft p-7">
+						<div class="flex flex-col gap-6 sm:flex-row sm:items-center">
+							<span class="eq" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+							<p class="flex-1 font-display text-lg font-bold leading-snug">
+								Konsultasi gratis sebelum treatment pertamamu — ceritakan kondisi kulitmu, kami susun rencananya.
+							</p>
+							<a href="/kontak" class="btn btn--ink shrink-0">Konsultasi Gratis</a>
+						</div>
+					</div>
+				</Reveal>
+			</div>
+		</div>
+	</section>
+
+	<!-- ============ TESTIMONIALS ============ -->
+	<section class="bg-ink py-20 lg:py-28">
+		<div class="mx-auto max-w-[1200px] px-5 lg:px-10">
+			<div class="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+				<Reveal>
+					<span class="sticker sticker--violet" style="--tilt:1deg">Kata mereka</span>
+					<h2 class="mt-5 font-display text-4xl font-black text-cream sm:text-5xl">
+						15.000+ pelanggan. <span class="italic text-lime">Satu</span> kesamaan.
+					</h2>
+				</Reveal>
+				<a href="/testimoni" class="pill-link shrink-0 !text-cream !border-lime">
+					Semua testimoni <Icon name="arrow-right" />
+				</a>
+			</div>
+			<TestimonialCarousel items={testimonials.map((t) => ({ ...t }))} client:visible />
+		</div>
+	</section>
+
+	<!-- ============ PROMO TEASER ============ -->
+	<section class="relative overflow-hidden py-20 lg:py-28">
+		<div class="pointer-events-none absolute -right-16 top-0 h-72 w-72 rounded-full bg-pink/25 blur-3xl"></div>
+		<div class="relative mx-auto grid max-w-[1400px] items-center gap-12 px-5 lg:grid-cols-12 lg:px-10">
+			<div class="lg:col-span-5" data-reveal="left">
+				<div class="img-frame mx-auto max-w-sm rotate-3 overflow-hidden rounded-[var(--radius-blob)]">
+					<img src={IMG.promoJar} alt="Krim premium dalam jar berwarna pink muda" loading="lazy" class="aspect-square w-full object-cover" />
+				</div>
+				<span class="sticker sticker--pink absolute left-10 top-8 lg:left-24" style="--tilt:-6deg">Disko&nbsp;n!</span>
+			</div>
+			<div class="lg:col-span-7">
+				<Reveal>
+					<span class="sticker sticker--lime" style="--tilt:-2deg"><Icon name="gift" class="h-3.5 w-3.5" /> Promo Spesial</span>
+					<h2 class="mt-6 font-display text-4xl font-black leading-[1.02] sm:text-6xl">
+						Ritual kemewahan <br /><span class="italic text-pink">tak harus menunggu</span>.
+					</h2>
+					<p class="mt-6 max-w-lg font-sans text-base leading-relaxed text-ink/70">
+						Paket member hingga potongan 30% untuk treatment favorit. Beri waktu untuk dirimu
+						— investasi terkecil yang berdampak paling besar.
+					</p>
+					<div class="mt-8 flex flex-wrap gap-4">
+						<a href="/promo" class="btn btn--violet">Lihat Semua Promo <Icon name="arrow-right" class="h-5 w-5" /></a>
+						<a href="/kontak" class="btn btn--ghost">Jadi Member</a>
+					</div>
+				</Reveal>
+			</div>
+		</div>
+	</section>
+
+	<!-- ============ INSTAGRAM FEED ============ -->
+	<section class="border-y-4 border-ink bg-violet py-16 text-cream">
+		<div class="mx-auto max-w-[1400px] px-5 lg:px-10">
+			<div class="mb-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+				<Reveal>
+					<h2 class="flex items-center gap-3 font-display text-3xl font-black sm:text-4xl">
+						<Icon name="instagram" class="h-8 w-8 text-lime" /> Ikuti ritual kami
+					</h2>
+				</Reveal>
+				<a href="#" class="pill-link !text-cream !border-lime">{brand.instagram}</a>
+			</div>
+			<div class="grid grid-cols-2 gap-4 sm:grid-cols-4">
+				{
+					insta.map((f, i) => (
+						<a href="#" class="group relative block overflow-hidden rounded-2xl border-2 border-cream/20" data-reveal style={`--reveal-delay:${i * 80}ms`} aria-label={`Instagram: ${f.alt}`}>
+							<img src={f.img} alt={f.alt} loading="lazy" class="aspect-square w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+							<span class="absolute inset-0 grid place-items-center bg-ink/0 text-cream opacity-0 transition-all duration-300 group-hover:bg-ink/40 group-hover:opacity-100">
+								<Icon name="instagram" class="h-8 w-8" />
+							</span>
+						</a>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- ============ CTA BAND ============ -->
+	<section class="relative overflow-hidden bg-ink py-24 text-cream">
+		<span class="outline-text outline-text--cream pointer-events-none absolute -bottom-8 left-0 select-none font-display text-[9rem] font-black opacity-15" aria-hidden="true">BOOK&nbsp;NOW</span>
+		<div class="relative mx-auto max-w-4xl px-5 text-center lg:px-10">
+			<Reveal>
+				<span class="sticker sticker--lime mx-auto" style="--tilt:-2deg"><Icon name="sparkles" class="h-3.5 w-3.5" /> Slot terbatas setiap hari</span>
+				<h2 class="mt-7 font-display text-4xl font-black leading-[1.02] sm:text-6xl">
+					Waktumu untuk <span class="italic text-pink">bersinar</span> sudah tiba.
+				</h2>
+				<p class="mx-auto mt-6 max-w-xl font-sans text-base leading-relaxed text-cream/70">
+					Booking online dalam satu menit, konfirmasi lewat WhatsApp dalam 15 menit.
+					Terapis dan waktu terbaikmu menunggu.
+				</p>
+				<div class="mt-9 flex flex-wrap justify-center gap-4">
+					<a href="/kontak" class="btn btn--pink text-base"><Icon name="calendar" class="h-5 w-5" /> Booking Sekarang</a>
+					<a href={`https://wa.me/${brand.whatsapp}`} target="_blank" rel="noreferrer" class="btn btn--ghost text-base !text-cream !border-cream">
+						<Icon name="whatsapp" class="h-5 w-5" /> Chat WhatsApp
+					</a>
+				</div>
+			</Reveal>
+		</div>
+	</section>
+</Layout>

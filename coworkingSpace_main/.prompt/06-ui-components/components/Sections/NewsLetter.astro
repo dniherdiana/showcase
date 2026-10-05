@@ -1,0 +1,40 @@
+<!-- Newsletter -->
+<div class="space-y-4">
+  <h4
+    data-i18n-key="footerNewsletterTitle"
+    data-i18n-en={footerData.newsletter.title}
+    data-i18n-id={footerData.newsletter.title_id}
+    class="font-serif text-lg font-semibold tracking-wide text-white"
+  >
+    {footerData.newsletter.title}
+  </h4>
+  <p
+    data-i18n-en={footerData.newsletter.description}
+    data-i18n-id={footerData.newsletter.description_id}
+    class="text-xs leading-relaxed text-white/60"
+  >
+    {footerData.newsletter.description}
+  </p>
+  <form
+    class="space-y-2"
+    onsubmit="event.preventDefault(); alert('Thank you for subscribing to Wanderlust Journal!');"
+  >
+    <input
+      type="email"
+      data-i18n-en={footerData.newsletter.placeholder}
+      data-i18n-id={footerData.newsletter.placeholder_id}
+      placeholder={footerData.newsletter.placeholder}
+      required
+      class="focus:border-gold w-full rounded-full border border-white/20 bg-white/5 px-4 py-2.5 font-sans text-sm text-slate-50 transition-all placeholder:text-white/40 focus:outline-none"
+    />
+    <button
+      type="submit"
+      data-i18n-key="footerSubscribe"
+      data-i18n-en={footerData.newsletter.btnText}
+      data-i18n-id={footerData.newsletter.btnText_id}
+      class="bg-gold hover:bg-gold-light shadow-gold/20 w-full cursor-pointer rounded-full py-2.5 text-sm font-semibold text-slate-900 shadow-md transition-all"
+    >
+      {footerData.newsletter.btnText}
+    </button>
+  </form>
+</div>

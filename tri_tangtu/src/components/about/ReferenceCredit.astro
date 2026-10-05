@@ -1,0 +1,26 @@
+---
+const { referenceNumber, referenceTitle, referenceSubTitle, href } =
+	Astro.props;
+---
+
+<article class="group">
+	<hr class="h-px border-0 bg-divider" />
+	<div class="flex gap-5 justify-start py-5">
+		<span
+			class="text-lg font-light text-text-muted transition-all duration-400 group-hover:text-text"
+			>{referenceNumber}</span
+		>
+		<div
+			class="flex flex-col transition-transform duration-300 hover:translate-x-3"
+		>
+			<h2 class="text-heading font-light text-sm mb-0.5">
+				{referenceTitle}
+			</h2>
+			<a
+				class="text-[10px] tracking-[.18em] uppercase text-text-muted cursor-pointer group-hover:underline"
+				href={href}>{referenceSubTitle}</a
+			>
+		</div>
+	</div>
+	<hr class="h-px border-0 bg-divider" />
+</article>

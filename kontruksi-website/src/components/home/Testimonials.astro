@@ -1,0 +1,41 @@
+---
+import { Quote, ShieldCheck } from 'lucide-astro';
+---
+
+<section class="py-24 lg:py-32 bg-theme-bg border-b border-theme-border">
+  <div class="editorial-container">
+    
+    <div class="max-w-4xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-theme-surface border border-theme-border text-theme-accent text-xs font-semibold tracking-wider mb-8">
+        <span>Pengalaman Klien</span>
+      </div>
+
+      <!-- ONE Large Featured Testimonial -->
+      <div class="surface-card p-8 sm:p-12 rounded-sm border-theme-accent/30 relative overflow-hidden">
+        <Quote class="w-16 h-16 text-theme-accent/10 absolute top-6 right-6 pointer-events-none" />
+
+        <blockquote class="space-y-6 relative z-10">
+          <p class="text-xl sm:text-2xl lg:text-3xl font-serif text-theme-primary font-normal leading-relaxed">
+            "Moving Co. menyelesaikan pembangunan pabrik manufaktur 3.600 m² kami tepat waktu tanpa ada pembengkakan biaya siluman di tengah pengerjaan. Yang paling berkesan, program Garansi Pemeliharaan 12 Bulan mereka memberikan kepastian teknis yang membuat tim operasional kami merasa tenang sepenuhnya."
+          </p>
+
+          <footer class="pt-6 border-t border-theme-border flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+              <div class="text-lg font-serif text-theme-primary font-normal flex items-center gap-2">
+                <span>Bpk. Hendra Wijaya</span>
+                <ShieldCheck class="w-4 h-4 text-theme-success shrink-0" title="Klien Terverifikasi" />
+              </div>
+              <div class="text-sm text-theme-accent font-medium">Direktur Utama • PT Surya Manufaktur Utama</div>
+            </div>
+
+            <div class="text-xs text-theme-secondary bg-theme-bg px-3 py-2 rounded-sm border border-theme-border">
+              Pabrik Manufaktur Cikarang • Durasi 4.5 Bulan • 145 Ton Steel WF
+            </div>
+          </footer>
+        </blockquote>
+      </div>
+
+    </div>
+
+  </div>
+</section>

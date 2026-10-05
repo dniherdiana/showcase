@@ -1,0 +1,116 @@
+---
+import { footerData } from './Footer.data.js';
+---
+
+<footer class="bg-bg-dark text-[#F5F5F4] pt-20 pb-12 border-t border-[rgba(255,255,255,0.08)]">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 pb-16 border-b border-[rgba(255,255,255,0.1)]">
+      <!-- Manifesto & Brand Pillar -->
+      <div class="lg:col-span-4 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-8 h-8 rounded-blob bg-accent text-white flex items-center justify-center font-bold font-caveat text-xl">
+              R
+            </div>
+            <span class="font-caveat font-bold text-3xl text-white">
+              {footerData.manifesto.title}
+            </span>
+          </div>
+          <p class="font-dmsans text-sm text-[#A8A29E] leading-relaxed max-w-sm">
+            {footerData.manifesto.description}
+          </p>
+        </div>
+        <div class="mt-8 pt-6 border-t border-[rgba(255,255,255,0.08)]">
+          <p class="font-dmsans text-xs text-[#78716C] uppercase tracking-wider font-semibold mb-2">
+            Saluran Bantuan Langsung
+          </p>
+          <p class="font-dmsans text-sm text-white font-medium">
+            WhatsApp: <a href="https://wa.me/6281234567890" class="text-accent hover:underline">{footerData.columns[3].contact.whatsapp}</a>
+          </p>
+          <p class="font-dmsans text-sm text-[#D6D3D1]">
+            Surel: <a href="mailto:halo@rantingcreativespace.id" class="text-accent hover:underline">{footerData.columns[3].contact.email}</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Column 1: Core Navigation -->
+      <div class="lg:col-span-2">
+        <h2 class="font-caveat font-bold text-2xl text-white mb-4">
+          {footerData.columns[0].title}
+        </h2>
+        <ul class="space-y-2.5">
+          {footerData.columns[0].links?.map((link) => (
+            <li>
+              <a href={link.href} class="font-dmsans text-sm text-[#A8A29E] hover:text-white transition-colors">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Column 2: Membership Types -->
+      <div class="lg:col-span-3">
+        <h2 class="font-caveat font-bold text-2xl text-white mb-4">
+          {footerData.columns[1].title}
+        </h2>
+        <ul class="space-y-2.5">
+          {footerData.columns[1].links?.map((link) => (
+            <li>
+              <a href={link.href} class="font-dmsans text-sm text-[#A8A29E] hover:text-white transition-colors">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Column 3 & 4: Headquarters & Compliance -->
+      <div class="lg:col-span-3 space-y-6">
+        <div>
+          <h2 class="font-caveat font-bold text-2xl text-white mb-3">
+            {footerData.columns[3].title}
+          </h2>
+          <p class="font-dmsans text-sm text-[#A8A29E] leading-relaxed mb-3">
+            {footerData.columns[3].address}
+          </p>
+          <div class="space-y-1">
+            {footerData.columns[3].hours?.map((hour) => (
+              <p class="font-dmsans text-xs text-[#D6D3D1] flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+                {hour}
+              </p>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h2 class="font-caveat font-bold text-2xl text-white mb-2">
+            Kepatuhan Usaha
+          </h2>
+          <ul class="space-y-1">
+            {footerData.columns[2].items?.map((item) => (
+              <li class="font-dmsans text-xs text-[#A8A29E]">
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Legal Bar -->
+    <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="font-dmsans text-xs text-[#78716C] text-center md:text-left">
+        {footerData.legal.copyright}
+      </p>
+      <div class="flex items-center gap-6">
+        {footerData.legal.links.map((link) => (
+          <a href={link.href} class="font-dmsans text-xs text-[#78716C] hover:text-[#A8A29E] transition-colors">
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</footer>

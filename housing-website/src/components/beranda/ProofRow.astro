@@ -1,0 +1,93 @@
+---
+import { proofRowContent } from "../../data/beranda/proofRow.js";
+---
+
+<section
+	class="py-24 bg-canvas-night border-y border-slate-800/80 relative overflow-hidden"
+>
+	<div class="absolute inset-0 bg-ambient-glow-left pointer-events-none"></div>
+
+	<div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10 space-y-16">
+		<div
+			data-reveal="fade"
+			class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end border-b border-slate-800/80 pb-12"
+		>
+			<div class="lg:col-span-7 space-y-3">
+				<div
+					class="text-xs font-mono font-semibold text-amber-300 uppercase tracking-widest"
+				>
+					<span class="border h-3 border-l bg-amber-400 justify-center mr-2"
+					></span>
+					{proofRowContent.sectionTitle}
+				</div>
+				<h2
+					class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-slate-50 leading-[1.16] tracking-tight"
+				>
+					{proofRowContent.headline}
+				</h2>
+			</div>
+
+			<div
+				class="lg:col-span-5 lg:text-right flex flex-col lg:items-end justify-end"
+			>
+				<div class="flex items-baseline gap-3">
+					<span
+						class="font-serif text-6xl sm:text-7xl lg:text-8xl font-light text-transparent bg-clip-text bg-linear-to-r from-amber-200 via-amber-400 to-amber-100 leading-none"
+					>
+						{proofRowContent.heroMetric.value}
+					</span>
+					<span class="text-amber-300 font-serif italic text-2xl font-normal">
+						{proofRowContent.heroMetric.label}
+					</span>
+				</div>
+				<p class="text-xs text-slate-300 font-normal mt-2 tracking-wide">
+					{proofRowContent.heroMetric.subtext}
+				</p>
+			</div>
+		</div>
+
+		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+			{
+				proofRowContent.pillars.map((p, i) => (
+					<div
+						data-reveal="zoom"
+						class="space-y-3 group border-l-2 border-amber-400/40 hover:border-amber-400 pl-5 transition-colors"
+					>
+						<span class="block font-mono text-[11px] text-amber-300 uppercase tracking-wider font-semibold">
+							{p.number} · {p.category}
+						</span>
+						<h3 class="font-serif text-2xl text-slate-100 font-medium group-hover:text-amber-300 transition-colors">
+							{p.title}
+						</h3>
+						<p class="text-xs text-slate-300 font-normal leading-relaxed">
+							{p.description}
+						</p>
+					</div>
+				))
+			}
+		</div>
+
+		<div
+			data-reveal="right"
+			class="pt-8 border-t border-slate-800/80 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-xs"
+		>
+			<span
+				class="font-mono text-slate-400 uppercase tracking-wider text-[11px]"
+			>
+				Mitra KPR Terdaftar & Terverifikasi:
+			</span>
+			<div
+				class="flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-slate-200 font-semibold tracking-wide"
+			>
+				{
+					proofRowContent.bankPartners.map((bank, i) => (
+						<>
+							{i > 0 && <span class="text-slate-600">·</span>}
+							<span class="hover:text-amber-300 transition-colors">{bank}</span>
+						</>
+					))
+				}
+			</div>
+		</div>
+	</div>
+</section>

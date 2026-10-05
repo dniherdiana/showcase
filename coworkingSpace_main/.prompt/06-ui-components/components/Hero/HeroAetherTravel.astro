@@ -1,0 +1,77 @@
+---
+import { Image } from "astro:assets"
+import atelierHero from "../images/hero.jpg";
+---
+
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+  <!-- Full Bleed Cinematic Photography (Single Image, No Carousel, No Video) -->
+  <div class="absolute inset-0 z-0">
+    <!-- <img
+      src="/images/hero.jpg"
+      alt="Early morning in Luang Prabang Laos along the misty Mekong river"
+      class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-1000 ease-out"
+    /> -->
+    <Image
+      src= {atelierHero}
+      alt="Early morning in Luang Prabang Laos along the misty Mekong river"
+      class="w-full h-full object-cover object-center transform scale-105 transition-transform duration-1000 ease-out"
+      fetchpriority="high"
+      loading="eager"
+    />
+    <!-- Rich Editorial Vignette Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-[#0a0f1d] via-[#0a0f1d]/50 to-[#0a0f1d]/30"></div>
+    <div class="absolute inset-0 bg-[#0a0f1d]/20 backdrop-brightness-95"></div>
+  </div>
+
+  <!-- Content Container -->
+  <div class="relative z-10 max-w-5xl mx-auto px-6 md:px-12 text-center text-[#f7f4ee] py-24 flex flex-col items-center">
+
+    <!-- Preheader: Location & Timestamp context setter -->
+    <div class="inline-flex items-center space-x-3 mb-6 bg-slate-900/40 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/10">
+      <span class="w-1.5 h-1.5 rounded-full bg-[#c87d55] animate-pulse"></span>
+      <span class="text-xs tracking-[0.25em] uppercase font-sans-custom text-slate-300">
+        Luang Prabang, Laos — 6:15 AM
+      </span>
+    </div>
+
+    <!-- H1 Statement -->
+    <h1 class="font-serif-custom text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal leading-[1.12] tracking-tight max-w-4xl text-balance mb-8 text-[#f7f4ee]">
+      Some trips are too important to plan alone.
+    </h1>
+
+    <!-- Subheading -->
+    <p class="text-base sm:text-lg md:text-xl font-light text-slate-300/90 max-w-2xl leading-relaxed mb-10 text-balance font-sans-custom">
+      Private guided journeys through Southeast Asia & the South Pacific. Designed for travelers who'd rather get lost in conversation than in a crowd.
+    </p>
+
+    <!-- Primary Action (Single CTA) -->
+    <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6">
+      <button
+        onclick="openInquiryModal()"
+        class="group relative inline-flex items-center justify-center px-8 py-4 text-xs uppercase tracking-[0.25em] font-medium text-[#f7f4ee] bg-[#c87d55] hover:bg-[#b56c45] transition-all duration-300 rounded-sm shadow-xl shadow-[#c87d55]/10"
+      >
+        <span>Begin Your Journey</span>
+        <svg class="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+        </svg>
+      </button>
+
+      <a
+        href="#case-for-us"
+        class="inline-flex items-center text-xs uppercase tracking-[0.2em] text-slate-400 hover:text-slate-200 transition-colors py-2"
+      >
+        <span>Why SENJA</span>
+        <svg class="w-3.5 h-3.5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.5 8.25l-7.5 7.5-7.5-7.5"></path>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Quiet Bottom Detail -->
+    <div class="mt-20 pt-8 border-t border-white/10 w-full max-w-md flex items-center justify-between text-xs text-slate-400 font-sans-custom">
+      <span>Bespoke Travel Atelier</span>
+      <span class="text-[#c87d55]">Virtuoso Partner</span>
+      <span>Southeast Asia & Pacific</span>
+    </div>
+  </div>
+</section>

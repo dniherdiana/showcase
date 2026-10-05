@@ -1,0 +1,53 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FloatingWA from '../components/FloatingWA.astro';
+import BookingModal from '../components/BookingModal.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "AURA Aesthetic & Beauty Lounge | Pengalaman Perawatan Kecantikan Mewah & Personal",
+  description = "AURA menghadirkan pengalaman perawatan kecantikan mewah, nyaman, dan personal dengan 10+ tahun pengalaman, 25+ terapis profesional, dan 50+ pilihan treatment terbaik di Jakarta."
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="id" class="dark scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="Beauty Salon, Aesthetic Care, Facial Spa, Laser Glow, Klinik Kecantikan, Skincare, Jakarta Spa" />
+    <meta name="author" content="AURA Aesthetic & Beauty Lounge" />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1560750588-73207b1ef5b8?w=1200&auto=format&fit=crop&q=80" />
+
+    <!-- Google Fonts: Syne & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Syne:wght@400..800&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-[#0C0A10] text-gray-100 min-h-screen flex flex-col antialiased selection:bg-pink-600 selection:text-white">
+    <Header />
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <Footer />
+    <FloatingWA />
+    <BookingModal />
+  </body>
+</html>

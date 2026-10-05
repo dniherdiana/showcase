@@ -1,0 +1,61 @@
+---
+const faqs = [
+  {
+    question: "Berapa lama persiapan waktu ideal sebelum event diselenggarakan?",
+    answer: "Untuk event korporat skala besar (500+ tamu/exhibition), waktu ideal persiapannya adalah 2-3 bulan sebelum hari-H. Namun tim Elevate juga berpengalaman mengeksekusi event persiapan kilat (fast-track) dalam waktu 3-4 minggu dengan penyesuaian tim operasional tambahan."
+  },
+  {
+    question: "Apakah Elevate EO melayani event di luar kota Jakarta?",
+    answer: "Ya. Klien kami tersebar di seluruh wilayah Indonesia (Bandung, Surabaya, Bali, Medan, Makassar, Labuan Bajo, dll). Kami memiliki jaringan partner vendor nasional terverifikasi di 15+ kota besar."
+  },
+  {
+    question: "Bagaimana sistem pembayaran dan penawaran biaya event?",
+    answer: "Kami menawarkan transparansi anggaran berbasis kebutuhan objektif proyek tanpa biaya tersembunyi. Pembayaran dilakukan bertahap sesuai milestone persetujuan konsep, persiapan produksi, hingga penyelesaian dokumentasi pasca-event."
+  },
+  {
+    question: "Apakah dokumentasi foto & video sudah termasuk dalam paket layanan?",
+    answer: "Ya, dokumentasi profesional (foto high-res & video recap sinematik 4K) merupakan bagian dari standar layanan utama kami di seluruh kategori event."
+  },
+  {
+    question: "Bagaimana cara menangani kondisi darurat atau kendala cuaca pada event outdoor?",
+    answer: "Setiap event outdoor dilengkapi dengan Contingency Plan A & B—termasuk pemasangan glass dome tahan badai, sistem kelistrikan redundant (dua generator paralel), serta koordinasi tim medis & keamanan independen."
+  }
+];
+---
+
+<section class="py-24 bg-neutral-950 border-t border-neutral-900 relative">
+  <div class="max-w-4xl mx-auto px-6 md:px-12 space-y-12">
+    <div class="text-center space-y-3">
+      <span class="text-xs font-mono text-amber-400 uppercase tracking-widest">Pertanyaan Umum</span>
+      <h2 class="font-serif text-3xl sm:text-4xl text-white font-light">
+        FAQ (Frequently Asked Questions)
+      </h2>
+      <p class="text-xs text-neutral-400">
+        Informasi seputar cara kerja, wilayah operasional, dan kepastian standar kerja kami.
+      </p>
+    </div>
+
+    <!-- Accordion Items -->
+    <div class="space-y-4">
+      {faqs.map((faq, index) => (
+        <details class="group bg-neutral-900/80 border border-neutral-800 rounded-xl overflow-hidden transition-all duration-300 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between p-6 cursor-pointer select-none text-white font-serif text-lg font-medium group-open:text-amber-400">
+            <span>{index + 1}. {faq.question}</span>
+            <span class="ml-4 transition-transform duration-300 group-open:rotate-180 text-amber-400">
+              ↓
+            </span>
+          </summary>
+          <div class="px-6 pb-6 text-xs text-neutral-300 leading-relaxed font-sans border-t border-neutral-800/40 pt-4">
+            {faq.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+
+    <div class="text-center pt-4">
+      <span class="data-client-badge">
+        [PERLU DATA CLIENT: FAQ tambahan perusahaan]
+      </span>
+    </div>
+  </div>
+</section>

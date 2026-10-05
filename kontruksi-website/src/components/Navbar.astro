@@ -1,0 +1,255 @@
+---
+import { Building2, Calculator } from "lucide-astro";
+import { siteConfig } from "../data/site.js";
+
+const currentPath = Astro.url.pathname;
+const navItems = siteConfig.navItems.map((item) => {
+	const isActive =
+		item.href === "/" ?
+			currentPath === "/"
+		:	currentPath === item.href ||
+			(item.href !== "/" && currentPath.startsWith(item.href));
+	return {
+		...item,
+		isActive,
+	};
+});
+---
+
+<header
+	transition:persist
+	class="fixed top-0 left-0 right-0 z-50 bg-theme-bg border-b border-theme-border h-20"
+>
+	<div class="editorial-container relative h-full">
+		<div class="flex items-center justify-between h-20">
+			<!-- Brand Logo -->
+			<a
+				href="/"
+				class="flex items-center gap-3 group z-10"
+				aria-label="Beranda Moving Co."
+			>
+				<div
+					class="w-9 h-9 rounded-sm bg-theme-accent text-theme-bg flex items-center justify-center font-bold shadow-sm"
+				>
+					<Building2 class="w-5 h-5 stroke-[2.5]" />
+				</div>
+				<div class="flex flex-col">
+					<span class="text-xl font-serif text-theme-primary font-normal">
+						{siteConfig.name}<span class="text-theme-accent"></span>
+					</span>
+					<span
+						class="text-[11px] tracking-wider font-medium text-theme-secondary"
+					>
+						{siteConfig.tagline}
+					</span>
+				</div>
+			</a>
+
+			<!-- Desktop Navigation (With Dynamic Client/Server Active States) -->
+			<nav
+				class="hidden md:flex items-center space-x-4 lg:space-x-7 text-xs lg:text-sm font-medium"
+				aria-label="Navigasi Utama"
+			>
+				{
+					navItems.map((item) => (
+						<a
+							href={item.href}
+							class={`transition-colors py-1 border-b-2 whitespace-nowrap ${
+								item.isActive ?
+									"text-theme-accent border-theme-accent font-semibold"
+								:	"text-theme-secondary hover:text-theme-accent border-transparent hover:border-theme-accent"
+							}`}
+							aria-current={item.isActive ? "page" : undefined}
+						>
+							{item.name}
+						</a>
+					))
+				}
+			</nav>
+
+			<!-- Desktop Right Action -->
+			<div class="hidden lg:flex items-center gap-4">
+				<a
+					href="/kalkulator"
+					class={`btn-primary py-1.5 px-4 text-sm ${currentPath.startsWith("/kalkulator") ? "ring-2 ring-theme-accent ring-offset-2 ring-offset-theme-bg" : ""}`}
+				>
+					<Calculator class="w-4 h-4" />
+					<span>Kalkulator Simulasi</span>
+				</a>
+			</div>
+
+			<!-- Pure CSS Hamburger Checkbox Toggle -->
+			<input type="checkbox" id="css-nav-toggle" class="peer hidden" />
+
+			<!-- Pure CSS Hamburger Button Label -->
+			<label
+				for="css-nav-toggle"
+				class="md:hidden z-50 p-2 text-theme-secondary hover:text-theme-primary cursor-pointer select-none flex items-center justify-center"
+				aria-label="Buka Menu Navigasi"
+			>
+				<div class="w-7 h-7 relative">
+					<svg
+						class="ham-icon-hamburger w-full h-full transition-all duration-300"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+						stroke-width="2"
+						stroke-linecap="round"
+					>
+						<path d="M4 6h16M4 12h16M4 18h16"></path>
+					</svg>
+					<svg
+						class="ham-icon-close w-full h-full absolute inset-0 transition-all duration-300 text-theme-accent"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+						stroke-width="2"
+						stroke-linecap="round"
+					>
+						<path d="M6 18L18 6M6 6l12 12"></path>
+					</svg>
+				</div>
+			</label>
+
+			<!-- Solid (Non-Transparent) Mobile Menu Overlay (Smooth & Fast CSS Transition) -->
+			<div
+				class="mobile-nav-menu fixed inset-x-0 top-20 bottom-0 z-40 flex flex-col justify-between p-8 border-t border-theme-border shadow-2xl overflow-y-auto bg-theme-bg"
+			>
+				<div class="space-y-6 pt-2">
+					<nav
+						class="flex flex-col space-y-3 font-serif"
+						aria-label="Navigasi Mobile"
+					>
+						{
+							navItems.map((item) => (
+								<a
+									href={item.href}
+									class={`py-3.5 border-b border-theme-border flex items-center justify-between text-lg transition-all ${
+										item.isActive ?
+											"border-l-4 border-l-theme-accent pl-4 text-theme-accent font-bold bg-theme-surface/60 rounded-r-sm"
+										:	"text-theme-primary hover:text-theme-accent px-2"
+									}`}
+									aria-current={item.isActive ? "page" : undefined}
+								>
+									<span>{item.name}</span>
+									<span class="text-theme-accent text-sm font-sans font-semibold">
+										→
+									</span>
+								</a>
+							))
+						}
+					</nav>
+				</div>
+
+				<div class="pb-6 border-t border-theme-border pt-6 mt-8">
+					<a
+						href="/kalkulator"
+						class="btn-primary w-full py-4 text-center justify-center shadow-md"
+					>
+						<Calculator class="w-5 h-5" />
+						<span>Hitung Simulasi Pabrik Anda</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+
+<style is:global>
+	.mobile-nav-menu {
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(-8px);
+		transition:
+			opacity 160ms ease-out,
+			transform 160ms ease-out,
+			visibility 160ms ease-out;
+		pointer-events: none;
+	}
+	#css-nav-toggle:checked ~ .mobile-nav-menu {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+		pointer-events: auto;
+	}
+	#css-nav-toggle ~ label .ham-icon-close {
+		opacity: 0;
+		transform: rotate(-90deg);
+	}
+	#css-nav-toggle:checked ~ label .ham-icon-hamburger {
+		opacity: 0;
+		transform: rotate(90deg);
+	}
+	#css-nav-toggle:checked ~ label .ham-icon-close {
+		opacity: 1;
+		transform: rotate(0deg);
+	}
+</style>
+
+<script>
+	function updateNavActiveStates() {
+		const currentPath = window.location.pathname;
+
+		// Desktop Nav Links
+		const desktopLinks = document.querySelectorAll(
+			'nav[aria-label="Navigasi Utama"] a',
+		);
+		desktopLinks.forEach((link) => {
+			const href = link.getAttribute("href");
+			let isActive = false;
+			if (href) {
+				isActive =
+					href === "/" ?
+						currentPath === "/"
+					:	currentPath === href ||
+						(href !== "/" && currentPath.startsWith(href));
+			}
+
+			if (isActive) {
+				link.className =
+					"transition-colors py-1 border-b-2 whitespace-nowrap text-theme-accent border-theme-accent font-semibold";
+				link.setAttribute("aria-current", "page");
+			} else {
+				link.className =
+					"transition-colors py-1 border-b-2 whitespace-nowrap text-theme-secondary hover:text-theme-accent border-transparent hover:border-theme-accent";
+				link.removeAttribute("aria-current");
+			}
+		});
+
+		// Mobile Nav Links
+		const mobileLinks = document.querySelectorAll(
+			'nav[aria-label="Navigasi Mobile"] a',
+		);
+		mobileLinks.forEach((link) => {
+			const href = link.getAttribute("href");
+			let isActive = false;
+			if (href) {
+				isActive =
+					href === "/" ?
+						currentPath === "/"
+					:	currentPath === href ||
+						(href !== "/" && currentPath.startsWith(href));
+			}
+
+			if (isActive) {
+				link.className =
+					"py-3.5 border-b border-theme-border flex items-center justify-between text-lg transition-all border-l-4 border-l-theme-accent pl-4 text-theme-accent font-bold bg-theme-surface/60 rounded-r-sm";
+				link.setAttribute("aria-current", "page");
+			} else {
+				link.className =
+					"py-3.5 border-b border-theme-border flex items-center justify-between text-lg transition-all text-theme-primary hover:text-theme-accent px-2";
+				link.removeAttribute("aria-current");
+			}
+		});
+
+		// Auto-close mobile hamburger toggle after navigating
+		const toggleCheckbox = document.getElementById(
+			"css-nav-toggle",
+		) as HTMLInputElement;
+		if (toggleCheckbox) {
+			toggleCheckbox.checked = false;
+		}
+	}
+
+	document.addEventListener("astro:page-load", updateNavActiveStates);
+</script>

@@ -1,0 +1,166 @@
+---
+import ClientDataBadge from './ClientDataBadge.astro';
+---
+
+<footer class="bg-dark-surface border-t border-white/10 relative overflow-hidden pt-20 pb-12">
+  <!-- Subtle Background Ambient Glow -->
+  <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-accent-orange/10 blur-[140px] pointer-events-none rounded-full"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
+    
+    <!-- Top Big Statement -->
+    <div class="pb-16 border-b border-white/10 flex flex-col lg:flex-row lg:items-end justify-between gap-8">
+      <div class="max-w-3xl">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-2 h-2 bg-accent-lime rounded-full animate-ping"></span>
+          <span class="text-xs font-mono tracking-widest text-accent-lime uppercase">Bicara Proyek Anda Selanjutnya</span>
+        </div>
+        <h2 class="text-4xl sm:text-6xl font-display font-extrabold text-text-main tracking-tight leading-[1.05]">
+          SIAP MENGUBAH EVENT ANDA MENJADI <span class="text-accent-orange underline decoration-accent-orange/40 underline-offset-8">MAHAKARYA?</span>
+        </h2>
+      </div>
+
+      <div>
+        <a 
+          href="/contact"
+          class="inline-flex items-center gap-3 px-8 py-4 bg-accent-orange text-dark-bg font-display font-extrabold text-lg rounded-xl hover:bg-accent-lime transition-all transform hover:-translate-y-1 shadow-2xl shadow-accent-orange/20"
+        >
+          <span>Konsultasi Event Gratis</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Middle Grid Navigation & Info -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 py-16 border-b border-white/10">
+      
+      <!-- Brand & Mission -->
+      <div class="lg:col-span-2 space-y-6">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-accent-orange text-dark-bg font-display font-extrabold text-2xl flex items-center justify-center rounded-xl">
+            E
+          </div>
+          <span class="font-display text-2xl font-bold tracking-tight text-text-main">
+            ELEVATE
+          </span>
+        </div>
+
+        <p class="text-text-muted text-sm sm:text-base leading-relaxed pr-4">
+          Event Organizer berdedikasi tinggi yang menangani setiap perhelatan dari konsep hingga eksekusi secara holistik. Tim kreatif dan operasional terintegrasi dalam satu manajemen profesional.
+        </p>
+
+        <!-- Proof Point Strip -->
+        <div class="grid grid-cols-3 gap-3 pt-2">
+          <div class="bg-dark-card p-3 rounded-lg border border-white/5">
+            <span class="block font-display font-bold text-xl text-accent-lime">2015</span>
+            <span class="text-[10px] font-mono text-text-muted">Tahun Berdiri</span>
+          </div>
+          <div class="bg-dark-card p-3 rounded-lg border border-white/5">
+            <span class="block font-display font-bold text-xl text-accent-orange">350+</span>
+            <span class="text-[10px] font-mono text-text-muted">Event Sukses</span>
+          </div>
+          <div class="bg-dark-card p-3 rounded-lg border border-white/5">
+            <span class="block font-display font-bold text-xl text-text-main">4.9 / 5</span>
+            <span class="text-[10px] font-mono text-text-muted">Rating Klien</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <div>
+        <h4 class="font-display font-bold text-text-main uppercase text-sm tracking-wider mb-5 border-l-2 border-accent-orange pl-3">
+          Navigasi
+        </h4>
+        <ul class="space-y-3 text-sm">
+          <li><a href="/" class="text-text-muted hover:text-accent-orange transition-colors">Home</a></li>
+          <li><a href="/portfolio" class="text-text-muted hover:text-accent-orange transition-colors">Portfolio Event</a></li>
+          <li><a href="/services" class="text-text-muted hover:text-accent-orange transition-colors">Layanan & Speciality</a></li>
+          <li><a href="/about" class="text-text-muted hover:text-accent-orange transition-colors">Tentang Elevate</a></li>
+          <li><a href="/contact" class="text-text-muted hover:text-accent-orange transition-colors">Kontak & Lokasi</a></li>
+        </ul>
+      </div>
+
+      <!-- Event Categories -->
+      <div>
+        <h4 class="font-display font-bold text-text-main uppercase text-sm tracking-wider mb-5 border-l-2 border-accent-lime pl-3">
+          Kategori Event
+        </h4>
+        <ul class="space-y-3 text-sm text-text-muted">
+          <li><a href="/services#corporate" class="hover:text-accent-lime transition-colors">Corporate Event</a></li>
+          <li><a href="/services#wedding" class="hover:text-accent-lime transition-colors">Luxury Wedding Organizer</a></li>
+          <li><a href="/services#exhibition" class="hover:text-accent-lime transition-colors">Exhibition & MICE</a></li>
+          <li><a href="/services#launch" class="hover:text-accent-lime transition-colors">Product Launching</a></li>
+          <li><a href="/services#brand" class="hover:text-accent-lime transition-colors">Brand Activation</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div>
+        <h4 class="font-display font-bold text-text-main uppercase text-sm tracking-wider mb-5 border-l-2 border-accent-cyan pl-3">
+          Markas Operasional
+        </h4>
+        <div class="space-y-3 text-sm text-text-muted">
+          <p class="leading-snug">
+            <strong class="text-text-main block mb-1">HQ Jakarta:</strong>
+            <ClientDataBadge label="Alamat Lengkap Gedung Office Elevate" class="block mb-1" />
+            SCBD Tower Level 18, Jakarta Selatan, 12190
+          </p>
+          <p>
+            <strong class="text-text-main block">Telepon / WhatsApp:</strong>
+            <a href="https://wa.me/6281234567890" target="_blank" class="hover:text-accent-orange transition-colors">
+              +62 812-3456-7890
+            </a>
+          </p>
+          <p>
+            <strong class="text-text-main block">Email Inquiry:</strong>
+            <a href="mailto:hello@elevateorganizer.co.id" class="hover:text-accent-orange transition-colors">
+              hello@elevateorganizer.co.id
+            </a>
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar: Copyright & Live Clock -->
+    <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-text-muted font-mono">
+      <div>
+        © {new Date().getFullYear()} Elevate Event Organizer. All Rights Reserved. Designed with Bold Swiss DNA.
+      </div>
+      
+      <div class="flex items-center gap-6">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 bg-emerald-400 rounded-full"></span>
+          <span>JAKARTA HQ TIME: <span id="jakarta-clock" class="text-text-main font-bold">10:27:16 WIB</span></span>
+        </div>
+        <a href="#main-header" class="hover:text-accent-orange transition-colors flex items-center gap-1">
+          <span>KEMBALI KE ATAS</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+  function updateJakartaClock() {
+    const clockEl = document.getElementById('jakarta-clock');
+    if (!clockEl) return;
+    const now = new Date();
+    const options: Intl.DateTimeFormatOptions = {
+      timeZone: 'Asia/Jakarta',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    };
+    clockEl.textContent = new Intl.DateTimeFormat('id-ID', options).format(now) + ' WIB';
+  }
+  setInterval(updateJakartaClock, 1000);
+  updateJakartaClock();
+</script>

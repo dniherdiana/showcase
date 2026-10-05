@@ -1,0 +1,7 @@
+export const fasilitasHeroData = {
+  headline: "Standar Arsitektur Produktivitas Tingkat Industri",
+  lede: "Setiap lekuk perabot, titik terang lampu gantung, dan tarikan kabel penyalur data di tempat ini dipasang dengan satu tujuan pasti yakni meruntuhkan hambatan teknis kerja Anda.",
+  body: "Frustrasi mekanis adalah pembunuh diam-diam ritme penyelesaian proyek yang sering diremehkan. Layar membeku saat presentasi penting, tulang pinggang pegal akibat dudukan kayu yang menekan, hingga mata lelah menatap layar karena pencahayaan ruangan yang terlampau redup layaknya lorong bawah tanah. Kami menyingkirkan kompromi buruk tersebut dan membangun ulang fondasi fasilitas dari titik nol mutlak. Ranting Creative Space menggunakan kursi berspesifikasi ergonomi penuh yang dapat disetel kemiringannya untuk menopang struktur lumbal tulang punggung Anda secara paripurna. Penempatan rasio lampu gantung bersuhu netral diturunkan pada titik jarak presisi guna menghilangkan efek pantulan menyilaukan pada layar monitor Anda. Tidak ada detail operasional kecil yang luput dari perhitungan teknis cermat kami. Anda sedang membayar untuk menyewa infrastruktur kelancaran mesin ide Anda yang tidak boleh sedikit pun terhambat oleh kerusakan peralatan fisik yang memalukan.",
+  image: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80",
+  imageAlt: "Foto sudut luas pencahayaan arsitektural dan kursi ergonomis di Ranting Creative Space"
+};

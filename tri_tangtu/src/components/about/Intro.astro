@@ -1,0 +1,26 @@
+---
+const { introTitle, introHeading, introSubheading, intro } = Astro.props;
+---
+
+<section class="py-4">
+	<h2 class="text-primary text-sm tracking-[.45em] uppercase lg:text-base">
+		— {introTitle}
+	</h2>
+
+	<div>
+		<div>
+			<h3
+				class="text-heading my-5 text-lg leading-[1.05] font-light lg:text-xl"
+			>
+				{introHeading}
+				<em class="text-primary block leading-relaxed italic"
+					>{introSubheading}</em
+				>
+			</h3>
+
+			<p class="text-text text-base leading-relaxed lg:text-lg">
+				{intro}
+			</p>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,62 @@
+---
+import { Image } from 'astro:assets';
+import Container from '../base/Container.astro';
+import SectionHeader from '../base/SectionHeader.astro';
+import HairlineDivider from '../base/HairlineDivider.astro';
+import imgFeasibility from '../../assets/images/feasibility-study.jpg';
+import imgDed from '../../assets/images/ded-blueprints.jpg';
+import imgInspection from '../../assets/images/architect-inspection.jpg';
+import imgMeru from '../../assets/images/meru-ubud.jpg';
+import { portofolioMonographData } from './PortofolioMonograph.data.js';
+
+const imageMap: Record<string, ImageMetadata> = {
+  'feasibility-study.jpg': imgFeasibility,
+  'ded-blueprints.jpg': imgDed,
+  'architect-inspection.jpg': imgInspection,
+  'meru-ubud.jpg': imgMeru,
+};
+---
+
+<section class="py-20 lg:py-28 border-b border-[var(--color-border-dark-hairline)] bg-[var(--color-canvas-dark)] text-[var(--color-ink-light)]">
+  <Container size="xl" as="div" class="flex flex-col gap-14 lg:gap-16">
+    <!-- Header -->
+    <SectionHeader
+      title={portofolioMonographData.heading}
+      subtitle={portofolioMonographData.subheading}
+      level="h2"
+      dark={true}
+    />
+
+    <!-- Monograph Narrative Timeline -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-14">
+      {portofolioMonographData.phases.map((phase) => {
+        const imageAsset = imageMap[phase.image];
+        return (
+          <article class="flex flex-col gap-4 border border-[var(--color-border-dark-hairline)] bg-[var(--color-canvas-dark-surface)] p-6">
+            <div class="relative aspect-[16/10] overflow-hidden border border-[var(--color-border-dark-hairline)]">
+              {imageAsset && (
+                <Image
+                  src={imageAsset}
+                  alt={phase.title}
+                  class="w-full h-full object-cover object-center"
+                  loading="lazy"
+                />
+              )}
+            </div>
+            <div class="flex flex-col gap-2 pt-2">
+              <h3 class="font-serif text-lg sm:text-xl font-bold text-[var(--color-ink-light)]">
+                {phase.title}
+              </h3>
+              <p class="text-sm text-[var(--color-ink-light-muted)] leading-relaxed">
+                {phase.description}
+              </p>
+              <span class="text-[11px] text-[var(--color-accent-sage)] pt-2 border-t border-[var(--color-border-dark-hairline)]">
+                {phase.caption}
+              </span>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </Container>
+</section>

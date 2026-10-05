@@ -1,0 +1,64 @@
+<section class="py-32 px-6 lg:px-16 max-w-7xl mx-auto space-y-16">
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8">
+      <div class="space-y-2">
+        <span class="text-xs font-mono text-[#c5a47e] tracking-[0.25em] uppercase">02 — KARYA TERPILIH</span>
+        <h2 class="font-display text-4xl sm:text-5xl font-bold text-white">Portofolio Arsitektur</h2>
+      </div>
+      <a href="/projects" class="inline-flex items-center gap-3 text-xs font-mono text-[#c5a47e] uppercase tracking-widest hover:text-white transition-colors">
+        <span>LIHAT SEMUA PROYEK</span>
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Asymmetric Image-First Project Essay -->
+    <div class="space-y-24">
+      {featuredProjects.map((item, index) => (
+        <div class={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+          <!-- Project Image Showcase -->
+          <div class={`lg:col-span-7 ${index % 2 === 1 ? 'lg:order-2' : 'lg:order-1'}`}>
+            <div class="relative overflow-hidden group border border-white/10 shadow-2xl">
+              <img
+                src={item.image}
+                alt={item.title}
+                class="w-full h-[450px] sm:h-[550px] object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div class="absolute bottom-4 left-4 bg-neutral-950/90 backdrop-blur-md px-4 py-2 border border-white/10 text-xs font-mono text-[#c5a47e]">
+                {item.category}
+              </div>
+            </div>
+          </div>
+
+          <!-- Project Story Meta -->
+          <div class={`lg:col-span-5 space-y-6 ${index % 2 === 1 ? 'lg:order-1' : 'lg:order-2'}`}>
+            <div class="flex items-center gap-3 text-xs font-mono text-neutral-500">
+              <span>{item.location}</span>
+              <span>•</span>
+              <span>TH. {item.year}</span>
+            </div>
+
+            <h3 class="font-display text-3xl sm:text-4xl font-bold text-white">
+              {item.title}
+            </h3>
+
+            <p class="text-sm text-neutral-300 leading-relaxed font-light">
+              {item.desc}
+            </p>
+
+            <div class="pt-4">
+              <a
+                href="/projects"
+                class="inline-flex items-center gap-3 px-6 py-3 border border-[#c5a47e] text-xs font-mono text-[#c5a47e] hover:bg-[#c5a47e] hover:text-neutral-950 transition-all uppercase tracking-widest"
+              >
+                <span>JELAJAHI CASE STUDY</span>
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>

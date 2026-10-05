@@ -1,0 +1,76 @@
+---
+import Container from '../base/Container.astro';
+import SectionHeader from '../base/SectionHeader.astro';
+import { CheckCircle2 } from 'lucide-astro';
+import { layananScopeMatrixData } from './LayananScopeMatrix.data.js';
+---
+
+<section class="py-20 lg:py-28 border-b border-[var(--color-border-hairline)] bg-[var(--color-canvas-light)]">
+  <Container size="xl" as="div" class="flex flex-col gap-14 lg:gap-16">
+    <!-- Header -->
+    <SectionHeader
+      title={layananScopeMatrixData.heading}
+      subtitle={layananScopeMatrixData.subheading}
+      level="h2"
+    />
+
+    <!-- Comparison Table -->
+    <div class="w-full overflow-x-auto border border-[var(--color-border-hairline)] bg-[var(--color-canvas-surface)] shadow-xs">
+      <table class="w-full text-left border-collapse min-w-[640px]">
+        <thead>
+          <tr class="border-b border-[var(--color-border-hairline)] bg-[var(--color-canvas-light)]">
+            <th class="p-5 font-serif text-sm font-bold text-[var(--color-ink-primary)] w-2/5">
+              Rincian Dokumen & Tanggung Jawab
+            </th>
+            {layananScopeMatrixData.tiers.map((t) => (
+              <th class="p-5 text-center border-l border-[var(--color-border-hairline)] w-1/5">
+                <div class="font-serif text-sm font-bold text-[var(--color-ink-primary)]">
+                  {t.name}
+                </div>
+                <div class="text-[11px] text-[var(--color-accent-terracotta)] font-medium mt-0.5">
+                  {t.feeNote}
+                </div>
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-[var(--color-border-hairline)] text-xs sm:text-sm">
+          {layananScopeMatrixData.items.map((row) => (
+            <tr class="hover:bg-white/40 transition-colors">
+              <td class="p-4 sm:p-5 font-medium text-[var(--color-ink-primary)]">
+                {row.feature}
+              </td>
+              <td class="p-4 sm:p-5 text-center border-l border-[var(--color-border-hairline)]">
+                {row.concept ? (
+                  <span class="inline-flex justify-center text-[var(--color-accent-terracotta)] font-bold">
+                    &bull; Termasuk
+                  </span>
+                ) : (
+                  <span class="text-[var(--color-ink-muted)]/40">-</span>
+                )}
+              </td>
+              <td class="p-4 sm:p-5 text-center border-l border-[var(--color-border-hairline)]">
+                {row.design ? (
+                  <span class="inline-flex justify-center text-[var(--color-accent-terracotta)] font-bold">
+                    &bull; Termasuk
+                  </span>
+                ) : (
+                  <span class="text-[var(--color-ink-muted)]/40">-</span>
+                )}
+              </td>
+              <td class="p-4 sm:p-5 text-center border-l border-[var(--color-border-hairline)] bg-[var(--color-canvas-light)]/60">
+                {row.integrated ? (
+                  <span class="inline-flex items-center justify-center gap-1 text-[var(--color-accent-sage)] font-bold">
+                    <CheckCircle2 class="w-4 h-4" /> Lengkap
+                  </span>
+                ) : (
+                  <span class="text-[var(--color-ink-muted)]/40">-</span>
+                )}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </Container>
+</section>

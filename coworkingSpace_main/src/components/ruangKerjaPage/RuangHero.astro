@@ -1,0 +1,41 @@
+---
+import { ruangHeroData } from './RuangHero.data.js';
+---
+
+<section class="py-20 md:py-24 bg-bg-base border-b border-border-indie">
+  <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-7">
+      <h1 class="font-caveat text-4xl md:text-6xl font-bold text-text-primary leading-tight">
+        {ruangHeroData.headline}
+      </h1>
+      
+      <p class="font-dmsans text-base md:text-lg text-text-primary font-medium mt-6 leading-relaxed">
+        {ruangHeroData.lede}
+      </p>
+
+      <p class="font-dmsans text-sm md:text-base text-text-secondary mt-4 leading-relaxed">
+        {ruangHeroData.body}
+      </p>
+
+      <div class="mt-8 flex items-center gap-4">
+        <a
+          href="#pricing-island"
+          class="btn-thunk bg-accent text-white font-dmsans font-bold text-sm h-12 px-7 rounded-full shadow-indie hover:bg-accent-hover flex items-center justify-center"
+        >
+          Lihat Simulasi Biaya
+        </a>
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 flex justify-center">
+      <div class="w-full max-w-md rotate-[2.5deg] border-[1.5px] border-border-indie bg-white p-3 shadow-indie rounded-blob">
+        <img
+          src={ruangHeroData.image}
+          alt={ruangHeroData.imageAlt}
+          class="w-full aspect-4/5 object-cover rounded-blob"
+          loading="eager"
+        />
+      </div>
+    </div>
+  </div>
+</section>

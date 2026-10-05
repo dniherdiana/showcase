@@ -1,0 +1,63 @@
+---
+import '../styles/global.css';
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+import { brand, IMG } from '../data/site.js';
+
+interface Props {
+	title: string;
+	description?: string;
+	ogImage?: string;
+}
+
+const { title, description = brand.tagline, ogImage } = Astro.props;
+const pageTitle = `${title} — ${brand.name}`;
+const og = ogImage ?? IMG.ogFace;
+---
+
+<!doctype html>
+<html lang="id">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{pageTitle}</title>
+		<meta name="description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={pageTitle} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={og} />
+		<meta name="theme-color" content="#1a0a1d" />
+	</head>
+	<body>
+		<a href="#main" class="skip-link">Langsung ke konten utama</a>
+		<Nav />
+		<main id="main">
+			<slot />
+		</main>
+		<Footer />
+
+		<script>
+			// Scroll-reveal observer — powers [data-reveal] across the site
+			const items = document.querySelectorAll('[data-reveal]');
+			if (items.length && 'IntersectionObserver' in window) {
+				const io = new IntersectionObserver(
+					(entries) => {
+						for (const e of entries) {
+							if (e.isIntersecting) {
+								e.target.classList.add('in');
+								io.unobserve(e.target);
+							}
+						}
+					},
+					{ threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+				);
+				items.forEach((el) => io.observe(el));
+			} else {
+				items.forEach((el) => el.classList.add('in'));
+			}
+		</script>
+	</body>
+</html>

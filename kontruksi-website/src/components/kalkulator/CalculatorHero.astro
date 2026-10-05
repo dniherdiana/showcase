@@ -1,0 +1,35 @@
+---
+import { Calculator } from 'lucide-astro';
+import { kalkulatorContent } from '../../data/kalkulator.js';
+
+const { hero } = kalkulatorContent;
+---
+
+<section class="py-20 lg:py-28 bg-theme-bg border-b border-theme-border">
+  <div class="editorial-container">
+    <div class="max-w-4xl space-y-6">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-theme-surface border border-theme-border text-theme-accent text-xs font-semibold tracking-wider">
+        <Calculator class="w-4 h-4" />
+        <span>{hero.preheader}</span>
+      </div>
+
+      <h1 class="text-2xl sm:text-3xl lg:text-4xl font-serif text-theme-primary font-normal leading-tight">
+        {hero.title}
+      </h1>
+
+      <p class="text-lg sm:text-xl text-theme-secondary font-normal leading-relaxed max-w-3xl">
+        {hero.subheading}
+      </p>
+
+      <!-- Informative Highlights Bar -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+        {hero.highlights.map(h => (
+          <div class="p-4 rounded-sm surface-card border-theme-border space-y-1">
+            <div class="text-xs text-theme-accent font-semibold uppercase">{h.title}</div>
+            <div class="text-sm text-theme-secondary">{h.desc}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

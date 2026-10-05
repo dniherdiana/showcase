@@ -1,0 +1,146 @@
+---
+---
+
+<div id="booking-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
+  <div class="relative w-full max-w-lg bg-[#14101B] border border-pink-500/30 rounded-3xl p-6 sm:p-8 shadow-2xl glow-magenta my-8">
+    <!-- Close Button -->
+    <button
+      onclick="document.getElementById('booking-modal')?.classList.add('hidden')"
+      class="absolute top-5 right-5 text-gray-400 hover:text-white p-2 rounded-full hover:bg-white/10 transition-colors"
+      aria-label="Tutup modal"
+    >
+      <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+
+    <!-- Modal Header -->
+    <div class="mb-6">
+      <span class="magazine-badge mb-2">Reservasi Online</span>
+      <h3 class="font-serif text-2xl font-bold text-white mt-1">
+        Booking Perawatan Kecantikan
+      </h3>
+      <p class="text-xs text-gray-300 mt-1">
+        Isi formulir berikut untuk menjadwalkan sesi perawatan eksklusif Anda bersama terapis profesional kami.
+      </p>
+    </div>
+
+    <!-- Booking Form -->
+    <form id="booking-form" class="space-y-4">
+      <div>
+        <label for="nama" class="block text-xs font-bold uppercase tracking-wider text-pink-300 mb-1">
+          Nama Lengkap <span class="text-pink-500">*</span>
+        </label>
+        <input
+          type="text"
+          id="nama"
+          required
+          placeholder="Masukkan nama lengkap Anda"
+          class="w-full bg-[#0C0A10] border border-pink-950/80 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-pink-500 transition-colors"
+        />
+      </div>
+
+      <div>
+        <label for="phone" class="block text-xs font-bold uppercase tracking-wider text-pink-300 mb-1">
+          Nomor WhatsApp <span class="text-pink-500">*</span>
+        </label>
+        <input
+          type="tel"
+          id="phone"
+          required
+          placeholder="Contoh: 081234567890"
+          class="w-full bg-[#0C0A10] border border-pink-950/80 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-pink-500 transition-colors"
+        />
+      </div>
+
+      <div>
+        <label for="treatment" class="block text-xs font-bold uppercase tracking-wider text-pink-300 mb-1">
+          Pilihan Treatment <span class="text-pink-500">*</span>
+        </label>
+        <select
+          id="treatment"
+          required
+          class="w-full bg-[#0C0A10] border border-pink-950/80 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-pink-500 transition-colors"
+        >
+          <option value="Aura Diamond Laser Glow">Aura Diamond Laser Glow (Signature)</option>
+          <option value="Acne Care Purifying Therapy">Acne Care Purifying Therapy</option>
+          <option value="HIFU Collagen Lifting">HIFU Collagen Lifting Facial</option>
+          <option value="Aroma Spa Relaxing Massage">Aroma Spa Relaxing Massage (90 Min)</option>
+          <option value="Konsultasi Gratis">Konsultasi Dokter & Skin Check Gratis</option>
+        </select>
+      </div>
+
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="tanggal" class="block text-xs font-bold uppercase tracking-wider text-pink-300 mb-1">
+            Tanggal <span class="text-pink-500">*</span>
+          </label>
+          <input
+            type="date"
+            id="tanggal"
+            required
+            class="w-full bg-[#0C0A10] border border-pink-950/80 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-pink-500 transition-colors"
+          />
+        </div>
+        <div>
+          <label for="jam" class="block text-xs font-bold uppercase tracking-wider text-pink-300 mb-1">
+            Waktu <span class="text-pink-500">*</span>
+          </label>
+          <select
+            id="jam"
+            required
+            class="w-full bg-[#0C0A10] border border-pink-950/80 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-pink-500 transition-colors"
+          >
+            <option value="10:00 WIB">10:00 WIB</option>
+            <option value="13:00 WIB">13:00 WIB</option>
+            <option value="16:00 WIB">16:00 WIB</option>
+            <option value="18:30 WIB">18:30 WIB</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label for="terapis" class="block text-xs font-bold uppercase tracking-wider text-pink-300 mb-1">
+          Preferensi Terapis (Opsional)
+        </label>
+        <input
+          type="text"
+          id="terapis"
+          placeholder="Nama terapis jika ada (mis. Dr. Clarissa / Mbak Sinta)"
+          class="w-full bg-[#0C0A10] border border-pink-950/80 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-pink-500 transition-colors"
+        />
+      </div>
+
+      <div class="pt-2">
+        <button
+          type="submit"
+          class="w-full py-3.5 px-6 font-bold text-white uppercase text-xs tracking-widest bg-gradient-to-r from-[#E6007A] via-[#8B5CF6] to-[#F59E0B] rounded-xl shadow-lg shadow-pink-600/30 hover:scale-[1.01] active:scale-95 transition-all cursor-pointer"
+        >
+          Konfirmasi Booking via WhatsApp
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  const bookingForm = document.getElementById('booking-form');
+  if (bookingForm) {
+    bookingForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nama = (document.getElementById('nama') as HTMLInputElement).value;
+      const phone = (document.getElementById('phone') as HTMLInputElement).value;
+      const treatment = (document.getElementById('treatment') as HTMLSelectElement).value;
+      const tanggal = (document.getElementById('tanggal') as HTMLInputElement).value;
+      const jam = (document.getElementById('jam') as HTMLSelectElement).value;
+      const terapis = (document.getElementById('terapis') as HTMLInputElement).value;
+
+      const text = encodeURIComponent(
+        `Halo Aura Beauty, saya ingin konfirmasi booking treatment:\n\n- Nama: ${nama}\n- WhatsApp: ${phone}\n- Treatment: ${treatment}\n- Tanggal: ${tanggal}\n- Jam: ${jam}\n- Terapis Preferensi: ${terapis || 'Bebas / Rekomendasi'}`
+      );
+
+      window.open(`https://wa.me/6281234567890?text=${text}`, '_blank');
+      document.getElementById('booking-modal')?.classList.add('hidden');
+    });
+  }
+</script>

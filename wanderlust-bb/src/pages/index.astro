@@ -1,0 +1,22 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/home/Hero/Hero.astro";
+import StatsBar from "../components/home/StatsBar/StatsBar.astro";
+import FeaturedDestinations from "../components/home/FeaturedDestinations/FeaturedDestinations.astro";
+import FeaturedPromos from "../components/home/FeaturedPromos/FeaturedPromos.astro";
+import FeaturedExperiences from "../components/home/FeaturedExperiences/FeaturedExperiences.astro";
+import FeaturedStories from "../components/home/FeaturedStories/FeaturedStories.astro";
+import BookingBanner from "../components/shared/BookingBanner/BookingBanner.astro";
+import DestinationModal from "../components/destinations/DestinationModal/DestinationModal.astro";
+---
+
+<Layout title="Wanderlust — Discover Your Next Journey" currentPath="/">
+	<Hero />
+	<StatsBar />
+	<FeaturedDestinations />
+	<FeaturedPromos />
+	<FeaturedExperiences />
+	<FeaturedStories />
+	<BookingBanner />
+	<DestinationModal />
+</Layout>

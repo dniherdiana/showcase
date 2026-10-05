@@ -1,0 +1,93 @@
+---
+const {
+	sectionLabel,
+	source,
+	year,
+	paragraph_1,
+	paragraph_2,
+	paragraph_3,
+	paragraph_4,
+	quoteRamaStyling,
+	quoteResiStyling,
+	quotePrabuStyling,
+	closing,
+	closingAccent,
+} = Astro.props;
+---
+
+<article class="max-w-4xl mx-auto">
+	<div
+		class="bg-linear-to-r from-surface via-primary/60 to-surface py-10 md:p-10 px-8 lg:px-5 overflow-hidden"
+	>
+		<span
+			class="absolute right-6 top-1/2 -translate-y-1/2 font-display font-light text-heading select-none hidden lg:block"
+			style="font-size:200px;opacity:0.088;line-height:1">❧</span
+		>
+
+		<div class="relative max-w-3xl mx-auto text-center">
+			<p class="text-[9px] tracking-[0.45em] uppercase text-heading mb-15">
+				{sectionLabel}
+			</p>
+
+			<!-- Corner frame -->
+			<div class="relative py-10 px-4 md:px-10">
+				<div
+					class="absolute -top-4 left-0 w-9 h-9 border-t border-l border-border"
+				>
+				</div>
+				<div
+					class="absolute -top-4 right-0 w-9 h-9 border-t border-r border-border"
+				>
+				</div>
+				<div
+					class="absolute -bottom-4 left-0 w-9 h-9 border-b border-l border-border"
+				>
+				</div>
+				<div
+					class="absolute -bottom-4 right-0 w-9 h-9 border-b border-r border-border"
+				>
+				</div>
+
+				<div class="text-heading opacity-90 text-3xl mb-7 font-display">❧</div>
+
+				<!-- Quote body -->
+				<blockquote
+					class="text-lg lg:text-xl font-light text-text italic leading-normal mb-8"
+				>
+					<p>
+						{paragraph_1}<span class="text-primary not-italic">
+							{quoteRamaStyling}</span
+						>{paragraph_2}<span
+							class="text-success-soft not-italic"
+							style="font-style:normal">{quoteResiStyling}</span
+						>{paragraph_3}<span
+							class="text-blue-600 not-italic"
+							style="font-style:normal">{quotePrabuStyling}</span
+						>{paragraph_4}
+					</p>
+				</blockquote>
+
+				<!-- divider -->
+				<div class="flex items-center justify-center gap-4 mb-8">
+					<div class="w-14 h-px bg-border/30"></div>
+					<div class="w-1.5 h-1.5 rounded-full bg-border/40"></div>
+					<div class="w-14 h-px bg-border/30"></div>
+				</div>
+
+				<!-- Closing line -->
+				<p
+					class="text-base lg:text-lg font-display font-light text-text opacity-65 leading-relaxed"
+				>
+					{closing}
+					<em class="italic text-heading">{closingAccent}</em>
+				</p>
+			</div>
+
+			<p
+				class="mt-15 text-[9px] tracking-[0.32em] uppercase text-heading opacity-75"
+			>
+				{source} · {year}
+			</p>
+		</div>
+	</div>
+</article>

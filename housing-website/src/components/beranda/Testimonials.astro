@@ -1,0 +1,71 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import resident1 from "@assets/images/resident1.jpg";
+import resident2 from "@assets/images/resident2.jpg";
+import { testimonials } from "../../data/beranda/testimonials.js";
+
+const residentImages: Record<string, ImageMetadata> = { resident1, resident2 };
+---
+
+<section
+	id="reviews"
+	class="py-28 bg-canvas-default relative border-t border-slate-800/80"
+>
+	<div class="max-w-7xl mx-auto px-6 lg:px-12">
+		<div data-reveal="fade" class="max-w-3xl mb-16 space-y-4">
+			<h2
+				class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-slate-50 leading-[1.18] tracking-tight"
+			>
+				Pengalaman mereka yang telah menetap dan membesarkan keluarga di sini.
+			</h2>
+			<p
+				class="text-slate-200 font-normal text-base sm:text-lg leading-relaxed"
+			>
+				Bukan klaim sepihak. Simak cerita dari tetangga Anda yang telah melewati
+				proses serah terima kunci dan akad KPR bersama kami.
+			</p>
+		</div>
+
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+			{
+				testimonials.map((t, i) => (
+					<div
+						data-reveal="blur"
+						class="bg-canvas-raised border border-slate-800 p-7 rounded-sm space-y-6 flex flex-col justify-between hover:border-slate-700 transition-colors"
+					>
+						<div class="space-y-4">
+							<div class="flex items-center justify-between text-xs">
+								<div class="flex text-amber-400">{t.rating}</div>
+								<span class="font-mono text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">
+									{t.badge}
+								</span>
+							</div>
+
+							<p class="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed italic">
+								{t.quote}
+							</p>
+						</div>
+
+						<div class="pt-4 border-t border-slate-800/80 flex items-center gap-3">
+							{t.image ?
+								<Image
+									src={residentImages[t.image]}
+									alt={t.alt}
+									class="w-11 h-11 rounded-full object-cover border border-amber-400/40"
+								/>
+							:	<div class="w-11 h-11 rounded-full bg-linear-to-tr from-amber-500 to-amber-300 flex items-center justify-center text-slate-950 font-serif font-medium text-lg">
+									{t.initial}
+								</div>
+							}
+							<div>
+								<h3 class="text-sm font-semibold text-slate-100">{t.name}</h3>
+								<span class="block text-[11px] text-slate-400">{t.detail}</span>
+							</div>
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>

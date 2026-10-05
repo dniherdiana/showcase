@@ -1,0 +1,35 @@
+---
+import { portofolioData } from '../../data/portofolio.data.js';
+
+const { hero } = portofolioData;
+---
+
+<section class="relative w-full py-12 lg:py-16 overflow-hidden architect-grid-bg border-b border-border-sketch">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
+    <div class="max-w-4xl space-y-5">
+      <!-- Single H1 per page, NO EYEBROW -->
+      <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink-primary leading-[1.1]">
+        <span class="text-brand-accent underline decoration-wavy decoration-brand-accent/40">{hero.headlineAccent}</span>: Anggaran, Luas, dan Durasi Lapangan.
+      </h1>
+
+      <p class="text-base sm:text-lg text-ink-muted leading-relaxed font-normal max-w-3xl">
+        {hero.subhead}
+      </p>
+
+      <div class="pt-3 flex flex-col sm:flex-row items-center gap-4">
+        <a
+          href={hero.ctaPrimary.href}
+          class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 text-sm font-semibold uppercase tracking-wider text-white bg-brand-accent hover:bg-brand-accent-hover rounded-control transition-all shadow-md text-center"
+        >
+          {hero.ctaPrimary.label}
+        </a>
+        <a
+          href={hero.ctaSecondary.href}
+          class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 text-sm font-semibold tracking-wide text-ink-primary border-1.5 border-ink-primary hover:bg-surface-panel rounded-control transition-all text-center"
+        >
+          {hero.ctaSecondary.label}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

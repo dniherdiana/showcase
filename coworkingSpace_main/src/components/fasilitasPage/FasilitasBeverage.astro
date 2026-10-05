@@ -1,0 +1,37 @@
+---
+import { fasilitasBeverageData } from './FasilitasBeverage.data.js';
+---
+
+<section class="py-20 md:py-28 bg-bg-surface">
+  <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-7">
+      <h2 class="font-caveat text-3xl md:text-5xl font-bold text-text-primary leading-tight">
+        {fasilitasBeverageData.headline}
+      </h2>
+      
+      <p class="font-dmsans text-sm md:text-base text-text-secondary mt-6 leading-relaxed">
+        {fasilitasBeverageData.body}
+      </p>
+
+      <div class="mt-8">
+        <a
+          href={fasilitasBeverageData.cta.href}
+          class="btn-thunk inline-flex items-center justify-center bg-accent text-white font-dmsans font-bold text-sm h-12 px-8 rounded-full shadow-indie hover:bg-accent-hover"
+        >
+          {fasilitasBeverageData.cta.label}
+        </a>
+      </div>
+    </div>
+
+    <div class="lg:col-span-5 flex justify-center">
+      <div class="w-full max-w-md rotate-[-2deg] border-[1.5px] border-border-indie bg-white p-3 shadow-indie rounded-blob">
+        <img
+          src={fasilitasBeverageData.image}
+          alt={fasilitasBeverageData.imageAlt}
+          class="w-full aspect-4/5 object-cover rounded-blob"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</section>

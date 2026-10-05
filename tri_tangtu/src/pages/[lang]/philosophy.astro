@@ -1,0 +1,178 @@
+---
+import Layout from "@layouts/Layout.astro";
+import PhilosophyCard from "@components/PhilosophyCard.astro";
+import Chapter from "@components/Chapter.astro";
+import { language } from "@data/languages/languageStore";
+import DividerColor from "@components/DividerColor.astro";
+import IntroCard from "@components/philosophy/IntroCard.astro";
+import Manuscript from "@components/philosophy/Manuscript.astro";
+import ParallelCard from "@components/philosophy/ParallelCard.astro";
+import Divider from "@components/Divider.astro";
+import ClosingStatement from "@components/philosophy/ClosingStatement.astro";
+import prabu from "@assets/images/Prabu.jpg";
+import resi from "@assets/images/Resi.png";
+import rama from "@assets/images/Rama.png";
+
+export function getStaticPaths() {
+	return [{ params: { lang: "id" } }, { params: { lang: "en" } }];
+}
+
+const { lang } = Astro.params;
+const currentLang = lang === "en" ? "en" : "id";
+const t = language[currentLang];
+console.log(resi);
+---
+
+<Layout
+	title={currentLang === "id" ? "Filosofi Tri Tangtu" : "Tri Tangtu Philosophy"}
+	description={currentLang === "id"
+		? "Tiga Kepastian, Satu Kebenaran"
+		: "Three Certainties, One Truth"}
+>
+	<main class="bg-bg px-6 pt-15 lg:px-15">
+		<div class="animate-slide-left animate-delay-2">
+			<Chapter
+				pageNumber={t.philosophy.chapter.pageNumber}
+				headline={t.philosophy.chapter.headline}
+				text_1={t.philosophy.chapter.title.text_1}
+				text_2={t.philosophy.chapter.title.text_2}
+			/>
+		</div>
+		<div class="mx-auto">
+			<div class="animate-soft-pop animate-delay-3 pt-5">
+				<IntroCard
+					title={t.philosophy.title}
+					classParagraph="text-lg lg:text-xl text-text-inverse font-extralight leading-relaxed text-text"
+					text_1={t.philosophy.intro.paragraph_1.text_1}
+					classText2="text-primary font-semibold italic"
+					text_2={t.philosophy.intro.paragraph_1.text_2}
+					text_3={t.philosophy.intro.paragraph_1.text_3}
+					classText4="text-primary font-semibold italic"
+					text_4={t.philosophy.intro.paragraph_1.text_4}
+					text_5={t.philosophy.intro.paragraph_1.text_5}
+				/>
+
+				<Manuscript />
+
+				<IntroCard
+					classParagraph="text-lg text-text-muted"
+					text_1={t.philosophy.intro.paragraph_2}
+				/>
+
+				<IntroCard
+					classParagraph="text-lg text-text-muted"
+					text_1={t.philosophy.intro.paragraph_3.text_1}
+					classText2="text-primary font-semibold italic"
+					text_2={t.philosophy.intro.paragraph_3.text_2}
+					text_3={t.philosophy.intro.paragraph_3.text_3}
+					classText4="text-success font-semibold italic"
+					text_4={t.philosophy.intro.paragraph_3.text_4}
+					text_5={t.philosophy.intro.paragraph_3.text_5}
+					classText6="text-info font-semibold italic"
+					text_6={t.philosophy.intro.paragraph_3.text_6}
+					text_7={t.philosophy.intro.paragraph_3.text_7}
+				/>
+			</div>
+			<DividerColor />
+
+			<div class="grid gap-8 pt-20 pb-10 md:grid-cols-3">
+				<PhilosophyCard
+					class="from-surface-soft via-primary/60 to bg-surface bg-linear-to-r"
+					src={rama}
+					alt="rama"
+					tag={t.philosophy.three_pillar.rama.tag}
+					name={t.philosophy.three_pillar.rama.name}
+					subtitle={t.philosophy.three_pillar.rama.subtitle}
+					classP1="block mb-2"
+					paragraph_1={t.philosophy.three_pillar.rama.paragraph_1}
+					classP2="block"
+					paragraph_2={t.philosophy.three_pillar.rama.paragraph_2}
+					footNote={t.philosophy.three_pillar.rama.footNote}
+				/>
+
+				<PhilosophyCard
+					class="from-surface-soft via-success/60 to bg-surface w-full bg-linear-to-r"
+					src={resi}
+					alt="Resi"
+					tag={t.philosophy.three_pillar.resi.tag}
+					name={t.philosophy.three_pillar.resi.name}
+					subtitle={t.philosophy.three_pillar.resi.subtitle}
+					classP1="block mb-2"
+					paragraph_1={t.philosophy.three_pillar.resi.paragraph_1}
+					classP2="block"
+					paragraph_2={t.philosophy.three_pillar.resi.paragraph_2}
+					footNote={t.philosophy.three_pillar.resi.footNote}
+				/>
+
+				<PhilosophyCard
+					class="from-surface-soft via-info/60 to bg-surface w-full bg-linear-to-r"
+					src={prabu}
+					alt="Prabu"
+					tag={t.philosophy.three_pillar.prabu.tag}
+					name={t.philosophy.three_pillar.prabu.name}
+					subtitle={t.philosophy.three_pillar.prabu.subtitle}
+					classP1="block mb-2"
+					paragraph_1={t.philosophy.three_pillar.prabu.paragraph_1}
+					classP2="block"
+					paragraph_2={t.philosophy.three_pillar.prabu.paragraph_2}
+					footNote={t.philosophy.three_pillar.prabu.footNote}
+				/>
+			</div>
+
+			<Divider />
+
+			<IntroCard
+				classParagraph="text-lg text-text-inverse font-light"
+				title={t.philosophy.relevance.section_label}
+				text_1={t.philosophy.relevance.paragraph_1}
+			/>
+
+			<IntroCard
+				classParagraph="text-lg text-text"
+				text={t.philosophy.relevance.paragraph_2.text}
+				text_1={t.philosophy.relevance.paragraph_2.text_1}
+				classText2="text-primary font-semibold italic"
+				text_2={t.philosophy.relevance.paragraph_2.text_2}
+				text_3={t.philosophy.relevance.paragraph_2.text_3}
+				classText4="text-success font-semibold italic"
+				text_4={t.philosophy.relevance.paragraph_2.text_4}
+				text_5={t.philosophy.relevance.paragraph_2.text_5}
+				classText6="text-info font-semibold italic"
+				text_6={t.philosophy.relevance.paragraph_2.text_6}
+				text_7={t.philosophy.relevance.paragraph_2.text_7}
+			/>
+
+			<IntroCard
+				classParagraph="text-lg text-text font-light"
+				text_1={t.philosophy.relevance.paragraph_3}
+			/>
+
+			<ClosingStatement closingText={t.philosophy.relevance.closing} />
+
+			<div
+				class="flex h-auto flex-col gap-6 px-2 py-10 lg:max-w-full lg:flex-row"
+			>
+				<ParallelCard
+					classMain="bg-linear-to-r from-surface-soft to bg-surface border border-divider rounded-sm p-6"
+					pillar={t.philosophy.modern_parallels.rama.name}
+					role={t.philosophy.modern_parallels.rama.role}
+					description={t.philosophy.modern_parallels.rama.description}
+				/>
+
+				<ParallelCard
+					classMain="bg-linear-to-r from-success to bg-success-soft border border-divider rounded-sm p-6"
+					pillar={t.philosophy.modern_parallels.resi.name}
+					role={t.philosophy.modern_parallels.resi.role}
+					description={t.philosophy.modern_parallels.resi.description}
+				/>
+
+				<ParallelCard
+					classMain="bg-linear-to-r from-info to bg-info-dark border border-divider rounded-sm p-6"
+					pillar={t.philosophy.modern_parallels.prabu.name}
+					role={t.philosophy.modern_parallels.prabu.role}
+					description={t.philosophy.modern_parallels.prabu.description}
+				/>
+			</div>
+		</div>
+	</main>
+</Layout>

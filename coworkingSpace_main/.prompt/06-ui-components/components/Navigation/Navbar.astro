@@ -1,0 +1,142 @@
+---
+// src/components/Navbar.astro
+const navLinks = [
+  { href: '/', label: 'Beranda' },
+  { href: '/paket-wisata', label: 'Katalog Itinerary' },
+  { href: '/#tentang-kami', label: 'Quantum Control' },
+  { href: '/#diferensiator', label: 'Keunggulan Operasional' },
+  { href: '/#faktur-b2b', label: 'Dokumen B2B' },
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-50 bg-[#070A12]/80 backdrop-blur-xl border-b border-white/10 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12">
+    <div class="flex items-center justify-between h-20 sm:h-22">
+      
+      <!-- Futuristic Brand Identity -->
+      <a href="/" class="flex items-center gap-3.5 group">
+        <div class="relative flex items-center justify-center">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#00F2FE] via-[#00E5FF] to-[#10B981] text-[#070A12] flex items-center justify-center font-display text-xl font-extrabold shadow-[0_0_20px_rgba(0,242,254,0.4)] group-hover:scale-105 transition-transform duration-300">
+            A
+          </div>
+          <span class="absolute -top-1 -right-1 flex h-3 w-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+          </span>
+        </div>
+        
+        <div class="flex flex-col">
+          <span class="font-display text-2xl font-bold tracking-tight text-white leading-none group-hover:text-cyan-400 transition-colors">
+            ADYATMA
+          </span>
+          <span class="font-grotesk text-[10px] tracking-[0.25em] uppercase text-cyan-400 font-semibold mt-1 flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+            Next-Gen Travel Mobility
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Cyber Navigation -->
+      <nav class="hidden lg:flex items-center gap-8" aria-label="Navigasi Utama">
+        {navLinks.map((link) => {
+          const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
+          return (
+            <a
+              href={link.href}
+              class={`font-grotesk text-xs uppercase tracking-widest transition-all duration-300 py-1.5 relative group ${
+                isActive ? 'text-cyan-400 font-bold' : 'text-slate-300 hover:text-cyan-300 font-medium'
+              }`}
+            >
+              {link.label}
+              <span class={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-cyan-400 to-emerald-400 transition-all duration-300 ${isActive ? 'w-full shadow-[0_0_8px_rgba(0,242,254,0.8)]' : 'w-0 group-hover:w-full'}`}></span>
+            </a>
+          );
+        })}
+      </nav>
+
+      <!-- Right Action & Mobile Toggle -->
+      <div class="flex items-center gap-4 sm:gap-6">
+        <a
+          href="https://wa.me/6281234567890?text=Halo%20Adyatma%20Journeys,%20saya%20ingin%20konsultasi%20rute%20futuristic%20travel."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hidden sm:inline-flex items-center justify-center px-6 py-3 font-grotesk text-xs tracking-wider uppercase font-bold text-[#070A12] bg-gradient-to-r from-[#00F2FE] to-[#10B981] hover:from-[#10B981] hover:to-[#00F2FE] rounded-lg shadow-[0_0_25px_rgba(0,242,254,0.4)] transition-all duration-300 hover:scale-[1.02]"
+        >
+          Konsultasi AI Itinerary
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button
+          type="button"
+          id="mobile-menu-btn"
+          class="lg:hidden p-2.5 rounded-lg border border-white/10 text-slate-200 hover:text-cyan-400 hover:border-cyan-400/50 focus:outline-none transition-colors"
+          aria-label="Buka menu navigasi"
+          aria-expanded="false"
+        >
+          <svg id="menu-icon-open" class="w-6 h-6 block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+          <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Dropdown -->
+  <div id="mobile-menu" class="hidden lg:hidden border-b border-white/10 bg-[#070A12]/95 backdrop-blur-2xl px-6 pt-4 pb-8 space-y-4">
+    {navLinks.map((link) => {
+      const isActive = currentPath === link.href;
+      return (
+        <a
+          href={link.href}
+          class={`block font-grotesk text-base tracking-wide py-2.5 transition-colors border-b border-white/5 ${
+            isActive ? 'text-cyan-400 font-bold' : 'text-slate-200 hover:text-cyan-400'
+          }`}
+        >
+          {link.label}
+        </a>
+      );
+    })}
+    <div class="pt-3">
+      <a
+        href="https://wa.me/6281234567890?text=Halo%20Adyatma%20Journeys,%20saya%20ingin%20konsultasi%20rute%20futuristic%20travel."
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full inline-flex items-center justify-center px-6 py-3.5 font-grotesk text-xs tracking-wider uppercase font-bold text-[#070A12] bg-gradient-to-r from-[#00F2FE] to-[#10B981] rounded-lg shadow-[0_0_20px_rgba(0,242,254,0.3)] transition-all"
+      >
+        Konsultasi AI Itinerary via WhatsApp
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+
+  if (btn && menu && iconOpen && iconClose) {
+    btn.addEventListener('click', () => {
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', (!isExpanded).toString());
+      menu.classList.toggle('hidden');
+      iconOpen.classList.toggle('hidden');
+      iconClose.classList.toggle('hidden');
+    });
+
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>

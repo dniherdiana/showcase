@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
+@import "tailwindcss";
+@import "./animation.css";
+
+@theme {
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Custom Colors for Modern, Intimate and Flowing feel */
+  --color-bg-warm: #FAF6F0;       /* Rich warm linen/cream */
+  --color-surface-soft: #EFECE6;  /* Soft warm pebble/clay */
+  --color-text-dark: #1F1E1C;     /* Deep velvety charcoal */
+  --color-accent-green: #224229;  /* Botanical Forest Green */
+  --color-accent-hover: #142919;  /* Deep shadow green */
+  
+  --shadow-neumorphic-sm: 2px 2px 6px rgba(185, 180, 168, 0.25), -2px -2px 6px rgba(255, 255, 255, 0.7);
+  --shadow-neumorphic-md: 5px 5px 12px rgba(185, 180, 168, 0.35), -5px -5px 12px rgba(255, 255, 255, 0.8);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--color-bg-warm);
+    color: var(--color-text-dark);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  body {
+    background-color: var(--color-bg-warm);
+    color: var(--color-text-dark);
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Architectural Grid Overlay (intimate and modern design layout helper) */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-size: 80px 80px;
+    background-image: 
+      linear-gradient(to right, rgba(34, 66, 41, 0.012) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(34, 66, 41, 0.012) 1px, transparent 1px);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* Spotlight radial shading to enhance visual intimacy */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, transparent 55%, rgba(31, 30, 28, 0.02) 100%);
+    pointer-events: none;
+    z-index: 40;
+  }
+
+  ::selection {
+    background-color: rgba(34, 66, 41, 0.12);
+    color: var(--color-accent-green);
+  }
+}
+
+/* Custom Web Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-warm);
+}
+::-webkit-scrollbar-thumb {
+  background: #E0DDD4;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-green);
+}
+
+/* Custom follow-along interactive cursor */
+.custom-cursor {
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-accent-green);
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+}
+
+.custom-cursor-follower {
+  width: 24px;
+  height: 24px;
+  border: 1px solid rgba(34, 66, 41, 0.25);
+  border-radius: 50%;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.08s cubic-bezier(0.25, 1, 0.5, 1), width 0.2s, height 0.2s, border-color 0.2s;
+}
+
+body.cursor-hover .custom-cursor {
+  width: 12px;
+  height: 12px;
+  background-color: var(--color-accent-green);
+}
+body.cursor-hover .custom-cursor-follower {
+  width: 42px;
+  height: 42px;
+  border-color: var(--color-accent-green);
+  background-color: rgba(34, 66, 41, 0.02);
+}
+
+/* Typography styles */
+.editorial-lead {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 3.5vw, 2rem);
+  line-height: 1.5;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+}
+
+.title-massive {
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 7vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  font-weight: 300;
+}
+
+.subtitle-editorial {
+  font-family: var(--font-sans);
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  line-height: 1.7;
+  font-weight: 300;
+  color: #605E59;
+}
+
+/* Pure CSS Burger Menu */
+#menu-toggle:checked ~ #mobile-menu {
+  max-height: 100vh;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+#menu-toggle:checked ~ label[for="menu-toggle"] .icon-open {
+  display: none;
+}
+
+#menu-toggle:checked ~ label[for="menu-toggle"] .icon-close {
+  display: block;
+}
+
+#menu-toggle:checked ~ label[for="menu-toggle"] {
+  border-color: var(--color-accent-green);
+  color: var(--color-accent-green);
+}
+
+/* Neumorphic structures */
+.border-neumorphic {
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow: var(--shadow-neumorphic-sm);
+}
+
+.border-neumorphic-hover {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.border-neumorphic-hover:hover {
+  box-shadow: var(--shadow-neumorphic-md);
+  transform: translateY(-3px);
+  border-color: rgba(34, 66, 41, 0.15);
+}
+
+/* Fluid reveal animations */
+.reveal-fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-fade-in.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Smooth horizontal line design accents */
+.editorial-line {
+  height: 1px;
+  background: linear-gradient(to right, rgba(34, 66, 41, 0.15), transparent);
+  width: 100%;
+}
+.editorial-line-vertical {
+  width: 1px;
+  background: linear-gradient(to bottom, rgba(34, 66, 41, 0.15), transparent);
+  height: 100%;
+}

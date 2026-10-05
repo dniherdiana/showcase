@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import ServicesHero from '../components/layanan/ServicesHero.astro';
+import Services from '../components/layanan/Services.astro';
+import ServiceScopeMatrix from '../components/layanan/ServiceScopeMatrix.astro';
+import MaterialSpecs from '../components/MaterialSpecs.astro';
+import FAQ from '../components/FAQ.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Footer from '../components/Footer.astro';
+import { siteConfig } from '../data/site.js';
+---
+
+<Layout 
+  title={`Spesialisasi & Layanan Arsitektur Baja Pabrik | ${siteConfig.name}`}
+  description="Spesialisasi konstruksi baja pabrik manufaktur, gudang logistik high-bay, fabrikasi steel WF SNI, dan layanan pemeliharaan purna jual 12 bulan."
+  canonicalPath="/layanan"
+>
+  <Navbar />
+  <main class="pt-20" id="main-content">
+    <ServicesHero />
+    <Services />
+    <ServiceScopeMatrix />
+    <MaterialSpecs />
+    <FAQ />
+    <FinalCTA />
+  </main>
+  <Footer />
+</Layout>

@@ -1,0 +1,457 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FaqSection from '../components/FaqSection.astro';
+---
+
+<Layout title="Elevate Event Organizer — Creative Studio & Event Management" currentPath="/">
+  <!-- SECTION 1: CINEMATIC HERO (Canvas First, Full Bleed Immersive Layout) -->
+  <section class="relative min-h-[92vh] flex items-center justify-center pt-24 pb-16 overflow-hidden bg-neutral-950">
+    <!-- Edge-to-Edge Ambient Photography Mask -->
+    <div class="absolute inset-0 z-0">
+      <img
+        src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=1600&q=80"
+        alt="Elevate Event Atmosphere"
+        class="w-full h-full object-cover opacity-35 scale-105 filter contrast-125"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/60 to-neutral-950/40"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-neutral-950 via-transparent to-neutral-950/80"></div>
+    </div>
+
+    <!-- Floating Graphic Lines -->
+    <div class="absolute top-1/4 left-12 w-px h-64 bg-gradient-to-b from-amber-500/0 via-amber-500/30 to-amber-500/0 hidden lg:block"></div>
+    <div class="absolute bottom-1/4 right-12 w-px h-64 bg-gradient-to-b from-amber-500/0 via-amber-500/30 to-amber-500/0 hidden lg:block"></div>
+
+    <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <!-- Left Column Headline (60% width equivalent) -->
+      <div class="lg:col-span-8 space-y-8">
+        <div class="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-neutral-900/90 border border-amber-500/30 text-amber-300 text-xs font-mono tracking-widest uppercase shadow-lg">
+          <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span>
+          Creative Studio Event Management
+        </div>
+
+        <h1 class="font-serif text-4xl sm:text-6xl lg:text-7xl font-light text-white leading-[1.08] tracking-tight">
+          Bukan Sekadar Mengatur Acara.<br />
+          Kami <span class="italic font-normal text-amber-300 underline decoration-amber-500/40 underline-offset-8">Menciptakan Atmosfer</span> & Pengalaman VVIP.
+        </h1>
+
+        <p class="text-neutral-300 text-base sm:text-lg max-w-2xl font-light leading-relaxed">
+          Website ini terasa seperti berjalan memasuki sebuah event yang sedang berlangsung. Menangani event dari konsep hingga eksekusi dengan tim kreatif dan operasional dalam satu manajemen terpadu.
+        </p>
+
+        <!-- CTAs & Proof Row -->
+        <div class="pt-4 flex flex-wrap items-center gap-5">
+          <a
+            href="/contact"
+            class="px-8 py-4 text-xs font-semibold tracking-wider text-neutral-950 uppercase bg-amber-400 hover:bg-amber-300 transition-all rounded-full shadow-2xl shadow-amber-400/20 transform hover:-translate-y-0.5"
+          >
+            Jadwalkan Meeting
+          </a>
+          <a
+            href="/portfolio"
+            class="px-8 py-4 text-xs font-semibold tracking-wider text-white uppercase border border-neutral-700 hover:border-amber-400/60 hover:text-amber-300 transition-all rounded-full"
+          >
+            Lihat Portfolio Event
+          </a>
+        </div>
+
+        <!-- Quick Key Stats Strip -->
+        <div class="pt-8 border-t border-neutral-800/80 grid grid-cols-3 gap-6 max-w-xl">
+          <div>
+            <span class="font-serif text-2xl sm:text-3xl font-bold text-white">350+</span>
+            <p class="text-[11px] font-mono text-neutral-400 uppercase tracking-wider">Event Sukses</p>
+          </div>
+          <div>
+            <span class="font-serif text-2xl sm:text-3xl font-bold text-white">120+</span>
+            <p class="text-[11px] font-mono text-neutral-400 uppercase tracking-wider">Klien Korporat</p>
+          </div>
+          <div>
+            <span class="font-serif text-2xl sm:text-3xl font-bold text-white">2015</span>
+            <p class="text-[11px] font-mono text-neutral-400 uppercase tracking-wider">Pengalaman</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Floating Layer Card (Break Container) -->
+      <div class="lg:col-span-4 relative hidden lg:block">
+        <div class="relative rounded-2xl overflow-hidden border border-neutral-700/60 bg-neutral-900/90 shadow-2xl p-4 transform hover:scale-[1.02] transition-transform duration-500">
+          <div class="relative aspect-[4/5] rounded-xl overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=800&q=80"
+              alt="Gala Event Atmosphere"
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent"></div>
+            <div class="absolute bottom-4 left-4 right-4 p-4 bg-neutral-950/80 backdrop-blur-md rounded-lg border border-white/10">
+              <span class="text-[10px] font-mono text-amber-300 uppercase tracking-widest block">Dokumentasi Langsung</span>
+              <p class="text-xs text-white font-medium">Grand Gala & Awarding Ceremony 2024</p>
+              <div class="mt-2 text-[10px] text-neutral-400 flex items-center justify-between">
+                <span>Ritz-Carlton Jakarta</span>
+                <span>1.200+ VIP Guests</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: EDITORIAL PULL-QUOTE (Rhythm Jeda Visual) -->
+  <section class="py-20 bg-neutral-900 border-y border-neutral-800 relative">
+    <div class="max-w-5xl mx-auto px-6 text-center space-y-6">
+      <span class="text-xs font-mono tracking-widest text-amber-400 uppercase">Filosofi Studio</span>
+      <blockquote class="font-serif text-2xl sm:text-4xl text-white font-light leading-relaxed italic">
+        “Setiap viewport adalah cerita baru. Kami percaya event terbaik dibangun dari integrasi presisi antara imajinasi skenario, teknologi audio-visual, dan eksekusi operasional tanpa celah.”
+      </blockquote>
+      <div class="pt-2">
+        <span class="text-xs font-mono text-neutral-400 uppercase tracking-widest">— Tim Manajemen Elevate Event Organizer</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: FEATURED EVENTS (Image-First Showcase, Asymmetrical) -->
+  <section class="py-28 bg-neutral-950 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 space-y-16">
+      <!-- Section Shell: Header 2 Kolom Asimetris -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 border-b border-neutral-800 pb-8">
+        <div class="space-y-3">
+          <span class="text-xs font-mono text-amber-400 uppercase tracking-widest">Karya Terpilih</span>
+          <h2 class="font-serif text-3xl sm:text-5xl font-light text-white">
+            Dokumentasi Event Unggulan
+          </h2>
+        </div>
+        <p class="text-neutral-400 text-sm max-w-md font-light leading-relaxed">
+          Menggabungkan dokumentasi sinematik dengan eksekusi panggung kelas premium untuk klien corporate, wedding, dan brand activation nasional.
+        </p>
+      </div>
+
+      <!-- Feature Grid 3 Columns Asymmetric -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+        <!-- Main Large Showcase Card (Spans 7 cols) -->
+        <div class="md:col-span-7 group relative bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden flex flex-col justify-between hover:border-amber-400/50 transition-all duration-500">
+          <div class="relative aspect-[16/10] overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1200&q=80"
+              alt="IndoTech Expo 2024"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/30 to-transparent"></div>
+            <span class="absolute top-4 left-4 px-3 py-1 bg-black/80 backdrop-blur-sm border border-white/10 rounded-full text-[10px] font-mono text-amber-300 uppercase">
+              Exhibition & Expo
+            </span>
+          </div>
+
+          <div class="p-8 space-y-4">
+            <div class="text-[11px] font-mono text-neutral-400 uppercase">ICE BSD Jakarta • 35.000+ Visitors</div>
+            <h3 class="font-serif text-2xl sm:text-3xl text-white group-hover:text-amber-300 transition-colors font-medium">
+              IndoTech Expo & Future Forum 2024
+            </h3>
+            <p class="text-xs text-neutral-300 leading-relaxed">
+              Mengakomodasi 150 booth perusahaan teknologi dalam 2 hall seluas 10.000 m2 dengan panggung plenary 360-derajat interaktif.
+            </p>
+            <div class="pt-2 flex items-center justify-between">
+              <a href="/portfolio" class="text-xs font-mono uppercase tracking-wider text-amber-400 hover:underline">
+                Pelajari Studi Kasus →
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2 Side Cards Column (Spans 5 cols) -->
+        <div class="md:col-span-5 space-y-8 flex flex-col justify-between">
+          <!-- Card 2 -->
+          <div class="group bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden p-6 hover:border-amber-400/40 transition-all">
+            <div class="relative aspect-[16/9] rounded-xl overflow-hidden mb-4">
+              <img
+                src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80"
+                alt="Corporate Summit"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <span class="absolute top-3 left-3 px-2.5 py-0.5 bg-black/80 text-[10px] font-mono text-amber-300 uppercase rounded">
+                Corporate Event
+              </span>
+            </div>
+            <h4 class="font-serif text-xl text-white group-hover:text-amber-300 transition-colors">
+              National Banking Leadership Summit
+            </h4>
+            <p class="text-xs text-neutral-400 mt-2">
+              Pengamanan VVIP dan sistem registrasi RFID zero-delay untuk 1.200 eksekutif perbankan nasional.
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="group bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden p-6 hover:border-amber-400/40 transition-all">
+            <div class="relative aspect-[16/9] rounded-xl overflow-hidden mb-4">
+              <img
+                src="https://images.unsplash.com/photo-1531058240690-006c446962d8?auto=format&fit=crop&w=1200&q=80"
+                alt="Automotive Launch"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <span class="absolute top-3 left-3 px-2.5 py-0.5 bg-black/80 text-[10px] font-mono text-amber-300 uppercase rounded">
+                Brand Activation
+              </span>
+            </div>
+            <h4 class="font-serif text-xl text-white group-hover:text-amber-300 transition-colors">
+              Next-Gen EV Flagship Unveiling
+            </h4>
+            <p class="text-xs text-neutral-400 mt-2">
+              Proyeksi hologram panggung air melayang dengan liputan 80+ media massa nasional.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: WHY CHOOSE US (Literal Diferensiator Integration) -->
+  <section class="py-24 bg-neutral-900 border-t border-neutral-800 relative">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 space-y-16">
+      <div class="max-w-2xl space-y-4">
+        <span class="text-xs font-mono text-amber-400 uppercase tracking-widest">Keunggulan Standar Kerja</span>
+        <h2 class="font-serif text-3xl sm:text-5xl font-light text-white">
+          Mengapa 120+ Perusahaan Mempercayakan Event Pada Kami?
+        </h2>
+        <p class="text-neutral-400 text-sm font-light leading-relaxed">
+          Kami menolak template event standar. Setiap elemen dirancang berbasis tujuan bisnis dan reputasi brand Anda.
+        </p>
+      </div>
+
+      <!-- Diferensiator List (Not generic grid - asymmetric editorial list with numerical indicators) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Left Column Feature Focus -->
+        <div class="lg:col-span-4 bg-neutral-950 p-8 rounded-2xl border border-neutral-800 flex flex-col justify-between">
+          <div class="space-y-4">
+            <span class="text-4xl font-serif text-amber-400 font-bold">01.</span>
+            <h3 class="font-serif text-2xl text-white font-medium">End-to-End Integration</h3>
+            <p class="text-xs text-neutral-300 leading-relaxed">
+              Menangani event dari konsep hingga eksekusi. Anda cukup menyampaikan visi bisnis, dan seluruh detail teknis diselesaikan oleh tim profesional kami.
+            </p>
+          </div>
+          <div class="pt-6 border-t border-neutral-800 text-[11px] font-mono text-neutral-400">
+            Tanpa sub-kontraktor berbelit. Satu komando operasional.
+          </div>
+        </div>
+
+        <!-- Right Column Items (4 items) -->
+        <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="bg-neutral-950/80 p-6 rounded-xl border border-neutral-800 space-y-3">
+            <span class="text-xs font-mono text-amber-400 font-bold">02. MANAJEMEN TERPADU</span>
+            <h4 class="font-serif text-xl text-white">Tim Kreatif & Operasional Dalam Satu Manajemen</h4>
+            <p class="text-xs text-neutral-400 leading-relaxed">
+              Sinergi erat antara desainer panggung, tim lighting, stage manager, dan tim VVIP guest control dalam satu naungan Elevate.
+            </p>
+          </div>
+
+          <div class="bg-neutral-950/80 p-6 rounded-xl border border-neutral-800 space-y-3">
+            <span class="text-xs font-mono text-amber-400 font-bold">03. SKALA NASIONAL</span>
+            <h4 class="font-serif text-xl text-white">Berpengalaman Menangani Event Perusahaan Skala Nasional</h4>
+            <p class="text-xs text-neutral-400 leading-relaxed">
+              Portofolio menangani konvensi kementerian, summit perbankan, hingga gala korporat multinasional di seluruh wilayah Indonesia.
+            </p>
+          </div>
+
+          <div class="bg-neutral-950/80 p-6 rounded-xl border border-neutral-800 space-y-3">
+            <span class="text-xs font-mono text-amber-400 font-bold">04. BUSINESS ORIENTED</span>
+            <h4 class="font-serif text-xl text-white">Pendekatan Berbasis Tujuan Bisnis Client</h4>
+            <p class="text-xs text-neutral-400 leading-relaxed">
+              Bukan sekadar kemewahan visual, tetapi mengukur KPI event: partisipasi audiens, exposure media, dan kepuasan pemangku kepentingan.
+            </p>
+          </div>
+
+          <div class="bg-neutral-950/80 p-6 rounded-xl border border-neutral-800 space-y-3">
+            <span class="text-xs font-mono text-amber-400 font-bold">05. DOKUMENTASI VVIP</span>
+            <h4 class="font-serif text-xl text-white">Dokumentasi Profesional Sebagai Bagian dari Layanan</h4>
+            <p class="text-xs text-neutral-400 leading-relaxed">
+              Tim videografer & fotografer terdedikasi menghasilkan foto high-res & video recap sinematik untuk publikasi publik & laporan internal.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: EVENT JOURNEY (Spatial Process Flow) -->
+  <section class="py-28 bg-neutral-950 relative">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 space-y-16">
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <span class="text-xs font-mono text-amber-400 uppercase tracking-widest">Alur Kerja Standar VVIP</span>
+        <h2 class="font-serif text-3xl sm:text-5xl font-light text-white">
+          Event Journey Dari Konsep Ke Panggung Realita
+        </h2>
+      </div>
+
+      <!-- Horizontal Spatial Journey Steps -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 relative">
+        <div class="p-6 bg-neutral-900 border border-neutral-800 rounded-xl space-y-4 relative">
+          <div class="w-10 h-10 rounded-full bg-amber-400 text-neutral-950 font-bold font-mono flex items-center justify-center text-sm">
+            01
+          </div>
+          <h3 class="font-serif text-xl text-white font-medium">Discovery & Concept</h3>
+          <p class="text-xs text-neutral-400 leading-relaxed">
+            Penyelarasan pesan brand, riset demografi audiens, dan pembuatan storyboard 3D visual panggung.
+          </p>
+        </div>
+
+        <div class="p-6 bg-neutral-900 border border-neutral-800 rounded-xl space-y-4 relative">
+          <div class="w-10 h-10 rounded-full bg-neutral-800 text-amber-400 border border-amber-400/40 font-bold font-mono flex items-center justify-center text-sm">
+            02
+          </div>
+          <h3 class="font-serif text-xl text-white font-medium">Technical Production</h3>
+          <p class="text-xs text-neutral-400 leading-relaxed">
+            Perancangan instalasi lighting, audio akustik room, tata panggung LED, dan sistem registrasi RFID.
+          </p>
+        </div>
+
+        <div class="p-6 bg-neutral-900 border border-neutral-800 rounded-xl space-y-4 relative">
+          <div class="w-10 h-10 rounded-full bg-neutral-800 text-amber-400 border border-amber-400/40 font-bold font-mono flex items-center justify-center text-sm">
+            03
+          </div>
+          <h3 class="font-serif text-xl text-white font-medium">Gladi Bersih & Run-Through</h3>
+          <p class="text-xs text-neutral-400 leading-relaxed">
+            Simulasi eksekusi H-1 dengan koordinasi timekeeper, show director, dan pengamanan protokol tamu VIP.
+          </p>
+        </div>
+
+        <div class="p-6 bg-neutral-900 border border-amber-500/40 rounded-xl space-y-4 relative">
+          <div class="w-10 h-10 rounded-full bg-amber-400 text-neutral-950 font-bold font-mono flex items-center justify-center text-sm">
+            04
+          </div>
+          <h3 class="font-serif text-xl text-white font-medium">Live Execution & Recap</h3>
+          <p class="text-xs text-neutral-400 leading-relaxed">
+            Eksekusi hari-H presisi detik demi detik disempurnakan pengiriman paket dokumentasi sinematik 4K.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: BEHIND THE SCENE (Operational Rigor Showcase) -->
+  <section class="py-24 bg-neutral-900 border-y border-neutral-800 relative">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-5 space-y-6">
+        <span class="text-xs font-mono text-amber-400 uppercase tracking-widest">Behind The Scenes</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-light text-white leading-snug">
+          Kedisiplinan Operasional & Tim Kreatif 35+ Profesional
+        </h2>
+        <p class="text-neutral-300 text-sm font-light leading-relaxed">
+          Di balik panggung megah yang bercahaya, ada 35+ staf profesional terdedikasi—stage manager, lighting designer, audio engineer, hingga guest coordinator—yang bekerja dalam standar keselamatan & presisi tinggi.
+        </p>
+
+        <div class="space-y-3 pt-2">
+          <div class="flex items-center gap-3 text-xs text-neutral-200">
+            <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+            <span>Partner vendor nasional terverifikasi di 15 kota besar</span>
+          </div>
+          <div class="flex items-center gap-3 text-xs text-neutral-200">
+            <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+            <span>Sistem backup power redundant & redundant audio mix</span>
+          </div>
+          <div class="flex items-center gap-3 text-xs text-neutral-200">
+            <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+            <span>Zero critical glitch record sejak 2015</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 grid grid-cols-2 gap-4">
+        <div class="space-y-4">
+          <img
+            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80"
+            alt="Behind the Scene Team"
+            class="rounded-xl object-cover w-full h-64 border border-neutral-800"
+          />
+          <div class="p-4 bg-neutral-950 rounded-xl border border-neutral-800 text-[11px] font-mono text-neutral-400">
+            Tim Kontrol Multimedia & Lighting Console
+          </div>
+        </div>
+        <div class="space-y-4 pt-8">
+          <div class="p-4 bg-neutral-950 rounded-xl border border-neutral-800 text-[11px] font-mono text-amber-400 font-semibold">
+            35+ Staff Profesional Dedicated
+          </div>
+          <img
+            src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1000&q=80"
+            alt="Behind the Scene Control"
+            class="rounded-xl object-cover w-full h-64 border border-neutral-800"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: CLIENT LOGOS & PROOF STRIP -->
+  <section class="py-16 bg-neutral-950 border-b border-neutral-900">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 space-y-8">
+      <div class="text-center">
+        <p class="text-xs font-mono text-neutral-400 uppercase tracking-widest">Dipercaya Oleh 120+ Perusahaan Skala Nasional & Multinasional</p>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-8 md:gap-16 opacity-70 filter grayscale hover:grayscale-0 transition-all duration-500">
+        <span class="font-serif text-lg font-bold text-white tracking-widest uppercase">BANK CENTRAL</span>
+        <span class="font-serif text-lg font-bold text-white tracking-widest uppercase">UNILUX GLOBAL</span>
+        <span class="font-serif text-lg font-bold text-white tracking-widest uppercase">AEROMOTORS</span>
+        <span class="font-serif text-lg font-bold text-white tracking-widest uppercase">VELVET BEAUTY</span>
+        <span class="font-serif text-lg font-bold text-white tracking-widest uppercase">INDOTECH CONSORTIUM</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: SINGLE TESTIMONIAL EDITORIAL SPREAD -->
+  <section class="py-24 bg-neutral-900 relative">
+    <div class="max-w-5xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+      <div class="md:col-span-4 flex justify-center">
+        <div class="relative w-48 h-48 sm:w-64 sm:h-64 rounded-full overflow-hidden border-2 border-amber-400/40 p-1 shadow-2xl">
+          <img
+            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
+            alt="Client Testimonial Headshot"
+            class="w-full h-full object-cover rounded-full"
+          />
+        </div>
+      </div>
+
+      <div class="md:col-span-8 space-y-4">
+        <div class="flex items-center gap-1 text-amber-400 text-sm">
+          ★★★★★ <span class="text-xs font-mono text-neutral-400 ml-2">Rating 4.9/5</span>
+        </div>
+        <p class="font-serif text-xl sm:text-2xl text-white font-light italic leading-relaxed">
+          “Elevate EO membuktikan bahwa event korporat kami tidak hanya berjalan tepat waktu tanpa cela teknis, tapi juga menciptakan kesan prestisius di mata 1.200 direksi bank mitra kami. Tim mereka luar biasa responsif.”
+        </p>
+        <div>
+          <div class="font-sans font-semibold text-white text-base">Siti Rahmawati</div>
+          <div class="text-xs font-mono text-neutral-400">Head of Corporate Communications — PT Bank Central Nusantara Tbk</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 9: FAQ ACCORDION -->
+  <FaqSection />
+
+  <!-- SECTION 10: CTA BAND -->
+  <section class="py-24 bg-gradient-to-br from-neutral-950 via-neutral-900 to-neutral-950 relative overflow-hidden text-center">
+    <div class="max-w-4xl mx-auto px-6 space-y-8 relative z-10">
+      <span class="text-xs font-mono text-amber-400 uppercase tracking-widest">Langkah Pertama Event Impian</span>
+      <h2 class="font-serif text-4xl sm:text-6xl text-white font-light leading-tight">
+        Siap Mewujudkan Event Berkelas Tanpa Khawatir Kendala Teknis?
+      </h2>
+      <p class="text-neutral-300 text-base max-w-xl mx-auto font-light">
+        Jadwalkan konsultasi awal dengan tim kreatif Elevate Event Organizer secara gratis hari ini.
+      </p>
+
+      <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
+        <a
+          href="/contact"
+          class="px-8 py-4 text-xs font-semibold tracking-wider text-neutral-950 uppercase bg-amber-400 hover:bg-amber-300 rounded-full shadow-2xl transition-all"
+        >
+          Jadwalkan Meeting Sekarang
+        </a>
+        <a
+          href="https://wa.me/6281234567890"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-8 py-4 text-xs font-semibold tracking-wider text-white uppercase border border-neutral-700 hover:border-amber-400 rounded-full transition-all"
+        >
+          WhatsApp Fast Response
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

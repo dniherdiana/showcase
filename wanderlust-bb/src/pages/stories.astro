@@ -1,0 +1,98 @@
+---
+import Layout from "../layouts/Layout.astro";
+import StoriesHeader from "../components/stories/StoriesHeader/StoriesHeader.astro";
+import StoriesCategoryBar from "../components/stories/StoriesCategoryBar/StoriesCategoryBar.astro";
+import FeaturedStorySpread from "../components/stories/FeaturedStorySpread/FeaturedStorySpread.astro";
+import StoriesGrid from "../components/stories/StoriesGrid/StoriesGrid.astro";
+import StoriesSidebar from "../components/stories/StoriesSidebar/StoriesSidebar.astro";
+---
+
+<Layout title="Travel Journal & Essays — Wanderlust Magazine" currentPath="/stories">
+	<div class="py-16 px-[5%] max-w-7xl mx-auto space-y-16">
+		<StoriesHeader />
+		<StoriesCategoryBar />
+		<FeaturedStorySpread />
+
+		<!-- Magazine Main Body Spread Layout -->
+		<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+			<StoriesGrid />
+			<StoriesSidebar />
+		</div>
+
+		<!-- Empty Search / Filter State Message (Hidden by default) -->
+		<div id="no-stories-msg" class="hidden py-12 text-center space-y-3 border border-white/10 rounded bg-slate-950/40">
+			<p data-i18n-key="noArticlesFound" class="text-sm font-sans text-white/60">No articles found in this category.</p>
+			<button
+				id="reset-story-filter-btn"
+				type="button"
+				data-i18n-key="viewAllStories"
+				class="text-xs font-mono font-bold text-gold uppercase hover:underline cursor-pointer"
+			>
+				View All Stories
+			</button>
+		</div>
+	</div>
+</Layout>
+
+<script>
+	function initStoryCategoryFilter() {
+		const categoryBtns = document.querySelectorAll(".story-category-btn");
+		const storyItems = document.querySelectorAll<HTMLElement>("[data-story-category]");
+		const noStoriesMsg = document.getElementById("no-stories-msg");
+		const resetBtn = document.getElementById("reset-story-filter-btn");
+
+		if (!categoryBtns.length || !storyItems.length) return;
+
+		function filterCategory(targetCategory: string) {
+			let visibleCount = 0;
+
+			// Update active button styling
+			categoryBtns.forEach((btn) => {
+				const cat = btn.getAttribute("data-category");
+				if (cat === targetCategory) {
+					btn.classList.remove("bg-white/5", "text-white/80", "border", "border-white/10");
+					btn.classList.add("bg-gold", "text-slate-950", "shadow-md");
+				} else {
+					btn.classList.remove("bg-gold", "text-slate-950", "shadow-md");
+					btn.classList.add("bg-white/5", "text-white/80", "border", "border-white/10");
+				}
+			});
+
+			// Filter story articles
+			storyItems.forEach((item) => {
+				const itemCategory = item.getAttribute("data-story-category");
+				const isMatch = targetCategory === "All Stories" || itemCategory === targetCategory;
+				
+				if (isMatch) {
+					item.style.display = "";
+					visibleCount++;
+				} else {
+					item.style.display = "none";
+				}
+			});
+
+			// Toggle no-results message
+			if (noStoriesMsg) {
+				if (visibleCount === 0) {
+					noStoriesMsg.classList.remove("hidden");
+				} else {
+					noStoriesMsg.classList.add("hidden");
+				}
+			}
+		}
+
+		categoryBtns.forEach((btn) => {
+			btn.addEventListener("click", () => {
+				const selectedCategory = btn.getAttribute("data-category") || "All Stories";
+				filterCategory(selectedCategory);
+			});
+		});
+
+		resetBtn?.addEventListener("click", () => {
+			filterCategory("All Stories");
+		});
+	}
+
+	document.addEventListener("DOMContentLoaded", initStoryCategoryFilter);
+	document.addEventListener("astro:page-load", initStoryCategoryFilter);
+</script>

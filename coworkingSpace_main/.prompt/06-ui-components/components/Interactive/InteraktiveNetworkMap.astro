@@ -1,0 +1,127 @@
+<section
+	class="relative bg-[var(--color-navy)] py-32 overflow-hidden border-b border-white/10"
+>
+	<!-- Deep Context Content -->
+	<div class="relative z-20 px-6 md:px-12 lg:px-24 mb-16 max-w-3xl" data-reveal>
+		<div class="flex flex-col gap-6">
+			<div
+				class="font-mono text-xs tracking-wider text-[var(--color-orange)] flex gap-4"
+			>
+				<span>[INFRASTRUCTURE MAP]</span>
+				<span class="text-[var(--color-steel)]">•</span>
+				<span>[4 MAIN HUBS & 18 BRANCH OFFICES]</span>
+			</div>
+			<h2 class="text-3xl md:text-4xl font-bold tracking-tight text-white">
+				Jaringan Hub Strategis di Pusat Industri Nasional
+			</h2>
+			<p class="text-[var(--color-steel)] text-lg">
+				Penempatan fasilitas pergudangan dan pangkalan armada kami di Jakarta,
+				Surabaya, Medan, dan Makassar dirancang untuk memotong waktu transit
+				antar pulau hingga 18% dan meminimalisir empty-miles.
+			</p>
+			<div class="mt-4">
+				<a
+					href="/services"
+					class="inline-flex items-center gap-2 border border-white/20 px-6 py-3 text-white hover:bg-white hover:text-[var(--color-navy)] transition-colors font-mono text-sm tracking-wider uppercase"
+				>
+					Lihat Spesifikasi Hub & Lokasi Gudang
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<!-- Map Container -->
+	<div class="relative w-full h-[600px] mt-12 bg-[#050810]" data-reveal>
+		<div
+			class="absolute inset-0 bg-gradient-to-t from-[var(--color-navy)] via-transparent to-[var(--color-navy)] z-10 pointer-events-none"
+		>
+		</div>
+		<div
+			class="absolute inset-0 bg-gradient-to-r from-[var(--color-navy)] via-transparent to-[var(--color-navy)] z-10 pointer-events-none w-1/4"
+		>
+		</div>
+
+		<!-- Map Image Background -->
+		<img
+			src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&q=80&auto=format&fit=crop"
+			alt="Topographic Route Map"
+			class="w-full h-full object-cover opacity-30 mix-blend-screen"
+		/>
+
+		<!-- Overlay map representation since actual map coordinates are hard -->
+		<div
+			class="absolute inset-0 z-20 mx-auto max-w-6xl w-full h-full border-x border-white/5 flex items-center justify-center"
+		>
+			<!-- Simulated map dots (using relative positioning for visual layout) -->
+			<div class="relative w-[800px] h-[400px]">
+				<!-- Medan -->
+				<div class="absolute top-[20%] left-[10%] group">
+					<div
+						class="w-4 h-4 bg-[var(--color-orange)] rounded-full animate-pulse relative z-10"
+					>
+					</div>
+					<div
+						class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 border border-[var(--color-orange)]/30 rounded-full"
+					>
+					</div>
+					<div
+						class="absolute top-full left-1/2 -translate-x-1/2 mt-2 font-mono text-xs text-white bg-[var(--color-navy-80)] border border-white/20 px-2 py-1 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity"
+					>
+						HUB MEDAN [SUMATERA]
+					</div>
+				</div>
+
+				<!-- Jakarta -->
+				<div class="absolute top-[65%] left-[30%] group">
+					<div
+						class="w-5 h-5 bg-[var(--color-orange)] rounded-full animate-pulse relative z-10 shadow-[0_0_15px_#E8580A]"
+					>
+					</div>
+					<div
+						class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-16 border border-[var(--color-orange)]/30 rounded-full"
+					>
+					</div>
+					<div
+						class="absolute top-full left-1/2 -translate-x-1/2 mt-2 font-mono text-xs text-white bg-[var(--color-navy-80)] border border-white/20 px-2 py-1 whitespace-nowrap"
+					>
+						HQ JAKARTA [CENTRAL]
+					</div>
+				</div>
+
+				<!-- Surabaya -->
+				<div class="absolute top-[70%] left-[45%] group">
+					<div
+						class="w-4 h-4 bg-[var(--color-orange)] rounded-full animate-pulse relative z-10"
+					>
+					</div>
+					<div
+						class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 border border-[var(--color-orange)]/30 rounded-full"
+					>
+					</div>
+					<div
+						class="absolute top-full left-1/2 -translate-x-1/2 mt-2 font-mono text-xs text-white bg-[var(--color-navy-80)] border border-white/20 px-2 py-1 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity"
+					>
+						HUB SURABAYA [JATIM]
+					</div>
+				</div>
+
+				<!-- Makassar -->
+				<div class="absolute top-[55%] left-[65%] group">
+					<div
+						class="w-4 h-4 bg-[var(--color-orange)] rounded-full animate-pulse relative z-10"
+					>
+					</div>
+					<div
+						class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 border border-[var(--color-orange)]/30 rounded-full"
+					>
+					</div>
+					<div
+						class="absolute top-full left-1/2 -translate-x-1/2 mt-2 font-mono text-xs text-white bg-[var(--color-navy-80)] border border-white/20 px-2 py-1 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity"
+					>
+						HUB MAKASSAR [SULAWESI]
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

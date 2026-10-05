@@ -1,0 +1,65 @@
+---
+import { Image } from "astro:assets";
+import park from "@assets/images/park.jpg";
+import { ctaBandContent } from "../../data/shared/ctaBand.js";
+---
+
+<section
+	class="py-24 bg-canvas-default relative overflow-hidden border-t border-slate-800"
+>
+	<div class="absolute inset-0 z-0 overflow-hidden">
+		<div class="absolute inset-0">
+			<Image
+				src={park}
+				alt="Lanskap Taman Asri Grand Samudra Residence"
+				class="w-full h-full object-cover opacity-20 filter blur-[2px]"
+			/>
+		</div>
+		<div
+			class="absolute inset-0 bg-linear-to-r from-canvas-default via-canvas-default/20 to-canvas-default/40"
+		>
+		</div>
+	</div>
+
+	<div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+		<div
+			class="flex flex-col lg:flex-row lg:items-center justify-between gap-10"
+		>
+			<div data-reveal="left" class="max-w-2xl space-y-4 text-left">
+				<h2
+					class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-slate-50 leading-[1.15] tracking-tight"
+				>
+					{ctaBandContent.headline}
+				</h2>
+				<p
+					class="text-slate-200 font-normal text-base sm:text-lg leading-relaxed"
+				>
+					{ctaBandContent.subtext}
+				</p>
+			</div>
+
+			<div data-reveal="right" class="shrink-0 flex flex-col sm:flex-row items-start lg:items-center gap-4">
+				<a
+					href={ctaBandContent.cta.href}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="bg-amber-400 inline-flex justify-center items-center gap-3 px-8 py-5 text-xs sm:text-sm font-semibold tracking-wide text-slate-950 bg-linear-to-r from-amber-300 via-amber-400 to-amber-200 hover:from-amber-200 hover:to-amber-300 rounded-sm transition-all duration-300 shadow-xl shadow-amber-500/20 group active:scale-95 min-h-11"
+				>
+					<span>{ctaBandContent.cta.label}</span>
+					<svg
+						class="w-4 h-4 group-hover:translate-x-1 transition-transform"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+					</svg>
+				</a>
+			</div>
+		</div>
+	</div>
+</section>

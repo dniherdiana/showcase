@@ -1,0 +1,72 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Kontak — Nusantara Journeys">
+  <section class="page contact-page">
+    <div class="contact-visual">
+      <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200&q=80" alt="Matahari terbenam di atas laut yang tenang" />
+      <div class="contact-visual-text">
+        <div class="contact-visual-label">Mulailah</div>
+        <p class="contact-visual-quote">"Perjalanan ribuan mil dimulai dari satu percakapan."</p>
+      </div>
+    </div>
+
+    <div class="contact-form-wrap">
+
+      <!-- Contact Info Cards -->
+      <div class="contact-info-cards reveal">
+        <div class="contact-info-card">
+          <div class="contact-info-icon">📍</div>
+          <h4 class="contact-info-title">Kantor</h4>
+          <p class="contact-info-value">Jl. Ubud Raya No. 10<br />Bali, Indonesia</p>
+        </div>
+        <div class="contact-info-card">
+          <div class="contact-info-icon">📞</div>
+          <h4 class="contact-info-title">Telepon</h4>
+          <p class="contact-info-value">+62 812 3456 7890<br />Sen — Sab, 09:00 — 18:00</p>
+        </div>
+        <div class="contact-info-card">
+          <div class="contact-info-icon">✉️</div>
+          <h4 class="contact-info-title">Email</h4>
+          <p class="contact-info-value">hello@nusantara-journeys.com<br />Kami balas dalam 24 jam</p>
+        </div>
+      </div>
+
+      <header class="contact-header reveal">
+        <div class="contact-label">Mulai Perjalanan Anda</div>
+        <h2 class="contact-title">Ceritakan ke mana<br />hati Anda berlabuh.</h2>
+        <p class="contact-desc">Kami membaca setiap pesan secara pribadi. Tidak ada balasan otomatis di sini, hanya manusia yang mencintai seni merancang perjalanan.</p>
+      </header>
+
+      <form class="contact-form reveal" onsubmit="event.preventDefault(); alert('Terima kasih! Perjalanan Anda akan segera dimulai. Kami akan menghubungi Anda dalam 48 jam.');">
+        <div class="form-group">
+          <input type="text" class="form-input" id="name" placeholder="Nama" required />
+          <label class="form-label" for="name">Nama Lengkap</label>
+        </div>
+        <div class="form-group">
+          <input type="email" class="form-input" id="email" placeholder="Email" required />
+          <label class="form-label" for="email">Alamat Email</label>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-input" id="destination" placeholder="Destinasi Impian" />
+          <label class="form-label" for="destination">Destinasi Impian</label>
+        </div>
+        <div class="form-group">
+          <textarea class="form-input form-textarea" id="message" placeholder="Ceritakan tentang perjalanan impian Anda" required></textarea>
+          <label class="form-label" for="message">Ceritakan tentang diri Anda</label>
+        </div>
+        <button type="submit" class="form-submit" aria-label="Kirim pesan">→</button>
+      </form>
+
+      <footer class="page-footer reveal">
+        <span class="footer-copy">© MMXXVI Nusantara Journeys. Seluruh hak cipta dilindungi.</span>
+        <div class="footer-social">
+          <a href="#">Instagram</a>
+          <a href="#">Facebook</a>
+          <a href="#">Blog</a>
+        </div>
+      </footer>
+    </div>
+  </section>
+</Layout>

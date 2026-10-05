@@ -1,0 +1,27 @@
+---
+import { aboutData } from "../data/index.js";
+---
+
+<div class="story-scroll-item mx-auto max-w-3xl space-y-4 text-center">
+	<span
+		data-i18n-en={aboutData.heroBadge}
+		data-i18n-id={aboutData.heroBadge_id}
+		class="block font-mono text-xs font-bold tracking-[3px] text-[#0D9488] uppercase"
+	>
+		✦ {aboutData.heroBadge}
+	</span>
+	<h1
+		data-i18n-en={aboutData.heroTitle}
+		data-i18n-id={aboutData.heroTitle_id}
+		class="block font-serif text-3xl leading-tight font-bold tracking-tight text-white sm:text-5xl lg:text-6xl"
+	>
+		{aboutData.heroTitle}
+	</h1>
+	<p
+		data-i18n-en={aboutData.heroSubtitle}
+		data-i18n-id={aboutData.heroSubtitle_id}
+		class="story-text-reveal font-sans text-base leading-relaxed font-light text-slate-300 sm:text-lg"
+	>
+		{aboutData.heroSubtitle}
+	</p>
+</div>

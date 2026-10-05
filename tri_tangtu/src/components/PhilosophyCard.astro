@@ -1,0 +1,54 @@
+---
+import { Image } from "astro:assets";
+
+const {
+	src,
+	alt,
+	class: className,
+	classP1,
+	classP2,
+	name,
+	tag,
+	subtitle,
+	paragraph_1,
+	paragraph_2,
+	footNote,
+} = Astro.props;
+---
+
+<section class={className}>
+	<div class="flex flex-col">
+		<Image
+			class="h-96 w-full object-cover object-[30%_40%] lg:h-115"
+			widths={[400, 800, 1200]}
+			sizes="(max-width:768px) 100vw, (max-width:1024px) 50vw,33vw"
+			src={src}
+			alt={alt}
+			loading="lazy"
+			fetchpriority="low"
+		/>
+		<div class="px-6 py-10">
+			<div class="mb-6 flex items-center gap-2">
+				<div class="bg-text h-1.5 w-1.5 rounded-full"></div>
+				<span class="text-heading tracking-widstr text-[11px] uppercase">
+					{tag}
+				</span>
+			</div>
+			<h2 class="text-text mb-2 text-3xl leading-relaxed tracking-wide">
+				{name}
+			</h2>
+			<h3 class="text-heading mb-5 text-[10px] tracking-widest uppercase">
+				{subtitle}
+			</h3>
+			<p class="text-text my-6 text-base leading-relaxed">
+				<span class={classP1}>{paragraph_1}</span>
+				<span class={classP2}>{paragraph_2}</span>
+			</p>
+			<p
+				class="text-heading text-[10px] leading-relaxed tracking-widest uppercase"
+			>
+				{footNote}
+			</p>
+		</div>
+	</div>
+</section>

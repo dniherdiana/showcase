@@ -1,0 +1,157 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Chapter from "@components/Chapter.astro";
+import { language } from "@data/languages/languageStore";
+import ElementCard from "@components/inTheWorld/ElementCard.astro";
+import Proverb from "@components/inTheWorld/Proverb.astro";
+import Divider from "@components/Divider.astro";
+import WisdomParagraph from "@components/inTheWorld/WisdomParagraph.astro";
+import ModernParallel from "@components/inTheWorld/ModernParallel.astro";
+import ContextCard from "@components/inTheWorld/ContextCard.astro";
+import situCisanti from "@assets/images/situ_cisanti.jpg";
+import waterfall from "@assets/images/Dengdeng_Waterfall.jpg";
+import sea from "@assets/images/Pantai_Mandasari,_Kab._Pangandaran.jpg";
+import serenTaun from "@assets/images/seren_taun.jpg";
+import ManuscriptQuote from "@components/inTheWorld/ManuscriptQuote.astro";
+
+export function getStaticPaths() {
+	return [{ params: { lang: "id" } }, { params: { lang: "en" } }];
+}
+
+const { lang } = Astro.params;
+const currentLang = lang === "en" ? "en" : "id";
+const t = language[currentLang];
+---
+
+<Layout
+	title={currentLang === "id"
+		? "Di Dunia · Koneksi ke Alam & Modernitas"
+		: "In The World · Connection to Nature & Modernity"}
+	description={currentLang === "id"
+		? "Alam Sudah Tahu, Jauh Sebelum Kita."
+		: "Nature Already Knew, Long Before We Did"}
+>
+	<main class="bg-bg px-6 pt-15 pb-10 lg:px-15">
+		<div class="animate-slide-left animate-delay-2">
+			<Chapter
+				pageNumber={t.nature.chapter.pageNumber}
+				headline={t.nature.chapter.headline}
+				text_1={t.nature.chapter.title.text_1}
+				text_2={t.nature.chapter.title.text_2}
+			/>
+		</div>
+		<div class="animate-soft-pop animate-delay-3 pt-5">
+			<h2 class="text-primary py-4 text-sm tracking-widest uppercase">
+				- {t.nature.sectionLabel}
+			</h2>
+			<Proverb
+				proverb={t.nature.proverb}
+				proverbTranslation={t.nature.proverbTranslation}
+			/>
+			<p class="text-text py-5 text-lg lg:text-xl">
+				{t.nature.leadText}
+				<span class="text-primary italic">{t.nature.leadTextStyling}</span>
+			</p>
+			<p class="text-text pb-10 text-base lg:text-lg">{t.nature.supportText}</p>
+		</div>
+		<div class="flex flex-col gap-10">
+			<div class="animate-soft-pop animate-delay-3">
+				<ElementCard
+					src={situCisanti}
+					alt="Situ Cisanti, Neglawangi, Bandung, West Java, Indonesia"
+					creditInfo="Situ Cisanti, Bandung - West Java"
+					classTextWrapper="p-5 lg:px-10 lg:w-1/2 bg-surface card-pattern"
+					classWrapper="lg:flex lg:flex-row"
+					pillar={t.nature.elements.mountain.pillar}
+					cardName={t.nature.elements.mountain.name}
+					role={t.nature.elements.mountain.role}
+					description={t.nature.elements.mountain.description}
+					classBorderLine="w-4 h-px bg-heading"
+					keywords={t.nature.elements.mountain.keywords}
+					fetchpriority="high"
+					loading="eager"
+					format="webp"
+					quality="85"
+				/>
+			</div>
+
+			<ElementCard
+				src={waterfall}
+				alt="Dengdeng Waterfall, Tasikmalaya - West Java"
+				creditInfo="Dengdeng Waterfall, Tasikmalaya - West Java"
+				classTextWrapper="p-5 lg:px-10 lg:w-1/2 bg-success relative wave-pattern"
+				classWrapper="lg:flex lg:flex-row"
+				pillar={t.nature.elements.river.pillar}
+				cardName={t.nature.elements.river.name}
+				role={t.nature.elements.river.role}
+				description={t.nature.elements.river.description}
+				keywords={t.nature.elements.river.keywords}
+				fetchpriority="low"
+				loading="lazy"
+				format="webp"
+				quality="85"
+			/>
+			<ElementCard
+				src={sea}
+				alt="Pantai Mandasari, Pangandaran - West Java"
+				creditInfo="Pantai Mandasari, Pangandaran - West Java"
+				classTextWrapper="p-5 lg:px-10 lg:w-1/2 bg-info relative river-pattern"
+				classWrapper="lg:flex lg:flex-row"
+				pillar={t.nature.elements.sea.pillar}
+				cardName={t.nature.elements.sea.name}
+				role={t.nature.elements.sea.role}
+				description={t.nature.elements.sea.description}
+				keywords={t.nature.elements.sea.keywords}
+				fetchpriority="low"
+				loading="lazy"
+				format="webp"
+				quality="85"
+			/>
+		</div>
+		<WisdomParagraph
+			paragraph_1={t.nature.paragraph.paragraph_1}
+			paragraph_2={t.nature.paragraph.paragraph_2}
+		/>
+		<Divider />
+		<ModernParallel
+			serenTaunSrc={serenTaun}
+			sectionLabel={t.nature.modernParallel.sectionLabel}
+			opener={t.nature.modernParallel.opener}
+			openerAccent={t.nature.modernParallel.openerAccent}
+			body={t.nature.modernParallel.body}
+			body_rama_styling={t.nature.modernParallel.body_rama_styling}
+			body_resi={t.nature.modernParallel.body_resi}
+			body_resi_styling={t.nature.modernParallel.body_resi_styling}
+			body_prabu={t.nature.modernParallel.body_prabu}
+			body_prabu_styling={t.nature.modernParallel.body_prabu_styling}
+			body_end={t.nature.modernParallel.body_end}
+			closing={t.nature.modernParallel.closing}
+			tagline={t.nature.modernParallel.tagline}
+		/>
+		<Divider />
+		<div class="grid gap-5 py-10">
+			{
+				t.nature.modernParallel.contexts.map(({ label, description }) => (
+					<ContextCard label={label} description={description} />
+				))
+			}
+		</div>
+
+		<Divider />
+
+		<ManuscriptQuote
+			sectionLabel={t.nature.manuscriptQuote.sectionLabel}
+			paragraph_1={t.nature.manuscriptQuote.quote.paragraph_1}
+			quoteRamaStyling={t.nature.manuscriptQuote.quote.quoteRamaStyling}
+			paragraph_2={t.nature.manuscriptQuote.quote.paragraph_2}
+			quoteResiStyling={t.nature.manuscriptQuote.quote.quoteResiStyling}
+			paragraph_3={t.nature.manuscriptQuote.quote.paragraph_3}
+			quotePrabuStyling={t.nature.manuscriptQuote.quote.quotePrabuStyling}
+			paragraph_4={t.nature.manuscriptQuote.quote.paragraph_4}
+			closing={t.nature.manuscriptQuote.closing}
+			closingAccent={t.nature.manuscriptQuote.closingAccent}
+			source={t.nature.manuscriptQuote.source}
+			year={t.nature.manuscriptQuote.year}
+		/>
+	</main>
+</Layout>

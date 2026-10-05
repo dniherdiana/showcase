@@ -1,0 +1,80 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { language } from "@data/languages/languageStore";
+import Chapter from "@components/Chapter.astro";
+import Intro from "@components/about/Intro.astro";
+import Reference from "@components/about/Reference.astro";
+import DisclaimerCard from "@components/about/DisclaimerCard.astro";
+import Divider from "@components/Divider.astro";
+
+export const getStaticPaths = () => {
+	return [
+		{
+			params: { lang: "id" },
+		},
+		{ params: { lang: "en" } },
+	];
+};
+
+const { lang } = Astro.params;
+const currentLang = lang === "en" ? "en" : "id";
+const t = language[currentLang];
+---
+
+<Layout
+	title={currentLang === "id" ?
+		"Tentang · Proyek & Apresiasi "
+	:	"About · Project & Credits"}
+	description={currentLang === "id" ?
+		"TBukan Ahli, Hanya Penasaran"
+	:	"Not a historian, not a Sundanese culture scholar."}
+>
+	<main class="pt-15 px-6 lg:px-15 flex bg-bg flex-col">
+		<section class="animate-slide-left animate-delay-2">
+			<Chapter
+				pageNumber={t.about.chapter.pageNumber}
+				headline={t.about.chapter.headline}
+				text_1={t.about.chapter.title.text_1}
+				text_2={t.about.chapter.title.text_2}
+			/>
+		</section>
+
+		<div class="animate-soft-pop animate-delay-3 pt-5">
+			<Intro
+				introTitle={t.about.introTitle}
+				introHeading={t.about.introHeading}
+				introSubheading={t.about.introSubHeading}
+				intro={t.about.intro}
+			/>
+
+			<DisclaimerCard
+				disclaimerTitle={t.about.disclaimerTitle}
+				referenceDisclaimer={t.about.disclaimer}
+			/>
+		</div>
+
+		<Divider />
+
+		<div class="py-10">
+			<Reference
+				reference={t.about.reference}
+				referenceHeading={t.about.referenceHeading}
+				referenceIntro={t.about.readingList.intro}
+				data={Object.values(t.about.readingList.items)}
+			/>
+		</div>
+
+		<Divider />
+
+		<div class="py-10">
+			<Reference
+				reference={t.about.imageList.sectionLabel}
+				referenceHeading={t.about.referenceHeadingImage}
+				referenceIntro={t.about.imageList.intro}
+				data={Object.values(t.about.imageList.images)}
+			/>
+		</div>
+
+		<Divider />
+	</main>
+</Layout>

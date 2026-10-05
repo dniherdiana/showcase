@@ -1,0 +1,125 @@
+---
+import { heroData } from "./hero.data.js";
+import { Image } from "astro:assets";
+import defaultBgImage from "../../../assets/images/private-jet.jpg";
+import FilmModal from "../../shared/FilmModal/FilmModal.astro";
+
+interface Props {
+	titleHtml?: string;
+	titleHtml_id?: string;
+	subtitle?: string;
+	subtitle_id?: string;
+	showSearch?: boolean;
+	bgImage?: string;
+}
+
+const {
+	titleHtml = heroData.titleHtml,
+	titleHtml_id = heroData.titleHtml_id,
+	subtitle = heroData.subtitle,
+	subtitle_id = heroData.subtitle_id,
+} = Astro.props;
+---
+
+<div
+	class="relative flex min-h-[calc(100vh-80px)] flex-col items-center justify-center overflow-hidden bg-slate-950 text-center"
+>
+	<!-- Hero Full Background Image -->
+	<div class="absolute inset-0 z-0">
+		<Image
+			src={defaultBgImage}
+			alt="Wanderlust Background"
+			widths={[480, 768, 1024]}
+			sizes="100vw"
+			quality={20}
+			fetchpriority="high"
+			loading="eager"
+			class="h-full w-full scale-105 transform object-cover object-center transition-transform duration-1000"
+		/>
+		<!-- Dark Magazine Vignette & Gradients -->
+		<div
+			class="absolute inset-0 bg-linear-to-b from-slate-950/80 via-slate-950/65 to-slate-950/95"
+		>
+		</div>
+		<!-- Radial Vignette -->
+		<div
+			class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_20%,rgba(8,12,20,0.85)_100%)]"
+		>
+		</div>
+	</div>
+
+	<!-- Hero Main Editorial Cover Content -->
+	<div
+		class="relative z-10 mx-auto flex w-full max-w-5xl flex-1 flex-col items-center justify-center px-[5%] py-20 text-center"
+	>
+		<!-- Hero Headline with Signature Travel Soul Animation -->
+		<h1
+			data-i18n-key="heroTitle"
+			data-i18n-html
+			data-i18n-en={titleHtml}
+			data-i18n-id={titleHtml_id}
+			class="travel-soul-heading mb-6 py-2 text-5xl leading-[1.1] font-bold tracking-tight lg:text-6xl"
+			set:html={titleHtml}
+		/>
+
+		<!-- Hero Subtitle -->
+		<p
+			data-i18n-key="heroSubtitle"
+			data-i18n-en={subtitle}
+			data-i18n-id={subtitle_id}
+			class="story-text-reveal story-scroll-item mb-10 max-w-2xl font-sans text-base leading-relaxed font-light text-white/90 drop-shadow-md sm:text-lg md:text-xl"
+		>
+			{subtitle}
+		</p>
+
+		<!-- Editorial Magazine Action Buttons (No Pill Capsules) -->
+		<div
+			class="story-scroll-item flex w-full flex-col gap-4 sm:w-auto sm:flex-row"
+		>
+			<a
+				href="/destinations"
+				class="bg-gold hover:bg-gold-light inline-flex items-center justify-center gap-3 rounded-none px-8 py-4 font-mono text-xs font-extrabold tracking-[2px] text-slate-950 uppercase shadow-2xl transition-all duration-300 hover:scale-105"
+			>
+				<span data-i18n-key="heroStartBtn">{heroData.primaryBtnText}</span>
+				<svg
+					width="16"
+					height="16"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2.5"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
+					<path d="M5 12h14M12 5l7 7-7 7"></path>
+				</svg>
+			</a>
+
+			<!-- Watch Film Button -->
+			<button
+				id="open-film-modal"
+				type="button"
+				class="hover:border-gold hover:text-gold-light group inline-flex cursor-pointer items-center justify-center gap-3 rounded-none border border-white/30 bg-slate-950/60 px-8 py-4 font-mono text-xs font-bold tracking-[2px] text-white uppercase transition-all duration-300 hover:bg-slate-950/90"
+			>
+				<svg
+					width="16"
+					height="16"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2.5"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					class="text-gold transition-transform group-hover:scale-110"
+				>
+					<circle cx="12" cy="12" r="10"></circle>
+					<polygon points="10 8 16 12 10 16 10 8"></polygon>
+				</svg>
+				<span data-i18n-key="heroWatchFilm">{heroData.secondaryBtnText}</span>
+			</button>
+		</div>
+	</div>
+</div>
+
+<!-- Standalone Film Modal Component -->
+<FilmModal />

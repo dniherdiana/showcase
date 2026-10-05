@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import KomunitasHero from '../components/komunitasPage/KomunitasHero.astro';
+import KomunitasEvents from '../components/komunitasPage/KomunitasEvents.astro';
+import KomunitasStories from '../components/komunitasPage/KomunitasStories.astro';
+import KomunitasManager from '../components/komunitasPage/KomunitasManager.astro';
+
+const title = "Komunitas dan Agenda - Ranting Creative Space";
+const description = "Jadwal acara bulanan, sharing session, dan kisah kolaborasi nyata para member di Ranting Creative Space.";
+---
+
+<Layout title={title} description={description}>
+  <KomunitasHero />
+  <KomunitasEvents />
+  <KomunitasStories />
+  <KomunitasManager />
+</Layout>

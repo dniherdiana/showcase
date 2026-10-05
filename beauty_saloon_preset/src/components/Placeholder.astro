@@ -1,0 +1,33 @@
+---
+interface Props {
+	label?: string;
+	note?: string;
+	class?: string;
+	inline?: boolean;
+}
+
+const { label = 'Data belum ada', note = '', class: cls = '', inline = false } = Astro.props;
+---
+
+{inline ? (
+	<span
+		class={`inline-flex items-center gap-1 rounded-full border-2 border-dashed border-[#ff2e88] bg-[#ffd6e9] px-2 py-0.5 font-sans text-[0.65rem] font-bold uppercase tracking-wide text-[#e11277] ${cls}`}
+		role="note"
+	>
+		<span class="h-1.5 w-1.5 animate-pulse rounded-full bg-[#ff2e88]"></span>
+		{label}
+	</span>
+) : (
+	<div
+		class={`relative overflow-hidden rounded-xl border-2 border-dashed border-[#ff2e88] bg-[#ffd6e9]/70 px-4 py-3 ${cls}`}
+		role="note"
+	>
+		<span class="absolute right-2 top-2 rounded-full bg-[#ff2e88] px-2 py-0.5 font-sans text-[0.6rem] font-bold uppercase tracking-wider text-white">
+			Data Belum Ada
+		</span>
+		<p class="pr-20 font-sans text-xs font-bold uppercase tracking-wide text-[#e11277]">
+			[Perlu Data Client: {label}]
+		</p>
+		{note && <p class="mt-1 font-sans text-[0.72rem] text-[#a30f5d]">{note}</p>}
+	</div>
+)}

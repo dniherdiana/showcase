@@ -1,0 +1,206 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const team = [
+  {
+    name: 'Dimas Ardiansyah',
+    role: 'Founder & Managing Director',
+    experience: '12+ Tahun Pengalaman Industri Event',
+    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80',
+    bio: 'Memimpin visi Elevate sejak 2015 untuk mentransformasi standar manajemen event korporat nasional menjadi pengalaman imersif kelas dunia.'
+  },
+  {
+    name: 'Natasha Wijaya',
+    role: 'Creative & Experience Director',
+    experience: 'Mantan Show Director Conference ASEAN',
+    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80',
+    bio: 'Spesialis dalam perancangan panggung 3D kinetik, pencahayaan sinematik, dan narasi cerita visual yang berkesan di setiap detik acara.'
+  },
+  {
+    name: 'Hendra Gunawan',
+    role: 'Head of Technical & Operations',
+    experience: '300+ Event VVIP Operations Master',
+    image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
+    bio: 'Menjamin kedisiplinan eksekusi panggung, sistem pengamanan VVIP, dan pencegahan risiko teknis dengan standar kelistrikan redundant.'
+  }
+];
+---
+
+<Layout
+  title="Tentang Kami & Filosofi Studio — Elevate Event Organizer"
+  description="Mengenal Elevate Event Organizer: berdiri sejak 2015, menangani 350+ event nasional dengan tim 35+ profesional dedicated di seluruh Indonesia."
+  currentPath="/about"
+>
+  <!-- HERO ABOUT: Personal Narrative Documentary Style -->
+  <section class="pt-36 pb-20 bg-neutral-950 border-b border-neutral-900 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7 space-y-6">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-400/10 border border-amber-400/30 text-amber-300 text-xs font-mono uppercase tracking-widest rounded-full">
+          Berdiri Sejak 2015 • Rekam Jejak 10+ Tahun
+        </div>
+
+        <h1 class="font-serif text-4xl sm:text-6xl text-white font-light leading-tight">
+          Menghadirkan <span class="italic text-amber-300">Energi & Kehormatan</span> Ke Atas Panggung Event.
+        </h1>
+
+        <p class="text-neutral-300 text-sm sm:text-base font-light leading-relaxed">
+          Elevate Event Organizer lahir dari keyakinan bahwa event perusahaan skala nasional tidak boleh terasa kaku dan monoton. Setiap perhelatan adalah momentum berharga untuk memperkuat reputasi bisnis dan meninggalkan jejak mendalam bagi pemangku kepentingan Anda.
+        </p>
+      </div>
+
+      <div class="lg:col-span-5 relative">
+        <div class="aspect-[4/5] rounded-2xl overflow-hidden border border-neutral-800 shadow-2xl relative">
+          <img
+            src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1600&q=80"
+            alt="Elevate Team Collaboration"
+            class="w-full h-full object-cover"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6 p-4 bg-neutral-950/80 backdrop-blur-md rounded-xl border border-neutral-800">
+            <div class="font-serif text-2xl font-bold text-amber-400">35+ Profesional Dedicated</div>
+            <div class="text-[11px] font-mono text-neutral-400">Tim Kreatif & Operasional Dalam Satu Manajemen</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY & PHILOSOPHY (Timeline & Milestones) -->
+  <section class="py-24 bg-neutral-900 border-b border-neutral-800 relative">
+    <div class="max-w-6xl mx-auto px-6 md:px-12 space-y-16">
+      <div class="max-w-2xl space-y-3">
+        <span class="text-xs font-mono text-amber-400 uppercase tracking-widest">Perjalanan & Filosofi</span>
+        <h2 class="font-serif text-3xl sm:text-5xl text-white font-light">
+          Dari Studio Kreatif Menjadi Partner Strategis Korporat
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-8 bg-neutral-950 rounded-2xl border border-neutral-800 space-y-4">
+          <span class="font-serif text-3xl text-amber-400 font-bold">2015</span>
+          <h3 class="font-serif text-xl text-white font-medium">Awal Berdiri</h3>
+          <p class="text-xs text-neutral-400 leading-relaxed">
+            Fokus awal pada pengelolaan intimate gala dinner dan peluncuran produk independen dengan penekanan pada kualitas sinematik visual.
+          </p>
+        </div>
+
+        <div class="p-8 bg-neutral-950 rounded-2xl border border-neutral-800 space-y-4">
+          <span class="font-serif text-3xl text-amber-400 font-bold">2019</span>
+          <h3 class="font-serif text-xl text-white font-medium">Ekspansi Skala Nasional</h3>
+          <p class="text-xs text-neutral-400 leading-relaxed">
+            Mulai dipercaya oleh kementerian dan institusi perbankan nasional untuk mengeksekusi summit berkapasitas 1.000+ tamu VVIP di Jakarta & Bali.
+          </p>
+        </div>
+
+        <div class="p-8 bg-neutral-950 rounded-2xl border border-amber-500/40 rounded-2xl space-y-4">
+          <span class="font-serif text-3xl text-amber-400 font-bold">2026</span>
+          <h3 class="font-serif text-xl text-white font-medium">350+ Event Sukses</h3>
+          <p class="text-xs text-neutral-400 leading-relaxed">
+            Menjadi pilihan utama 120+ perusahaan dengan jangkauan jaringan vendor di seluruh kota Indonesia dan tingkat kepuasan klien 4.9/5.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM LEADERSHIP SHOWCASE -->
+  <section class="py-24 bg-neutral-950 relative">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 space-y-16">
+      <div class="text-center max-w-2xl mx-auto space-y-3">
+        <span class="text-xs font-mono text-amber-400 uppercase tracking-widest">Kepemimpinan Studio</span>
+        <h2 class="font-serif text-3xl sm:text-5xl font-light text-white">
+          Di Balik Setiap Eksekusi Panggung
+        </h2>
+        <p class="text-xs text-neutral-400">
+          Tim manajerial terdedikasi yang mengombinasikan keahlian seni pertunjukan dengan kedisiplinan manajemen proyek korporat.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {team.map((member) => (
+          <div class="bg-neutral-900 border border-neutral-800 rounded-2xl overflow-hidden group hover:border-amber-400/50 transition-all">
+            <div class="aspect-[3/4] overflow-hidden bg-neutral-950 relative">
+              <img
+                src={member.image}
+                alt={member.name}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent"></div>
+              <span class="absolute bottom-4 left-4 text-[10px] font-mono text-amber-300 bg-black/80 px-2.5 py-1 rounded">
+                {member.experience}
+              </span>
+            </div>
+            <div class="p-6 space-y-3">
+              <h3 class="font-serif text-2xl text-white">{member.name}</h3>
+              <div class="text-xs font-mono text-amber-400 uppercase">{member.role}</div>
+              <p class="text-xs text-neutral-400 leading-relaxed">{member.bio}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF & NETWORK MAP SECTION -->
+  <section class="py-20 bg-neutral-900 border-t border-neutral-800">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-6 space-y-6">
+        <span class="text-xs font-mono text-amber-400 uppercase tracking-widest">Jaringan Partner Nasional</span>
+        <h2 class="font-serif text-3xl sm:text-4xl text-white font-light">
+          Klien Tersebar Di Seluruh Indonesia & Partner Vendor Terverifikasi
+        </h2>
+        <p class="text-neutral-300 text-sm leading-relaxed font-light">
+          Dengan dukungan partner vendor peralatan stage, sound, lighting, dan katering di 15+ kota besar (Jakarta, Surabaya, Medan, Bali, Makassar, Yogyakarta), kami mampu mengeksekusi event dengan standar kualitas seragam di mana pun lokasi perhelatan Anda.
+        </p>
+
+        <div class="pt-2">
+          <span class="data-client-badge">
+            [PERLU DATA CLIENT: peta sebaran kantor cabang/depo vendor]
+          </span>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 bg-neutral-950 p-8 rounded-2xl border border-neutral-800 space-y-6">
+        <h3 class="font-serif text-2xl text-white">Ringkasan Bukti Kinerja (Proof Points)</h3>
+        <div class="grid grid-cols-2 gap-6">
+          <div class="p-4 bg-neutral-900 rounded-xl border border-neutral-800">
+            <div class="font-serif text-3xl font-bold text-amber-400">120+</div>
+            <div class="text-[11px] font-mono text-neutral-400 mt-1 uppercase">Perusahaan Mempercayai</div>
+          </div>
+          <div class="p-4 bg-neutral-900 rounded-xl border border-neutral-800">
+            <div class="font-serif text-3xl font-bold text-amber-400">35+</div>
+            <div class="text-[11px] font-mono text-neutral-400 mt-1 uppercase">Staf Profesional Dedicated</div>
+          </div>
+          <div class="p-4 bg-neutral-900 rounded-xl border border-neutral-800">
+            <div class="font-serif text-3xl font-bold text-amber-400">15+</div>
+            <div class="text-[11px] font-mono text-neutral-400 mt-1 uppercase">Kota Jangkauan Vendor</div>
+          </div>
+          <div class="p-4 bg-neutral-900 rounded-xl border border-neutral-800">
+            <div class="font-serif text-3xl font-bold text-amber-400">4.9/5</div>
+            <div class="text-[11px] font-mono text-neutral-400 mt-1 uppercase">Rating Evaluasi Klien</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND ABOUT -->
+  <section class="py-20 bg-neutral-950 text-center">
+    <div class="max-w-3xl mx-auto px-6 space-y-6">
+      <h2 class="font-serif text-3xl sm:text-4xl text-white">
+        Ingin Mengenal Lebih Dekat Cara Kerja Tim Kami?
+      </h2>
+      <p class="text-neutral-400 text-sm">
+        Sambut tim kami di kantor Anda atau jadwalkan sesi virtual meeting untuk mendiskusikan rencana event Anda.
+      </p>
+      <div class="pt-2">
+        <a
+          href="/contact"
+          class="inline-block px-8 py-3.5 bg-amber-400 hover:bg-amber-300 text-neutral-950 font-semibold text-xs uppercase tracking-widest rounded-full transition-all shadow-lg"
+        >
+          Hubungi Tim Kami
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,938 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import DestinationCard from "../../components/shared/DestinationCard/DestinationCard.astro";
+import BookingBanner from "../../components/shared/BookingBanner/BookingBanner.astro";
+import { Image, getImage } from "astro:assets";
+import { destinationsData } from "../../components/destinations/data/index.js";
+import { siteConfig } from "../../components/layout/site.config.js";
+
+export async function getStaticPaths() {
+	return destinationsData.map((dest) => ({
+		params: { slug: dest.slug },
+		props: { destination: dest },
+	}));
+}
+
+const { destination } = Astro.props;
+const galleryImages = destination.gallery || [destination.image];
+const galleryFull = await Promise.all(
+	galleryImages.map((img) =>
+		getImage({ src: img, width: 1600, format: "webp", quality: 60 }),
+	),
+);
+
+const galleryPreviews = await Promise.all(
+	galleryImages.map((img) =>
+		getImage({ src: img, width: 1024, format: "webp", quality: 40 }),
+	),
+);
+
+const heroPreload = await getImage({
+	src: destination.image,
+	width: 1024,
+	format: "webp",
+	quality: 15,
+});
+const relatedDestinations = destinationsData
+	.filter((d) => d.slug !== destination.slug)
+	.slice(0, 3);
+
+// Default Pre-filled Email Subject & Body for Booking Inquiry
+const emailSubject = `Inquiry / Booking Request: ${destination.title} Package (${destination.price})`;
+const emailBody = `Hello Wanderlust Concierge Team,
+
+I would like to inquire about booking the following luxury travel package:
+
+- Package Name: ${destination.title}
+- Destination Country: ${destination.country}
+- Category: ${destination.category}
+- Duration: ${destination.duration}
+- Group Size: ${destination.groupSize}
+- Price: ${destination.price} / person
+
+Please contact me back with available travel dates, custom options, and detailed pricing.
+
+Thank you!`;
+
+const mailtoUrl = `mailto:${siteConfig.contactEmail}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+const whatsappUrl = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(`Hello Wanderlust, I would like to inquire about booking the ${destination.title} package (${destination.price}).`)}`;
+const customWhatsappUrl = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(`Hello Wanderlust Concierge, I love the ${destination.title} package, but I would like to request a customized tailor-made itinerary (custom travel dates, extra nights, or private luxury add-ons).`)}`;
+const telUrl = `tel:${siteConfig.contactPhoneRaw}`;
+---
+
+<Layout
+	title={`${destination.title} Tour Package — Wanderlust`}
+	currentPath="/destinations"
+>
+	<Fragment slot="head">
+		<link
+			rel="preload"
+			as="image"
+			href={heroPreload.src}
+			fetchpriority="high"
+			type="image/webp"
+		/>
+	</Fragment>
+
+	<!-- Hero Banner -->
+	<div class="relative h-[82vh] min-h-135 w-full overflow-hidden bg-slate-950">
+		<!-- Cinematic Background Image -->
+		<div class="absolute inset-0 z-0">
+			<Image
+				src={destination.image}
+				alt={destination.title}
+				class="hero-kenburns h-full w-full object-cover object-center"
+				widths={[480, 768, 1024]}
+				sizes="100vw"
+				quality={15}
+				fetchpriority="high"
+				loading="eager"
+				decoding="async"
+			/>
+			<!-- Magazine Vignette Layers -->
+			<div
+				class="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/40 to-slate-950/20"
+			>
+			</div>
+			<div
+				class="absolute inset-0 bg-linear-to-r from-slate-950/80 via-slate-950/25 to-transparent"
+			>
+			</div>
+			<div
+				class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_45%,rgba(8,12,20,0.65)_100%)]"
+			>
+			</div>
+		</div>
+
+		<!-- Editorial Content -->
+		<div
+			class="relative z-10 mx-auto flex h-full w-full max-w-7xl items-end px-[5%] pt-28 pb-14 sm:pb-16"
+		>
+			<div class="w-full max-w-4xl space-y-7">
+				<!-- Breadcrumb / Kicker -->
+				<div
+					class="story-scroll-item flex flex-wrap items-center gap-3 font-mono text-[11px] font-bold tracking-[3px] uppercase"
+				>
+					<a
+						href="/destinations"
+						class="hover:text-gold text-white/60 transition-colors"
+						>← All Destinations</a
+					>
+					<span class="bg-gold/50 h-px w-8"></span>
+					<span
+						class="text-gold"
+						data-i18n-en={destination.category}
+						data-i18n-id={destination.category_id || destination.category}
+						>{destination.category}</span
+					>
+				</div>
+
+				<!-- Editorial Title -->
+				<h1
+					data-i18n-en={destination.title}
+					data-i18n-id={destination.title_id || destination.title}
+					class="travel-soul-heading max-w-3xl text-4xl leading-[1.08] font-bold uppercase sm:text-5xl lg:text-6xl"
+				>
+					{destination.title}
+				</h1>
+
+				<!-- Quick Facts Stat Strip -->
+				<div class="story-scroll-item" style="transition-delay: 240ms">
+					<div
+						class="inline-flex flex-wrap items-center gap-x-8 gap-y-3 rounded-xl border border-white/15 bg-slate-950/60 px-5 py-3.5 backdrop-blur-md"
+					>
+						<div class="space-y-0.5">
+							<span
+								class="block font-mono text-[9px] tracking-widest text-white/45 uppercase"
+								>Traveler Rating</span
+							>
+							<span class="font-mono text-sm font-bold text-amber-300"
+								>★ {destination.rating} / 5.0</span
+							>
+						</div>
+						<div class="hidden h-9 w-px bg-white/10 sm:block"></div>
+						<div class="space-y-0.5">
+							<span
+								class="block font-mono text-[9px] tracking-widest text-white/45 uppercase"
+								data-i18n-en="Duration"
+								data-i18n-id="Durasi">Duration</span
+							>
+							<span
+								class="font-mono text-sm font-semibold text-white"
+								data-i18n-en={destination.duration}
+								data-i18n-id={destination.duration_id || destination.duration}
+								>{destination.duration}</span
+							>
+						</div>
+						<div class="hidden h-9 w-px bg-white/10 sm:block"></div>
+						<div class="space-y-0.5">
+							<span
+								class="block font-mono text-[9px] tracking-widest text-white/45 uppercase"
+								data-i18n-en="Group Size"
+								data-i18n-id="Jumlah Peserta">Group Size</span
+							>
+							<span
+								class="font-mono text-sm font-semibold text-white"
+								data-i18n-en={destination.groupSize}
+								data-i18n-id={destination.groupSize_id || destination.groupSize}
+								>{destination.groupSize}</span
+							>
+						</div>
+						<div class="hidden h-9 w-px bg-white/10 sm:block"></div>
+						<div class="space-y-0.5">
+							<span
+								class="block font-mono text-[9px] tracking-widest text-white/45 uppercase"
+								data-i18n-en="Starting From"
+								data-i18n-id="Mulai Dari">Starting From</span
+							>
+							<span class="text-gold font-mono text-base font-extrabold">
+								{destination.price}
+								<span
+									class="text-[11px] font-normal text-white/50"
+									data-i18n-key="perPerson">/ person</span
+								>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Main Package Detail Content Spread -->
+	<div
+		class="mx-auto grid max-w-7xl grid-cols-1 items-start gap-12 px-[5%] py-16 lg:grid-cols-12"
+	>
+		<!-- Left Main Content Column (8 Columns) -->
+		<div class="space-y-12 lg:col-span-8">
+			<!-- Overview Section -->
+			<section class="story-scroll-item space-y-4">
+				<span
+					class="font-mono text-xs font-bold tracking-widest text-[#0D9488] uppercase"
+					data-i18n-key="packageOverview"
+				>
+					Package Overview
+				</span>
+				<h2
+					class="font-heading text-2xl font-extrabold text-white uppercase sm:text-3xl"
+					data-i18n-key="packageOverview"
+				>
+					About The Journey
+				</h2>
+				<p
+					data-i18n-en={destination.overview}
+					data-i18n-id={destination.overview_id || destination.overview}
+					class="font-sans text-base leading-relaxed font-light text-white/80"
+				>
+					{destination.overview}
+				</p>
+			</section>
+
+			<!-- Luxury Hotel & Sanctuary Partner Specs Section -->
+			{
+				destination.hotelName && (
+					<section class="border-gold/40 story-scroll-item space-y-5 rounded-lg border bg-[#142030] p-6 shadow-xl sm:p-8">
+						<div class="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4">
+							<div class="space-y-1">
+								<span
+									class="text-gold block font-mono text-[10px] font-bold tracking-widest uppercase"
+									data-i18n-en="✦ Exclusive Luxury Accommodation Partner"
+									data-i18n-id="✦ Partner Hotel & Resor Mewah Eksklusif"
+								>
+									✦ Exclusive Luxury Accommodation Partner
+								</span>
+								<h3
+									data-i18n-en={destination.hotelName}
+									data-i18n-id={
+										destination.hotelName_id || destination.hotelName
+									}
+									class="font-serif text-xl font-bold text-white sm:text-2xl"
+								>
+									{destination.hotelName}
+								</h3>
+							</div>
+							<span
+								data-i18n-en={destination.hotelTier}
+								data-i18n-id={destination.hotelTier_id || destination.hotelTier}
+								class="border border-teal-400/40 bg-slate-950/60 px-3 py-1 font-mono text-xs font-bold text-teal-400"
+							>
+								{destination.hotelTier}
+							</span>
+						</div>
+
+						<div class="space-y-2">
+							<span
+								class="block font-mono text-[10px] font-bold tracking-widest text-white/50 uppercase"
+								data-i18n-en="Hotel Location & Setting"
+								data-i18n-id="Lokasi & Suasana Resor"
+							>
+								Hotel Location & Setting
+							</span>
+							<p class="flex items-center gap-2 font-sans text-sm text-white/90">
+								<span>📍</span>
+								<span
+									data-i18n-en={
+										destination.hotelLocation || destination.country
+									}
+									data-i18n-id={
+										destination.hotelLocation || destination.country
+									}
+								>
+									{destination.hotelLocation || destination.country}
+								</span>
+							</p>
+						</div>
+
+						{destination.hotelAmenities &&
+							destination.hotelAmenities.length > 0 && (
+								<div class="space-y-3 border-t border-white/10 pt-3">
+									<span
+										class="block font-mono text-[10px] font-bold tracking-widest text-teal-400 uppercase"
+										data-i18n-en="Included VIP Guest Amenities & Features"
+										data-i18n-id="Fasilitas Mewah & Layanan VIP"
+									>
+										Included VIP Guest Amenities & Features
+									</span>
+									<div class="grid grid-cols-1 gap-3 font-sans text-xs text-slate-200 sm:grid-cols-2">
+										{destination.hotelAmenities.map((am, amIdx) => {
+											const am_id =
+												destination.hotelAmenities_id?.[amIdx] || am;
+											return (
+												<div class="flex items-center gap-2.5 rounded border border-white/10 bg-slate-950/60 p-2.5">
+													<span class="text-gold font-bold">✓</span>
+													<span data-i18n-en={am} data-i18n-id={am_id}>
+														{am}
+													</span>
+												</div>
+											);
+										})}
+									</div>
+								</div>
+							)}
+					</section>
+				)
+			}
+
+			<!-- Photo Gallery Carousel & Lightbox Zoom Trigger Section -->
+			<section
+				class="story-scroll-item space-y-4 border-t border-white/10 pt-10"
+			>
+				<div class="flex items-center justify-between">
+					<div>
+						<h2
+							class="font-mono text-xs font-bold tracking-widest text-[#0D9488] uppercase"
+							data-i18n-en="Visual Gallery"
+							data-i18n-id="Galeri Foto Destinasi"
+						>
+							Visual Gallery
+						</h2>
+					</div>
+				</div>
+
+				<!-- Main Preview Image Container -->
+				<div
+					id="open-lightbox-trigger"
+					class="glass-card group relative aspect-video w-full cursor-pointer overflow-hidden rounded-lg border border-white/20"
+				>
+					<Image
+						id="main-gallery-preview"
+						src={galleryImages[0]}
+						alt={`${destination.title} Gallery`}
+						widths={[480, 768, 1024]}
+						sizes="(min-width: 1024px) 720px, 100vw"
+						quality={80}
+						class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+					/>
+					<div
+						class="absolute inset-0 flex items-center justify-center bg-slate-950/30 opacity-0 transition-opacity group-hover:opacity-100"
+					>
+						<span
+							class="text-gold border-gold/40 rounded-full border bg-slate-900/90 px-4 py-2 font-mono text-xs font-bold tracking-wider shadow-xl"
+							data-i18n-en="🔍 Click to Zoom Fullscreen"
+							data-i18n-id="🔍 Klik untuk Memperbesar Layar Penuh"
+						>
+							🔍 Click to Zoom Fullscreen
+						</span>
+					</div>
+				</div>
+
+				<!-- Thumbnails Navigation Bar -->
+				<ul class="grid list-none grid-cols-4 gap-3 pt-2">
+					{
+						galleryImages.map((img, idx) => (
+							<li>
+								<button
+									type="button"
+									data-gallery-idx={idx}
+									data-gallery-preview={galleryPreviews[idx].src}
+									data-gallery-full={galleryFull[idx].src}
+									class={`gallery-thumb-btn relative aspect-16/10 cursor-pointer overflow-hidden rounded border-2 transition-all ${
+										idx === 0 ?
+											"border-gold scale-[1.02]"
+										:	"border-white/10 opacity-70 hover:opacity-100"
+									}`}
+								>
+									<Image
+										src={img}
+										alt={`Gallery photo ${idx + 1}`}
+										widths={[240, 480, 720]}
+										sizes="140px"
+										quality={30}
+										class="h-full w-full object-cover"
+									/>
+								</button>
+							</li>
+						))
+					}
+				</ul>
+			</section>
+
+			<!-- Highlights Grid Section -->
+			<section
+				class="story-scroll-item space-y-6 border-t border-white/10 pt-10"
+			>
+				<span
+					class="font-mono text-xs font-bold tracking-widest text-[#0D9488] uppercase"
+					data-i18n-key="experienceHighlights"
+				>
+					Experience Highlights
+				</span>
+				<h2
+					class="font-heading text-2xl font-extrabold text-white uppercase"
+					data-i18n-en="Tour Package Signature Features"
+					data-i18n-id="Keunggulan Utama Paket Wisata"
+				>
+					Tour Package Signature Features
+				</h2>
+
+				<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+					{
+						destination.highlights?.map((item, idx) => {
+							const item_id = destination.highlights_id?.[idx] || item;
+							return (
+								<div class="glass-card flex items-start gap-3 rounded-lg border border-white/15 p-4">
+									<span class="bg-gold/20 text-gold mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold">
+										✓
+									</span>
+									<span
+										data-i18n-en={item}
+										data-i18n-id={item_id}
+										class="font-sans text-sm leading-snug font-medium text-white/90"
+									>
+										{item}
+									</span>
+								</div>
+							);
+						})
+					}
+				</div>
+			</section>
+
+			<!-- Day-by-Day Itinerary Schedule Section -->
+			<section
+				id="itinerary"
+				class="story-scroll-item space-y-6 border-t border-white/10 pt-10"
+			>
+				<span
+					class="font-mono text-xs font-bold tracking-widest text-[#0D9488] uppercase"
+					data-i18n-key="dayByDaySchedule"
+				>
+					Day-by-Day Schedule
+				</span>
+				<h2
+					class="font-heading text-2xl font-extrabold text-white uppercase"
+					data-i18n-en="Curated Itinerary Timeline"
+					data-i18n-id="Jadwal Perjalanan Rinci"
+				>
+					Curated Itinerary Timeline
+				</h2>
+
+				<div class="space-y-4">
+					{
+						destination.itinerary?.map((dayItem, idx) => (
+							<div class="glass-card space-y-2 rounded-lg border border-white/15 p-6">
+								<div class="flex items-center justify-between">
+									<span
+										data-i18n-en={dayItem.day}
+										data-i18n-id={dayItem.day_id || dayItem.day}
+										class="text-gold border-gold/30 rounded border bg-slate-900 px-3 py-1 font-mono text-xs font-bold tracking-widest uppercase"
+									>
+										{dayItem.day}
+									</span>
+									<span
+										data-i18n-en={`Day 0${idx + 1}`}
+										data-i18n-id={`Hari 0${idx + 1}`}
+										class="font-mono text-xs text-white/40"
+									>
+										Day 0{idx + 1}
+									</span>
+								</div>
+								<h3
+									data-i18n-en={dayItem.title}
+									data-i18n-id={dayItem.title_id || dayItem.title}
+									class="font-heading pt-1 text-lg font-bold text-white"
+								>
+									{dayItem.title}
+								</h3>
+								<p
+									data-i18n-en={dayItem.description}
+									data-i18n-id={dayItem.description_id || dayItem.description}
+									class="font-sans text-sm leading-relaxed font-light text-white/70"
+								>
+									{dayItem.description}
+								</p>
+							</div>
+						))
+					}
+				</div>
+			</section>
+
+			<!-- Inclusions & Exclusions Breakdown Section -->
+			<section
+				class="story-scroll-item space-y-6 border-t border-white/10 pt-10"
+			>
+				<h2
+					class="font-heading text-2xl font-extrabold text-white uppercase"
+					data-i18n-key="whatsIncluded"
+				>
+					What's Included & Excluded
+				</h2>
+
+				<div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+					<!-- Inclusions -->
+					<div
+						class="glass-card space-y-4 rounded-lg border border-emerald-500/20 p-6"
+					>
+						<h3
+							class="font-heading flex items-center gap-2 text-sm font-bold tracking-wider text-emerald-400 uppercase"
+							data-i18n-key="inclusions"
+						>
+							<span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+							Package Inclusions
+						</h3>
+						<ul class="space-y-2.5 font-sans text-xs text-white/80">
+							{
+								(destination as any).included?.map(
+									(inc: string, idx: number) => {
+										const inc_id =
+											(destination as any).included_id?.[idx] || inc;
+										return (
+											<li class="flex items-start gap-2">
+												<span class="font-bold text-emerald-400">✓</span>
+												<span data-i18n-en={inc} data-i18n-id={inc_id}>
+													{inc}
+												</span>
+											</li>
+										);
+									},
+								)
+							}
+						</ul>
+					</div>
+
+					<!-- Exclusions -->
+					<div
+						class="glass-card space-y-4 rounded-lg border border-rose-500/20 p-6"
+					>
+						<h3
+							class="font-heading flex items-center gap-2 text-sm font-bold tracking-wider text-rose-400 uppercase"
+							data-i18n-key="exclusions"
+						>
+							<span class="h-2 w-2 rounded-full bg-rose-400"></span>
+							Package Exclusions
+						</h3>
+						<ul class="space-y-2.5 font-sans text-xs text-white/80">
+							{
+								(destination as any).excluded?.map(
+									(exc: string, idx: number) => {
+										const exc_id =
+											(destination as any).excluded_id?.[idx] || exc;
+										return (
+											<li class="flex items-start gap-2">
+												<span class="font-bold text-rose-400">✕</span>
+												<span data-i18n-en={exc} data-i18n-id={exc_id}>
+													{exc}
+												</span>
+											</li>
+										);
+									},
+								)
+							}
+						</ul>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<!-- Right Sticky Booking / WhatsApp CTA Sidebar (4 Columns) -->
+		<aside class="space-y-6 lg:sticky lg:top-28 lg:col-span-4">
+			<div
+				class="glass-card border-gold/30 story-scroll-item space-y-6 rounded-lg border bg-slate-900/90 p-6 shadow-2xl shadow-black/80"
+			>
+				<div class="space-y-1 border-b border-white/10 pb-4">
+					<span
+						class="text-gold font-mono text-[10px] font-bold tracking-widest uppercase"
+						data-i18n-key="investmentPerPerson">Package Investment</span
+					>
+					<div class="flex items-baseline justify-between">
+						<span class="font-heading text-3xl font-black text-white"
+							>{destination.price}</span
+						>
+						<span
+							class="font-sans text-xs text-white/50"
+							data-i18n-key="perPerson">/ per person</span
+						>
+					</div>
+				</div>
+
+				<div class="space-y-3 font-sans text-xs text-white/80">
+					<div class="flex justify-between border-b border-white/10 py-2">
+						<span
+							class="text-white/50"
+							data-i18n-en="Duration"
+							data-i18n-id="Durasi">Duration</span
+						>
+						<span
+							class="font-semibold text-white"
+							data-i18n-en={destination.duration}
+							data-i18n-id={destination.duration_id || destination.duration}
+							>{destination.duration}</span
+						>
+					</div>
+					<div class="flex justify-between border-b border-white/10 py-2">
+						<span
+							class="text-white/50"
+							data-i18n-en="Group Size"
+							data-i18n-id="Jumlah Peserta">Group Size</span
+						>
+						<span
+							class="font-semibold text-white"
+							data-i18n-en={destination.groupSize}
+							data-i18n-id={destination.groupSize_id || destination.groupSize}
+							>{destination.groupSize}</span
+						>
+					</div>
+					<div class="flex justify-between border-b border-white/10 py-2">
+						<span
+							class="text-white/50"
+							data-i18n-en="Country"
+							data-i18n-id="Negara">Country</span
+						>
+						<span
+							class="font-semibold text-white"
+							data-i18n-en={destination.country}
+							data-i18n-id={destination.country_id || destination.country}
+							>{destination.country}</span
+						>
+					</div>
+				</div>
+
+				<div class="space-y-3 pt-2">
+					<!-- Download Itinerary PDF Button -->
+					<button
+						id="download-itinerary-pdf-btn"
+						type="button"
+						data-i18n-key="downloadPdf"
+						class="from-gold to-gold shadow-gold/20 flex w-full cursor-pointer items-center justify-center gap-2.5 rounded-full bg-linear-to-r via-amber-400 py-3.5 text-xs font-bold tracking-wider text-slate-950 uppercase shadow-xl transition-all hover:scale-[1.02] hover:opacity-95"
+					>
+						<svg
+							class="h-4 w-4 shrink-0 text-slate-950"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							viewBox="0 0 24 24"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+							></path>
+						</svg>
+						<span>Download Itinerary PDF</span>
+					</button>
+
+					<!-- Book via WhatsApp -->
+					<a
+						href={whatsappUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="flex w-full items-center justify-center gap-2.5 rounded-full bg-emerald-500 py-3.5 text-xs font-bold tracking-wider text-slate-950 uppercase shadow-lg shadow-emerald-500/20 transition-all hover:bg-emerald-400"
+					>
+						<svg
+							class="h-4 w-4 shrink-0 text-slate-950"
+							fill="currentColor"
+							viewBox="0 0 24 24"
+						>
+							<path
+								d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.705 1.758zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"
+							></path>
+						</svg>
+						<span data-i18n-key="bookWhatsapp">Book via WhatsApp</span>
+					</a>
+
+					<!-- Inquire via Email (Pre-filled Subject & Body) -->
+					<a
+						href={mailtoUrl}
+						class="bg-gold hover:bg-gold-light shadow-gold/20 flex w-full items-center justify-center gap-2.5 rounded-full py-3.5 text-xs font-bold tracking-wider text-slate-950 uppercase shadow-lg transition-all"
+					>
+						<svg
+							class="h-4 w-4 shrink-0 text-slate-950"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							viewBox="0 0 24 24"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+							></path>
+						</svg>
+						<span data-i18n-key="inquireEmail">Inquire via Email</span>
+					</a>
+
+					<!-- Direct Phone Call (SVG Phone Icon) -->
+					<a
+						href={telUrl}
+						class="flex w-full items-center justify-center gap-2.5 rounded-full border border-white/20 bg-white/10 py-3 text-xs font-semibold tracking-wider text-white uppercase transition-all hover:bg-white/20"
+					>
+						<svg
+							class="text-gold h-4 w-4 shrink-0"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							viewBox="0 0 24 24"
+						>
+							<path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+							></path>
+						</svg>
+						<span data-i18n-key="callUs">Call {siteConfig.contactPhone}</span>
+					</a>
+
+					<!-- Customize Itinerary Link -->
+					<a
+						href={customWhatsappUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						data-i18n-key="customItinerary"
+						class="hover:text-gold block pt-1 text-center font-mono text-xs text-white/60 transition-colors hover:underline"
+					>
+						Need a custom itinerary? Click here →
+					</a>
+				</div>
+
+				<p
+					class="text-center font-mono text-[10px] text-white/40"
+					data-i18n-en="Free consultation & Tailor-made itinerary adjustments available"
+					data-i18n-id="Konsultasi gratis & penyesuaian jadwal kustom tersedia"
+				>
+					Free consultation & Tailor-made itinerary adjustments available
+				</p>
+			</div>
+		</aside>
+	</div>
+
+	<!-- Fullscreen Lightbox Zoom Modal -->
+	<div
+		id="gallery-lightbox-modal"
+		class="pointer-events-none fixed inset-0 z-100 flex items-center justify-center bg-slate-950/98 p-4 opacity-0 transition-all duration-300 sm:p-8"
+	>
+		<!-- Close Button -->
+		<button
+			id="close-lightbox-btn"
+			type="button"
+			class="absolute top-6 right-6 z-10 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-white/10 text-lg font-bold text-white transition-colors hover:bg-white/20"
+			aria-label="Close Lightbox"
+		>
+			✕
+		</button>
+
+		<!-- Prev / Next Navigation Buttons -->
+		<button
+			id="prev-lightbox-btn"
+			type="button"
+			class="text-gold absolute left-4 z-10 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-white/10 text-xl font-bold transition-colors hover:bg-white/20 sm:left-8"
+			aria-label="Previous Photo"
+		>
+			‹
+		</button>
+		<button
+			id="next-lightbox-btn"
+			type="button"
+			class="text-gold absolute right-4 z-10 flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-white/10 text-xl font-bold transition-colors hover:bg-white/20 sm:right-8"
+			aria-label="Next Photo"
+		>
+			›
+		</button>
+
+		<!-- Fullscreen Zoomed Image Container -->
+		<div
+			class="relative max-h-[85vh] max-w-5xl overflow-hidden rounded-lg border border-white/20 shadow-2xl"
+		>
+			<img
+				id="lightbox-zoomed-img"
+				alt="Zoomed Destination Gallery"
+				class="h-full max-h-[85vh] w-full object-contain"
+			/>
+		</div>
+	</div>
+
+	<!-- Related Tour Packages Section -->
+	<section
+		class="mx-auto max-w-7xl space-y-8 border-t border-white/10 px-[5%] py-16"
+	>
+		<div class="flex items-center justify-between">
+			<h2
+				class="font-heading text-2xl font-extrabold text-white uppercase"
+				data-i18n-key="similarPackages"
+			>
+				Similar Luxury Packages
+			</h2>
+			<a
+				href="/destinations"
+				data-i18n-key="viewAllPackages"
+				class="text-gold font-mono text-xs uppercase hover:underline"
+				>View All Packages →</a
+			>
+		</div>
+
+		<div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+			{relatedDestinations.map((dest) => <DestinationCard {...dest} />)}
+		</div>
+	</section>
+
+	<BookingBanner />
+</Layout>
+
+<style>
+	.hero-kenburns {
+		animation: hero-kenburns 24s ease-out forwards;
+		will-change: transform;
+	}
+
+	@keyframes hero-kenburns {
+		from {
+			transform: scale(1.02);
+		}
+		to {
+			transform: scale(1.12);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.hero-kenburns {
+			animation: none;
+		}
+	}
+</style>
+
+<script>
+	function initGalleryLightbox() {
+		const mainPreview = document.getElementById(
+			"main-gallery-preview",
+		) as HTMLImageElement | null;
+		const openTrigger = document.getElementById("open-lightbox-trigger");
+		const thumbBtns = document.querySelectorAll(".gallery-thumb-btn");
+
+		const lightboxModal = document.getElementById("gallery-lightbox-modal");
+		const lightboxImg = document.getElementById(
+			"lightbox-zoomed-img",
+		) as HTMLImageElement | null;
+		const closeBtn = document.getElementById("close-lightbox-btn");
+		const prevBtn = document.getElementById("prev-lightbox-btn");
+		const nextBtn = document.getElementById("next-lightbox-btn");
+
+		if (!thumbBtns.length) return;
+
+		let currentIndex = 0;
+		const sources = Array.from(thumbBtns).map(
+			(btn) => btn.getAttribute("data-gallery-preview") || "",
+		);
+		const fullSources = Array.from(thumbBtns).map(
+			(btn) => btn.getAttribute("data-gallery-full") || "",
+		);
+
+		function updateActiveImage(idx: number) {
+			if (idx < 0) idx = sources.length - 1;
+			if (idx >= sources.length) idx = 0;
+			currentIndex = idx;
+
+			const newSrc = sources[currentIndex];
+			const newFullSrc = fullSources[currentIndex];
+			if (mainPreview && newSrc) {
+				mainPreview.src = newSrc;
+				mainPreview.removeAttribute("srcset");
+				mainPreview.removeAttribute("sizes");
+			}
+			if (lightboxImg && newFullSrc) lightboxImg.src = newFullSrc;
+
+			thumbBtns.forEach((btn, i) => {
+				if (i === currentIndex) {
+					btn.classList.remove("border-white/10", "opacity-70");
+					btn.classList.add("border-gold", "scale-[1.02]");
+				} else {
+					btn.classList.remove("border-gold", "scale-[1.02]");
+					btn.classList.add("border-white/10", "opacity-70");
+				}
+			});
+		}
+
+		thumbBtns.forEach((btn) => {
+			btn.addEventListener("click", () => {
+				const idx = parseInt(btn.getAttribute("data-gallery-idx") || "0", 10);
+				updateActiveImage(idx);
+			});
+		});
+
+		function openLightbox() {
+			if (!lightboxModal) return;
+			// Load the full-res image only when the lightbox is actually opened,
+			// keeping the 100+ KiB download off the initial page load.
+			if (lightboxImg && fullSources[currentIndex]) {
+				lightboxImg.src = fullSources[currentIndex];
+			}
+			lightboxModal.classList.remove("opacity-0", "pointer-events-none");
+			document.body.style.overflow = "hidden";
+		}
+
+		function closeLightbox() {
+			if (!lightboxModal) return;
+			lightboxModal.classList.add("opacity-0", "pointer-events-none");
+			document.body.style.overflow = "";
+		}
+
+		openTrigger?.addEventListener("click", openLightbox);
+		closeBtn?.addEventListener("click", closeLightbox);
+
+		prevBtn?.addEventListener("click", () =>
+			updateActiveImage(currentIndex - 1),
+		);
+		nextBtn?.addEventListener("click", () =>
+			updateActiveImage(currentIndex + 1),
+		);
+
+		lightboxModal?.addEventListener("click", (e) => {
+			if (e.target === lightboxModal) closeLightbox();
+		});
+
+		window.addEventListener("keydown", (e) => {
+			if (!lightboxModal || lightboxModal.classList.contains("opacity-0"))
+				return;
+			if (e.key === "Escape") closeLightbox();
+			if (e.key === "ArrowLeft") updateActiveImage(currentIndex - 1);
+			if (e.key === "ArrowRight") updateActiveImage(currentIndex + 1);
+		});
+
+		// PDF Export Trigger
+		const pdfBtn = document.getElementById("download-itinerary-pdf-btn");
+		pdfBtn?.addEventListener("click", () => {
+			window.print();
+		});
+	}
+
+	document.addEventListener("DOMContentLoaded", initGalleryLightbox);
+	document.addEventListener("astro:page-load", initGalleryLightbox);
+</script>

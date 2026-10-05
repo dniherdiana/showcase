@@ -1,0 +1,55 @@
+---
+import { komunitasEventsData } from './KomunitasEvents.data.js';
+import { MessageSquare, Coffee, Award, Calendar } from 'lucide-astro';
+
+const icons = {
+  MessageSquare,
+  Coffee,
+  Award
+};
+---
+
+<section id="event-calendar" class="py-20 md:py-24 bg-bg-base border-b border-border-indie">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="max-w-3xl">
+      <h2 class="font-caveat text-3xl md:text-5xl font-bold text-text-primary leading-tight">
+        {komunitasEventsData.headline}
+      </h2>
+      <p class="font-dmsans text-sm md:text-base text-text-secondary mt-4 leading-relaxed">
+        {komunitasEventsData.lede}
+      </p>
+    </div>
+
+    <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+      {komunitasEventsData.events.map((event, idx) => {
+        const IconComponent = icons[event.icon as keyof typeof icons] || Calendar;
+        const rotationClass = idx === 0 ? 'rotate-[-1deg]' : idx === 1 ? 'rotate-[1deg]' : 'rotate-[-0.5deg]';
+        return (
+          <article class={`bg-bg-surface p-8 rounded-blob border-[1.5px] border-border-indie shadow-indie ${rotationClass} hover:rotate-0 transition-transform flex flex-col justify-between`}>
+            <div>
+              <div class="w-10 h-10 rounded-full bg-accent/10 text-accent flex items-center justify-center mb-4">
+                <IconComponent class="w-5 h-5" />
+              </div>
+              <h3 class="font-dmsans text-lg font-bold text-text-primary">
+                {event.title}
+              </h3>
+              <p class="font-dmsans text-xs text-accent font-semibold mt-2 flex items-center gap-1.5">
+                <Calendar class="w-3.5 h-3.5" />
+                {event.schedule}
+              </p>
+              <p class="font-dmsans text-xs md:text-sm text-text-secondary mt-4 leading-relaxed">
+                {event.description}
+              </p>
+            </div>
+            
+            <div class="mt-6 pt-4 border-t border-border-indie/50">
+              <span class="font-dmsans text-xs font-bold text-text-primary">
+                Terbuka untuk Member dan Tamu
+              </span>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>

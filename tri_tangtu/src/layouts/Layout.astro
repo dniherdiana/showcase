@@ -1,0 +1,56 @@
+---
+import Footer from "@components/layout/Footer.astro";
+import Navbar from "@components/layout/Navbar.astro";
+import { language } from "@data/languages/languageStore";
+import "@styles/global.css";
+
+const { title, description } = Astro.props;
+
+const currentPath = Astro.url.pathname;
+let currentLang = "id";
+
+if (currentPath.startsWith("/en")) {
+	currentLang = "en";
+} else if (currentPath.startsWith("/id")) {
+	currentLang = "id";
+}
+
+// @ts-ignore
+const t = language[currentLang];
+---
+
+<html lang={currentLang}>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link
+			rel="icon"
+			href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>"
+		/>
+		<link
+			rel="preload"
+			href="/fonts/Bricolage.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<link
+			rel="preload"
+			href="/fonts/Krub.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+	</head>
+	<body>
+		<header class="sticky top-0 z-999">
+			<Navbar currentLang={currentLang} t={t} />
+		</header>
+
+		<slot />
+
+		<Footer />
+	</body>
+</html>

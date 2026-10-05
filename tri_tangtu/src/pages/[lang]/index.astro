@@ -1,0 +1,102 @@
+---
+import Hero from "@components/homepage/Hero.astro";
+import Layout from "@layouts/Layout.astro";
+import CardTeaser from "@components/homepage/CardTeaser.astro";
+import heroImage from "@assets/images/Baduy_Dalam.jpg";
+import TeaserNote from "@components/homepage/TeaserNote.astro";
+import { language } from "@data/languages/languageStore";
+import gunungPadang from "@assets/images/gunung_padang.jpg";
+import manuscript from "@assets/images/manuscript.jpg";
+import Chapter from "@components/Chapter.astro";
+import Divider from "@components/Divider.astro";
+import CardIntro_1 from "@components/homepage/CardIntro_1.astro";
+import CardIntro_2 from "@components/homepage/CardIntro_2.astro";
+
+export function getStaticPaths() {
+	return [{ params: { lang: "id" } }, { params: { lang: "en" } }];
+}
+
+const { lang } = Astro.params;
+const currentLang = lang === "en" ? "en" : "id";
+const t = language[currentLang];
+const baseUrl = currentLang === "en" ? "/en" : "/id";
+---
+
+<Layout
+	title={currentLang === "id" ?
+		"Tilu Tangtu · Tri Tangtu "
+	:	"Tri Tangtu · Three Certainties"}
+	description={currentLang === "id" ?
+		"Tiga Kekuatan,Satu Kesatuan"
+	:	"Three Pillars,One Whole"}
+>
+	<main class="bg-bg flex flex-col gap-15 px-6 pt-15 pb-10 lg:px-15">
+		<div class="animate-slide-left animate-delay-2">
+			<Chapter
+				pageNumber={t.homepage.chapter.pageNumber}
+				headline={t.homepage.chapter.headline}
+				text_1={t.homepage.chapter.title.text_1}
+				text_2={t.homepage.chapter.title.text_2}
+			/>
+		</div>
+
+		<div class="animate-soft-lift animate-delay-3">
+			<Hero
+				src={heroImage}
+				headline_1={t.homepage.headline.text_1}
+				headline_2={t.homepage.headline.text_2}
+				headline_3={t.homepage.headline.text_3}
+				subheadline={t.homepage.subheadline}
+				intro={t.homepage.intro}
+				href={`${baseUrl}/philosophy`}
+				buttonText={t.homepage.buttonText}
+			/>
+		</div>
+
+		<div class="flex flex-col gap-15">
+			<CardIntro_1 src={gunungPadang} intro_1={t.homepage.intro.paragraph_1} />
+			<CardIntro_2 src={manuscript} intro_2={t.homepage.intro.paragraph_2} />
+		</div>
+
+		<Divider />
+
+		<TeaserNote
+			label=` - ${t.homepage.teaser.pillar_teaser.section_label}`
+			title={t.homepage.teaser.pillar_teaser.section_title}
+		/>
+		<div class="bg-bg flex w-full flex-col gap-10 py-5 lg:flex-row">
+			<CardTeaser
+				class="from-surface to bg-surface-soft max-h-64 w-full bg-linear-to-r transition-transform duration-200 hover:scale-105"
+				name={t.homepage.teaser.rama.name}
+				role={t.homepage.teaser.rama.role}
+				tag={t.homepage.teaser.rama.tag}
+				description={t.homepage.teaser.rama.description}
+			/>
+			<CardTeaser
+				class="from-success to bg-success-soft/40 max-h-64 w-full bg-linear-to-r transition-transform duration-200 hover:scale-105"
+				name={t.homepage.teaser.resi.name}
+				role={t.homepage.teaser.resi.role}
+				tag={t.homepage.teaser.resi.tag}
+				description={t.homepage.teaser.resi.description}
+			/>
+			<CardTeaser
+				class="from-info to bg-info-dark/40 max-h-64 w-full bg-linear-to-r transition-transform duration-200 hover:scale-105"
+				classSpan="text-xs tracking-widest uppercase text-heading"
+				name={t.homepage.teaser.prabu.name}
+				role={t.homepage.teaser.prabu.role}
+				tag={t.homepage.teaser.prabu.tag}
+				description={t.homepage.teaser.prabu.description}
+			/>
+		</div>
+
+		<article>
+			<p
+				class="text-text text-center text-xs tracking-tighter uppercase italic lg:tracking-widest"
+			>
+				{t.homepage.teaser.pillar_teaser.bottom_note}
+			</p>
+		</article>
+
+		<!-- <Divider /> -->
+	</main>
+</Layout>

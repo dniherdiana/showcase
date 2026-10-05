@@ -1,0 +1,27 @@
+---
+interface Props {
+  dark?: boolean;
+  class?: string;
+  orientation?: 'horizontal' | 'vertical';
+}
+
+const {
+  dark = false,
+  class: className = '',
+  orientation = 'horizontal',
+} = Astro.props;
+---
+
+{
+  orientation === 'horizontal' ? (
+    <hr
+      class={`border-0 border-t ${dark ? 'border-[var(--color-border-dark-hairline)]' : 'border-[var(--color-border-hairline)]'} w-full my-0 ${className}`}
+    />
+  ) : (
+    <div
+      class={`w-px self-stretch ${dark ? 'bg-[var(--color-border-dark-hairline)]' : 'bg-[var(--color-border-hairline)]'} ${className}`}
+      role="separator"
+      aria-orientation="vertical"
+    />
+  )
+}

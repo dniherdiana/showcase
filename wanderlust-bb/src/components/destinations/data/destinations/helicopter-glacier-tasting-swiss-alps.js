@@ -1,0 +1,78 @@
+import { images } from "../../../../assets/images/index.js";
+import { galleries } from "../../../../assets/images/gallery/index.js";
+
+export default 	{
+		id: 11,
+		slug: "helicopter-glacier-tasting-swiss-alps",
+		title: "Swiss Helicopter & Glacier Tasting",
+		title_id: "Penerbangan Helikopter & Cicip Anggur Gletser Swiss",
+		country: "Switzerland",
+		country_id: "Swiss",
+		region: "Europe",
+		category: "Private Aviation & Yachting",
+		category_id: "Penerbangan Privat & Kapal Pesiar",
+		hotelName: "The Chedi Andermatt & Zermatt Heliport",
+		hotelName_id: "The Chedi Andermatt & Helipad Zermatt",
+		hotelLocation: "Andermatt & Zermatt, Switzerland",
+		hotelTier: "5-Star Alpine Luxury Resort",
+		hotelTier_id: "Resor Mewah 5 Bintang Pegunungan",
+		hotelAmenities: [
+			"Private Eurocopter Charter Flight",
+			"Glacier Landing with Sommelier Vintage Tasting",
+			"Alpine Spa & Hydrotherapy Pool",
+			"Electric Mercedes-Benz Chauffeur",
+		],
+		hotelAmenities_id: [
+			"Sewa Helikopter Eurocopter Privat",
+			"Mendarat di Gletser & Cicip Anggur Bersama Sommelier",
+			"Spa Pegunungan & Kolam Hidroterapi",
+			"Mobil Listrik Pribadi Mercedes-Benz",
+		],
+		price: "$4,800",
+		rating: 4.97,
+		duration: "2 Days / 1 Night",
+		duration_id: "2 Hari / 1 Malam",
+		groupSize: "Max 4 Guests",
+		groupSize_id: "Maksimal 4 Tamu",
+		image: galleries.swiss[0],
+		gallery: galleries.swiss,
+		featured: true,
+		overview: "Soar over Zermatt peaks before landing on pristine glaciers for a private sommelier wine tasting session.",
+		overview_id: "Terbang di atas puncak Zermatt sebelum mendarat di atas gletser es alami untuk sesi mencicipi anggur bersama ahli sommelier.",
+		highlights: [
+			"Private helicopter charter over Zermatt & Matterhorn",
+			"Glacier landing with sommelier vintage wine tasting",
+			"Overnight luxury chalet stay with private chef",
+			"VIP Gornergrat cogwheel train access",
+		],
+		highlights_id: [
+			"Sewa helikopter privat di atas Zermatt & Matterhorn",
+			"Mendarat di gletser untuk mencicipi anggur bersama ahli",
+			"Menginap 1 malam di chalet dengan koki pribadi",
+			"Tiket VIP kereta gunung Gornergrat",
+		],
+		itinerary: [
+			{ day: "Day 1", day_id: "Hari 1", title: "Helicopter Flight & Glacier Champagne Landing", title_id: "Penerbangan Helikopter & Mendarat di Gletser", description: "Board your private Airbus Eurocopter from Zermatt heliport. Touch down on snow-covered glaciers.", description_id: "Naik helikopter Airbus Eurocopter dari Zermatt. Mendarat di gletser salju." },
+			{ day: "Day 2", day_id: "Hari 2", title: "Alpine Wellness & Scenic Transfer", title_id: "Bersantai di Kolam Air Panas & Kepulangan", description: "Morning outdoor hot tub relaxation with Matterhorn views before private chauffeur escort to Zurich.", description_id: "Bersantai di kolam air hangat pagi hari memandang puncak Matterhorn." },
+		],
+		included: [
+			"Private Airbus Eurocopter charter & pilot",
+			"Sommelier wine tasting & vintage pairings",
+			"1 Night luxury chalet accommodation",
+			"Private electric Mercedes-Benz transfers",
+		],
+		included_id: [
+			"Sewa helikopter Airbus Eurocopter & pilot",
+			"Sesi cicip anggur bersama sommelier",
+			"Akomodasi chalet 1 malam",
+			"Mobil listrik pribadi Mercedes-Benz",
+		],
+		excluded: [
+			"International airfare to Switzerland",
+			"Personal equipment rentals",
+		],
+		excluded_id: [
+			"Tiket pesawat internasional ke Swiss",
+			"Sewa perlengkapan pribadi",
+		],
+	}

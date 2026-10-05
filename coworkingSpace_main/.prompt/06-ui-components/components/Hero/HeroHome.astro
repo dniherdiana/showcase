@@ -1,0 +1,91 @@
+---
+import { Image } from 'astro:assets';
+import { Calendar, ArrowRight, ShieldCheck, Clock, UserCheck, Star } from 'lucide-astro';
+import { heroHomeData } from './HeroHome.data.js';
+
+const { headline, lead, primaryAction, secondaryAction, evidence, media } = heroHomeData;
+---
+
+<section class="relative min-h-[92vh] flex items-center justify-center pt-28 pb-20 overflow-hidden bg-stone-950">
+  
+  <!-- Full Image Bleed Background (Pola 4: Full-Bleed Typographic Break) -->
+  <div class="absolute inset-0 w-full h-full z-0">
+    <Image 
+      src={media.imageUrl} 
+      alt={media.alt} 
+      width={1920}
+      height={1080}
+      class="w-full h-full object-cover object-center scale-[1.02] transition-transform duration-1000 ease-out"
+      widths={[400, 800, 1200, 1920]}
+      sizes="100vw"
+      loading="eager"
+    />
+    <!-- Multi-stage Dark Gradient Overlay for Maximum Legibility -->
+    <div class="absolute inset-0 bg-gradient-to-b from-stone-950/90 via-stone-950/75 to-stone-950/95"></div>
+    <div class="absolute inset-0 bg-stone-950/30 backdrop-blur-[1px]"></div>
+  </div>
+
+  <!-- Content Container -->
+  <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 w-full text-white">
+    
+    <!-- Centered Symmetrical Header Stack -->
+    <div class="max-w-4xl mx-auto text-center flex flex-col items-center">
+      
+      <!-- MANDATORY Single <h1> for Page (Cinzel Serif, NO Eyebrow Badge Pill) -->
+      <h1 class="text-4xl sm:text-5xl md:text-6xl font-medium font-heading text-white leading-[1.12] tracking-tight mb-8 uppercase drop-shadow-sm">
+        {headline}
+      </h1>
+
+      <!-- Operational Lead Paragraph -->
+      <p class="text-lg md:text-xl font-body text-stone-200 max-w-3xl leading-relaxed mb-12 text-balance font-normal">
+        {lead}
+      </p>
+
+      <!-- Action Button Pair -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-5 w-full sm:w-auto mb-20">
+        <a 
+          href={primaryAction.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[var(--color-accent)] hover:bg-[#003820] text-white font-body font-medium text-xs tracking-widest uppercase rounded-[var(--radius-button)] transition-all duration-300 border border-[var(--color-accent)] shadow-lg shadow-emerald-950/50"
+        >
+          <Calendar class="w-4 h-4 text-white" />
+          <span>{primaryAction.label}</span>
+        </a>
+
+        <a 
+          href={secondaryAction.href}
+          class="inline-flex items-center justify-center gap-2 px-7 py-4 text-white hover:text-emerald-300 font-body font-medium text-xs tracking-widest uppercase transition-colors duration-200 group bg-white/10 hover:bg-white/20 border border-white/20 rounded-[var(--radius-button)] backdrop-blur-md"
+        >
+          <span>{secondaryAction.label}</span>
+          <ArrowRight class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Editorial Evidence Metrics Row (Pola 1: Hairline Dividers, NO Cards/Boxes) -->
+    <div class="max-w-6xl mx-auto border-t border-stone-700/60 pt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {evidence.map((item, index) => (
+        <div class="flex flex-col space-y-2 border-b sm:border-b-0 sm:border-r border-stone-700/60 pb-6 sm:pb-0 sm:pr-6 last:border-none">
+          <div class="flex items-center justify-between">
+            <span class="text-3xl md:text-4xl font-semibold font-heading text-white tracking-tight">
+              {item.metric}
+            </span>
+            {index === 0 && <UserCheck class="w-5 h-5 text-emerald-400" />}
+            {index === 1 && <Clock class="w-5 h-5 text-emerald-400" />}
+            {index === 2 && <ShieldCheck class="w-5 h-5 text-emerald-400" />}
+            {index === 3 && <Star class="w-5 h-5 text-emerald-400" />}
+          </div>
+          <h3 class="text-sm font-semibold font-heading text-white">
+            {item.label}
+          </h3>
+          <p class="text-xs font-body text-stone-300 leading-relaxed">
+            {item.detail}
+          </p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

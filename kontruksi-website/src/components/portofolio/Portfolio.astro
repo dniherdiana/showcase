@@ -1,0 +1,185 @@
+---
+import { Image } from 'astro:assets';
+import { ArrowUpRight, ShieldCheck, MapPin, Layers } from 'lucide-astro';
+import { portofolioContent } from '../../data/portofolio.js';
+
+const projects = portofolioContent.galleryProjects.map((gp, i) => ({
+  id: i + 1,
+  category: gp.category || (gp.id.includes('manufaktur') ? 'manufaktur' : 'logistik'),
+  categoryName: gp.categoryName || (gp.id.includes('manufaktur') ? 'Pabrik Manufaktur' : 'Gudang Logistik'),
+  title: gp.name,
+  location: gp.location,
+  area: gp.specs.split('•')[0].trim(),
+  tonnage: gp.specs.split('•')[1]?.trim() || '',
+  duration: '4.5 Bulan',
+  guarantee: '12 Bulan Purna Jual',
+  image: gp.photos[0].image,
+  description: gp.photos[0].description,
+  client: gp.client
+}));
+---
+
+<section id="portofolio" class="py-24 lg:py-32 bg-theme-bg border-b border-theme-border">
+  <div class="editorial-container">
+
+    <!-- Section Header -->
+    <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-16 gap-6">
+      <div class="space-y-4 max-w-2xl">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-sm bg-theme-accent-bg border border-theme-accent/40 text-theme-accent text-xs font-extrabold uppercase tracking-wider shadow-sm">
+          <Layers class="w-4 h-4 text-theme-accent" />
+          <span>Portofolio & Rekam Jejak Real</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold uppercase tracking-tight text-theme-primary leading-tight">
+          Dokumentasi Proyek Pabrik & Gudang Terbangun
+        </h2>
+        <p class="text-theme-secondary text-base leading-relaxed">
+          Setiap proyek dikerjakan dengan standar arsitektur presisi tinggi, material baja bersertifikasi SNI, dan dilengkapi garansi pemeliharaan berkala purna jual.
+        </p>
+      </div>
+
+      <!-- Filter Buttons for Indonesian Industry Sectors -->
+      <div class="flex flex-wrap items-center gap-2" id="portfolio-tabs">
+        <button data-filter="all" class="filter-btn active px-4 py-2.5 rounded-sm bg-theme-accent text-theme-bg font-extrabold uppercase tracking-wider text-xs sm:text-sm transition-all shadow-md">
+          Semua Proyek
+        </button>
+        <button data-filter="manufaktur" class="filter-btn px-4 py-2.5 rounded-sm bg-theme-surface text-theme-secondary hover:text-theme-primary font-bold uppercase tracking-wider text-xs sm:text-sm border border-theme-border transition-all">
+          Pabrik Manufaktur
+        </button>
+        <button data-filter="logistik" class="filter-btn px-4 py-2.5 rounded-sm bg-theme-surface text-theme-secondary hover:text-theme-primary font-bold uppercase tracking-wider text-xs sm:text-sm border border-theme-border transition-all">
+          Gudang Logistik
+        </button>
+        <button data-filter="metal-smelter" class="filter-btn px-4 py-2.5 rounded-sm bg-theme-surface text-theme-secondary hover:text-theme-primary font-bold uppercase tracking-wider text-xs sm:text-sm border border-theme-border transition-all">
+          Smelter & Metal
+        </button>
+        <button data-filter="agro-pangan" class="filter-btn px-4 py-2.5 rounded-sm bg-theme-surface text-theme-secondary hover:text-theme-primary font-bold uppercase tracking-wider text-xs sm:text-sm border border-theme-border transition-all">
+          Agro & Pangan
+        </button>
+        <button data-filter="data-center" class="filter-btn px-4 py-2.5 rounded-sm bg-theme-surface text-theme-secondary hover:text-theme-primary font-bold uppercase tracking-wider text-xs sm:text-sm border border-theme-border transition-all">
+          Data Center
+        </button>
+      </div>
+    </div>
+
+    <!-- Portfolio Grid (Bold Industrial Cards) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
+      {projects.map(project => (
+        <article data-category={project.category} class="portfolio-item group bold-card flex flex-col justify-between">
+          <div>
+            <!-- Technical Blueprint Top Header Bar (No Ping) -->
+            <div class="bg-theme-surface-elevated px-4 py-2.5 border-b border-theme-border flex items-center justify-between text-xs font-mono">
+              <span class="font-bold tracking-wider text-theme-primary">PROYEK TERREALISASI • #{project.id.toString().padStart(2, '0')}</span>
+              <span class="text-theme-accent font-bold uppercase">{project.categoryName}</span>
+            </div>
+
+            <!-- Image Aspect 16:9 with Bold Badges -->
+            <div class="relative aspect-video overflow-hidden bg-theme-surface">
+              <Image
+                src={project.image}
+                alt={project.title}
+                width="1200"
+                height="675"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-linear-to-t from-black/90 via-transparent to-transparent opacity-85"></div>
+
+              <!-- Top Badges -->
+              <div class="absolute top-3 left-3 flex items-center gap-2">
+                <span class="px-2.5 py-1 rounded-sm bg-black/90 border border-theme-border text-theme-accent text-xs font-bold tracking-wider flex items-center gap-1">
+                  <MapPin class="w-3.5 h-3.5 text-theme-accent" />
+                  {project.location}
+                </span>
+              </div>
+
+              <div class="absolute top-3 right-3">
+                <span class="px-2.5 py-1 rounded-sm bg-theme-bg text-theme-accent text-[11px] font-bold border border-theme-accent/40 flex items-center gap-1.5 shadow-md">
+                  <ShieldCheck class="w-3.5 h-3.5 text-theme-accent" />
+                  100% FIXED RAB
+                </span>
+              </div>
+
+              <!-- Bottom Overlay Title -->
+              <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between text-xs text-white">
+                <span class="px-2.5 py-1 rounded-sm bg-black/90 border border-theme-border text-[11px] font-mono text-theme-secondary">
+                  GARANSI {project.guarantee.toUpperCase()}
+                </span>
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div class="p-6 space-y-4">
+              <h3 class="text-xl font-bold font-serif text-theme-primary group-hover:text-theme-accent transition-colors leading-snug">
+                {project.title}
+              </h3>
+
+              <p class="text-theme-secondary text-xs sm:text-sm leading-relaxed line-clamp-3">
+                {project.description}
+              </p>
+
+              <!-- Bold Technical Specs Matrix Chips -->
+              <div class="grid grid-cols-2 gap-2.5 pt-2">
+                <div class="p-3 rounded-sm bg-theme-bg border border-theme-border">
+                  <div class="text-[10px] uppercase tracking-wider font-extrabold text-theme-secondary">Luas Struktur</div>
+                  <div class="text-xs sm:text-sm font-bold text-theme-primary mt-0.5">{project.area}</div>
+                </div>
+                <div class="p-3 rounded-sm bg-theme-bg border border-theme-border">
+                  <div class="text-[10px] uppercase tracking-wider font-extrabold text-theme-accent">Spesifikasi Baja</div>
+                  <div class="text-xs sm:text-sm font-bold text-theme-accent mt-0.5">{project.tonnage}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Footer (Stacked Layout) -->
+          <div class="p-5 border-t border-theme-border space-y-3 bg-theme-surface-elevated">
+            <div class="flex items-center justify-between text-xs">
+              <span class="text-[11px] uppercase tracking-wider font-bold text-theme-secondary">Pemilik Proyek:</span>
+              <span class="font-bold text-theme-primary truncate max-w-[65%]">{project.client}</span>
+            </div>
+
+            <a
+              href={`https://wa.me/6281234567890?text=Halo%20Moving%20Co.,%20saya%20tertarik%20dengan%20proyek%20serupa%20${encodeURIComponent(project.title)}`}
+              target="_blank"
+              class="btn-primary w-full py-3 text-xs font-extrabold uppercase tracking-wider justify-center shadow-lg group/btn"
+              aria-label={`Konsultasi proyek ${project.title}`}
+            >
+              <span>KONSULTASIKAN MODEL PROYEK INI</span>
+              <ArrowUpRight class="w-4 h-4 stroke-[2.5] group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+            </a>
+          </div>
+
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function setupPortfolioFilter() {
+    const filterBtns = document.querySelectorAll('#portfolio-tabs .filter-btn');
+    const items = document.querySelectorAll('#portfolio-grid .portfolio-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter');
+
+        filterBtns.forEach(b => {
+          b.className = 'filter-btn px-4 py-2.5 rounded-sm bg-theme-surface text-theme-secondary hover:text-theme-primary font-bold uppercase tracking-wider text-xs sm:text-sm border border-theme-border transition-all';
+        });
+        btn.className = 'filter-btn active px-4 py-2.5 rounded-sm bg-theme-accent text-theme-bg font-extrabold uppercase tracking-wider text-xs sm:text-sm transition-all shadow-md';
+
+        items.forEach(item => {
+          const cat = item.getAttribute('data-category');
+          if (filter === 'all' || cat === filter) {
+            (item as HTMLElement).style.display = 'flex';
+          } else {
+            (item as HTMLElement).style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  document.addEventListener('astro:page-load', setupPortfolioFilter);
+</script>

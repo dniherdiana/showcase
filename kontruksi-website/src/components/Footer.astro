@@ -1,0 +1,181 @@
+---
+import {
+	Building2,
+	ShieldCheck,
+	PhoneCall,
+	Mail,
+	MapPin,
+	ArrowUp,
+} from "lucide-astro";
+import { siteConfig } from "../data/site.js";
+---
+
+<footer
+	class="bg-theme-bg border-t border-theme-border text-theme-secondary pt-16 pb-12"
+>
+	<div class="editorial-container">
+		<div
+			class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-theme-border"
+		>
+			<!-- Brand Summary -->
+			<div class="lg:col-span-2 space-y-4">
+				<a
+					href="/"
+					class="flex items-center gap-3"
+					aria-label="Beranda Moving Co."
+				>
+					<div
+						class="w-9 h-9 rounded-sm bg-theme-accent flex items-center justify-center text-theme-bg font-bold"
+					>
+						<Building2 class="w-5 h-5 stroke-[2.5]" />
+					</div>
+					<span class="text-xl font-serif text-theme-primary font-normal">
+						{siteConfig.name}<span class="text-theme-accent"></span>
+					</span>
+				</a>
+
+				<p class="text-sm text-theme-secondary leading-relaxed max-w-sm">
+					Kontraktor Arsitektur & Spesialis Konstruksi Baja Pabrik Terpercaya.
+					Menghadirkan struktur tangguh, transparan, serta dilindungi Garansi
+					Pemeliharaan Purna Jual 12 Bulan.
+				</p>
+
+				<div
+					class="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-theme-surface border border-theme-border text-xs font-medium text-theme-success"
+				>
+					<ShieldCheck class="w-4 h-4" />
+					<span>Sertifikasi Ahli Struktur SNI & Legalitas Resmi</span>
+				</div>
+			</div>
+
+			<!-- Nav Links -->
+			<div class="space-y-3">
+				<h3
+					class="text-xs font-semibold text-theme-primary uppercase tracking-wider"
+				>
+					Navigasi
+				</h3>
+				<ul class="space-y-2 text-sm">
+					{
+						siteConfig.navItems.map((item) => (
+							<li>
+								<a
+									href={item.href}
+									class="hover:text-theme-accent transition-colors"
+								>
+									{item.name}
+								</a>
+							</li>
+						))
+					}
+					<li>
+						<a
+							href="/kalkulator"
+							class="hover:text-theme-accent transition-colors"
+							>Kalkulator Pabrik</a>
+					</li>
+				</ul>
+			</div>
+
+			<!-- Services -->
+			<div class="space-y-3">
+				<h3
+					class="text-xs font-semibold text-theme-primary uppercase tracking-wider"
+				>
+					Layanan Utama
+				</h3>
+				<ul class="space-y-2 text-sm">
+					{
+						siteConfig.footerServices.map((service) => (
+							<li>
+								<span class="text-theme-secondary">{service}</span>
+							</li>
+						))
+					}
+				</ul>
+			</div>
+
+			<!-- Direct Contact -->
+			<div class="space-y-3">
+				<h3
+					class="text-xs font-semibold text-theme-primary uppercase tracking-wider"
+				>
+					Kontak Direct
+				</h3>
+				<div class="space-y-2 text-sm">
+					<div class="flex items-center gap-2">
+						<PhoneCall class="w-4 h-4 text-theme-accent shrink-0" />
+						<a
+							href={`https://wa.me/${siteConfig.phone.replace("+", "")}`}
+							target="_blank"
+							class="hover:text-theme-accent transition-colors"
+							>{siteConfig.phoneDisplay}</a
+						>
+					</div>
+					<div class="flex items-center gap-2">
+						<Mail class="w-4 h-4 text-theme-accent shrink-0" />
+						<a
+							href={`mailto:${siteConfig.email}`}
+							class="hover:text-theme-accent transition-colors"
+							>{siteConfig.email}</a
+						>
+					</div>
+					<div class="flex items-start gap-2 pt-1 text-xs">
+						<MapPin class="w-4 h-4 text-theme-accent shrink-0 mt-0.5" />
+						<span>{siteConfig.address.street}, {siteConfig.address.city}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Showcase Project Copyright Bar -->
+		<div
+			class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-theme-secondary"
+		>
+			<div class="space-y-1.5 text-center sm:text-left">
+				<div>
+					© {new Date().getFullYear()}
+					<strong class="text-theme-primary">{siteConfig.legalName}</strong>.
+					All rights reserved.
+				</div>
+				<div
+					class="text-xs text-theme-secondary flex flex-wrap items-center justify-center sm:justify-start gap-1.5 pt-0.5"
+				>
+					<span>Demonstrasi & Showcase Portofolio.</span>
+					<span class="hidden sm:inline text-theme-border">•</span>
+					<span class="inline-flex items-center gap-1.5">
+						Design & Developed by
+						<a
+							href="/"
+							class="brand text-xs font-medium tracking-wide inline-flex items-center align-middle hover:opacity-90 transition-opacity"
+						>
+							<span
+								class="bg-green-800 text-white border border-r-0 border-green-700 rounded-l-xs px-1.5 py-0.5 font-bold leading-none"
+								>dni</span
+							><span
+								class="text-theme-primary border border-green-800 px-1.5 py-0.5 rounded-r-xs bg-theme-surface leading-none"
+								>WebCraft</span
+							>
+						</a>
+					</span>
+				</div>
+			</div>
+
+			<div class="flex items-center gap-4">
+				<span
+					class="px-2.5 py-1 rounded-sm bg-theme-surface border border-theme-border text-[11px] font-medium text-theme-accent"
+				>
+					Showcase & Demo Project
+				</span>
+				<a
+					href="#"
+					class="p-2 rounded-sm bg-theme-surface text-theme-secondary hover:text-theme-accent border border-theme-border transition-colors shadow-sm"
+					title="Ke Atas"
+					aria-label="Kembali ke atas"
+				>
+					<ArrowUp class="w-4 h-4" />
+				</a>
+			</div>
+		</div>
+	</div>
+</footer>

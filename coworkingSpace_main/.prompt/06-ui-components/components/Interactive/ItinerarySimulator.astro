@@ -1,0 +1,198 @@
+---
+import { siteConfig } from '../data/siteConfig.js';
+---
+
+<section id="simulasi" class="py-24 md:py-32 bg-[#FAF7F2] border-t border-[#1C2520]/10" aria-label="Simulasi Estimasi Biaya">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Left Info Header (5 cols) -->
+      <div class="lg:col-span-5 flex flex-col">
+        <h2 class="font-serif-editorial text-3xl sm:text-4xl lg:text-5xl text-[#1C2520] font-normal leading-tight mb-6">
+          Hitung Sendiri Perkiraan Biaya <span class="italic text-[#C86D51] font-semibold">Trip Anda</span>
+        </h2>
+        <p class="text-base text-[#5A6660] leading-relaxed mb-6 font-sans-body">
+          Coba geser-geser slider di bawah buat lihat gambaran kasarnya. Ini baru estimasi awal—nanti tim kami bantu sesuaikan lagi sampai pas sama budget Anda.
+        </p>
+
+        <div class="space-y-4 border-t border-[#1C2520]/10 pt-6 text-xs text-[#1C2520] font-medium">
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-full bg-[#2C5E4E]/10 text-[#2C5E4E] flex items-center justify-center font-bold" aria-hidden="true">1</span>
+            <span>Pilih jenis trip—Keluarga, Outing Kantor, atau MICE</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-full bg-[#2C5E4E]/10 text-[#2C5E4E] flex items-center justify-center font-bold" aria-hidden="true">2</span>
+            <span>Tentukan tujuan dan berapa orang yang ikut</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-full bg-[#2C5E4E]/10 text-[#2C5E4E] flex items-center justify-center font-bold" aria-hidden="true">3</span>
+            <span>Langsung dapat gambaran biaya dan draf itinerary</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Interactive Calculator Form (7 cols) -->
+      <div class="lg:col-span-7 bg-white rounded-3xl p-8 sm:p-10 border border-[#1C2520]/15 shadow-xl">
+        
+        <form id="simulator-form" class="space-y-6">
+          
+          <!-- Field 1: Category -->
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-semibold text-[#1C2520] mb-3">
+              1. Mau Trip Apa?
+            </label>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              <label class="sim-type-btn cursor-pointer p-3 rounded-xl border border-[#1C2520]/15 text-center transition-all bg-[#FAF7F2] has-[:checked]:bg-[#2C5E4E] has-[:checked]:text-white has-[:checked]:border-transparent">
+                <input type="radio" name="trip_type" value="Family Trip" class="sr-only" checked />
+                <span class="block text-xs font-semibold">Family / Private</span>
+              </label>
+
+              <label class="sim-type-btn cursor-pointer p-3 rounded-xl border border-[#1C2520]/15 text-center transition-all bg-[#FAF7F2] has-[:checked]:bg-[#2C5E4E] has-[:checked]:text-white has-[:checked]:border-transparent">
+                <input type="radio" name="trip_type" value="Gathering Kantor" class="sr-only" />
+                <span class="block text-xs font-semibold">Outing Kantor</span>
+              </label>
+
+              <label class="sim-type-btn cursor-pointer p-3 rounded-xl border border-[#1C2520]/15 text-center transition-all bg-[#FAF7F2] has-[:checked]:bg-[#2C5E4E] has-[:checked]:text-white has-[:checked]:border-transparent">
+                <input type="radio" name="trip_type" value="MICE & Incentive" class="sr-only" />
+                <span class="block text-xs font-semibold">MICE / Insentif</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Field 2: Destination & Pax Count -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label for="sim-destinasi" class="block text-xs uppercase tracking-wider font-semibold text-[#1C2520] mb-2">
+                2. Mau ke Mana?
+              </label>
+              <select id="sim-destinasi" class="w-full bg-[#FAF7F2] border border-[#1C2520]/15 rounded-xl px-4 py-3 text-xs font-semibold text-[#1C2520] focus:outline-none focus:ring-2 focus:ring-[#2C5E4E] focus:ring-offset-2 focus:border-[#2C5E4E]">
+                <option value="Bali (3D2N / 4D3N)" data-rate="2750000">Bali (Beach & Culture)</option>
+                <option value="Labuan Bajo (Private Phinisi)" data-rate="4850000">Labuan Bajo (Komodo & Sailing)</option>
+                <option value="Bromo & Malang" data-rate="2250000">Bromo, Batu & Malang</option>
+                <option value="Yogyakarta (Cultural & Heritage)" data-rate="1950000">Yogyakarta & Borobudur</option>
+                <option value="Raja Ampat (Exotic Archipelago)" data-rate="8900000">Raja Ampat Papua</option>
+                <option value="Jepang / Korea (International)" data-rate="14500000">Jepang / Korea (Overseas)</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="sim-pax-range" class="block text-xs uppercase tracking-wider font-semibold text-[#1C2520] mb-2">
+                3. Berapa Orang?
+              </label>
+              <!-- [U4 Fix: Slider min/max visual labels] -->
+              <div class="flex items-center gap-3 bg-[#FAF7F2] border border-[#1C2520]/15 rounded-xl px-4 py-2.5">
+                <span class="text-[10px] text-[#6B7674] font-semibold shrink-0" aria-hidden="true">2</span>
+                <input 
+                  type="range" 
+                  id="sim-pax-range" 
+                  min="2" 
+                  max="150" 
+                  value="25" 
+                  aria-label="Jumlah Peserta Rombongan"
+                  class="w-full accent-[#2C5E4E]" 
+                />
+                <span class="text-[10px] text-[#6B7674] font-semibold shrink-0" aria-hidden="true">150</span>
+                <span id="sim-pax-val" class="font-serif-editorial text-xl font-bold text-[#2C5E4E] min-w-[55px] text-right">
+                  25 pax
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Field 3: Admin & Document Needs -->
+          <div>
+            <label class="block text-xs uppercase tracking-wider font-semibold text-[#1C2520] mb-2">
+              4. Butuh Dokumen Apa?
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs text-[#1C2520]">
+              <label class="flex items-center gap-2 cursor-pointer p-3 bg-[#FAF7F2] rounded-xl border border-[#1C2520]/10">
+                <input type="checkbox" id="sim-efaktur" class="rounded accent-[#2C5E4E]" checked />
+                <span>e-Faktur & Invoice ber-NPWP</span>
+              </label>
+
+              <label class="flex items-center gap-2 cursor-pointer p-3 bg-[#FAF7F2] rounded-xl border border-[#1C2520]/10">
+                <input type="checkbox" id="sim-rooming" class="rounded accent-[#2C5E4E]" checked />
+                <span>Contoh Rundown & Daftar Kamar</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Result Display Box -->
+          <div class="bg-[#15221E] text-white p-6 rounded-2xl border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+              <span class="text-xs text-[#6B7674] block mb-1">Perkiraan Total Biaya Rombongan</span>
+              <div id="sim-total-display" class="font-serif-editorial text-3xl sm:text-4xl font-bold text-[#EFE6D8]">
+                Rp 68.750.000
+              </div>
+              <span class="text-[10px] text-[#6B7674] block mt-1">
+                *Ini baru perkiraan kasar—nanti bisa kami adjust bareng
+              </span>
+            </div>
+
+            <!-- [C3 Fix: type="button"] -->
+            <button 
+              type="button"
+              id="sim-send-wa"
+              class="w-full sm:w-auto bg-[#25D366] hover:bg-[#1EBC5A] text-white text-xs font-bold px-6 py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 shrink-0 focus:outline-none focus:ring-2 focus:ring-[#25D366]"
+            >
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-1.157 4.228 4.26-1.117z"/>
+              </svg>
+              <span>Kirim Hasil ke WhatsApp</span>
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // Calculator Interactive Controller Script
+  const paxRange = document.getElementById('sim-pax-range') as HTMLInputElement;
+  const paxVal = document.getElementById('sim-pax-val');
+  const destSelect = document.getElementById('sim-destinasi') as HTMLSelectElement;
+  const totalDisplay = document.getElementById('sim-total-display');
+  const sendWaBtn = document.getElementById('sim-send-wa');
+
+  function calculateEstimate() {
+    if (!paxRange || !destSelect || !totalDisplay) return;
+
+    const pax = parseInt(paxRange.value) || 2;
+    if (paxVal) paxVal.textContent = `${pax} pax`;
+
+    const selectedOption = destSelect.options[destSelect.selectedIndex];
+    const baseRate = parseInt(selectedOption.getAttribute('data-rate') || '2500000');
+
+    // Tiered bulk discount
+    let discount = 1;
+    if (pax >= 50) discount = 0.88; // 12% off
+    else if (pax >= 20) discount = 0.92; // 8% off
+
+    const estimatedTotal = Math.round(baseRate * pax * discount);
+    totalDisplay.textContent = `Rp ${estimatedTotal.toLocaleString('id-ID')}`;
+  }
+
+  paxRange?.addEventListener('input', calculateEstimate);
+  destSelect?.addEventListener('change', calculateEstimate);
+
+  sendWaBtn?.addEventListener('click', () => {
+    const tripType = (document.querySelector('input[name="trip_type"]:checked') as HTMLInputElement)?.value || 'General Trip';
+    const destination = destSelect?.value || 'Bali';
+    const pax = paxRange?.value || '25';
+    const total = totalDisplay?.textContent || '';
+    const efaktur = (document.getElementById('sim-efaktur') as HTMLInputElement)?.checked ? 'Ya' : 'Tidak';
+
+    const text = `Halo Nusantara Journey! Saya mencoba kalkulator estimasi di web:%0A%0A• *Jenis Trip:* ${encodeURIComponent(tripType)}%0A• *Destinasi:* ${encodeURIComponent(destination)}%0A• *Jumlah Peserta:* ${pax} pax%0A• *Estimasi Total:* ${encodeURIComponent(total)}%0A• *Butuh e-Faktur:* ${efaktur}%0A%0AMohon bantuan kirimkan proposal PDF dan draf itinerary lengkapnya ya.`;
+
+    window.open(`https://wa.me/6281234567890?text=${text}`, '_blank');
+  });
+
+  // Initial calculation
+  calculateEstimate();
+</script>

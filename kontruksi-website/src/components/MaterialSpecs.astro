@@ -1,0 +1,90 @@
+---
+import { Layers, ShieldCheck, FileText } from 'lucide-astro';
+import { specsContent } from '../data/specs.js';
+---
+
+<section class="py-24 lg:py-32 bg-theme-bg border-b border-theme-border">
+  <div class="editorial-container">
+    
+    <!-- Section Header -->
+    <div class="max-w-3xl mb-16 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-sm bg-theme-surface border border-theme-border text-theme-accent text-xs font-semibold tracking-wider">
+        <FileText class="w-4 h-4" />
+        <span>{specsContent.preheader}</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif text-theme-primary font-normal leading-tight">
+        {specsContent.title}
+      </h2>
+      <p class="text-theme-secondary text-base leading-relaxed">
+        {specsContent.subtitle}
+      </p>
+    </div>
+
+    <!-- 1. Steel Profile Matrix Table -->
+    <div class="space-y-6 mb-16">
+      <h3 class="text-xl font-serif text-theme-primary font-normal flex items-center gap-2">
+        <Layers class="w-5 h-5 text-theme-accent" />
+        <span>1. Matriks Mutu & Profil Baja Utama</span>
+      </h3>
+
+      <div class="surface-card rounded-sm border-theme-border overflow-x-auto">
+        <table class="w-full text-left text-xs sm:text-sm text-theme-secondary">
+          <thead class="bg-theme-surface text-theme-primary font-serif uppercase tracking-wider text-[11px] border-b border-theme-border">
+            <tr>
+              <th class="p-4">Jenis Profil Baja</th>
+              <th class="p-4">Mutu & Sertifikasi</th>
+              <th class="p-4">Kuat Leleh (Beban)</th>
+              <th class="p-4">Aplikasi Rekomendasi</th>
+              <th class="p-4">Ketahanan Korosi</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-theme-border">
+            {specsContent.steelMatrix.map(item => (
+              <tr class="hover:bg-theme-surface-hover transition-colors">
+                <td class="p-4 font-semibold text-theme-primary">{item.profile}</td>
+                <td class="p-4 text-theme-accent font-medium">{item.grade}</td>
+                <td class="p-4 text-theme-primary">{item.yield}</td>
+                <td class="p-4">{item.application}</td>
+                <td class="p-4 text-theme-muted">{item.resistance}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 2. Roofing & Insulation Matrix Table -->
+    <div class="space-y-6">
+      <h3 class="text-xl font-serif text-theme-primary font-normal flex items-center gap-2">
+        <ShieldCheck class="w-5 h-5 text-theme-accent" />
+        <span>2. Matriks Efisiensi Termal Atap & Insulasi</span>
+      </h3>
+
+      <div class="surface-card rounded-sm border-theme-border overflow-x-auto">
+        <table class="w-full text-left text-xs sm:text-sm text-theme-secondary">
+          <thead class="bg-theme-surface text-theme-primary font-serif uppercase tracking-wider text-[11px] border-b border-theme-border">
+            <tr>
+              <th class="p-4">Sistem Atap & Insulasi</th>
+              <th class="p-4">Reduksi Suhu Ruangan</th>
+              <th class="p-4">Peredaman Hujan/Suara</th>
+              <th class="p-4">Ketahanan & Garansi</th>
+              <th class="p-4">Rekomendasi Industri</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-theme-border">
+            {specsContent.roofMatrix.map(item => (
+              <tr class="hover:bg-theme-surface-hover transition-colors">
+                <td class="p-4 font-semibold text-theme-primary">{item.name}</td>
+                <td class="p-4 text-theme-success font-medium">{item.thermal}</td>
+                <td class="p-4 text-theme-primary">{item.sound}</td>
+                <td class="p-4 text-theme-accent">{item.durability}</td>
+                <td class="p-4 text-theme-muted">{item.bestFor}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>

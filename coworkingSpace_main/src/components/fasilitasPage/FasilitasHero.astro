@@ -1,0 +1,30 @@
+---
+import { fasilitasHeroData } from './FasilitasHero.data.js';
+---
+
+<section class="py-20 md:py-28 bg-bg-base border-b border-border-indie">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="max-w-3xl">
+      <h1 class="font-caveat text-4xl md:text-6xl font-bold text-text-primary leading-tight">
+        {fasilitasHeroData.headline}
+      </h1>
+
+      <p class="font-dmsans text-base md:text-lg text-text-primary font-medium mt-6 leading-relaxed">
+        {fasilitasHeroData.lede}
+      </p>
+
+      <p class="font-dmsans text-sm md:text-base text-text-secondary mt-4 leading-relaxed">
+        {fasilitasHeroData.body}
+      </p>
+    </div>
+
+    <div class="mt-12 w-full border-[1.5px] border-border-indie p-3 bg-white shadow-indie rounded-blob">
+      <img
+        src={fasilitasHeroData.image}
+        alt={fasilitasHeroData.imageAlt}
+        class="w-full aspect-video md:aspect-21/9 object-cover rounded-blob"
+        loading="eager"
+      />
+    </div>
+  </div>
+</section>

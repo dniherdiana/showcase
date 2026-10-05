@@ -1,0 +1,763 @@
+---
+import { Calculator, ArrowRight, ArrowLeft, CheckCircle2, Building2, Send, Layers, Wrench } from 'lucide-astro';
+---
+
+<section id="kalkulator" class="py-24 lg:py-32 bg-theme-bg relative border-b border-theme-border">
+  <div class="editorial-container">
+
+    <!-- Section Header -->
+    <div class="max-w-3xl mx-auto text-center mb-16 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-sm bg-theme-surface border border-theme-border text-theme-accent text-xs font-semibold uppercase tracking-wider">
+        <Calculator class="w-4 h-4" />
+        <span>Kalkulator Detail Spesifikasi Material Komplit & Tonase</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif text-theme-primary font-normal leading-tight">
+        Simulasi Detail Biaya & Tonase Baja Pabrik
+      </h2>
+      <p class="text-theme-secondary text-base leading-relaxed">
+        Pilih bentang kolom, jenis profil baja, pondasi tanah, material atap insulasi, ketahanan lantai beton, dan kapasitas crane untuk mendapatkan kalkulasi estimasi kebutuhan riil dan proyeksi RAB.
+      </p>
+    </div>
+
+    <!-- Multi-Step Container Card -->
+    <div class="max-w-5xl mx-auto surface-card p-6 sm:p-10 rounded-sm">
+
+      <!-- Step Indicator Bar -->
+      <div class="flex items-center justify-between mb-10 pb-6 border-b border-theme-border overflow-x-auto">
+        <div class="flex items-center gap-2 step-indicator active shrink-0" data-step="1">
+          <div class="w-8 h-8 rounded-sm bg-theme-accent text-theme-bg font-bold flex items-center justify-center step-num">1</div>
+          <span class="text-xs font-semibold text-theme-primary">Dimensi & Bentang</span>
+        </div>
+        <div class="h-0.5 flex-1 bg-theme-border min-w-3.75 mx-2 step-line" data-line="1"></div>
+
+        <div class="flex items-center gap-2 step-indicator shrink-0" data-step="2">
+          <div class="w-8 h-8 rounded-sm bg-theme-border text-theme-secondary font-bold flex items-center justify-center step-num">2</div>
+          <span class="text-xs font-semibold text-theme-secondary">Pondasi & Baja Utama</span>
+        </div>
+        <div class="h-0.5 flex-1 bg-theme-border min-w-3.75 mx-2 step-line" data-line="2"></div>
+
+        <div class="flex items-center gap-2 step-indicator shrink-0" data-step="3">
+          <div class="w-8 h-8 rounded-sm bg-theme-border text-theme-secondary font-bold flex items-center justify-center step-num">3</div>
+          <span class="text-xs font-semibold text-theme-secondary">Atap & Dinding</span>
+        </div>
+        <div class="h-0.5 flex-1 bg-theme-border min-w-3.75 mx-2 step-line" data-line="3"></div>
+
+        <div class="flex items-center gap-2 step-indicator shrink-0" data-step="4">
+          <div class="w-8 h-8 rounded-sm bg-theme-border text-theme-secondary font-bold flex items-center justify-center step-num">4</div>
+          <span class="text-xs font-semibold text-theme-secondary">Lantai Beton & Crane</span>
+        </div>
+        <div class="h-0.5 flex-1 bg-theme-border min-w-3.75 mx-2 step-line" data-line="4"></div>
+
+        <div class="flex items-center gap-2 step-indicator shrink-0" data-step="5">
+          <div class="w-8 h-8 rounded-sm bg-theme-border text-theme-secondary font-bold flex items-center justify-center step-num">5</div>
+          <span class="text-xs font-semibold text-theme-secondary">Hasil & Breakdown RAB</span>
+        </div>
+      </div>
+
+      <!-- Step Forms -->
+      <form id="multi-step-form" onsubmit="return false;">
+
+        <!-- STEP 1: Dimensi & Geometri Pabrik -->
+        <div class="step-content block" id="step-1">
+          <div class="flex items-center justify-between mb-6 border-b border-theme-border pb-3">
+            <h3 class="text-xl font-serif font-normal text-theme-primary flex items-center gap-2">
+              <Building2 class="w-5 h-5 text-theme-accent" />
+              <span>Langkah 1: Geometri & Dimensi Utama Bangunan</span>
+            </h3>
+            <span class="text-xs text-theme-secondary">Tahap 1 dari 5</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div>
+              <label class="form-label" for="calc-length">Panjang Total Bangunan (Meter) *</label>
+              <input type="number" id="calc-length" min="10" max="300" value="40" class="form-input calc-change-trigger" />
+              <span class="text-[11px] text-theme-secondary mt-1 block">Rekomendasi kelipatan jarak bentang (bay)</span>
+            </div>
+            <div>
+              <label class="form-label" for="calc-width">Lebar Bentang Utama (Meter) *</label>
+              <input type="number" id="calc-width" min="10" max="150" value="20" class="form-input calc-change-trigger" />
+              <span class="text-[11px] text-theme-secondary mt-1 block">Jarak bentang kolom ke kolom</span>
+            </div>
+            <div>
+              <label class="form-label" for="calc-height">Tinggi Dinding / Eave Height (Meter) *</label>
+              <input type="number" id="calc-height" min="4" max="25" value="8" class="form-input calc-change-trigger" />
+              <span class="text-[11px] text-theme-secondary mt-1 block">Tinggi bawah balok konsol crane</span>
+            </div>
+          </div>
+
+          <!-- Clickable Option Group: Bay Distance -->
+          <div class="mb-6">
+            <label class="form-label">Jarak Antar Kolom Utama (Bay Distance / Jarak Bentang Rafter) *</label>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4" id="group-bay">
+              <label class="selectable-card cursor-pointer border border-theme-accent bg-theme-accent-bg rounded-sm p-4 flex flex-col justify-between transition-all select-none">
+                <input type="radio" name="bay_distance" value="6" checked class="hidden calc-change-trigger" />
+                <div>
+                  <span class="font-bold text-theme-primary text-base">Jarak 6 Meter (Standard Bay)</span>
+                  <span class="text-xs text-theme-accent font-medium block mt-0.5">Base Tonnage Ratio</span>
+                  <p class="text-xs text-theme-secondary mt-2 leading-relaxed">Paling ekonomis untuk gording profil C standard. Titik pondasi lebih rapat.</p>
+                </div>
+              </label>
+
+              <label class="selectable-card cursor-pointer border border-theme-border bg-theme-bg rounded-sm p-4 flex flex-col justify-between hover:border-theme-border-hover transition-all select-none">
+                <input type="radio" name="bay_distance" value="8" class="hidden calc-change-trigger" />
+                <div>
+                  <span class="font-bold text-theme-primary text-base">Jarak 8 Meter (Medium Bay)</span>
+                  <span class="text-xs text-theme-accent font-medium block mt-0.5">+10% Tonase Gording & Rafter</span>
+                  <p class="text-xs text-theme-secondary mt-2 leading-relaxed">Mengurangi jumlah kolom & titik pondasi 25%, namun memerlukan gording WF/Z-Purlin tebal.</p>
+                </div>
+              </label>
+
+              <label class="selectable-card cursor-pointer border border-theme-border bg-theme-bg rounded-sm p-4 flex flex-col justify-between hover:border-theme-border-hover transition-all select-none">
+                <input type="radio" name="bay_distance" value="10" class="hidden calc-change-trigger" />
+                <div>
+                  <span class="font-bold text-theme-primary text-base">Jarak 10 Meter (Wide Bay)</span>
+                  <span class="text-xs text-theme-accent font-medium block mt-0.5">+22% Tonase Momen Lentur</span>
+                  <p class="text-xs text-theme-secondary mt-2 leading-relaxed">Ruang gerak forklift & alat berat maksimal. Membutuhkan profil gording & balok WF heavy duty.</p>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="flex justify-end pt-4">
+            <button type="button" class="btn-next btn-primary">
+              <span>Lanjut ke Sub-Struktur & Baja</span>
+              <ArrowRight class="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 2: Spesifikasi Pondasi & Jenis Profil Baja -->
+        <div class="step-content hidden" id="step-2">
+          <div class="flex items-center justify-between mb-6 border-b border-theme-border pb-3">
+            <h3 class="text-xl font-serif font-normal text-theme-primary flex items-center gap-2">
+              <Layers class="w-5 h-5 text-theme-accent" />
+              <span>Langkah 2: Spesifikasi Sub-Struktur & Jenis Profil Baja Utama</span>
+            </h3>
+            <span class="text-xs text-theme-secondary">Tahap 2 dari 5</span>
+          </div>
+
+          <!-- Foundation Options -->
+          <div class="mb-6">
+            <label class="form-label">Sistem Sub-Struktur & Pondasi Tanah *</label>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4" id="group-foundation">
+              <label class="selectable-card cursor-pointer border border-theme-accent bg-theme-accent-bg rounded-sm p-4 flex flex-col justify-between transition-all select-none">
+                <input type="radio" name="foundation_type" value="footplate" checked class="hidden calc-change-trigger" />
+                <div>
+                  <div class="font-bold text-theme-primary text-sm">Pondasi Footplate (Cakar Ayam) K-300</div>
+                  <p class="text-xs text-theme-secondary mt-1">Untuk lokasi tanah keras / sedang (Kedalaman 2m - 4m)</p>
+                </div>
+              </label>
+
+              <label class="selectable-card cursor-pointer border border-theme-border bg-theme-bg rounded-sm p-4 flex flex-col justify-between hover:border-theme-border-hover transition-all select-none">
+                <input type="radio" name="foundation_type" value="bored_pile" class="hidden calc-change-trigger" />
+                <div>
+                  <div class="font-bold text-theme-primary text-sm">Pondasi Bored Pile (Kedalaman 12m - 18m)</div>
+                  <p class="text-xs text-theme-secondary mt-1">Untuk tanah lunak / rawa industri (Cikarang, Karawang, Semarang)</p>
+                </div>
+              </label>
+
+              <label class="selectable-card cursor-pointer border border-theme-border bg-theme-bg rounded-sm p-4 flex flex-col justify-between hover:border-theme-border-hover transition-all select-none">
+                <input type="radio" name="foundation_type" value="strauss_pile" class="hidden calc-change-trigger" />
+                <div>
+                  <div class="font-bold text-theme-primary text-sm">Strauss Pile & Tie-Beam Heavy K-350</div>
+                  <p class="text-xs text-theme-secondary mt-1">Khusus beban gantry crane heavy duty >25 Ton</p>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Clickable Option Group: Steel Type -->
+          <div class="space-y-4 mb-6">
+            <label class="form-label">Jenis Baja & Standar Mutu Profil Utama *</label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="group-steel">
+              <label class="selectable-card cursor-pointer border border-theme-accent bg-theme-accent-bg rounded-sm p-4 flex flex-col justify-between transition-all select-none">
+                <input type="radio" name="steel_type" value="wf_ss400" checked class="hidden calc-change-trigger" />
+                <div>
+                  <div class="font-bold text-theme-primary text-base flex items-center justify-between">
+                    <span>Baja WF (Wide Flange) SS400</span>
+                    <span class="text-xs text-theme-accent font-normal">Standard SNI</span>
+                  </div>
+                  <p class="text-xs text-theme-secondary mt-2 leading-relaxed">
+                    Standar utama konstruksi pabrik dan gudang. Diproduksi oleh Krakatau Steel / Gunung Garuda dengan sertifikat Mill Test resmi.
+                  </p>
+                </div>
+              </label>
+
+              <label class="selectable-card cursor-pointer border border-theme-border bg-theme-bg rounded-sm p-4 flex flex-col justify-between hover:border-theme-border-hover transition-all select-none">
+                <input type="radio" name="steel_type" value="hbeam_sm490" class="hidden calc-change-trigger" />
+                <div>
+                  <div class="font-bold text-theme-primary text-base flex items-center justify-between">
+                    <span>Baja H-Beam High-Tensile SM490</span>
+                    <span class="text-xs text-theme-accent font-normal">Heavy Duty (+20%)</span>
+                  </div>
+                  <p class="text-xs text-theme-secondary mt-2 leading-relaxed">
+                    Kapasitas leleh tinggi untuk kolom pabrik industri berat, bangunan bertingkat, dan penopang overhead crane >20 Ton.
+                  </p>
+                </div>
+              </label>
+
+              <label class="selectable-card cursor-pointer border border-theme-border bg-theme-bg rounded-sm p-4 flex flex-col justify-between hover:border-theme-border-hover transition-all select-none">
+                <input type="radio" name="steel_type" value="castellated" class="hidden calc-change-trigger" />
+                <div>
+                  <div class="font-bold text-theme-primary text-base flex items-center justify-between">
+                    <span>Castellated / Honeycomb Beam</span>
+                    <span class="text-xs text-theme-accent font-normal">Hemat Berat (-15%)</span>
+                  </div>
+                  <p class="text-xs text-theme-secondary mt-2 leading-relaxed">
+                    Balok baja berlubang hexagon yang ditingkatkan ketinggiannya untuk bentang >30m tanpa kolom tengah, hemat berat 15%.
+                  </p>
+                </div>
+              </label>
+
+              <label class="selectable-card cursor-pointer border border-theme-border bg-theme-bg rounded-sm p-4 flex flex-col justify-between hover:border-theme-border-hover transition-all select-none">
+                <input type="radio" name="steel_type" value="hdg_galvanized" class="hidden calc-change-trigger" />
+                <div>
+                  <div class="font-bold text-theme-primary text-base flex items-center justify-between">
+                    <span>Hot-Dip Galvanized (HDG) Steel</span>
+                    <span class="text-xs text-theme-accent font-normal">Anti-Korosi Pesisir</span>
+                  </div>
+                  <p class="text-xs text-theme-secondary mt-2 leading-relaxed">
+                    Lapisan seng galvanis celup panas ketebalan 85 micron untuk proteksi karat ekstrem di lingkungan kimia atau pesisir pantai.
+                  </p>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="flex justify-between pt-4">
+            <button type="button" class="btn-prev btn-secondary">
+              <ArrowLeft class="w-4 h-4" />
+              <span>Kembali</span>
+            </button>
+            <button type="button" class="btn-next btn-primary">
+              <span>Pilih Atap & Dinding</span>
+              <ArrowRight class="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 3: Atap & Dinding -->
+        <div class="step-content hidden" id="step-3">
+          <div class="flex items-center justify-between mb-6 border-b border-theme-border pb-3">
+            <h3 class="text-xl font-serif font-normal text-theme-primary flex items-center gap-2">
+              <Building2 class="w-5 h-5 text-theme-accent" />
+              <span>Langkah 3: Material Penutup Atap & Dinding (Cladding)</span>
+            </h3>
+            <span class="text-xs text-theme-secondary">Tahap 3 dari 5</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label class="form-label" for="calc-roof">Sistem Penutup Atap Utama *</label>
+              <select id="calc-roof" class="form-input calc-change-trigger">
+                <option value="zincalume_045">Zincalume AZ150 Single Sheet 0.45mm (Standard Anti-Karat SNI)</option>
+                <option value="sandwich_pu">Sandwich Panel PU Foam 50mm (Peredam Panas & Suara Tinggi)</option>
+                <option value="double_mesh">Double Sheet Zincalume + Insulation Glasswool Woven Mesh</option>
+                <option value="upvc_corrosive">UPVC Multi-Layer Roof (Tahan Bahan Kimia & Garam Laut)</option>
+                <option value="seam_lock">Standing Seam 0.50mm (100% Bebas Bocor Kemiringan Rendah 2°)</option>
+              </select>
+              <span class="text-[11px] text-theme-secondary mt-1 block">Termasuk nok perbumbungan dan talang air seng gantung</span>
+            </div>
+
+            <div>
+              <label class="form-label" for="calc-skylight">Persentase Pencahayaan Alami (Skylight) *</label>
+              <select id="calc-skylight" class="form-input calc-change-trigger">
+                <option value="5">5% Luas Atap (Skylight Polycarbonate Standard)</option>
+                <option value="10">10% Luas Atap (Optimasi Hemat Energi Siang Hari)</option>
+                <option value="15">15% Luas Atap (Pencahayaan Maksimal Pabrik Logistik)</option>
+              </select>
+              <span class="text-[11px] text-theme-secondary mt-1 block">Mengurangi konsumsi listrik lampu hingga 35% di siang hari</span>
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <label class="form-label" for="calc-cladding">Material Penutup Dinding (Cladding) *</label>
+            <select id="calc-cladding" class="form-input calc-change-trigger">
+              <option value="brick_half">Dinding Pasangan Hebel Tinggi 3m + Cladding Zincalume Atas</option>
+              <option value="full_cladding">Full Cladding Zincalume AZ150 dari Pedestal Beton</option>
+              <option value="full_sandwich">Full Sandwich Panel PU Foam (Insulasi Suhu Ruangan Tertutup)</option>
+              <option value="precast_concrete">Dinding Beton Pracetak (Precast Concrete Panel Tahan Api 2 Jam)</option>
+            </select>
+          </div>
+
+          <div class="flex justify-between pt-4">
+            <button type="button" class="btn-prev btn-secondary">
+              <ArrowLeft class="w-4 h-4" />
+              <span>Kembali</span>
+            </button>
+            <button type="button" class="btn-next btn-primary">
+              <span>Spesifikasi Lantai & Crane</span>
+              <ArrowRight class="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 4: Lantai Beton & Crane -->
+        <div class="step-content hidden" id="step-4">
+          <div class="flex items-center justify-between mb-6 border-b border-theme-border pb-3">
+            <h3 class="text-xl font-serif font-normal text-theme-primary flex items-center gap-2">
+              <Wrench class="w-5 h-5 text-theme-accent" />
+              <span>Langkah 4: Spesifikasi Kekuatan Lantai Beton & Crane</span>
+            </h3>
+            <span class="text-xs text-theme-secondary">Tahap 4 dari 5</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div>
+              <label class="form-label" for="calc-floor">Kekuatan & Finishing Lantai Beton *</label>
+              <select id="calc-floor" class="form-input calc-change-trigger">
+                <option value="floor_std_k250">Lantai Beton K-250 Tebal 12cm Wiremesh M6 (Beban &lt; 2 Ton/m²)</option>
+                <option value="floor_hardener_k300">Beton K-300 Floor Hardener Metallic Tebal 15cm Wiremesh M8 (Beban 3-5 Ton/m²)</option>
+                <option value="floor_epoxy_k350">Beton K-350 Epoxy Coating 2000 Micron (Farmasi / Makanan / Cleanroom)</option>
+                <option value="floor_post_tension">Beton Post-Tensioned Heavy Load (Beban Racking High-Bay &gt; 8 Ton/m²)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="form-label" for="calc-crane">Kapasitas Overhead Crane *</label>
+              <select id="calc-crane" class="form-input calc-change-trigger">
+                <option value="0">Tanpa Overhead Crane (Gudang Penyimpanan Umum)</option>
+                <option value="5">Overhead Crane 5 Ton (Single Girder Perakitan Ringan)</option>
+                <option value="15">Overhead Crane 10 - 15 Ton (Double Girder Manufaktur Sedang)</option>
+                <option value="30">Overhead Crane Heavy Duty &gt; 25 Ton (Industri Berat & Metal)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mb-6">
+            <label class="form-label" for="calc-location">Lokasi Wilayah Proyek *</label>
+            <select id="calc-location" class="form-input calc-change-trigger">
+              <option value="Jabodetabek">Jabodetabek (Jakarta, Bogor, Depok, Tangerang, Bekasi)</option>
+              <option value="Jawa Barat">Jawa Barat (Cikarang, Karawang, Purwakarta, Bandung)</option>
+              <option value="Jawa Tengah">Jawa Tengah (Semarang, Solo, Demak, Kendal)</option>
+              <option value="Jawa Timur">Jawa Timur (Surabaya, Sidoarjo, Gresik, Mojokerto)</option>
+              <option value="Luar Jawa">Luar Pulau Jawa (Sumatera, Kalimantan, Sulawesi)</option>
+            </select>
+          </div>
+
+          <div class="flex justify-between pt-4">
+            <button type="button" class="btn-prev btn-secondary">
+              <ArrowLeft class="w-4 h-4" />
+              <span>Kembali</span>
+            </button>
+            <button type="button" id="btn-calculate" class="btn-next btn-primary">
+              <span>Hitung Kalkulasi Detail Saya</span>
+              <Calculator class="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+
+        <!-- STEP 5: Hasil Kalkulasi -->
+        <div class="step-content hidden" id="step-5">
+          <div class="flex items-center justify-between mb-6 border-b border-theme-border pb-3">
+            <h3 class="text-xl font-serif font-normal text-theme-primary flex items-center gap-2">
+              <CheckCircle2 class="w-5 h-5 text-theme-success" />
+              <span>Langkah 5: Rincian Hasil Perhitungan & Estimasi RAB</span>
+            </h3>
+            <span class="text-xs text-theme-accent font-semibold bg-theme-accent-bg px-2.5 py-0.5 rounded-sm border border-theme-accent/30">Termasuk Garansi Purna Jual 12 Bln</span>
+          </div>
+
+          <!-- Total Metric Indicators -->
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+            <div class="p-4 rounded-sm bg-theme-bg border border-theme-border">
+              <div class="text-xs text-theme-secondary">Total Luas Bangunan</div>
+              <div class="text-2xl font-serif text-theme-primary mt-1" id="res-area">800 m²</div>
+            </div>
+            <div class="p-4 rounded-sm bg-theme-bg border border-theme-border">
+              <div class="text-xs text-theme-secondary">Estimasi Tonase Baja WF/H-Beam</div>
+              <div class="text-2xl font-serif text-theme-accent mt-1" id="res-tonnage">~ 32,000 kg</div>
+            </div>
+            <div class="p-4 rounded-sm bg-theme-bg border border-theme-border">
+              <div class="text-xs text-theme-secondary">Estimasi Total Biaya Proyek</div>
+              <div class="text-2xl font-serif text-theme-primary mt-1" id="res-cost">Rp 1.28 - 1.60 Miliar</div>
+            </div>
+          </div>
+
+          <!-- Detailed Component Cost Breakdown Table -->
+          <div class="surface-card p-6 rounded-sm border-theme-border mb-8 space-y-4">
+            <h4 class="text-sm font-semibold text-theme-primary uppercase tracking-wider border-b border-theme-border pb-2">
+              Rincian Proyeksi RAB Per Komponen Material
+            </h4>
+
+            <div class="space-y-3 text-xs sm:text-sm">
+              <div class="flex justify-between py-2 border-b border-theme-border/60">
+                <span class="text-theme-secondary">1. Fabrikasi & Ereksi Struktur Baja Utama (WF/H-Beam SNI)</span>
+                <span class="font-semibold text-theme-primary" id="res-breakdown-steel">Rp 720 - 900 Juta</span>
+              </div>
+              <div class="flex justify-between py-2 border-b border-theme-border/60">
+                <span class="text-theme-secondary">2. Pekerjaan Atap Zincalume/Sandwich Panel + Insulasi & Skylight</span>
+                <span class="font-semibold text-theme-primary" id="res-breakdown-roof">Rp 240 - 300 Juta</span>
+              </div>
+              <div class="flex justify-between py-2 border-b border-theme-border/60">
+                <span class="text-theme-secondary">3. Pekerjaan Sub-Struktur, Pondasi & Lantai Beton Hardener/Epoxy</span>
+                <span class="font-semibold text-theme-primary" id="res-breakdown-civil">Rp 280 - 350 Juta</span>
+              </div>
+              <div class="flex justify-between py-2">
+                <span class="text-theme-secondary">4. Finishing Cat Anti-Karat, Balok Konsol Crane & Aksesori Drainase</span>
+                <span class="font-semibold text-theme-primary" id="res-breakdown-finish">Rp 40 - 50 Juta</span>
+              </div>
+            </div>
+          </div>
+
+          <h4 class="text-lg font-serif font-normal text-theme-primary mb-3">
+            Kirimkan Hasil Simulasi untuk Dapatkan Berkas Layout 2D & RAB Resmi
+          </h4>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+            <div>
+              <label class="form-label" for="calc-name">Nama Pemilik / Penanggung Jawab *</label>
+              <input type="text" id="calc-name" required placeholder="Nama Anda" class="form-input" />
+              <p class="text-xs text-theme-accent mt-1 hidden" id="calc-name-err">Mohon lengkapi Nama Anda.</p>
+            </div>
+            <div>
+              <label class="form-label" for="calc-company">Nama Perusahaan / PT *</label>
+              <input type="text" id="calc-company" required placeholder="PT / CV Perusahaan" class="form-input" />
+              <p class="text-xs text-theme-accent mt-1 hidden" id="calc-company-err">Mohon lengkapi Nama Perusahaan.</p>
+            </div>
+            <div>
+              <label class="form-label" for="calc-phone">Nomor WhatsApp Aktif *</label>
+              <input type="tel" id="calc-phone" required placeholder="0812xxxxxxxx" class="form-input" />
+              <p class="text-xs text-theme-accent mt-1 hidden" id="calc-phone-err">Mohon masukkan nomor WhatsApp yang valid.</p>
+            </div>
+            <div>
+              <label class="form-label" for="calc-notes">Catatan Tambahan (Opsional)</label>
+              <input type="text" id="calc-notes" placeholder="Contoh: Butuh survei tanah & soil test" class="form-input" />
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+            <button type="button" class="btn-prev btn-secondary w-full sm:w-auto">
+              <ArrowLeft class="w-4 h-4" />
+              <span>Ubah Parameter</span>
+            </button>
+
+            <button type="button" id="btn-submit-calc" class="btn-primary w-full sm:w-auto">
+              <Send class="w-5 h-5" />
+              <span>Kirim Hasil via WhatsApp</span>
+            </button>
+          </div>
+
+          <div id="calc-success-msg" class="hidden mt-6 p-4 rounded-sm bg-theme-success-bg border border-theme-success/40 text-theme-success text-sm">
+            ✓ Terima kasih! Hasil simulasi Anda telah tersimpan dan tim insinyur Moving Co. akan menghubungi Anda dalam waktu maksimal 2 jam kerja.
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<script>
+
+  function getInputValue(id: string, defaultValue = '') {
+    const field = document.getElementById(id);
+    if (field instanceof HTMLInputElement || field instanceof HTMLSelectElement) {
+      return field.value;
+    }
+    return defaultValue;
+  }
+
+  function getCheckedRadioValue(name: string, defaultValue = '') {
+    const checkedInput = document.querySelector(`input[name="${name}"]:checked`);
+    return checkedInput instanceof HTMLInputElement ? checkedInput.value : defaultValue;
+  }
+
+  function initSelectableCards() {
+    document.querySelectorAll('.selectable-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const radio = card.querySelector<HTMLInputElement>('input[type="radio"]');
+        if (!radio) return;
+
+        radio.checked = true;
+
+        const parentGroup = card.parentElement;
+        if (parentGroup) {
+          parentGroup.querySelectorAll('.selectable-card').forEach(sibling => {
+            sibling.classList.remove('border-theme-accent', 'bg-theme-accent-bg');
+            sibling.classList.add('border-theme-border', 'bg-theme-bg');
+          });
+        }
+
+        card.classList.remove('border-theme-border', 'bg-theme-bg');
+        card.classList.add('border-theme-accent', 'bg-theme-accent-bg');
+
+        calculateResults();
+      });
+    });
+  }
+
+  function updateSteps() {
+    document.querySelectorAll('.step-content').forEach(el => {
+      el.classList.add('hidden');
+      el.classList.remove('block');
+    });
+
+    const currentEl = document.getElementById(`step-${currentStep}`);
+    if (currentEl) {
+      currentEl.classList.remove('hidden');
+      currentEl.classList.add('block');
+    }
+
+    document.querySelectorAll('.step-indicator').forEach(el => {
+      const step = parseInt(el.getAttribute('data-step') || '1');
+      const numEl = el.querySelector('.step-num');
+
+      if (step === currentStep) {
+        if (numEl) {
+          numEl.className = 'w-8 h-8 rounded-sm bg-theme-accent text-theme-bg font-bold flex items-center justify-center step-num';
+        }
+      } else if (step < currentStep) {
+        if (numEl) {
+          numEl.className = 'w-8 h-8 rounded-sm bg-theme-success text-theme-bg font-bold flex items-center justify-center step-num';
+          numEl.textContent = '✓';
+        }
+      } else {
+        if (numEl) {
+          numEl.className = 'w-8 h-8 rounded-sm bg-theme-border text-theme-secondary font-bold flex items-center justify-center step-num';
+          numEl.textContent = step.toString();
+        }
+      }
+    });
+
+    document.querySelectorAll('.step-line').forEach(line => {
+      const lineNum = parseInt(line.getAttribute('data-line') || '1');
+      if (lineNum < currentStep) {
+        line.classList.remove('bg-theme-border');
+        line.classList.add('bg-theme-accent');
+      } else {
+        line.classList.remove('bg-theme-accent');
+        line.classList.add('bg-theme-border');
+      }
+    });
+  }
+
+  let currentStep = 1;
+
+  function goToStep(step) {
+    currentStep = Math.max(1, Math.min(5, step));
+    updateSteps();
+    if (currentStep === 5) calculateResults();
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initSelectableCards();
+    updateSteps();
+
+    document.querySelectorAll('.btn-next').forEach(btn => {
+      btn.addEventListener('click', () => goToStep(currentStep + 1));
+    });
+
+    document.querySelectorAll('.btn-prev').forEach(btn => {
+      btn.addEventListener('click', () => goToStep(currentStep - 1));
+    });
+
+    document.querySelectorAll('.calc-change-trigger').forEach(el => {
+      el.addEventListener('change', calculateResults);
+      el.addEventListener('input', calculateResults);
+    });
+
+    document.getElementById('btn-calculate')?.addEventListener('click', () => {
+      goToStep(5);
+    });
+
+    document.getElementById('btn-submit-calc')?.addEventListener('click', () => {
+      const name = (document.getElementById('calc-name') as HTMLInputElement)?.value.trim();
+      const company = (document.getElementById('calc-company') as HTMLInputElement)?.value.trim();
+      const phone = (document.getElementById('calc-phone') as HTMLInputElement)?.value.trim();
+      const notes = (document.getElementById('calc-notes') as HTMLInputElement)?.value.trim();
+
+      let valid = true;
+
+      if (!name) {
+        document.getElementById('calc-name-err')?.classList.remove('hidden');
+        valid = false;
+      } else {
+        document.getElementById('calc-name-err')?.classList.add('hidden');
+      }
+
+      if (!company) {
+        document.getElementById('calc-company-err')?.classList.remove('hidden');
+        valid = false;
+      } else {
+        document.getElementById('calc-company-err')?.classList.add('hidden');
+      }
+
+      if (!phone || phone.length < 8) {
+        document.getElementById('calc-phone-err')?.classList.remove('hidden');
+        valid = false;
+      } else {
+        document.getElementById('calc-phone-err')?.classList.add('hidden');
+      }
+
+      if (!valid) return;
+
+      const length = getInputValue('calc-length', '40');
+      const width = getInputValue('calc-width', '20');
+      const height = getInputValue('calc-height', '8');
+      const roof = getInputValue('calc-roof', 'zincalume_045');
+      const skylight = getInputValue('calc-skylight', '5');
+      const cladding = getInputValue('calc-cladding', 'brick_half');
+      const floor = getInputValue('calc-floor', 'floor_std_k250');
+      const crane = getInputValue('calc-crane', '0');
+      const location = getInputValue('calc-location', 'Jabodetabek');
+      const bayDistance = getCheckedRadioValue('bay_distance', '6');
+      const steelType = getCheckedRadioValue('steel_type', 'wf_ss400');
+      const foundation = getCheckedRadioValue('foundation_type', 'footplate');
+
+      const area = parseFloat(length) * parseFloat(width);
+      const tonnage = document.getElementById('res-tonnage')?.textContent || '';
+      const cost = document.getElementById('res-cost')?.textContent || '';
+
+      const message = `Halo Moving Co., saya *${name}* dari *${company}* ingin mendiskusikan rencana pembangunan pabrik.
+
+*Hasil Simulasi Kalkulator:*
+• Dimensi: ${length}m x ${width}m x ${height}m (Luas ${area.toLocaleString('id-ID')} m²)
+• Jarak Bentang: ${bayDistance}m
+• Profil Baja: ${steelType}
+• Pondasi: ${foundation}
+• Atap: ${roof} (Skylight ${skylight}%)
+• Cladding: ${cladding}
+• Lantai: ${floor}
+• Overhead Crane: ${crane} Ton
+• Lokasi: ${location}
+• Estimasi Tonase: ${tonnage}
+• Estimasi Biaya: ${cost}
+
+${notes ? `*Catatan Tambahan:*\n${notes}` : ''}
+
+Mohon info lebih lanjut dan jadwalkan konsultasi. Terima kasih.`;
+
+      const waUrl = `https://wa.me/${'6281234567890'.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(message)}`;
+
+      document.getElementById('calc-success-msg')?.classList.remove('hidden');
+      setTimeout(() => { window.open(waUrl, '_blank'); }, 500);
+    });
+  });
+
+  function calculateResults() {
+    // 1. Dimensions
+    const length = Math.max(10, parseFloat(getInputValue('calc-length', '40')));
+    const width = Math.max(10, parseFloat(getInputValue('calc-width', '20')));
+    const height = Math.max(4, parseFloat(getInputValue('calc-height', '8')));
+    const area = length * width;
+
+    // 2. Bay Distance Impact (Fakta Teknik: Bentang 6m = base, 8m = +10% tonase gording/rafter, 10m = +22% tonase lentur)
+    const bayDistanceVal = parseFloat(getCheckedRadioValue('bay_distance', '6'));
+    let bayFactorTon = 1.00;
+    let bayFactorCost = 1.00;
+    if (bayDistanceVal === 8) {
+      bayFactorTon = 1.10;
+      bayFactorCost = 1.06;
+    } else if (bayDistanceVal === 10) {
+      bayFactorTon = 1.22;
+      bayFactorCost = 1.15;
+    }
+
+    // 3. Steel Profile & Mutu
+    const steelType = getCheckedRadioValue('steel_type', 'wf_ss400');
+    let steelFactorTon = 1.00;
+    let steelCostAdd = 0;
+    if (steelType === 'hbeam_sm490') {
+      steelFactorTon = 1.20;
+      steelCostAdd = 450000;
+    } else if (steelType === 'castellated') {
+      steelFactorTon = 0.85;
+      steelCostAdd = 180000;
+    } else if (steelType === 'hdg_galvanized') {
+      steelFactorTon = 1.12;
+      steelCostAdd = 420000;
+    }
+
+    // 4. Sub-Struktur & Pondasi Tanah
+    const foundationType = getCheckedRadioValue('foundation_type', 'footplate');
+    let foundationCostAdd = 0;
+    if (foundationType === 'bored_pile') {
+      foundationCostAdd = 350000;
+    } else if (foundationType === 'strauss_pile') {
+      foundationCostAdd = 550000;
+    }
+
+    // 5. Atap Utama
+    const roofType = getInputValue('calc-roof', 'zincalume_045');
+    let roofCostAdd = 0;
+    if (roofType === 'sandwich_pu') roofCostAdd = 320000;
+    else if (roofType === 'double_mesh') roofCostAdd = 220000;
+    else if (roofType === 'upvc_corrosive') roofCostAdd = 260000;
+    else if (roofType === 'seam_lock') roofCostAdd = 280000;
+
+    // 6. Skylight (Pencahayaan Alami)
+    const skylightPct = parseFloat(getInputValue('calc-skylight', '5'));
+    let skylightCostAdd = 0;
+    if (skylightPct === 10) skylightCostAdd = 45000;
+    else if (skylightPct === 15) skylightCostAdd = 85000;
+
+    // 7. Cladding Dinding
+    const claddingType = getInputValue('calc-cladding', 'brick_half');
+    let claddingCostAdd = 0;
+    if (claddingType === 'full_cladding') claddingCostAdd = -70000;
+    else if (claddingType === 'full_sandwich') claddingCostAdd = 310000;
+    else if (claddingType === 'precast_concrete') claddingCostAdd = 480000;
+
+    // 8. Lantai Beton
+    const floorType = getInputValue('calc-floor', 'floor_std_k250');
+    let floorCostAdd = 0;
+    if (floorType === 'floor_hardener_k300') floorCostAdd = 180000;
+    else if (floorType === 'floor_epoxy_k350') floorCostAdd = 380000;
+    else if (floorType === 'floor_post_tension') floorCostAdd = 620000;
+
+    // 9. Crane
+    const craneCap = parseFloat(getInputValue('calc-crane', '0'));
+    let craneKgAdd = 0;
+    let craneCostAdd = 0;
+    if (craneCap === 5) { craneKgAdd = 8; craneCostAdd = 260000; }
+    else if (craneCap === 15) { craneKgAdd = 18; craneCostAdd = 540000; }
+    else if (craneCap === 30) { craneKgAdd = 32; craneCostAdd = 950000; }
+
+    // 10. Lokasi Wilayah Proyek
+    const locationVal = getInputValue('calc-location', 'Jabodetabek');
+    let locationMultiplier = 1.00;
+    if (locationVal === 'Jawa Barat') locationMultiplier = 1.02;
+    else if (locationVal === 'Jawa Tengah') locationMultiplier = 0.96;
+    else if (locationVal === 'Jawa Timur') locationMultiplier = 1.03;
+    else if (locationVal === 'Luar Jawa') locationMultiplier = 1.32;
+
+    // === METRIC CALCULATIONS ===
+    const baseKgPerSqm = ((35 + (height * 1.5)) * bayFactorTon * steelFactorTon) + craneKgAdd;
+    const totalTonnageKg = area * baseKgPerSqm;
+
+    const baseCostMinPerSqm = 1600000 * bayFactorCost;
+    const baseCostMaxPerSqm = 2000000 * bayFactorCost;
+
+    const addedPerSqm = foundationCostAdd + steelCostAdd + roofCostAdd + skylightCostAdd + claddingCostAdd + floorCostAdd + craneCostAdd;
+
+    const unitCostMin = (baseCostMinPerSqm + addedPerSqm) * locationMultiplier;
+    const unitCostMax = (baseCostMaxPerSqm + addedPerSqm) * locationMultiplier;
+
+    const totalMin = area * unitCostMin;
+    const totalMax = area * unitCostMax;
+
+    const resArea = document.getElementById('res-area');
+    const resTonnage = document.getElementById('res-tonnage');
+    const resCost = document.getElementById('res-cost');
+
+    if (resArea) resArea.textContent = `${area.toLocaleString('id-ID')} m²`;
+    if (resTonnage) resTonnage.textContent = `~ ${Math.round(totalTonnageKg).toLocaleString('id-ID')} kg`;
+    if (resCost) {
+      const minBio = (totalMin / 1000000000).toFixed(2);
+      const maxBio = (totalMax / 1000000000).toFixed(2);
+      resCost.textContent = `Rp ${minBio} - ${maxBio} Miliar`;
+    }
+
+    const resSteel = document.getElementById('res-breakdown-steel');
+    const resRoof = document.getElementById('res-breakdown-roof');
+    const resCivil = document.getElementById('res-breakdown-civil');
+    const resFinish = document.getElementById('res-breakdown-finish');
+
+    if (resSteel) resSteel.textContent = `Rp ${((totalMin * 0.52)/1000000).toFixed(0)} - ${((totalMax * 0.52)/1000000).toFixed(0)} Juta`;
+    if (resRoof) resRoof.textContent = `Rp ${((totalMin * 0.22)/1000000).toFixed(0)} - ${((totalMax * 0.22)/1000000).toFixed(0)} Juta`;
+    if (resCivil) resCivil.textContent = `Rp ${((totalMin * 0.21)/1000000).toFixed(0)} - ${((totalMax * 0.21)/1000000).toFixed(0)} Juta`;
+    if (resFinish) resFinish.textContent = `Rp ${((totalMin * 0.05)/1000000).toFixed(0)} - ${((totalMax * 0.05)/1000000).toFixed(0)} Juta`;
+  }
+
+</script>

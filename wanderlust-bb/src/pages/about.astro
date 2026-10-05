@@ -1,0 +1,31 @@
+---
+import Layout from "../layouts/Layout.astro";
+import BookingBanner from "../components/shared/BookingBanner/BookingBanner.astro";
+
+import AboutHero from "../components/about/AboutHero/AboutHero.astro";
+import AboutStory from "../components/about/AboutStory/AboutStory.astro";
+import AboutOffice from "../components/about/AboutOffice/AboutOffice.astro";
+import AboutPromises from "../components/about/AboutPromises/AboutPromises.astro";
+import AboutStats from "../components/about/AboutStats/AboutStats.astro";
+import AboutTeam from "../components/about/AboutTeam/AboutTeam.astro";
+import AboutTestimonials from "../components/about/AboutTestimonials/AboutTestimonials.astro";
+import AboutFaq from "../components/about/AboutFaq/AboutFaq.astro";
+---
+
+<Layout title="About Us — Wanderlust Luxury Travel" currentPath="/about">
+	<div class="mx-auto max-w-7xl space-y-24 px-[5%] py-16">
+		<AboutHero />
+		<AboutStory />
+		<AboutOffice />
+		<AboutPromises />
+		<AboutStats />
+		<AboutTeam />
+		<AboutTestimonials />
+		<AboutFaq />
+		<BookingBanner
+			title="Let's Plan Your Journey Together"
+			subtitle="Visit our Jakarta Lounge or schedule a virtual coffee with one of our senior travel designers."
+			primaryBtnText="Schedule Virtual Coffee"
+		/>
+	</div>
+</Layout>

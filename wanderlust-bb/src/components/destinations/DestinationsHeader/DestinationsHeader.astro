@@ -1,0 +1,28 @@
+---
+interface Props {
+	badge?: string;
+	title?: string;
+	subtitle?: string;
+}
+
+const {
+	badge = "Handpicked Destinations",
+	title = "Find Your Next Journey",
+	subtitle = "Handpicked stays, quiet islands, and peaceful mountain retreats around the world.",
+} = Astro.props;
+---
+
+<div class="text-center space-y-4 max-w-3xl mx-auto story-scroll-item">
+	<span
+		data-i18n-key="destBadge"
+		class="font-mono text-xs uppercase tracking-[3px] font-bold text-[#0D9488] block"
+	>
+		✦ {badge}
+	</span>
+	<h1 data-i18n-key="destTitle" class="font-serif text-4xl sm:text-6xl font-bold text-white block tracking-tight">
+		{title}
+	</h1>
+	<p data-i18n-key="destSubtitle" class="story-text-reveal text-slate-300 text-base sm:text-lg font-light leading-relaxed">
+		{subtitle}
+	</p>
+</div>

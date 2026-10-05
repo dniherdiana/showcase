@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-navy: #0f172a;
+  --color-brand-blue: #0ea5e9;
+  --color-brand-coral: #ff6b6b;
+  --color-brand-soft-bg: #f8fafc;
+  --color-brand-surface: #ffffff;
+  --color-brand-pastel-sky: #e0f2fe;
+  --color-brand-pastel-rose: #fce7f3;
+  --color-brand-pastel-amber: #fef3c7;
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-body);
+    color: #1e293b;
+    background-color: #f8fafc;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}
+
+/* Glassmorphism & Soft Shadow Utilities */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.glass-dark {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pastel-shadow {
+  box-shadow: 0 10px 30px -10px rgba(14, 165, 233, 0.15);
+}
+
+.pastel-shadow-coral {
+  box-shadow: 0 10px 30px -10px rgba(255, 107, 107, 0.2);
+}
+
+/* Custom Scroll Animation Helper */
+.fade-up-init {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-up-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Visually Prominent Client Data Placeholder Tag */
+.client-data-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  background-color: #fef3c7;
+  border: 2px dashed #f59e0b;
+  color: #92400e;
+  font-weight: 700;
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 5px rgba(245, 158, 11, 0.2);
+}
+
+/* Floating animation */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+.animate-float {
+  animation: floatSlow 5s ease-in-out infinite;
+}

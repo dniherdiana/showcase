@@ -1,0 +1,39 @@
+---
+import { komunitasStoriesData } from './KomunitasStories.data.js';
+---
+
+<section class="py-20 md:py-24 bg-bg-surface border-b border-border-indie">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-7">
+        <h2 class="font-caveat text-3xl md:text-5xl font-bold text-text-primary leading-tight">
+          {komunitasStoriesData.headline}
+        </h2>
+        <p class="font-dmsans text-sm md:text-base text-text-secondary mt-6 leading-relaxed">
+          {komunitasStoriesData.body}
+        </p>
+      </div>
+
+      <div class="lg:col-span-5 space-y-6">
+        {komunitasStoriesData.stories.map((story, idx) => (
+          <div class={`p-6 bg-white rounded-blob border-[1.5px] border-border-indie shadow-indie ${idx === 0 ? 'rotate-[1deg]' : 'rotate-[-1.5deg]'}`}>
+            <p class="font-caveat text-xl text-text-primary leading-snug">
+              "{story.quote}"
+            </p>
+            <div class="mt-4 flex items-center gap-3 pt-3 border-t border-border-indie/50">
+              <img
+                src={story.avatar}
+                alt={story.author}
+                class="w-10 h-10 rounded-full object-cover border border-border-indie"
+              />
+              <div>
+                <p class="font-dmsans text-sm font-bold text-text-primary">{story.author}</p>
+                <p class="font-dmsans text-xs text-text-secondary">{story.role}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

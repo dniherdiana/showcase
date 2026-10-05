@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HeroHome from '../components/homepage/HeroHome.astro';
+import MetricsBand from '../components/homepage/MetricsBand.astro';
+import ManifestoSection from '../components/homepage/ManifestoSection.astro';
+import FeaturedProjects from '../components/homepage/FeaturedProjects.astro';
+import TechnicalPillars from '../components/homepage/TechnicalPillars.astro';
+import ClosingCta from '../components/common/ClosingCta.astro';
+import { homeData } from '../data/home.data.js';
+import { siteIdentity } from '../data/site.data.js';
+
+const title = `${siteIdentity.brandName} | Arsitektur Komersial Presisi Tanpa Pembengkakan Biaya`;
+const description = 'Studio arsitektur komersial terintegrasi untuk F&B, ritel, dan kantor di Jakarta, Bandung, dan Bali. Gambar Kerja Detail (DED) 80+ lembar & garansi toleransi deviasi RAB maksimal 5%.';
+---
+
+<Layout title={title} description={description} currentPath="/">
+  <HeroHome />
+  <MetricsBand />
+  <ManifestoSection />
+  <FeaturedProjects />
+  <TechnicalPillars />
+  <ClosingCta
+    headline={homeData.closingCta.headline}
+    subhead={homeData.closingCta.subhead}
+    buttonText={homeData.closingCta.buttonText}
+    href={homeData.closingCta.href}
+  />
+</Layout>

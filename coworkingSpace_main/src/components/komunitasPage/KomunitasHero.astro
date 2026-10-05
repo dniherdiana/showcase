@@ -1,0 +1,50 @@
+---
+import { komunitasHeroData } from './KomunitasHero.data.js';
+---
+
+<section class="py-20 md:py-28 bg-bg-surface border-b border-border-indie overflow-hidden">
+  <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-6">
+      <h1 class="font-caveat text-4xl md:text-6xl font-bold text-text-primary leading-tight">
+        {komunitasHeroData.headline}
+      </h1>
+
+      <p class="font-dmsans text-base md:text-lg text-text-primary font-medium mt-6 leading-relaxed">
+        {komunitasHeroData.lede}
+      </p>
+
+      <p class="font-dmsans text-sm md:text-base text-text-secondary mt-4 leading-relaxed">
+        {komunitasHeroData.body}
+      </p>
+
+      <div class="mt-8">
+        <a
+          href="#event-calendar"
+          class="btn-thunk inline-flex items-center justify-center bg-accent text-white font-dmsans font-bold text-sm h-12 px-8 rounded-full shadow-indie hover:bg-accent-hover"
+        >
+          Lihat Kalender Acara
+        </a>
+      </div>
+    </div>
+
+    <!-- Overlapping Scrapbook Wall -->
+    <div class="lg:col-span-6 relative h-[360px] md:h-[420px] flex items-center justify-center">
+      <div class={`absolute top-2 left-4 w-2/3 ${komunitasHeroData.images[0].rotation} border-[1.5px] border-border-indie bg-white p-2.5 shadow-indie rounded-blob z-10`}>
+        <img
+          src={komunitasHeroData.images[0].src}
+          alt={komunitasHeroData.images[0].alt}
+          class="w-full aspect-4/3 object-cover rounded-blob"
+          loading="eager"
+        />
+      </div>
+      <div class={`absolute bottom-2 right-4 w-2/3 ${komunitasHeroData.images[1].rotation} border-[1.5px] border-border-indie bg-white p-2.5 shadow-indie rounded-blob z-20`}>
+        <img
+          src={komunitasHeroData.images[1].src}
+          alt={komunitasHeroData.images[1].alt}
+          class="w-full aspect-4/3 object-cover rounded-blob"
+          loading="eager"
+        />
+      </div>
+    </div>
+  </div>
+</section>

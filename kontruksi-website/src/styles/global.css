@@ -1,0 +1,277 @@
+@import "tailwindcss";
+
+/* 
+  BOLD INDUSTRIAL FONTS
+  Heading Font: Space Grotesk (High Impact Architecture & Structural Geometry)
+  Body Font: Plus Jakarta Sans (Clean, High Contrast)
+*/
+@font-face {
+  font-family: 'Space Grotesk';
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+  src: url('/fonts/space-grotesk-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/plus-jakarta-sans-latin.woff2') format('woff2');
+}
+
+@theme {
+  --color-theme-bg: #0d0806;
+  --color-theme-surface: #160e0a;
+  --color-theme-surface-hover: #21140e;
+  --color-theme-surface-elevated: #281710;
+  --color-theme-border: #382015;
+  --color-theme-border-subtle: #21120b;
+  --color-theme-border-hover: #7d3d1e;
+  --color-theme-primary: #ffffff;
+  --color-theme-secondary: #ebdcd3;
+  --color-theme-muted: #cbbab0;
+  --color-theme-accent: #ff7034;
+  --color-theme-accent-hover: #ff854d;
+  --color-theme-accent-light: #ffa070;
+  --color-theme-accent-bg: rgba(255, 112, 52, 0.18);
+  --color-theme-success: #fbbf24;
+  --color-theme-success-bg: rgba(251, 191, 36, 0.18);
+
+  --font-serif: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+    background-color: var(--color-theme-bg);
+    color: var(--color-theme-primary);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  body {
+    overflow-x: hidden;
+    background-color: var(--color-theme-bg);
+    color: var(--color-theme-primary);
+    /* Heavy Industrial Weathered & Oxidized Rusty Iron Texture Background */
+    background-image: 
+      radial-gradient(ellipse at 12% 10%, rgba(217, 83, 30, 0.14) 0%, transparent 40%),
+      radial-gradient(ellipse at 88% 85%, rgba(184, 62, 17, 0.12) 0%, transparent 45%),
+      radial-gradient(circle at 50% 50%, rgba(120, 38, 8, 0.08) 0%, transparent 60%),
+      repeating-linear-gradient(135deg, rgba(28, 14, 9, 0.45) 0px, rgba(28, 14, 9, 0.45) 1px, transparent 1px, transparent 6px),
+      radial-gradient(rgba(217, 83, 30, 0.05) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 100% 100%, 12px 12px, 24px 24px;
+    background-attachment: fixed;
+  }
+
+  /* Bold Typography Hierarchy - Strong & High Contrast */
+  h1, h2, h3, .font-serif-heading {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  h1 {
+    font-size: clamp(30px, 4.5vw, 48px);
+    line-height: 1.12;
+  }
+
+  h2 {
+    font-size: clamp(24px, 3.5vw, 36px);
+    line-height: 1.2;
+  }
+
+  h3 {
+    font-size: clamp(19px, 2.5vw, 26px);
+    line-height: 1.3;
+  }
+
+  p {
+    max-width: 70ch;
+  }
+}
+
+/* Crisp & Seamless Pure Dissolve Page Transitions */
+::view-transition-old(root) {
+  animation: page-fade-out 120ms ease-out forwards;
+}
+
+::view-transition-new(root) {
+  animation: page-fade-in 160ms ease-in forwards;
+}
+
+@keyframes page-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes page-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Clean & Gentle Fade Reveal-Up Animations */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger Delays */
+.stagger-1 { transition-delay: 80ms; }
+.stagger-2 { transition-delay: 160ms; }
+.stagger-3 { transition-delay: 240ms; }
+.stagger-4 { transition-delay: 320ms; }
+
+/* Reduced Motion Fallback */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}
+
+/* Container Utility */
+.editorial-container {
+  max-width: 1340px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: clamp(20px, 4vw, 56px);
+  padding-right: clamp(20px, 4vw, 56px);
+}
+
+/* Bold Industrial Cards */
+.bold-card {
+  position: relative;
+  background-color: var(--color-theme-surface);
+  border: 1.5px solid var(--color-theme-border);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: all 300ms cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 16px 40px -15px rgba(13, 8, 6, 0.85);
+}
+
+.bold-card:hover {
+  border-color: var(--color-theme-accent);
+  background-color: var(--color-theme-surface-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px -10px rgba(217, 83, 30, 0.25);
+}
+
+.surface-card {
+  background-color: var(--color-theme-surface);
+  border: 1px solid var(--color-theme-border);
+  border-radius: 6px;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+}
+
+.surface-card-hover {
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.surface-card-hover:hover {
+  border-color: var(--color-theme-accent);
+  background-color: var(--color-theme-surface-hover);
+  box-shadow: 0 12px 32px -8px rgba(217, 83, 30, 0.2);
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--color-theme-accent);
+  color: #0d0806;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  border-radius: 4px;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-theme-accent-light);
+  color: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(217, 83, 30, 0.45);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--color-theme-surface);
+  color: var(--color-theme-primary);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  border: 1.5px solid var(--color-theme-border);
+  border-radius: 4px;
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  border-color: var(--color-theme-accent);
+  color: var(--color-theme-accent-light);
+  background-color: var(--color-theme-surface-hover);
+  transform: translateY(-1px);
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  background-color: var(--color-theme-bg);
+  border: 1px solid var(--color-theme-border);
+  border-radius: 4px;
+  color: var(--color-theme-primary);
+  font-size: 1rem;
+  font-family: var(--font-sans);
+  transition: border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--color-theme-accent);
+  box-shadow: 0 0 0 2px rgba(217, 83, 30, 0.3);
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-theme-secondary);
+  margin-bottom: 0.5rem;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-theme-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-theme-border);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-theme-accent);
+}

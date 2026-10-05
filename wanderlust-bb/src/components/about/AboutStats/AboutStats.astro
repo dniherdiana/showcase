@@ -1,0 +1,58 @@
+---
+import { aboutData } from "../data/index.js";
+---
+
+<div class="space-y-8 story-scroll-item border-t border-white/10 pt-16">
+	<!-- Section Header -->
+	<div class="text-center max-w-2xl mx-auto">
+		<h2 class="font-heading text-xl sm:text-3xl font-extrabold text-white uppercase" data-i18n-en="Wanderlust by the Numbers" data-i18n-id="Wanderlust Dalam Angka">
+			Wanderlust by the Numbers
+		</h2>
+	</div>
+
+	<!-- 4 Stat Metric Cards (No Badges) -->
+	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+		{
+			aboutData.stats.map((st) => (
+				<div class="relative p-6 sm:p-7 rounded-2xl glass-card border border-gold/30 hover:border-gold/60 space-y-4 flex flex-col justify-between transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-gold/15 group overflow-hidden bg-slate-900/90">
+					<!-- Top Glowing Accent Line -->
+					<div class="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-gold via-[#0D9488] to-transparent opacity-60 group-hover:opacity-100 transition-opacity"></div>
+					<!-- Ambient Subtle Glow Aura -->
+					<div class="absolute inset-0 bg-gradient-to-br from-gold/5 via-transparent to-[#0D9488]/5 pointer-events-none group-hover:opacity-100 transition-opacity"></div>
+
+					<div class="space-y-3 relative z-10">
+						<!-- Top Metric Bar: Big Number -->
+						<div class="border-b border-white/10 pb-4">
+							<div class="flex items-baseline gap-1">
+								<span class="font-heading text-3xl sm:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gold via-amber-200 to-amber-400 block group-hover:scale-105 transition-transform duration-300">
+									{st.number}
+								</span>
+								{st.type === "rating" && <span class="text-gold text-lg">★</span>}
+							</div>
+						</div>
+
+						<!-- Label Title -->
+						<h3
+							data-i18n-en={st.label}
+							data-i18n-id={st.label_id}
+							class="font-heading text-sm sm:text-base font-extrabold text-white uppercase group-hover:text-gold transition-colors leading-snug"
+						>
+							{st.label}
+						</h3>
+
+						<!-- Informative Description -->
+						{st.desc && (
+							<p
+								data-i18n-en={st.desc}
+								data-i18n-id={st.desc_id}
+								class="text-xs text-white/70 font-sans leading-relaxed font-light"
+							>
+								{st.desc}
+							</p>
+						)}
+					</div>
+				</div>
+			))
+		}
+	</div>
+</div>

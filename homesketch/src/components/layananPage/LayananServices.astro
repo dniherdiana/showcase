@@ -1,0 +1,67 @@
+---
+import Container from '../base/Container.astro';
+import SectionHeader from '../base/SectionHeader.astro';
+import HairlineDivider from '../base/HairlineDivider.astro';
+import { Home, Layers, ShieldCheck } from 'lucide-astro';
+import { layananServicesData } from './LayananServices.data.js';
+
+const iconMap = {
+  Home,
+  Layers,
+  ShieldCheck,
+};
+---
+
+<section class="py-20 lg:py-28 border-b border-[var(--color-border-hairline)] bg-[var(--color-canvas-surface)]">
+  <Container size="xl" as="div" class="flex flex-col gap-14 lg:gap-16">
+    <!-- Header -->
+    <SectionHeader
+      title={layananServicesData.heading}
+      subtitle={layananServicesData.subheading}
+      level="h2"
+    />
+
+    <!-- Service Streams as Open Editorial Rows -->
+    <div class="flex flex-col divide-y divide-[var(--color-border-hairline)] border-y border-[var(--color-border-hairline)]">
+      {layananServicesData.services.map((svc) => {
+        const IconComponent = iconMap[svc.icon as keyof typeof iconMap] || Home;
+        return (
+          <article class="py-10 lg:py-14 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <!-- Left Column: Title & Target (5 cols) -->
+            <div class="lg:col-span-5 flex flex-col gap-4">
+              <div class="flex items-center gap-3">
+                <div class="p-2.5 bg-[var(--color-canvas-light)] text-[var(--color-accent-terracotta)] border border-[var(--color-border-hairline)] shadow-2xs">
+                  <IconComponent class="w-5 h-5" stroke-width={1.75} />
+                </div>
+                <h3 class="font-serif text-xl sm:text-2xl font-bold text-[var(--color-ink-primary)]">
+                  {svc.title}
+                </h3>
+              </div>
+              <span class="text-xs text-[var(--color-accent-terracotta)] font-medium">
+                Target: {svc.target}
+              </span>
+              <p class="text-sm text-[var(--color-ink-muted)] leading-relaxed pt-1">
+                {svc.summary}
+              </p>
+            </div>
+
+            <!-- Right Column: Deliverables Checklist (7 cols) -->
+            <div class="lg:col-span-7 bg-[var(--color-canvas-light)] p-6 sm:p-8 border border-[var(--color-border-hairline)]">
+              <h4 class="text-xs uppercase tracking-widest text-[var(--color-ink-primary)] font-semibold mb-4">
+                Dokumen Luaran & Deliverables:
+              </h4>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-[var(--color-ink-muted)]">
+                {svc.deliverables.map((item) => (
+                  <li class="flex items-start gap-2.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent-terracotta)] mt-2 shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </Container>
+</section>

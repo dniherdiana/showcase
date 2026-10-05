@@ -1,0 +1,99 @@
+---
+import { Image } from "astro:assets";
+import living from "@assets/images/living.jpg";
+import { aboutFeatureContent } from "../../data/beranda/aboutFeature.js";
+---
+
+<section id="about" class="py-28 bg-canvas-default relative">
+	<div class="max-w-7xl mx-auto px-6 lg:px-12">
+		<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+
+			<!-- Left: Scrollable content -->
+			<div class="lg:col-span-7 space-y-12">
+
+				<!-- Header block -->
+				<div class="af-reveal space-y-4 max-w-prose">
+					<h2
+						class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-slate-50 leading-[1.18] tracking-tight"
+					>
+						{aboutFeatureContent.headline}
+					</h2>
+					<p
+						class="text-slate-200 font-normal leading-relaxed text-base sm:text-lg"
+					>
+						{aboutFeatureContent.subtext}
+					</p>
+				</div>
+
+				<!-- Timeline -->
+				<div class="relative pl-8 max-w-prose space-y-12">
+					<!-- Vertical line -->
+					<div
+						class="af-timeline-line absolute left-2.5 top-3 bottom-3 w-0.5 bg-linear-to-b from-amber-300 via-amber-400 to-amber-500/30 pointer-events-none"
+					>
+					</div>
+
+					{
+						aboutFeatureContent.timeline.map((item, i) => (
+							<div class="af-reveal af-item relative space-y-2 group">
+								<!-- Dot -->
+								<div class="af-dot absolute -left-7.25 top-1.5 w-3.5 h-3.5 rounded-full bg-amber-400 ring-4 ring-canvas-default group-hover:scale-125 transition-all duration-300" />
+
+								<div class="text-xs font-mono font-semibold text-amber-300 uppercase tracking-widest">
+									{item.number} · {item.category}
+								</div>
+
+								<h3 class="text-xl sm:text-2xl font-serif text-slate-100 font-medium group-hover:text-amber-300 transition-colors leading-snug">
+									{item.title}
+								</h3>
+								<p class="text-sm text-slate-300 font-normal leading-relaxed pt-1">
+									{item.description}
+								</p>
+							</div>
+						))
+					}
+				</div>
+			</div>
+
+			<!-- Right: Sticky image panel -->
+			<div class="lg:col-span-5 self-start sticky top-28">
+				<div
+					class="af-reveal af-sticky-panel relative rounded-sm overflow-hidden border border-slate-800 shadow-2xl bg-slate-950 group"
+				>
+					<Image
+						src={living}
+						alt="Interior Ruang Keluarga Cluster Grand Samudra"
+						loading="lazy"
+						format="webp"
+						quality={80}
+						class="w-full aspect-3/4 object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+					/>
+
+					<div
+						class="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/95 via-black/60 to-transparent pt-16 pb-6 px-6"
+					>
+						<p
+							class="text-slate-100 text-xs font-normal leading-relaxed border-l-2 border-amber-400 pl-3"
+						>
+							{aboutFeatureContent.imageCaption}
+						</p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>
+
+<style>
+	/* Sticky panel subtle glow pulse */
+	.af-sticky-panel {
+		transition: box-shadow 0.4s ease;
+	}
+	.af-sticky-panel:hover {
+		box-shadow:
+			0 25px 60px -12px rgba(0, 0, 0, 0.6),
+			0 0 0 1px rgba(251, 191, 36, 0.15),
+			0 0 40px -10px rgba(251, 191, 36, 0.08);
+	}
+</style>

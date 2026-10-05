@@ -1,0 +1,106 @@
+<section
+	class="relative min-h-screen flex items-center border-b border-surface-border overflow-hidden"
+>
+	<div class="absolute inset-0 z-0">
+		<img
+			src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1920&q=80"
+			alt="Elevate Stage Production"
+			class="w-full h-full object-cover filter brightness-[0.4] scale-105"
+		/>
+		<div
+			class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/70 to-transparent"
+		>
+		</div>
+		<div
+			class="absolute inset-0 grid-bg-pattern opacity-30 pointer-events-none"
+		>
+		</div>
+	</div>
+
+	<div class="relative z-10 max-w-7xl mx-auto px-6 py-24 w-full">
+		<div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-end">
+			<!-- Cover Text -->
+			<div class="lg:col-span-8 space-y-7">
+				<div class="mag-rule justify-start !gap-4">
+					<span class="mag-kicker">Edisi Perdana — Vol. 01 No. 001</span>
+				</div>
+
+				<h1
+					class="font-serif font-black text-5xl sm:text-7xl lg:text-5xl text-white tracking-tight uppercase leading-[0.9]"
+				>
+					Bukan Sekadar <span class="text-brand-orange">Event.</span>
+					<br />
+					<span class="italic text-stroke-orange">Pengalaman</span> Imersif.
+				</h1>
+
+				<p
+					class="text-accent-cream/90 text-base sm:text-xl max-w-2xl leading-relaxed font-light"
+				>
+					Laporan khusus edisi perdana: bagaimana sebuah panggung, cahaya, dan
+					narasi bersatu menjadi perjalanan emosi bagi ribuan penonton. Dari ide
+					kreatif awal hingga produksi spektakuler.
+				</p>
+
+				<div class="pt-2 flex flex-wrap items-center gap-4">
+					<button
+						onclick="window.dispatchEvent(new CustomEvent('open-booking-modal'))"
+						class="bg-brand-orange hover:bg-brand-amber text-black font-extrabold text-xs sm:text-sm uppercase tracking-wider px-8 py-5 transition-all shadow-[0_0_30px_rgba(255,77,0,0.5)] cursor-pointer"
+					>
+						Jadwalkan Konsultasi Event →
+					</button>
+					<a
+						href="/portfolio"
+						class="bg-surface-card hover:bg-surface-border text-white border border-surface-border font-mono text-xs sm:text-sm uppercase tracking-wider px-8 py-5 transition-all"
+					>
+						Buka Arsip Karya
+					</a>
+				</div>
+
+				<!-- Cover Meta -->
+				<div
+					class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-4 border-t border-surface-border/60 font-mono text-[9px] uppercase tracking-[0.25em] text-accent-muted"
+				>
+					<span>Terbit 2026</span>
+					<span>Jakarta</span>
+					<span>350+ Event</span>
+					<span>Edisi Gratis</span>
+				</div>
+			</div>
+
+			<!-- Cover Frame -->
+			<div class="lg:col-span-4">
+				<div
+					class="border border-surface-border bg-obsidian/80 backdrop-blur-md"
+				>
+					<div class="relative">
+						<img
+							src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=800&q=80"
+							alt="Cover fotografi panggung"
+							class="w-full h-72 object-cover filter brightness-90"
+						/>
+						<span
+							class="absolute top-4 left-4 bg-obsidian/90 text-brand-orange font-mono text-[10px] uppercase px-3 py-1 font-bold border border-brand-orange/40"
+						>
+							Gambar Sampul
+						</span>
+					</div>
+					<div class="p-5 space-y-3">
+						<p
+							class="text-accent-muted text-xs italic font-serif leading-relaxed"
+						>
+							"Panggung bukanlah latar belakang — ia adalah karakter utama
+							cerita malam itu."
+						</p>
+						<div class="flex items-end justify-between gap-4">
+							<div class="barcode w-24"></div>
+							<span
+								class="font-mono text-[9px] uppercase tracking-widest text-accent-muted text-right"
+								>ISSN 0000-0000<br />Harga: Gratis</span
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

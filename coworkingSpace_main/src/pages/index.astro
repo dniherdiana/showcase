@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import HomeHero from '../components/homePage/HomeHero.astro';
+import HomeFatigue from '../components/homePage/HomeFatigue.astro';
+import HomeZoning from '../components/homePage/HomeZoning.astro';
+import HomeCommunity from '../components/homePage/HomeCommunity.astro';
+
+const title = "Ranting Creative Space - Ruang Kerja Fokus dan Komunitas Kreatif";
+const description = "Coworking space dan ruang kreatif di kota berkembang dengan fasilitas internet stabil, kursi ergonomis, zonasi senyap, dan program komunitas bulanan.";
+---
+
+<Layout title={title} description={description}>
+  <HomeHero />
+  <HomeFatigue />
+  <HomeZoning />
+  <HomeCommunity />
+</Layout>

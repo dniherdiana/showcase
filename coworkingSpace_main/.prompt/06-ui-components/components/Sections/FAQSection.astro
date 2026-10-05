@@ -1,0 +1,33 @@
+---
+import { tentangKamiData } from '../../data/tentang-kami.data.js';
+---
+
+<section class="py-16 border-b border-[#38BDF8]/15">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mb-12">
+      <span class="data-badge mb-3">[ FAQ & TRANSPARANSI MEDIS ]</span>
+      <h2 class="font-mono text-2xl sm:text-3xl font-bold text-[#F3F4F6] mt-2 mb-3">
+        Pertanyaan Umum Mengenai Perawatan Medis Alunê
+      </h2>
+      <p class="text-sm text-[#38BDF8]">
+        Jawaban rasional dan transparan mengenai estimasi downtime, proses regenerasi seluler, dan keamanan prosedur.
+      </p>
+    </div>
+
+    <div class="max-w-4xl space-y-4">
+      {tentangKamiData.faq.map((item) => (
+        <details class="glass-panel group transition-all rounded-[8px] overflow-hidden">
+          <summary class="p-6 cursor-pointer font-mono text-sm font-bold text-[#F3F4F6] flex items-center justify-between hover:text-[#38BDF8] select-none">
+            <span>{item.q}</span>
+            <span class="text-[#38BDF8] font-mono text-lg group-open:rotate-180 transition-transform">
+              &darr;
+            </span>
+          </summary>
+          <div class="px-6 pb-6 pt-2 text-xs sm:text-sm text-[#9CA3AF] leading-relaxed border-t border-[#38BDF8]/15 bg-[#0B0F19]/50">
+            {item.a}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

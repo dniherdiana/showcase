@@ -1,0 +1,62 @@
+<section
+	class="relative z-20 max-w-[1400px] mx-auto px-4 md:px-8 mb-32"
+	data-reveal="stagger-5"
+>
+	<div class="relative w-full aspect-square md:aspect-[2/1] lg:aspect-[21/9]">
+		<img
+			src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80&fit=crop"
+			alt="Integration data dashboard"
+			class="w-full h-full object-cover mix-blend-luminosity grayscale opacity-60"
+		/>
+		<div class="absolute inset-0 bg-surface-base mix-blend-multiply opacity-50">
+		</div>
+
+		<div class="absolute inset-0 flex items-center p-8 md:p-16">
+			<div
+				class="bg-surface-base/90 backdrop-blur-md border border-line-soft p-8 md:p-12 max-w-2xl"
+			>
+				<div
+					class="meta-tag inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-text-secondary mb-6"
+				>
+					<span class="w-2 h-2 rounded-full bg-brand-accent"></span>
+					<span data-lang="id">Konektivitas API & ERP</span>
+					<span data-lang="en" class="hidden">API & ERP Connectivity</span>
+					<span class="ml-4 opacity-50">/// 05</span>
+				</div>
+
+				<h2
+					class="font-display font-bold text-3xl md:text-5xl mb-6 text-text-primary leading-tight"
+				>
+					<span data-lang="id"
+						>Terhubung Langsung dengan Infrastruktur IT Anda.</span
+					>
+					<span data-lang="en" class="hidden"
+						>Seamless Integration with Your IT Infrastructure.</span
+					>
+				</h2>
+
+				<p class="text-text-secondary text-lg mb-8 font-body">
+					<span data-lang="id"
+						>Tanpa migrasi sistem berbulan-bulan. Modul kami memiliki konektor
+						bawaan untuk SAP, Oracle, Odoo, serta RESTful API terbuka untuk
+						integrasi in-house.</span
+					>
+					<span data-lang="en" class="hidden"
+						>No multi-year migrations. Our modules include native connectors for
+						SAP, Oracle, Odoo, and open RESTful APIs for in-house integrations.</span
+					>
+				</p>
+
+				<div class="flex flex-wrap gap-4 pt-6 border-t border-line-hard">
+					{
+						["SAP", "ORACLE", "ODOO", "RESTful API"].map((tech) => (
+							<span class="font-mono text-[10px] md:text-xs text-text-primary bg-surface-subtle px-3 py-1 border border-line-soft">
+								[{tech}]
+							</span>
+						))
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

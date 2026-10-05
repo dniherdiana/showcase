@@ -1,0 +1,40 @@
+---
+import PromoCard from "../../shared/PromoCard/PromoCard.astro";
+
+import { promosData } from "./data.js";
+const featuredPromos = promosData.filter((p) => p.featured);
+const [large, ...rest] = featuredPromos;
+---
+
+<section class="py-20 px-[5%] max-w-7xl mx-auto space-y-12 border-t border-white/10">
+	<div
+		class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-6 story-scroll-item"
+	>
+		<div class="space-y-2">
+			<h2
+				class="font-serif text-3xl sm:text-5xl font-extrabold uppercase text-white tracking-tight"
+			>
+				<span data-i18n-en="Limited-Time Offers" data-i18n-id="Penawaran Terbatas">Limited-Time Offers</span>
+			</h2>
+		</div>
+		<a
+			href="/promo"
+			class="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-gold hover:text-amber-200 transition-colors"
+		>
+			<span data-i18n-en="View All Promotions" data-i18n-id="Lihat Semua Promo">View All Promotions</span>
+			<span>→</span>
+		</a>
+	</div>
+
+	{large && (
+		<div class="story-scroll-item">
+			<PromoCard {...large} variant="large" />
+		</div>
+	)}
+
+	{rest.length > 0 && (
+		<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+			{rest.map((promo) => <PromoCard {...promo} />)}
+		</div>
+	)}
+</section>

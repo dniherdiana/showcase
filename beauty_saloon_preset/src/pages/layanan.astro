@@ -1,0 +1,169 @@
+---
+import Layout from '../components/Layout.astro';
+import Icon from '../components/Icon.astro';
+import Reveal from '../components/Reveal.astro';
+import ServiceTabs from '../components/svelte/ServiceTabs.svelte';
+import { IMG, services, serviceCompare } from '../data/site.js';
+
+const steps = [
+	{ n: '01', title: 'Konsultasi & skin check', desc: 'Ceritakan kondisimu, terapis menyusun rencana sesuai kebutuhan — bukan paket yang dipaksakan.' },
+	{ n: '02', title: 'Ritual perawatan', desc: 'Ruangan disiapkan, produk dipilih, dan terapis menjalankan ritual tahap demi tahap dengan standar steril.' },
+	{ n: '03', title: 'Perawatan pasca-sesi', desc: 'Instruksi singkat cara menjaga hasil di rumah — tertulis dan bisa kamu baca lagi kapan saja.' },
+	{ n: '04', title: 'Follow-up 48 jam', desc: 'Kami menanyakan perkembangan lewat WhatsApp dan menjadwalkan ulang jika diperlukan.' },
+];
+---
+
+<Layout
+	title="Layanan"
+	description="Katalog lengkap layanan Nama Beauty Salon: perawatan wajah, rambut, nail & hand, hingga body & relax — semua dengan standar premium."
+	ogImage={IMG.svcHair}
+>
+	<!-- ============ HERO — compact split, katalog feel ============ -->
+	<section class="relative overflow-hidden border-b-2 border-ink bg-cream-2 pb-14 pt-12 lg:pb-20 lg:pt-16">
+		<div class="pointer-events-none absolute -right-28 top-0 h-80 w-80 rounded-full bg-pink/20 blur-3xl"></div>
+		<div class="relative mx-auto grid max-w-[1400px] gap-8 px-5 lg:grid-cols-12 lg:px-10">
+			<div class="lg:col-span-7">
+				<Reveal>
+					<span class="sticker sticker--violet" style="--tilt:-2deg"><Icon name="tag" class="h-3.5 w-3.5" /> Katalog Layanan</span>
+					<h1 class="mt-6 font-display text-5xl font-black leading-[0.95] sm:text-7xl">
+						Layanan yang <span class="italic text-pink">jelas</span>.
+					</h1>
+				</Reveal>
+			</div>
+			<div class="flex flex-col justify-end lg:col-span-5">
+				<Reveal delay={120}>
+					<p class="font-sans text-base leading-relaxed text-ink/70">
+						Tanpa biaya tersembunyi, tanpa istilah membingungkan. Setiap layanan punya durasi,
+						proses, dan jaminan yang bisa kamu baca sebelum datang.
+					</p>
+					<div class="mt-5 flex flex-wrap gap-2">
+						<span class="sticker sticker--cream" style="--tilt:-1deg">4 kategori</span>
+						<span class="sticker sticker--cream" style="--tilt:1deg">12+ treatment inti</span>
+						<span class="sticker sticker--cream" style="--tilt:-2deg">50+ total variasi</span>
+					</div>
+				</Reveal>
+			</div>
+		</div>
+	</section>
+
+	<!-- ============ CATALOG TABS (Svelte island) ============ -->
+	<section class="py-16 lg:py-24">
+		<div class="mx-auto max-w-[1400px] px-5 lg:px-10">
+			<ServiceTabs categories={services.map((s) => ({ ...s, img: IMG[s.img] }))} client:visible />
+		</div>
+	</section>
+
+	<!-- ============ COMPARISON TABLE ============ -->
+	<section class="bg-ink py-16 text-cream lg:py-24">
+		<div class="mx-auto max-w-[1200px] px-5 lg:px-10">
+			<div class="mb-10 grid gap-6 lg:grid-cols-12 lg:items-end">
+				<div class="lg:col-span-7">
+					<Reveal>
+						<span class="sticker sticker--lime" style="--tilt:-2deg">Standar vs Signature</span>
+						<h2 class="mt-6 font-display text-4xl font-black leading-[1.02] sm:text-5xl">
+							Bandingkan dulu, <span class="italic text-lime">baru</span> putuskan.
+						</h2>
+					</Reveal>
+				</div>
+				<div class="lg:col-span-5">
+					<Reveal delay={100}>
+						<p class="font-sans text-sm leading-relaxed text-cream/65">
+							Kedua jalur tetap menjaga standar kebersihan dan kualitas kami. Signature
+							menambahkan lapisan ritual eksklusif untuk hasil maksimal.
+						</p>
+					</Reveal>
+				</div>
+			</div>
+
+			<Reveal>
+				<div class="overflow-x-auto rounded-[var(--radius-blob)] border-2 border-cream/20">
+					<table class="w-full min-w-[640px] border-collapse text-left">
+						<thead>
+							<tr class="border-b-2 border-cream/20 bg-cream/5 font-sans text-[0.7rem] font-bold uppercase tracking-widest">
+								<th class="p-4 sm:p-5 text-cream/60">Fitur</th>
+								<th class="p-4 text-center sm:p-5">
+									<span class="rounded-full border-2 border-ink bg-cream px-4 py-1 text-ink">Standard</span>
+								</th>
+								<th class="p-4 text-center sm:p-5">
+									<span class="rounded-full border-2 border-ink bg-pink px-4 py-1 text-cream">Signature ✦</span>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							{
+								serviceCompare.map((f) => (
+									<tr class="border-b border-cream/10 last:border-0">
+										<td class="p-4 sm:p-5 font-sans text-sm">{f.feature}</td>
+										<td class="p-4 text-center sm:p-5">
+											{
+												f.standard
+													? <Icon name="check-circle" class="mx-auto h-6 w-6 text-lime" />
+													: <span class="mx-auto inline-block font-sans text-ink-3">—</span>
+											}
+										</td>
+										<td class="p-4 text-center sm:p-5">
+											{
+												f.signature
+													? <Icon name="check-circle" class="mx-auto h-6 w-6 text-pink" />
+													: <span class="mx-auto inline-block font-sans text-ink-3">—</span>
+											}
+										</td>
+									</tr>
+								))
+							}
+						</tbody>
+					</table>
+				</div>
+			</Reveal>
+		</div>
+	</section>
+
+	<!-- ============ PROCESS 4 STEPS ============ -->
+	<section class="bg-lime py-16 lg:py-24">
+		<div class="mx-auto max-w-[1400px] px-5 lg:px-10">
+			<Reveal>
+				<div class="mb-12 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+					<h2 class="font-display text-4xl font-black sm:text-5xl">
+						Proses <span class="italic text-pink">yang transparan</span>.
+					</h2>
+					<p class="max-w-md font-sans text-sm leading-relaxed text-ink/70">
+						Kamu tahu apa yang terjadi di setiap tahap — karena kepercayaan dibangun dari
+						kejelasan, bukan janji.
+					</p>
+				</div>
+			</Reveal>
+			<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+				{
+					steps.map((s, i) => (
+						<article class="relative rounded-[var(--radius-blob)] border-2 border-ink bg-cream p-6 shadow-[var(--shadow-sticker)]" data-reveal style={`--reveal-delay:${i * 90}ms`}>
+							<span class="mag-number block text-6xl text-pink">{s.n}</span>
+							<h3 class="mt-4 font-display text-xl font-black">{s.title}</h3>
+							<p class="mt-2 font-sans text-sm leading-relaxed text-ink/70">{s.desc}</p>
+							{i < steps.length - 1 && (
+								<span class="absolute -right-4 top-1/2 hidden -translate-y-1/2 text-ink lg:block" aria-hidden="true">
+									<Icon name="arrow-right" class="h-6 w-6" />
+								</span>
+							)}
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- ============ CTA ============ -->
+	<section class="relative overflow-hidden py-20 lg:py-24">
+		<div class="mx-auto max-w-4xl px-5 text-center lg:px-10">
+			<Reveal>
+				<span class="sticker sticker--pink mx-auto" style="--tilt:-2deg"><Icon name="sparkles" class="h-3.5 w-3.5" /> Masih bingung memilih?</span>
+				<h2 class="mt-7 font-display text-4xl font-black leading-[1.02] sm:text-6xl">
+					Konsultasi gratis — <span class="italic text-violet">kami bantu</span> susun ritualmu.
+				</h2>
+				<div class="mt-8 flex flex-wrap justify-center gap-4">
+					<a href="/treatment" class="btn btn--violet">Lihat Semua Treatment <Icon name="arrow-right" class="h-5 w-5" /></a>
+					<a href="/kontak" class="btn btn--ghost">Konsultasi Gratis</a>
+				</div>
+			</Reveal>
+		</div>
+	</section>
+</Layout>

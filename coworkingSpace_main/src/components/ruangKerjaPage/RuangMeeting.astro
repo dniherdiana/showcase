@@ -1,0 +1,30 @@
+---
+import { ruangMeetingData } from './RuangMeeting.data.js';
+---
+
+<section class="py-20 md:py-24 bg-bg-base border-b border-border-indie">
+  <div class="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+    <div class="lg:col-span-5">
+      <div class="rotate-[-1.5deg] border-[1.5px] border-border-indie bg-white p-3 shadow-indie rounded-blob">
+        <img
+          src={ruangMeetingData.image}
+          alt={ruangMeetingData.imageAlt}
+          class="w-full aspect-4/3 object-cover rounded-blob"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <div class="lg:col-span-7">
+      <h2 class="font-caveat text-3xl md:text-5xl font-bold text-text-primary leading-tight">
+        {ruangMeetingData.headline}
+      </h2>
+      
+      <div class="mt-6 font-dmsans text-sm md:text-base text-text-secondary leading-relaxed space-y-4">
+        {ruangMeetingData.paragraphs.map((p) => (
+          <p>{p}</p>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

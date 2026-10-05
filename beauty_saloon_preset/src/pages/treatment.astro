@@ -1,0 +1,215 @@
+---
+import Layout from '../components/Layout.astro';
+import Icon from '../components/Icon.astro';
+import Reveal from '../components/Reveal.astro';
+import Placeholder from '../components/Placeholder.astro';
+import TreatmentFinder from '../components/svelte/TreatmentFinder.svelte';
+import { IMG, brand, treatments } from '../data/site.js';
+---
+
+<Layout
+	title="Treatment"
+	description="Katalog 50+ treatment Nama Beauty Salon — pilih ritmu, temukan treatment yang paling cocok lewat kuis singkat."
+	ogImage={IMG.treat1}
+>
+	<!-- ============ HERO — full-bleed image background ============ -->
+	<section class="relative flex min-h-[80vh] items-center overflow-hidden">
+		<img src={IMG.treatFeature} alt="Suasana perawatan di Nama Beauty Salon" class="absolute inset-0 h-full w-full object-cover" />
+		<div class="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/60 to-ink/20"></div>
+		<div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-ink/30"></div>
+
+		<div class="relative mx-auto w-full max-w-[1400px] px-5 py-24 lg:px-10">
+			<div class="max-w-2xl">
+				<Reveal>
+					<span class="sticker sticker--lime" style="--tilt:-2deg"><Icon name="sparkles" class="h-3.5 w-3.5" /> 50+ treatment pilihan</span>
+					<h1 class="mt-7 font-display text-5xl font-black leading-[0.95] text-cream sm:text-7xl">
+						Treatment <span class="italic text-lime">yang dipilih</span> untukmu.
+					</h1>
+				</Reveal>
+				<Reveal delay={120}>
+					<p class="mt-7 max-w-xl font-sans text-lg leading-relaxed text-cream/80">
+						Setiap treatment kami kurasi berdasarkan tiga hal: hasil yang terukur, bahan
+						yang aman, dan ritual yang membuat kamu ingin kembali. Tidak yakin cocok yang mana?
+						Kuis singkat di bawah ini akan membantumu.
+					</p>
+				</Reveal>
+				<Reveal delay={220}>
+					<div class="mt-9 flex flex-wrap gap-4">
+						<a href="#kuis" class="btn btn--pink text-base">
+							<Icon name="arrow-down" class="h-5 w-5" /> Cari Treatment Cocok
+						</a>
+						<a href="/kontak" class="btn btn--ghost text-base !text-cream !border-cream">
+							<Icon name="calendar" class="h-5 w-5" /> Booking
+						</a>
+					</div>
+				</Reveal>
+			</div>
+		</div>
+
+		<span class="absolute bottom-6 right-6 rounded-full border-2 border-cream/30 px-4 py-2 font-sans text-[0.6rem] font-bold uppercase tracking-widest text-cream/70">
+			<b class="text-lime">50+</b> treatment · <b class="text-lime">25+</b> terapis
+		</span>
+	</section>
+
+	<!-- ============ TREATMENT FINDER QUIZ ============ -->
+	<section id="kuis" class="relative overflow-hidden bg-cream py-16 lg:py-24">
+		<div class="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-lime/30 blur-3xl"></div>
+		<div class="relative mx-auto max-w-[1100px] px-5 lg:px-10">
+			<Reveal>
+				<div class="mb-8 flex flex-col items-center text-center">
+					<span class="sticker sticker--pink" style="--tilt:1deg"><Icon name="sparkles" class="h-3.5 w-3.5" /> Personalisasi · 30 detik</span>
+					<h2 class="mt-5 max-w-2xl font-display text-4xl font-black sm:text-5xl">
+						Bingung mulai dari mana? <span class="italic text-violet">Jawab 3 pertanyaan.</span>
+					</h2>
+				</div>
+			</Reveal>
+			<TreatmentFinder client:idle />
+		</div>
+	</section>
+
+	<!-- ============ TREATMENT GRID ============ -->
+	<section class="bg-cream-2 py-16 lg:py-24">
+		<div class="mx-auto max-w-[1400px] px-5 lg:px-10">
+			<div class="mb-10 flex flex-col items-start justify-between gap-4 lg:flex-row lg:items-end">
+				<Reveal>
+					<span class="sticker sticker--violet" style="--tilt:-2deg">Semua treatment</span>
+					<h2 class="mt-5 font-display text-4xl font-black sm:text-5xl">Katalog <span class="italic text-pink">terbaru</span>.</h2>
+				</Reveal>
+				<Reveal delay={100}>
+					<a href="/layanan" class="pill-link">Lihat berdasarkan kategori <Icon name="arrow-right" /></a>
+				</Reveal>
+			</div>
+
+			<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+				{
+					treatments.map((t, i) => (
+						<article class="card-raise group flex flex-col overflow-hidden rounded-[var(--radius-blob)] border-2 border-ink bg-cream shadow-[var(--shadow-sticker)]" data-reveal style={`--reveal-delay:${(i % 3) * 90}ms`}>
+							<div class="relative overflow-hidden">
+								<img src={IMG[t.img]} alt={t.name} loading="lazy" class="aspect-[4/3] w-full object-cover" />
+								<div class="absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-transparent"></div>
+								{t.badge && (
+									<span class="sticker sticker--lime absolute left-3 top-3" style="--tilt:-2deg">
+										<Icon name={t.badge === 'Signature' ? 'sparkles' : t.badge === 'Baru' ? 'gift' : 'flame'} class="h-3 w-3" />
+										{t.badge}
+									</span>
+								)}
+								<span class="sticker sticker--cream absolute right-3 top-3 !rotate-2" style="--tilt:0deg">
+									<span class="flex items-center gap-1"><Icon name="clock" class="h-3 w-3" /> {t.duration}</span>
+								</span>
+							</div>
+							<div class="flex flex-1 flex-col p-5">
+								<div class="flex items-center gap-1 text-pink">
+									<Icon name="star" class="h-4 w-4 fill-current" />
+									<span class="font-sans text-xs font-bold text-ink">{t.rating}</span>
+									<span class="ml-auto rounded-full bg-violet-soft px-3 py-1 font-sans text-[0.6rem] font-bold uppercase tracking-widest text-violet-deep">{t.cat}</span>
+								</div>
+								<h3 class="mt-2 font-display text-xl font-black">{t.name}</h3>
+								<p class="mt-1 font-sans text-xs uppercase tracking-widest text-ink/50">Rekomendasi terapis senior</p>
+								<div class="mt-4 flex items-center justify-between border-t-2 border-dashed border-ink/15 pt-4">
+									<span class="font-sans text-[0.65rem] font-bold uppercase tracking-widest text-ink/60">Harga</span>
+									<Placeholder inline label="Harga" />
+								</div>
+								<a href="/kontak" class="mt-4 inline-flex items-center gap-2 font-sans text-sm font-bold uppercase tracking-wide text-violet-deep">
+									Booking treatment <Icon name="arrow-up-right" class="h-4 w-4" />
+								</a>
+							</div>
+						</article>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- ============ FEATURE SPOTLIGHT ============ -->
+	<section class="relative overflow-hidden bg-ink py-20 text-cream lg:py-28">
+		<span class="outline-text outline-text--cream pointer-events-none absolute -bottom-6 right-0 select-none font-display text-[7rem] font-black opacity-10 lg:text-[10rem]" aria-hidden="true">24K</span>
+		<div class="relative mx-auto grid max-w-[1400px] items-center gap-12 px-5 lg:grid-cols-12 lg:px-10">
+			<div class="lg:col-span-6" data-reveal="left">
+				<div class="relative mx-auto max-w-md">
+					<div class="img-frame rotate-[-2deg] overflow-hidden rounded-[var(--radius-blob)]">
+						<img src={IMG.treatFinder} alt="Produk dan alat makeup premium" loading="lazy" class="aspect-[4/5] w-full object-cover" />
+					</div>
+					<span class="sticker sticker--lime absolute -right-4 -top-4 rotate-6" style="--tilt:0deg">
+						<Icon name="award" class="h-3.5 w-3.5" /> Treatment Tanda Tangan
+					</span>
+				</div>
+			</div>
+			<div class="lg:col-span-6">
+				<Reveal>
+					<span class="sticker sticker--pink" style="--tilt:-2deg"><Icon name="sparkles" class="h-3.5 w-3.5" /> Sorotan bulan ini</span>
+					<h2 class="mt-6 font-display text-4xl font-black leading-[1.02] sm:text-6xl">
+						Gold Radiance <span class="italic text-lime">24K</span>
+					</h2>
+					<p class="drop-cap mt-6 max-w-xl font-sans text-base leading-relaxed text-cream/75">
+						Ritual wajah paling istimewa: eksfoliasi enzim, masker kolagen, dan finishing
+						sheet mask emas 24K dengan teknik lift manual dari terapis senior. Satu sesi —
+						kilau yang bertahan berminggu-minggu.
+					</p>
+					<div class="mt-7 flex flex-wrap gap-3">
+						<span class="sticker sticker--cream" style="--tilt:-1deg"><Icon name="clock" class="h-3 w-3" /> 90 menit</span>
+						<span class="sticker sticker--cream" style="--tilt:1deg"><Icon name="star" class="h-3 w-3" /> 5.0 rating</span>
+						<span class="sticker sticker--cream" style="--tilt:-2deg"><Icon name="shield" class="h-3 w-3" /> Semua kulit</span>
+					</div>
+					<div class="mt-8 flex flex-wrap items-center gap-4">
+						<a href="/kontak" class="btn btn--lime">Booking {treatments[2].name} <Icon name="arrow-right" class="h-5 w-5" /></a>
+						<span class="font-sans text-xs font-bold uppercase tracking-widest text-cream/60">Slot terbatas — 3 sesi/hari</span>
+					</div>
+				</Reveal>
+			</div>
+		</div>
+	</section>
+
+	<!-- ============ HOW TO BOOK ============ -->
+	<section class="bg-violet py-16 text-cream">
+		<div class="mx-auto max-w-[1400px] px-5 lg:px-10">
+			<Reveal>
+				<h2 class="mb-10 flex flex-wrap items-center gap-3 font-display text-3xl font-black sm:text-4xl">
+					<Icon name="calendar" class="h-8 w-8 text-lime" /> Cara booking, <span class="italic">semudah itu</span>
+				</h2>
+			</Reveal>
+			<div class="grid gap-6 sm:grid-cols-3">
+				{
+					[
+						{ n: '1', t: 'Pilih treatment', d: 'Lihat katalog atau pakai kuis personalisasi di atas.' },
+						{ n: '2', t: 'Tentukan waktu', d: 'Booking online atau WhatsApp — konfirmasi dalam 15 menit.' },
+						{ n: '3', t: 'Datang & rileks', d: 'Kami siapkan segalanya. Kamu tinggal menikmati ritual.' },
+					].map((s, i) => (
+						<div class="flex items-start gap-5" data-reveal style={`--reveal-delay:${i * 90}ms`}>
+							<span class="mag-number text-6xl text-lime">{s.n}</span>
+							<div>
+								<h3 class="font-display text-xl font-black">{s.t}</h3>
+								<p class="mt-1 font-sans text-sm leading-relaxed text-cream/70">{s.d}</p>
+							</div>
+						</div>
+					))
+				}
+			</div>
+			<Reveal delay={120}>
+				<div class="mt-10 flex flex-wrap items-center gap-4 rounded-2xl border-2 border-cream/25 bg-cream/5 p-6">
+					<a href={`https://wa.me/${brand.whatsapp}`} target="_blank" rel="noreferrer" class="btn btn--lime">
+						<Icon name="whatsapp" class="h-5 w-5" /> Booking via WhatsApp
+					</a>
+					<p class="flex-1 font-sans text-sm text-cream/75">
+						Butuh rekomendasi cepat? Chat kami sekarang — terapis kami siap menjawab di jam operasional.
+					</p>
+				</div>
+			</Reveal>
+		</div>
+	</section>
+
+	<!-- ============ CTA ============ -->
+	<section class="relative overflow-hidden bg-lime py-20">
+		<div class="mx-auto max-w-4xl px-5 text-center lg:px-10">
+			<Reveal>
+				<span class="sticker sticker--ink mx-auto" style="--tilt:-2deg"><Icon name="sparkles" class="h-3.5 w-3.5" /> Mulai ritualmu</span>
+				<h2 class="mt-7 font-display text-4xl font-black leading-[1.02] text-ink sm:text-6xl">
+					Kulit terbaikmu <span class="italic text-pink">dimulai</span> dari satu booking.
+				</h2>
+				<div class="mt-8 flex flex-wrap justify-center gap-4">
+					<a href="/kontak" class="btn btn--ink text-base">Booking Sekarang <Icon name="arrow-right" class="h-5 w-5" /></a>
+					<a href="/promo" class="btn btn--ghost text-base">Cek Promo Dulu</a>
+				</div>
+			</Reveal>
+		</div>
+	</section>
+</Layout>

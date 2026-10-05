@@ -1,0 +1,207 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const flashPromos = [
+  {
+    title: "Paket Glowing Bundling 3x Sesi Laser",
+    disc: "DISKON 35%",
+    code: "GLOW-BUNDLE35",
+    origPrice: "Rp 3.750.000",
+    promoPrice: "Rp 2.435.000",
+    expires: "Berakhir Dalam 3 Hari",
+    img: "https://images.unsplash.com/photo-1526947425960-945c6e72858f?w=600&auto=format&fit=crop&q=80"
+  },
+  {
+    title: "Diskon Pertama Kunjungan All Treatment",
+    disc: "DISKON 20%",
+    code: "NEW-CLIENT20",
+    origPrice: "Rp 650.000",
+    promoPrice: "Rp 520.000",
+    expires: "Spesial Klien Baru",
+    img: "https://images.unsplash.com/photo-1512290900673-70020108990c?w=600&auto=format&fit=crop&q=80"
+  }
+];
+
+const vipTiers = [
+  {
+    name: "VIP Silver Member",
+    minSpend: "Akumulasi Rp 3.000.000",
+    perks: [
+      "Diskon 10% All Single Treatments",
+      "Voucher Ulang Tahun Rp 150.000",
+      "Prioritas Booking Sabtu-Minggu",
+      "Welcome Drink & Aromatherapy"
+    ],
+    border: "border-gray-500/40",
+    btnBg: "bg-gray-700"
+  },
+  {
+    name: "VIP Gold Member (Best Value)",
+    minSpend: "Akumulasi Rp 7.500.000",
+    perks: [
+      "Diskon 20% All Single Treatments",
+      "Gratis 1x Aroma Spa 60 Min / Tahun",
+      "Voucher Ulang Tahun Rp 300.000",
+      "Akses Ruang Treatment Private Deluxe",
+      "Pendampingan Dokter Spesialis Free"
+    ],
+    border: "border-pink-500",
+    btnBg: "bg-gradient-to-r from-[#E6007A] to-[#8B5CF6]"
+  },
+  {
+    name: "VIP Platinum Royal",
+    minSpend: "Akumulasi Rp 15.000.000",
+    perks: [
+      "Diskon 30% All Single Treatments",
+      "Gratis 3x Laser Glow / Tahun",
+      "Voucher Ulang Tahun Rp 500.000",
+      "Personal Butler Service & Shuttle",
+      "Akses Eksklusif Produk Limited Launch"
+    ],
+    border: "border-amber-500/60",
+    btnBg: "bg-amber-600"
+  }
+];
+---
+
+<Layout
+  title="Promo & Membership VIP | AURA Aesthetic & Beauty Lounge"
+  description="Klaim promo terbatas diskon hingga 40%, kode kupon eksklusif, dan keanggotaan VIP Member AURA Beauty Lounge."
+>
+  <!-- 1. Hero: Vibrant Ticker Banner -->
+  <section class="py-16 bg-gradient-to-r from-pink-950 via-[#15121E] to-purple-950 border-b border-pink-500/30">
+    <div class="max-w-7xl mx-auto px-4 text-center space-y-4">
+      <span class="magazine-badge animate-pulse">PROMO & VOUCHER KECANTIKAN</span>
+      <h1 class="font-serif text-4xl sm:text-6xl font-extrabold text-white">
+        Penawaran Spesial <span class="text-gradient-vibrant">& VIP Club</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-gray-300 max-w-xl mx-auto">
+        Nikmati potongan harga eksklusif dan keuntungan berlipat bagi anggota terdaftar.
+      </p>
+    </div>
+  </section>
+
+  <!-- 2. Flash Sale Offer Cards -->
+  <section class="py-20 bg-[#0E0B14] relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row items-center justify-between mb-12 border-b border-pink-950/60 pb-6 gap-4">
+        <div>
+          <span class="text-xs font-bold text-pink-400 uppercase tracking-widest">Waktu Terbatas</span>
+          <h2 class="font-serif text-3xl font-extrabold text-white mt-1">Flash Sale Promo Eksklusif</h2>
+        </div>
+        <div class="client-data-badge">
+          ⚠️ [PERLU DATA CLIENT: Syarat & Ketentuan Promo]
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {flashPromos.map((p) => (
+          <div class="bg-[#15121E] border border-pink-500/30 rounded-3xl overflow-hidden shadow-2xl flex flex-col sm:flex-row">
+            <div class="sm:w-2/5 relative h-48 sm:h-auto">
+              <img src={p.img} alt={p.title} class="w-full h-full object-cover" />
+              <span class="absolute top-3 left-3 bg-pink-600 text-white font-extrabold text-xs px-3 py-1 rounded-full shadow">
+                {p.disc}
+              </span>
+            </div>
+            <div class="sm:w-3/5 p-6 space-y-3 flex flex-col justify-between">
+              <div>
+                <span class="text-[10px] font-bold text-amber-300 uppercase tracking-wider block">⏱ {p.expires}</span>
+                <h3 class="font-serif text-xl font-bold text-white mt-1">{p.title}</h3>
+                <div class="mt-2 p-2 rounded-xl bg-pink-950/40 border border-pink-500/30 text-center">
+                  <span class="text-[10px] text-gray-400 block uppercase">Kode Kupon WA:</span>
+                  <span class="text-xs font-mono font-extrabold text-pink-300">{p.code}</span>
+                </div>
+              </div>
+
+              <div class="pt-2 flex items-center justify-between border-t border-white/10">
+                <div>
+                  <span class="text-xs line-through text-gray-500 block">{p.origPrice}</span>
+                  <span class="text-lg font-bold text-pink-400">{p.promoPrice}</span>
+                </div>
+                <a
+                  href={`https://wa.me/6281234567890?text=Halo%20Aura%20Beauty,%20saya%20ingin%20klaim%20promo%20kode%20${p.code}`}
+                  target="_blank"
+                  class="px-4 py-2 text-xs font-bold text-white bg-pink-600 rounded-full hover:bg-pink-500 transition-colors"
+                >
+                  Klaim via WA
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 3. VIP Membership Tiers -->
+  <section class="py-20 bg-[#0C0A10] relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+        <span class="magazine-badge">PROGRAM KELOYALAN</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-extrabold text-white">
+          AURA VIP Privilege Club
+        </h2>
+        <p class="text-xs text-gray-300">
+          Tingkatkan jenjang keanggotaan Anda dan dapatkan perlakuan istimewa di setiap kunjungan.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {vipTiers.map((tier) => (
+          <div class={`bg-[#15121E] border ${tier.border} rounded-3xl p-8 shadow-2xl flex flex-col justify-between space-y-6 relative`}>
+            <div>
+              <h3 class="font-serif text-2xl font-bold text-white">{tier.name}</h3>
+              <p class="text-xs text-pink-400 font-semibold mt-1">{tier.minSpend}</p>
+
+              <ul class="mt-6 space-y-3 text-xs text-gray-300">
+                {tier.perks.map((perk) => (
+                  <li class="flex items-start gap-2">
+                    <span class="text-pink-400 font-bold">✓</span>
+                    <span>{perk}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <button
+              onclick="document.getElementById('booking-modal')?.classList.remove('hidden')"
+              class={`w-full py-3 text-center text-xs font-bold uppercase tracking-wider text-white rounded-full ${tier.btnBg} shadow-lg`}
+            >
+              Daftar Member VIP
+            </button>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 4. Digital Gift Voucher Section -->
+  <section class="py-20 bg-[#0E0B14] relative">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-r from-purple-950/60 to-pink-950/60 border border-pink-500/30 rounded-3xl p-8 sm:p-12 flex flex-col sm:flex-row items-center justify-between gap-8">
+        <div class="space-y-4 max-w-lg">
+          <span class="magazine-badge">GIFT VOUCHER</span>
+          <h2 class="font-serif text-3xl font-extrabold text-white">
+            Hadiahkan Perawatan Mewah Untuk Orang Tersayang
+          </h2>
+          <p class="text-xs text-gray-300">
+            Voucher digital kecantikan AURA tersedia mulai nilai Rp 250.000 hingga Rp 2.000.000 dengan kemasan e-card elegan.
+          </p>
+        </div>
+        <div>
+          <a
+            href="https://wa.me/6281234567890?text=Halo%20Aura%20Beauty,%20saya%20ingin%20beli%20Gift%20Voucher"
+            target="_blank"
+            class="px-8 py-4 bg-gradient-to-r from-[#E6007A] to-[#8B5CF6] text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-xl hover:scale-105 inline-block"
+          >
+            Beli Voucher Digital
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

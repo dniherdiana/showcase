@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import PortfolioHero from '../components/portofolio/PortfolioHero.astro';
+import ProjectGallery from '../components/portofolio/ProjectGallery.astro';
+import CaseStudies from '../components/portofolio/CaseStudies.astro';
+import Portfolio from '../components/portofolio/Portfolio.astro';
+import BookingWidget from '../components/BookingWidget.astro';
+import Footer from '../components/Footer.astro';
+import { siteConfig } from '../data/site.js';
+---
+
+<Layout 
+  title={`Dokumentasi Proyek & Rekam Jejak Pabrik | ${siteConfig.name}`}
+  description="Dokumentasi resmi proyek pembangunan pabrik manufaktur dan gudang logistik. Rekam jejak fisik, tantangan teknis, galeri foto interaktif, dan bukti garansi purna jual."
+  canonicalPath="/portofolio"
+>
+  <Navbar />
+  <main class="pt-20" id="main-content">
+    <PortfolioHero />
+    <ProjectGallery />
+    <CaseStudies />
+    <Portfolio />
+    <BookingWidget />
+  </main>
+  <Footer />
+</Layout>

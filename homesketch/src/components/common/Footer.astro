@@ -1,0 +1,89 @@
+---
+import Container from '../base/Container.astro';
+import HairlineDivider from '../base/HairlineDivider.astro';
+import { footerData } from './Footer.data.js';
+---
+
+<footer class="bg-[var(--color-canvas-dark)] text-[var(--color-ink-light)] pt-16 pb-12 border-t border-[var(--color-border-dark-hairline)] mt-auto">
+  <Container size="xl" as="div" class="flex flex-col gap-12">
+    <!-- Main Footer Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-10 lg:gap-14">
+      <!-- Col 1: Brand & Thesis (5 cols) -->
+      <div class="md:col-span-5 flex flex-col gap-5">
+        <a href="/" class="font-serif text-2xl font-bold tracking-tight text-[var(--color-ink-light)] focus-visible:outline-2 focus-visible:outline-[var(--color-accent-terracotta)]">
+          {footerData.brand.name}
+        </a>
+        <p class="text-sm text-[var(--color-ink-light-muted)] leading-relaxed max-w-[42ch]">
+          {footerData.brand.description}
+        </p>
+        <ul class="flex flex-col gap-2 pt-2 text-xs text-[var(--color-accent-sage)] font-medium">
+          {footerData.credentials.map((cred) => (
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent-terracotta-light)]" />
+              <span>{cred}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Col 2: Navigation (3 cols) -->
+      <div class="md:col-span-3 flex flex-col gap-4">
+        <h3 class="text-xs uppercase tracking-widest text-[var(--color-ink-light-muted)] font-semibold">
+          Navigasi Studio
+        </h3>
+        <ul class="flex flex-col gap-2.5 text-sm">
+          {footerData.navigation.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="text-[var(--color-ink-light)] hover:text-[var(--color-accent-terracotta-light)] transition-colors focus-visible:outline-2 focus-visible:outline-[var(--color-accent-terracotta)]"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Col 3: Studio & Locations (4 cols) -->
+      <div class="md:col-span-4 flex flex-col gap-4">
+        <h3 class="text-xs uppercase tracking-widest text-[var(--color-ink-light-muted)] font-semibold">
+          Wilayah Operasional & Kontak
+        </h3>
+        <address class="not-italic flex flex-col gap-4 text-sm text-[var(--color-ink-light-muted)]">
+          {footerData.locations.map((loc) => (
+            <div class="flex flex-col">
+              <span class="font-medium text-[var(--color-ink-light)]">{loc.city}</span>
+              <span class="text-xs">{loc.address}</span>
+              <span class="text-[11px] text-[var(--color-ink-light-muted)]/80">{loc.note}</span>
+            </div>
+          ))}
+          <div class="pt-2 border-t border-[var(--color-border-dark-hairline)] flex flex-col gap-1 text-xs">
+            <a
+              href={footerData.contact.whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-[var(--color-accent-terracotta-light)] hover:underline font-medium"
+            >
+              WhatsApp: {footerData.contact.whatsapp}
+            </a>
+            <span>Email: {footerData.contact.email}</span>
+            <span class="text-[11px] text-[var(--color-ink-light-muted)]/70">{footerData.contact.hours}</span>
+          </div>
+        </address>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <HairlineDivider dark={true} />
+
+    <!-- Bottom Bar -->
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--color-ink-light-muted)]/80">
+      <span>{footerData.copyright}</span>
+      <div class="flex items-center gap-6">
+        <span>Arsitektur & Interior Bespoke</span>
+        <span>Ikatan Arsitek Indonesia</span>
+      </div>
+    </div>
+  </Container>
+</footer>

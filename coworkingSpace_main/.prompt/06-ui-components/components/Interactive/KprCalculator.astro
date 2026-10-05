@@ -1,0 +1,257 @@
+---
+---
+<section id="kpr" class="py-28 bg-[#0A0D12] relative overflow-hidden border-t border-slate-800/80">
+  <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Left Explanation Narrative (Col-span 5) -->
+      <div class="lg:col-span-5 space-y-6">
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-slate-50 leading-[1.18] tracking-tight">
+          Simulasikan angsuran KPR bulanan secara transparan.
+        </h2>
+        <p class="text-slate-200 font-normal text-base leading-relaxed">
+          Tidak ada angka yang disembunyikan. Hitung estimasi DP, angsuran masa bunga fixed, hingga estimasi penyesuaian bunga floating agar keputusan keuangan keluarga Anda tetap aman.
+        </p>
+
+        <div class="p-5 bg-[#121620] border border-slate-800 rounded-sm space-y-3">
+          <div class="flex items-center gap-3 text-xs font-semibold text-amber-300 uppercase tracking-wider">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span>Mitra Perbankan KPR Terhubung</span>
+          </div>
+          <p class="text-xs text-slate-300 font-normal leading-relaxed">
+            Bank Mandiri · Bank BCA · Bank BRI · Bank BNI · Bank Syariah Indonesia (BSI) · Bank BTN
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Interactive Calculator Card (Col-span 7) -->
+      <div class="lg:col-span-7 bg-[#10141D] border border-slate-800 p-7 sm:p-10 rounded-sm shadow-2xl space-y-8">
+        
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
+          <h3 class="font-serif text-xl text-slate-100 font-medium">Kalkulator Simulasi KPR Transparan</h3>
+          
+          <!-- Floating vs Fixed Rate Selector Toggle -->
+          <div class="inline-flex p-1 bg-slate-900 rounded border border-slate-800 text-xs" role="tablist" aria-label="Mode Suku Bunga">
+            <button type="button" id="rate-fixed-btn" role="tab" aria-selected="true" class="px-3 py-1.5 font-mono font-medium rounded text-amber-300 bg-amber-500/20 border border-amber-500/30">
+              Fixed 5.5% (Thn 1-3)
+            </button>
+            <button type="button" id="rate-floating-btn" role="tab" aria-selected="false" class="px-3 py-1.5 font-mono font-medium rounded text-slate-400 hover:text-slate-200">
+              Floating Est. 11%
+            </button>
+          </div>
+        </div>
+
+        <form id="kpr-form" class="space-y-6" onsubmit="return false;">
+          
+          <!-- Property Price Slider -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center text-xs">
+              <label for="property-price" class="text-slate-200 font-semibold">Harga Unit Rumah</label>
+              <span id="price-display" class="font-mono text-amber-300 font-bold text-sm">Rp 1.120.000.000</span>
+            </div>
+            <input 
+              type="range" 
+              id="property-price" 
+              min="750000000" 
+              max="2000000000" 
+              step="10000000" 
+              value="1120000000"
+              class="w-full h-2.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-400 focus-visible:outline-amber-400"
+              aria-label="Harga Unit Rumah"
+            />
+            <div class="flex justify-between text-[10px] text-slate-400 font-mono">
+              <span>Rp 750 Juta</span>
+              <span>Rp 2.0 Miliar</span>
+            </div>
+          </div>
+
+          <!-- Down Payment (DP %) Slider -->
+          <div class="space-y-2">
+            <div class="flex justify-between items-center text-xs">
+              <label for="dp-percent" class="text-slate-200 font-semibold">Uang Muka (DP %)</label>
+              <span id="dp-display" class="font-mono text-amber-300 font-bold text-sm">10% (Rp 112.000.000)</span>
+            </div>
+            <input 
+              type="range" 
+              id="dp-percent" 
+              min="5" 
+              max="40" 
+              step="5" 
+              value="10"
+              class="w-full h-2.5 bg-slate-800 rounded-lg appearance-none cursor-pointer accent-amber-400 focus-visible:outline-amber-400"
+              aria-label="Uang Muka DP Persen"
+            />
+          </div>
+
+          <!-- Loan Period (Tenor) Radio Selector with ARIA -->
+          <div class="space-y-2">
+            <label class="text-xs text-slate-200 font-semibold block">Jangka Waktu KPR (Tenor)</label>
+            <div class="grid grid-cols-4 gap-3" id="tenor-buttons" role="radiogroup" aria-label="Tenor KPR">
+              <button type="button" role="radio" aria-checked="false" data-tenor="10" class="tenor-btn py-2.5 text-xs font-mono font-medium rounded-sm border border-slate-700 bg-slate-900 text-slate-300 hover:border-amber-400 transition-colors min-h-[44px]">10 Thn</button>
+              <button type="button" role="radio" aria-checked="false" data-tenor="15" class="tenor-btn py-2.5 text-xs font-mono font-medium rounded-sm border border-slate-700 bg-slate-900 text-slate-300 hover:border-amber-400 transition-colors min-h-[44px]">15 Thn</button>
+              <button type="button" role="radio" aria-checked="true" data-tenor="20" class="tenor-btn tenor-active py-2.5 text-xs font-mono font-medium rounded-sm border border-amber-400 bg-amber-400/10 text-amber-300 min-h-[44px]">20 Thn</button>
+              <button type="button" role="radio" aria-checked="false" data-tenor="25" class="tenor-btn py-2.5 text-xs font-mono font-medium rounded-sm border border-slate-700 bg-slate-900 text-slate-300 hover:border-amber-400 transition-colors min-h-[44px]">25 Thn</button>
+            </div>
+          </div>
+
+          <!-- Calculation Results Box -->
+          <div class="p-6 bg-[#161B26] border border-amber-500/30 rounded-sm space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <span id="rate-label" class="text-xs text-slate-300 block uppercase tracking-wider font-mono">Estimasi Angsuran Masa Fixed (5.5%)</span>
+                <span id="monthly-installment" class="font-serif text-3xl sm:text-4xl text-amber-300 font-medium">Rp 6.872.000</span>
+                <span class="text-[11px] text-slate-300 block">/ bulan (Termasuk estimasi pokok & bunga)</span>
+              </div>
+              <div class="text-right sm:border-l border-slate-800 sm:pl-6 pt-3 sm:pt-0">
+                <span class="text-[11px] text-slate-400 block">Plafond Pinjaman KPR:</span>
+                <span id="loan-amount" class="font-mono text-slate-100 text-sm font-semibold">Rp 1.008.000.000</span>
+              </div>
+            </div>
+
+            <!-- Transparency Disclosure Note -->
+            <div class="pt-3 border-t border-slate-800/80 text-[11px] text-slate-300 font-normal space-y-1">
+              <div class="flex items-center justify-between text-amber-300 font-mono">
+                <span>Est. Angsuran Masa Floating (11%):</span>
+                <span id="floating-installment-preview">Rp 10.410.000 / bln</span>
+              </div>
+              <p class="text-slate-400 text-[10px]">
+                *Catatan Transparansi: Suku bunga dapat menyesuaikan kebijakan perbankan mitra setelah periode fixed rate 3 tahun berakhir.
+              </p>
+            </div>
+          </div>
+
+          <!-- Action Button -->
+          <button 
+            type="button" 
+            id="calc-submit-btn"
+            class="w-full py-4 px-6 text-xs font-semibold tracking-wide text-slate-950 bg-gradient-to-r from-amber-300 via-amber-400 to-amber-200 hover:from-amber-200 hover:to-amber-300 rounded-sm transition-all shadow-lg shadow-amber-500/15 min-h-[44px]"
+          >
+            Hitung Simulasi Angsuran & Jadwalkan Visit
+          </button>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const priceInput = document.getElementById('property-price') as HTMLInputElement;
+    const dpInput = document.getElementById('dp-percent') as HTMLInputElement;
+    const priceDisplay = document.getElementById('price-display');
+    const dpDisplay = document.getElementById('dp-display');
+    const monthlyDisplay = document.getElementById('monthly-installment');
+    const floatingPreview = document.getElementById('floating-installment-preview');
+    const loanDisplay = document.getElementById('loan-amount');
+    const rateLabel = document.getElementById('rate-label');
+    const tenorButtons = document.querySelectorAll('.tenor-btn');
+    const submitBtn = document.getElementById('calc-submit-btn');
+
+    const rateFixedBtn = document.getElementById('rate-fixed-btn');
+    const rateFloatingBtn = document.getElementById('rate-floating-btn');
+
+    let currentTenor = 20;
+    let currentRateMode = 'fixed'; // 'fixed' = 0.055, 'floating' = 0.11
+
+    function formatRupiah(number: number) {
+      return 'Rp ' + Math.round(number).toLocaleString('id-ID');
+    }
+
+    function calculatePayment(principal: number, annualRate: number, years: number) {
+      const monthlyRate = annualRate / 12;
+      const totalMonths = years * 12;
+      return (principal * monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) / 
+             (Math.pow(1 + monthlyRate, totalMonths) - 1);
+    }
+
+    function updateCalculator() {
+      const price = parseFloat(priceInput.value);
+      const dpPercent = parseFloat(dpInput.value);
+      
+      const dpAmount = price * (dpPercent / 100);
+      const loanAmount = price - dpAmount;
+
+      const activeRate = currentRateMode === 'fixed' ? 0.055 : 0.11;
+      const monthlyPayment = calculatePayment(loanAmount, activeRate, currentTenor);
+      const floatingPayment = calculatePayment(loanAmount, 0.11, currentTenor);
+
+      if (priceDisplay) priceDisplay.textContent = formatRupiah(price);
+      if (dpDisplay) dpDisplay.textContent = `${dpPercent}% (${formatRupiah(dpAmount)})`;
+      if (loanDisplay) loanDisplay.textContent = formatRupiah(loanAmount);
+      if (monthlyDisplay) monthlyDisplay.textContent = formatRupiah(monthlyPayment);
+      if (floatingPreview) floatingPreview.textContent = formatRupiah(floatingPayment) + ' / bln';
+
+      if (rateLabel) {
+        rateLabel.textContent = currentRateMode === 'fixed' 
+          ? 'Estimasi Angsuran Masa Fixed (5.5%)' 
+          : 'Estimasi Angsuran Masa Floating (11%)';
+      }
+    }
+
+    priceInput?.addEventListener('input', updateCalculator);
+    dpInput?.addEventListener('input', updateCalculator);
+
+    rateFixedBtn?.addEventListener('click', () => {
+      currentRateMode = 'fixed';
+      rateFixedBtn.classList.add('text-amber-300', 'bg-amber-500/20', 'border', 'border-amber-500/30');
+      rateFixedBtn.classList.remove('text-slate-400');
+      rateFixedBtn.setAttribute('aria-selected', 'true');
+
+      rateFloatingBtn?.classList.remove('text-amber-300', 'bg-amber-500/20', 'border', 'border-amber-500/30');
+      rateFloatingBtn?.classList.add('text-slate-400');
+      rateFloatingBtn?.setAttribute('aria-selected', 'false');
+
+      updateCalculator();
+    });
+
+    rateFloatingBtn?.addEventListener('click', () => {
+      currentRateMode = 'floating';
+      rateFloatingBtn.classList.add('text-amber-300', 'bg-amber-500/20', 'border', 'border-amber-500/30');
+      rateFloatingBtn.classList.remove('text-slate-400');
+      rateFloatingBtn.setAttribute('aria-selected', 'true');
+
+      rateFixedBtn?.classList.remove('text-amber-300', 'bg-amber-500/20', 'border', 'border-amber-500/30');
+      rateFixedBtn?.classList.add('text-slate-400');
+      rateFixedBtn?.setAttribute('aria-selected', 'false');
+
+      updateCalculator();
+    });
+
+    tenorButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLButtonElement;
+        currentTenor = parseInt(target.getAttribute('data-tenor') || '20', 10);
+        
+        tenorButtons.forEach(b => {
+          b.classList.remove('border-amber-400', 'bg-amber-400/10', 'text-amber-300');
+          b.classList.add('border-slate-700', 'bg-slate-900', 'text-slate-300');
+          b.setAttribute('aria-checked', 'false');
+        });
+
+        target.classList.remove('border-slate-700', 'bg-slate-900', 'text-slate-300');
+        target.classList.add('border-amber-400', 'bg-amber-400/10', 'text-amber-300');
+        target.setAttribute('aria-checked', 'true');
+
+        updateCalculator();
+      });
+    });
+
+    submitBtn?.addEventListener('click', () => {
+      const price = formatRupiah(parseFloat(priceInput.value));
+      const dp = dpInput.value + '%';
+      const installment = monthlyDisplay?.textContent || '';
+      const modeText = currentRateMode === 'fixed' ? 'Fixed 5.5%' : 'Floating 11%';
+      const text = encodeURIComponent(`Halo Tim Marketing Grand Samudra, saya sudah simulasikan KPR untuk unit harga ${price} (DP ${dp}, Tenor ${currentTenor} Thn, Mode Bunga ${modeText}, Angsuran ${installment}). Saya ingin konsultasi ketersediaan unit & jadwal kunjungan.`);
+      window.open(`https://wa.me/6281234567890?text=${text}`, '_blank');
+    });
+
+    updateCalculator();
+  });
+</script>

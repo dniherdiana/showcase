@@ -1,0 +1,17 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FasilitasHero from '../components/fasilitasPage/FasilitasHero.astro';
+import FasilitasNetwork from '../components/fasilitasPage/FasilitasNetwork.astro';
+import FasilitasClimate from '../components/fasilitasPage/FasilitasClimate.astro';
+import FasilitasBeverage from '../components/fasilitasPage/FasilitasBeverage.astro';
+
+const title = "Fasilitas dan Standar Teknis - Ranting Creative Space";
+const description = "Spesifikasi koneksi internet serat optik, stop kontak ganda per meja, pendingin udara terjaga, dan stasiun seduh kopi sepuasnya.";
+---
+
+<Layout title={title} description={description}>
+  <FasilitasHero />
+  <FasilitasNetwork />
+  <FasilitasClimate />
+  <FasilitasBeverage />
+</Layout>

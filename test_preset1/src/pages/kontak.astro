@@ -1,0 +1,120 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const contacts = [
+	{ label: 'WhatsApp Order', value: '+62 812-3456-7890', sub: 'Balasan cepat, 08.00–21.00 WIB', href: 'https://wa.me/6281234567890', icon: '✆' },
+	{ label: 'Telepon', value: '+62 812-3456-7890', sub: 'Tim travel consultant kami', href: 'tel:+6281234567890', icon: '☏' },
+	{ label: 'Email', value: 'halo@i-travel.id', sub: 'Untuk proposal & corporate', href: 'mailto:halo@i-travel.id', icon: '✉' },
+];
+---
+<Layout title="Kontak — Rencanakan Perjalananmu Bersama Kami">
+	<section class="container-px mx-auto pt-32 pb-20 md:pt-40">
+		<nav class="text-xs font-semibold text-ink/50" aria-label="breadcrumb">Home <span class="mx-1 text-tide">/</span> Kontak</nav>
+		<div class="mt-8 grid gap-14 lg:grid-cols-12">
+			<!-- ══════════ KIRI — info, tenang ══════════ -->
+			<div class="lg:col-span-5">
+				<p class="reveal text-xs font-bold uppercase tracking-[0.25em] text-tide">Kontak</p>
+				<h1 class="reveal display-hero mt-3 text-4xl md:text-6xl">Mari mulai<br /><span class="serif italic text-tide">dari satu pesan.</span></h1>
+				<p class="reveal mt-5 max-w-sm text-lg text-ink/60">
+					Ceritakan rencanamu — atau bahkan sekedar ide samar. Kami balas dengan rincian nyata, bukan janji yang mengambang.
+				</p>
+
+				<div class="reveal mt-10 space-y-3">
+					{contacts.map((c, i) => (
+						<a key={i} href={c.href} target={c.href.startsWith('http') ? '_blank' : undefined} rel="noopener" class="group flex items-center gap-4 rounded-2xl border border-ink/10 bg-white p-5 transition-all hover:-translate-y-0.5 hover:border-tide hover:shadow-lg hover:shadow-tide/10">
+							<span class="grid size-12 shrink-0 place-items-center rounded-full bg-peach-soft text-lg text-ink transition-colors group-hover:bg-peach">{c.icon}</span>
+							<div>
+								<p class="text-xs font-bold uppercase tracking-widest text-ink/50">{c.label}</p>
+								<p class="mt-0.5 font-display text-base font-bold">{c.value}</p>
+								<p class="text-xs text-ink/50">{c.sub}</p>
+							</div>
+						</a>
+					))}
+				</div>
+
+				<div class="reveal mt-8 rounded-2xl bg-ink p-6 text-cream">
+					<p class="font-display font-bold">Jam operasional</p>
+					<div class="mt-3 space-y-1.5 text-sm text-cream/70">
+						<p class="flex justify-between"><span>Senin – Jumat</span><span class="font-semibold text-cream">08.00 – 20.00</span></p>
+						<p class="flex justify-between"><span>Sabtu – Minggu</span><span class="font-semibold text-cream">09.00 – 18.00</span></p>
+					</div>
+				</div>
+			</div>
+
+			<!-- ══════════ KANAN — booking form ══════════ -->
+			<div class="lg:col-span-7">
+				<form id="booking-form" class="reveal rounded-blob border border-ink/10 bg-white p-7 shadow-xl shadow-ink/5 md:p-10">
+					<h2 class="font-display text-2xl font-bold">Booking / Konsultasi</h2>
+					<p class="mt-2 text-sm text-ink/55">Isi di bawah, tim kami menghubungi kamu maksimal 24 jam kerja.</p>
+
+					<div class="mt-8 grid gap-5 sm:grid-cols-2">
+						<div class="sm:col-span-2">
+							<label for="f-nama" class="mb-2 block text-xs font-bold uppercase tracking-widest text-ink/60">Nama lengkap *</label>
+							<input id="f-nama" type="text" required placeholder="Nama kamu" class="w-full rounded-xl border border-ink/15 bg-cream px-4 py-3.5 outline-none transition-colors focus:border-tide focus:bg-white" />
+						</div>
+						<div>
+							<label for="f-wa" class="mb-2 block text-xs font-bold uppercase tracking-widest text-ink/60">Nomor WhatsApp *</label>
+							<input id="f-wa" type="tel" required placeholder="08xx-xxxx-xxxx" class="w-full rounded-xl border border-ink/15 bg-cream px-4 py-3.5 outline-none transition-colors focus:border-tide focus:bg-white" />
+						</div>
+						<div>
+							<label for="f-dest" class="mb-2 block text-xs font-bold uppercase tracking-widest text-ink/60">Destinasi *</label>
+							<input id="f-dest" type="text" required placeholder="cth: Bali / Paris / Umroh" class="w-full rounded-xl border border-ink/15 bg-cream px-4 py-3.5 outline-none transition-colors focus:border-tide focus:bg-white" />
+						</div>
+						<div>
+							<label for="f-tanggal" class="mb-2 block text-xs font-bold uppercase tracking-widest text-ink/60">Rencana berangkat</label>
+							<input id="f-tanggal" type="month" class="w-full rounded-xl border border-ink/15 bg-cream px-4 py-3.5 outline-none transition-colors focus:border-tide focus:bg-white" />
+						</div>
+						<div>
+							<label for="f-orang" class="mb-2 block text-xs font-bold uppercase tracking-widest text-ink/60">Jumlah orang</label>
+							<select id="f-orang" class="w-full rounded-xl border border-ink/15 bg-cream px-4 py-3.5 outline-none transition-colors focus:border-tide focus:bg-white">
+								<option>1–2 orang</option>
+								<option>3–5 orang</option>
+								<option>6–10 orang</option>
+								<option>Lebih dari 10</option>
+							</select>
+						</div>
+						<div class="sm:col-span-2">
+							<label for="f-msg" class="mb-2 block text-xs font-bold uppercase tracking-widest text-ink/60">Ceritakan rencanamu *</label>
+							<textarea id="f-msg" rows="4" required placeholder="Destinasi impian, budget, tipe perjalanan..." class="w-full rounded-xl border border-ink/15 bg-cream px-4 py-3.5 outline-none transition-colors focus:border-tide focus:bg-white"></textarea>
+						</div>
+					</div>
+
+					<button type="submit" class="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-tide px-8 py-4 font-display text-base font-bold text-cream shadow-lg shadow-tide/30 transition-transform hover:-translate-y-0.5 hover:bg-tide-deep">
+						Kirim & dapatkan rincian → <span class="text-sm opacity-70">(via email/WA)</span>
+					</button>
+
+					<p id="form-success" class="mt-4 hidden rounded-xl bg-peach-soft p-4 text-center font-display text-sm font-bold text-ink">
+						✓ Terkirim! Tim kami akan menghubungimu dalam 24 jam kerja.
+						<span class="data-note mt-2 block rounded-md px-2 py-1 text-xs">[PERLU DATA CLIENT: hubungkan form ke endpoint CRM/email tujuan]</span>
+					</p>
+				</form>
+			</div>
+		</div>
+	</section>
+
+	<!-- ══════════ ALAMAT — tenang ══════════ -->
+	<section class="border-t border-ink/10 bg-sand py-16">
+		<div class="container-px mx-auto flex flex-col items-center gap-6 text-center md:flex-row md:justify-between md:text-left">
+			<div>
+				<p class="text-xs font-bold uppercase tracking-[0.25em] text-tide">Kantor kami</p>
+				<p class="data-note mt-3 inline-block rounded-xl px-4 py-2 font-display text-base font-bold">[PERLU DATA CLIENT: alamat lengkap kantor i-Travel]</p>
+				<p class="mt-3 max-w-md text-sm text-ink/55">Mampir dulu untuk konsultasi langsung — gratis, tanpa harus memesan apa pun.</p>
+			</div>
+			<div class="flex flex-col gap-3 sm:flex-row">
+				<a href="https://wa.me/6281234567890" target="_blank" rel="noopener" class="rounded-full bg-peach px-7 py-3.5 font-display text-sm font-bold text-ink transition-transform hover:-translate-y-0.5">Order via WhatsApp →</a>
+				<a href="tel:+6281234567890" class="rounded-full border-2 border-ink px-7 py-3.5 font-display text-sm font-bold transition-colors hover:bg-ink hover:text-cream">Telepon sekarang</a>
+			</div>
+		</div>
+	</section>
+
+	<script>
+		const form = document.getElementById('booking-form');
+		const success = document.getElementById('form-success');
+		form?.addEventListener('submit', (e) => {
+			e.preventDefault();
+			success?.classList.remove('hidden');
+			form.querySelector('button[type="submit"]').textContent = 'Terkirim ✓';
+			form.querySelector('button[type="submit"]').classList.add('opacity-60');
+		});
+	</script>
+</Layout>

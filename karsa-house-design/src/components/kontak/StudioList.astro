@@ -1,0 +1,38 @@
+---
+import { kontakData } from '../../data/kontak.data.js';
+
+const { studiosHeadline, studios, operationalHours } = kontakData;
+---
+
+<div class="space-y-6">
+  <h2 class="font-display text-2xl sm:text-3xl font-bold text-ink-primary">
+    {studiosHeadline}
+  </h2>
+
+  <div class="space-y-4">
+    {studios.map((studio) => (
+      <div class="p-5 bg-surface-panel sketch-border space-y-2">
+        <h3 class="font-bold text-sm text-ink-primary font-mono flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-brand-accent"></span>
+          {studio.city}
+        </h3>
+        <p class="text-xs text-ink-muted leading-relaxed">
+          {studio.address}
+        </p>
+        <div class="pt-2 border-t border-border-sketch flex flex-col font-mono text-[11px] text-brand-accent">
+          <span>{studio.email}</span>
+          <span>{studio.phone}</span>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="p-4 bg-surface-card sketch-border">
+    <span class="font-mono text-[10px] uppercase font-bold text-brand-accent block">
+      Jam Operasional Konsultasi:
+    </span>
+    <p class="text-xs text-ink-muted mt-1">
+      {operationalHours}
+    </p>
+  </div>
+</div>

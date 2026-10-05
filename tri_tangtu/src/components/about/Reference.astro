@@ -1,0 +1,37 @@
+---
+import ReferenceCredit from "./ReferenceCredit.astro";
+
+const { reference, referenceHeading, referenceIntro, data = [] } = Astro.props;
+---
+
+<section class="grid lg:grid-cols-[1fr_1.6fr] gap-16 lg:gap-24 items-start">
+	<div>
+		<h2 class="text-[10px] tracking-[.45em] uppercase text-text-muted mb-8">
+			{reference}
+		</h2>
+		<h3 class="text-xl lg:text-2xl text-heading leading-snug mb-2">
+			{referenceHeading}
+		</h3>
+		<p class="text-text-muted text-base lg:text-lg leading-[1.9]">
+			{referenceIntro}
+		</p>
+	</div>
+
+	<ul>
+		{
+			data.map(
+				//@ts-ignored
+				({ readingNumber, readingTitle, readingSubTitle, readingUrl }) => (
+					<li>
+						<ReferenceCredit
+							referenceNumber={readingNumber}
+							referenceTitle={readingTitle}
+							referenceSubTitle={readingSubTitle}
+							href={readingUrl}
+						/>
+					</li>
+				),
+			)
+		}
+	</ul>
+</section>

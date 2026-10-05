@@ -1,0 +1,57 @@
+---
+import { CheckCircle2, ShieldCheck, FileText } from 'lucide-astro';
+import { layananContent } from '../../data/layanan.js';
+
+const { scopeMatrix } = layananContent;
+---
+
+<section class="py-24 lg:py-32 bg-theme-surface border-b border-theme-border">
+  <div class="editorial-container">
+    
+    <!-- Section Header -->
+    <div class="max-w-3xl mb-16 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-sm bg-theme-bg border border-theme-border text-theme-accent text-xs font-semibold tracking-wider">
+        <FileText class="w-4 h-4" />
+        <span>Cakupan Kerja Standar Utuh</span>
+      </div>
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif text-theme-primary font-normal leading-tight">
+        Matriks Pendampingan dari Awal Hingga Purna Jual
+      </h2>
+      <p class="text-theme-secondary text-base leading-relaxed">
+        Setiap proyek yang kami tangani mencakup 3 fase pengerjaan komprehensif tanpa ada biaya tersembunyi atau pemotongan standar mutu fisik.
+      </p>
+    </div>
+
+    <!-- 3 Phase Scope Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {scopeMatrix.map((matrix, idx) => (
+        <div class="surface-card p-8 rounded-sm bg-theme-bg border-theme-border space-y-6 flex flex-col justify-between">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between border-b border-theme-border pb-4">
+              <span class="text-xs font-bold text-theme-accent uppercase tracking-wider">Fase 0{idx + 1}</span>
+              <ShieldCheck class="w-5 h-5 text-theme-accent" />
+            </div>
+
+            <h3 class="text-xl font-serif text-theme-primary font-normal">
+              {matrix.phase}
+            </h3>
+
+            <ul class="space-y-3 pt-2 text-xs sm:text-sm text-theme-secondary">
+              {matrix.items.map(item => (
+                <li class="flex items-start gap-2.5">
+                  <CheckCircle2 class="w-4 h-4 text-theme-success shrink-0 mt-0.5" />
+                  <span class="text-theme-primary leading-relaxed">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="pt-4 border-t border-theme-border text-[11px] text-theme-muted italic">
+            * Termasuk dalam garansi kontrak resmi 100% Moving Co.
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>

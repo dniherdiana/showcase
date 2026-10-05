@@ -1,0 +1,378 @@
+---
+import { buildingMaterials } from "../../data/beranda/unitPricing.js";
+import { catalogProperties } from "../../data/properti/propertyCatalog.js";
+
+const unitOrder = ["type54", "type72", "type90"];
+
+const parsePrice = (value: string) => Number(value.replace(/[^0-9]/g, "")) || 0;
+
+const pricingUnits = unitOrder.map((type) => {
+	const matches = catalogProperties.filter((p) => p.type === type);
+	const cheapest = matches.sort(
+		(a, b) => parsePrice(a.priceValue) - parsePrice(b.priceValue),
+	)[0];
+
+	const isObjectSpecs =
+		Array.isArray(cheapest.specs) && typeof cheapest.specs[0] !== "string";
+
+	return {
+		id: cheapest.type,
+		typeLabel: `Type ${cheapest.type.replace("type", "")}`,
+		modalId: cheapest.modal,
+		cardStyle: cheapest.featured ? "featured" : "standard",
+		badge: cheapest.badge,
+		name: cheapest.name,
+		landArea: cheapest.landArea,
+		buildingArea: cheapest.buildingArea,
+		priceLabel: cheapest.priceLabel,
+		price: cheapest.priceValue,
+		kprInstallment: cheapest.kpr,
+		specs:
+			isObjectSpecs ?
+				(cheapest.specs as { label: string; sub: string }[]).map((s) => ({
+					label: s.label,
+					value: s.sub,
+				}))
+			:	undefined,
+		features: isObjectSpecs ? undefined : (cheapest.specs as string[]),
+		bonuses: cheapest.bonus ? [cheapest.bonus.replace(/^✓\s*/, "")] : undefined,
+		wa: cheapest.wa,
+	};
+});
+---
+
+<section id="units" class="py-28 bg-canvas-night relative">
+	<div class="max-w-7xl mx-auto px-6 lg:px-12">
+		<div class="max-w-3xl mb-16 space-y-4">
+			<h2
+				data-reveal="right"
+				class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-slate-50 leading-[1.18] tracking-tight"
+			>
+				Koleksi tipe unit cluster yang dirancang sesuai tahap pertumbuhan
+				keluarga Anda.
+			</h2>
+			<p
+				data-reveal="fade"
+				class="text-slate-200 font-normal text-base sm:text-lg leading-relaxed"
+			>
+				Setiap denah memaksimalkan masuknya sinar matahari pagi dan ventilasi
+				silang alami untuk efisiensi energi serta kenyamanan penghuni.
+			</p>
+		</div>
+
+		<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-4">
+			{
+				pricingUnits.map((unit, i) => (
+					<div
+						data-reveal="zoom"
+						class={`lg:col-span-4 ${unit.cardStyle === "featured" ? "bg-lkinear-to-b from-canvas-featured to-canvas-featured-deep border border-amber-400/60 rounded-sm p-8 lg:p-10 shadow-2xl shadow-amber-500/10 lg:-mt-6 lg:mb-3 relative z-20" : "bg-canvas-raised border border-slate-800 rounded-sm p-7 hover:border-slate-700 transition-colors"} flex flex-col justify-between`}
+					>
+						{unit.cardStyle === "featured" && (
+							<div class="absolute -top-3.5 left-1/2 transform -translate-x-1/2 bg-linear-to-r from-amber-400 to-amber-300 text-slate-950 text-[11px] font-bold uppercase tracking-widest px-4 py-1 rounded-sm text-center">
+								{unit.badge}
+							</div>
+						)}
+
+						<div
+							class={`space-y-6 ${unit.cardStyle === "featured" ? "pt-2" : ""}`}
+						>
+							<div>
+								{unit.badge && (
+									<div class="text-xs text-amber-300 font-mono tracking-widest uppercase mb-1">
+										{unit.badge}
+									</div>
+								)}
+								<h3
+									class={`font-serif font-medium text-slate-100 ${unit.cardStyle === "featured" ? "text-3xl text-slate-50" : "text-2xl"}`}
+								>
+									{unit.name}
+								</h3>
+								<p class="text-xs text-slate-300 font-normal mt-1">
+									Luas Tanah {unit.landArea} · Luas Bangunan {unit.buildingArea}
+								</p>
+							</div>
+
+							<div
+								class={`py-4 border-y ${unit.cardStyle === "featured" ? "border-amber-500/20 bg-amber-500/5 -mx-8 px-8" : "border-slate-800/80"}`}
+							>
+								<span
+									class={`text-xs block ${unit.cardStyle === "featured" ? "text-amber-300 uppercase tracking-wider font-mono font-semibold" : "text-slate-400"}`}
+								>
+									{unit.priceLabel}
+								</span>
+								<div
+									class={`font-serif font-normal text-amber-300 mt-1 ${unit.cardStyle === "featured" ? "text-4xl lg:text-5xl" : "text-3xl"}`}
+								>
+									{unit.price}
+								</div>
+								<div class="text-xs text-slate-300 mt-1 font-normal">
+									Simulasi Angsuran KPR:{" "}
+									<strong
+										class={
+											unit.cardStyle === "featured" ?
+												"text-amber-300 font-semibold"
+											:	"text-slate-100 font-semibold"
+										}
+									>
+										{" "}
+										{unit.kprInstallment}
+									</strong>
+								</div>
+							</div>
+
+							{unit.specs ?
+								<div class="grid grid-cols-2 gap-3 text-xs text-slate-200 pt-1">
+									{unit.specs.map((s) => (
+										<div class="bg-slate-900/80 p-3 rounded-sm border border-slate-800">
+											<span class="block text-amber-300 font-serif text-base font-medium">
+												{s.label}
+											</span>
+											<span class="text-[11px] text-slate-300 font-normal">
+												{s.value}
+											</span>
+										</div>
+									))}
+								</div>
+							:	<div class="space-y-2.5 text-xs text-slate-200 font-normal">
+									{unit.features?.map((f) => (
+										<div class="flex items-center gap-2">
+											<span class="w-1.5 h-1.5 rounded-full bg-amber-400" />
+											<span>{f}</span>
+										</div>
+									))}
+								</div>
+							}
+
+							{unit.bonuses && (
+								<div class="text-xs text-amber-300 font-normal space-y-1 pt-1">
+									{unit.bonuses.map((b) => (
+										<p>✓ {b}</p>
+									))}
+								</div>
+							)}
+						</div>
+
+						<div class="pt-8 space-y-2.5">
+							<button
+								type="button"
+								data-open-modal={unit.modalId}
+								class="w-full inline-flex justify-center items-center py-3 px-4 text-xs font-semibold text-slate-200 hover:text-white bg-slate-900 border border-slate-700 hover:border-amber-400/60 rounded-sm transition-all min-h-11"
+							>
+								Lihat Denah Lantai & Spesifikasi (PDF)
+							</button>
+							<a
+								href={`https://wa.me/6281234567890?text=${unit.wa}`}
+								target="_blank"
+								class={`w-full inline-flex justify-center items-center py-3 px-4 text-xs font-semibold rounded-sm transition-all min-h-11 ${unit.cardStyle === "featured" ? "text-slate-950 bg-linear-to-r from-amber-300 via-amber-400 to-amber-200 hover:from-amber-200 hover:to-amber-300 shadow-lg shadow-amber-500/20 active:scale-95" : "text-slate-950 bg-linear-to-r from-amber-300 to-amber-200 hover:from-amber-200 hover:to-amber-300"}`}
+							>
+								{unit.cardStyle === "featured" ?
+									"Pesan Unit & Jadwalkan Visit"
+								:	`Tanya Ketersediaan Blok ${unit.typeLabel}`}
+							</a>
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</div>
+
+	<div
+		id="floorplan-modal"
+		class="hidden fixed inset-0 z-50 overflow-y-auto bg-black/80 items-center justify-center p-4 sm:p-6"
+	>
+		<div
+			class="relative bg-canvas-raised border border-slate-700 rounded-md max-w-3xl w-full p-6 sm:p-8 space-y-6 shadow-2xl max-h-[90vh] overflow-y-auto"
+		>
+			<div
+				class="flex items-center justify-between border-b border-slate-800 pb-4"
+			>
+				<div>
+					<span
+						id="modal-subtitle"
+						class="text-xs font-mono text-amber-300 uppercase tracking-widest"
+						>Spesifikasi Teknis Lengkap</span
+					>
+					<h3
+						id="modal-title"
+						class="font-serif text-2xl text-slate-100 font-medium"
+					>
+						Denah Lantai Type 72 Deluxe
+					</h3>
+				</div>
+				<button
+					type="button"
+					id="close-modal-btn"
+					aria-label="Tutup Modal Spesifikasi"
+					class="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-white rounded-sm border border-slate-800 bg-slate-900"
+				>
+					✕
+				</button>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+				<div
+					class="bg-slate-950 border border-slate-800 p-6 rounded-sm flex flex-col items-center justify-center space-y-3 min-h-65"
+				>
+					<div class="text-xs text-amber-300 font-mono">
+						DENAH TATA RUANG (GROUND & 2ND FLOOR)
+					</div>
+					<svg
+						class="w-48 h-48 text-amber-400/80"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 200 200"
+					>
+						<rect
+							x="10"
+							y="10"
+							width="180"
+							height="180"
+							stroke-width="2"
+							stroke="currentColor"></rect>
+						<line
+							x1="10"
+							y1="100"
+							x2="190"
+							y2="100"
+							stroke-width="1.5"
+							stroke-dasharray="4 4"></line>
+						<line
+							x1="100"
+							y1="10"
+							x2="100"
+							y2="190"
+							stroke-width="1.5"
+							stroke-dasharray="4 4"></line>
+						<rect
+							x="20"
+							y="20"
+							width="70"
+							height="70"
+							stroke-width="1"
+							stroke="currentColor"></rect>
+						<text x="30" y="60" class="fill-amber-readable" font-size="10"
+							>K. Utama</text
+						>
+						<rect
+							x="110"
+							y="20"
+							width="70"
+							height="70"
+							stroke-width="1"
+							stroke="currentColor"></rect>
+						<text x="120" y="60" class="fill-amber-readable" font-size="10"
+							>R. Tamu</text
+						>
+						<rect
+							x="20"
+							y="110"
+							width="70"
+							height="70"
+							stroke-width="1"
+							stroke="currentColor"></rect>
+						<text x="30" y="150" class="fill-amber-readable" font-size="10"
+							>K. Anak</text
+						>
+						<rect
+							x="110"
+							y="110"
+							width="70"
+							height="70"
+							stroke-width="1"
+							stroke="currentColor"></rect>
+						<text x="120" y="150" class="fill-amber-readable" font-size="10"
+							>Taman Bkg</text
+						>
+					</svg>
+					<span class="text-[11px] text-slate-400 italic"
+						>Orientasi Bangunan: Utara - Selatan (Bebas Panas Sore)</span
+					>
+				</div>
+
+				<div class="space-y-4 text-xs text-slate-300">
+					<h4
+						class="font-serif text-base text-slate-100 font-medium border-b border-slate-800 pb-2"
+					>
+						Spesifikasi Material Bangunan:
+					</h4>
+					<ul class="space-y-2 font-normal">
+						{
+							buildingMaterials.map((m) => (
+								<li class="flex justify-between border-b border-slate-900 pb-1">
+									<span class="text-slate-400">{m.label}</span>
+									<span class="text-slate-100 font-medium">{m.value}</span>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+			</div>
+
+			<div
+				class="pt-4 border-t border-slate-800 flex flex-col sm:flex-row justify-between gap-4"
+			>
+				<a
+					href="https://wa.me/6281234567890?text=Saya%20ingin%20minta%20file%20PDF%20Brosur%20dan%20Denah%20Lengkap"
+					target="_blank"
+					class="py-3 px-6 text-xs font-semibold text-slate-950 bg-linear-to-r from-amber-300 to-amber-200 rounded-sm text-center"
+				>
+					Unduh File PDF Spesifikasi Lengkap via WhatsApp
+				</a>
+				<button
+					type="button"
+					id="close-modal-bottom"
+					class="py-3 px-6 text-xs font-medium text-slate-300 border border-slate-700 hover:bg-slate-800 rounded-sm"
+				>
+					Tutup Modal
+				</button>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	import { floorplanSpecs } from "../../data/beranda/unitPricing.js";
+
+	document.addEventListener("DOMContentLoaded", () => {
+		const modal = document.getElementById("floorplan-modal");
+		const modalTitle = document.getElementById("modal-title");
+		const modalSubtitle = document.getElementById("modal-subtitle");
+		const closeBtn = document.getElementById("close-modal-btn");
+		const closeBottomBtn = document.getElementById("close-modal-bottom");
+		const triggers = document.querySelectorAll("[data-open-modal]");
+
+		const specsMap: Record<string, { title: string; subtitle: string }> =
+			floorplanSpecs;
+
+		triggers.forEach((btn) => {
+			btn.addEventListener("click", (e) => {
+				const targetId =
+					(e.currentTarget as HTMLElement).getAttribute("data-open-modal") ||
+					"modal-type-72";
+				const info = specsMap[targetId] || {
+					title: "Denah Lantai Type 72 Deluxe",
+					subtitle: "Rumah Tumbuh 2 Lantai (90/72)",
+				};
+
+				if (modalTitle) modalTitle.textContent = info.title;
+				if (modalSubtitle) modalSubtitle.textContent = info.subtitle;
+
+				modal?.classList.remove("hidden");
+				modal?.classList.add("flex");
+				document.body.style.overflow = "hidden";
+			});
+		});
+
+		const closeModal = () => {
+			modal?.classList.remove("flex");
+			modal?.classList.add("hidden");
+			document.body.style.overflow = "auto";
+		};
+
+		closeBtn?.addEventListener("click", closeModal);
+		closeBottomBtn?.addEventListener("click", closeModal);
+		modal?.addEventListener("click", (e) => {
+			if (e.target === modal) closeModal();
+		});
+	});
+</script>

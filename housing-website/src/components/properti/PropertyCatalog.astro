@@ -1,0 +1,647 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import hero from "@assets/images/hero.jpg";
+import type54 from "@assets/images/type54.jpg";
+import type90 from "@assets/images/type90.jpg";
+import prop_id3 from "@assets/images/prop_id3.jpg";
+import prop_id4 from "@assets/images/prop_id4.jpg";
+import prop_id4_corner from "@assets/images/prop_id4_corner.jpg";
+import prop_id5 from "@assets/images/prop_id5.jpg";
+import prop_id6 from "@assets/images/prop_id6.jpg";
+import prop_id7 from "@assets/images/prop_id7.jpg";
+import prop_id8 from "@assets/images/prop_id8.jpg";
+import {
+	catalogProperties,
+	filterOptions,
+} from "../../data/properti/propertyCatalog.js";
+
+const propertyImages: Record<string, ImageMetadata> = {
+	hero,
+	type54,
+	type90,
+	prop_id3,
+	prop_id4,
+	prop_id4_corner,
+	prop_id5,
+	prop_id6,
+	prop_id7,
+	prop_id8,
+};
+const buildingMaterials = [
+	{ label: "Fondasi:", value: "Batu Kali & Cakar Ayam Beton" },
+	{ label: "Dinding:", value: "Bata Merah Plester Aci & Cat Jotun" },
+	{ label: "Lantai:", value: "Homogeneous Tile 60x60 Monokrom" },
+	{ label: "Atap:", value: "Rangka Baja Ringan & Genteng Beton" },
+	{ label: "Sanitari:", value: "Toto / Grohe Equal Standard" },
+];
+---
+
+<section class="py-20 bg-canvas-default relative min-h-screen">
+	<div class="max-w-7xl mx-auto px-6 lg:px-12 space-y-12">
+		<div class="space-y-6">
+			<div
+				data-reveal="left"
+				class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-6"
+			>
+				<div>
+					<span
+						class="text-xs font-mono text-amber-300 uppercase tracking-widest font-semibold"
+					>
+						<span class="border h-3 border-l bg-amber-400 justify-center mr-2"
+						></span>
+						Pencarian Presisi</span
+					>
+					<h2
+						class="font-serif text-2xl sm:text-3xl text-slate-100 font-medium"
+					>
+						Katalog Unit Cluster Siap Huni & Indent
+					</h2>
+				</div>
+
+				<div class="text-xs font-mono text-slate-400">
+					Menampilkan <strong
+						id="visible-count-display"
+						class="text-amber-300 font-bold">3</strong
+					> dari <strong id="total-count-display" class="text-slate-200"
+						>{catalogProperties.length} Unit Pilihan</strong
+					>
+				</div>
+			</div>
+
+			<div
+				data-reveal="fade"
+				class="grid grid-cols-1 sm:grid-cols-3 gap-4"
+			>
+				<div class="space-y-1.5">
+					<label
+						for="filter-type"
+						class="block text-xs font-semibold text-slate-300"
+						>Tipe Bangunan</label
+					>
+					<select
+						id="filter-type"
+						class="w-full px-4 py-3 bg-canvas-raised border border-slate-700 hover:border-amber-400/60 focus:border-amber-400 rounded-sm text-xs text-slate-100 focus-visible:outline-amber-400 min-h-11"
+					>
+						{
+							filterOptions.types.map((opt) => (
+								<option value={opt.value}>{opt.label}</option>
+							))
+						}
+					</select>
+				</div>
+
+				<div class="space-y-1.5">
+					<label
+						for="filter-zone"
+						class="block text-xs font-semibold text-slate-300"
+						>Zona Cluster</label
+					>
+					<select
+						id="filter-zone"
+						class="w-full px-4 py-3 bg-canvas-raised border border-slate-700 hover:border-amber-400/60 focus:border-amber-400 rounded-sm text-xs text-slate-100 focus-visible:outline-amber-400 min-h-11"
+					>
+						{
+							filterOptions.zones.map((opt) => (
+								<option value={opt.value}>{opt.label}</option>
+							))
+						}
+					</select>
+				</div>
+
+				<div class="space-y-1.5">
+					<label
+						for="filter-price"
+						class="block text-xs font-semibold text-slate-300"
+						>Kisaran Harga</label
+					>
+					<select
+						id="filter-price"
+						class="w-full px-4 py-3 bg-canvas-raised border border-slate-700 hover:border-amber-400/60 focus:border-amber-400 rounded-sm text-xs text-slate-100 focus-visible:outline-amber-400 min-h-11"
+					>
+						{
+							filterOptions.prices.map((opt) => (
+								<option value={opt.value}>{opt.label}</option>
+							))
+						}
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<div
+			class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch pt-4 scroll-mt-28"
+			id="property-grid"
+		>
+			{
+				catalogProperties.map((p, i) => (
+					<div
+						data-reveal="zoom"
+						class={`property-card ${p.featured ? "bg-linear-to-b from-canvas-featured to-canvas-featured-deep border-2 border-amber-400/60 shadow-2xl shadow-amber-500/10" : "bg-canvas-raised border border-slate-800 hover:border-slate-700 transition-colors"} rounded-sm p-6 flex flex-col justify-between relative`}
+						data-type={p.type}
+						data-zone={p.zone}
+						data-price={p.price}
+					>
+						<div class="space-y-5">
+							<div class="relative rounded-sm overflow-hidden border border-slate-800 bg-slate-950">
+								<Image
+									src={propertyImages[p.image]}
+									alt={`Fasad ${p.name}`}
+									loading="lazy"
+									format="webp"
+									quality={80}
+									class="w-full h-48 object-cover"
+								/>
+								{p.badge && (
+									<span class="absolute top-3 left-3 bg-amber-400 text-slate-950 text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">
+										{p.badge}
+									</span>
+								)}
+								<span class="absolute bottom-3 right-3 bg-black/80 text-amber-300 text-[10px] font-mono px-2.5 py-1 rounded border border-amber-500/30">
+									{p.block}
+								</span>
+							</div>
+
+							<div>
+								<div class="text-xs text-amber-300 font-mono tracking-widest uppercase mb-1">
+									{p.category}
+								</div>
+								<h3
+									class={`font-serif text-2xl font-medium ${p.featured ? "text-slate-50" : "text-slate-100"}`}
+								>
+									{p.name}
+								</h3>
+								<p class="text-xs text-slate-300 font-normal mt-1">
+									Luas Tanah {p.landArea} · Luas Bangunan {p.buildingArea}
+								</p>
+							</div>
+
+							<div
+								class={`py-4 border-y ${p.featured ? "border-amber-500/20 bg-amber-500/5 -mx-6 px-6" : "border-slate-800/80"}`}
+							>
+								<span
+									class={`text-xs block ${p.featured ? "text-amber-300 font-mono" : "text-slate-400"}`}
+								>
+									{p.priceLabel}
+								</span>
+								<div class="font-serif text-3xl font-normal text-amber-300 mt-0.5">
+									{p.priceValue}
+								</div>
+								<div class="text-xs text-slate-300 mt-1 font-normal">
+									Est. KPR:{" "}
+									<strong
+										class={`font-semibold ${p.featured ? "text-amber-300" : "text-slate-100"}`}
+									>
+										{p.kpr}
+									</strong>
+								</div>
+							</div>
+
+							{Array.isArray(p.specs) && typeof p.specs[0] !== "string" ?
+								<div class="grid grid-cols-2 gap-2 text-xs text-slate-200">
+									{(p.specs as { label: string; sub: string }[]).map((s) => (
+										<div class="bg-slate-900/80 p-2.5 rounded-sm border border-slate-800">
+											<span class="block text-amber-300 font-serif font-medium">
+												{s.label}
+											</span>
+											<span class="text-[10px] text-slate-400">{s.sub}</span>
+										</div>
+									))}
+								</div>
+							:	<div class="space-y-2 text-xs text-slate-300 font-normal">
+									{p.specs.map((s) => (
+										<p>• {s}</p>
+									))}
+								</div>
+							}
+
+							{p.bonus && (
+								<p class="text-xs text-amber-300/90 font-normal">{p.bonus}</p>
+							)}
+						</div>
+
+						<div class="pt-6 space-y-2">
+							<button
+								type="button"
+								data-open-modal={p.modal}
+								class={`w-full py-3 px-4 text-xs font-semibold rounded-sm transition-all min-h-11 ${p.featured ? "text-slate-100 bg-slate-900 border border-amber-400/60 hover:bg-slate-800" : "text-slate-200 hover:text-white bg-slate-900 border border-slate-700 hover:border-amber-400/60"}`}
+							>
+								Lihat Denah Lantai & Spesifikasi (PDF)
+							</button>
+							<a
+								href={`https://wa.me/6281234567890?text=${p.wa}`}
+								target="_blank"
+								class="w-full py-3.5 px-4 text-xs font-semibold text-slate-950 bg-linear-to-r from-amber-300 to-amber-200 text-center rounded-sm inline-block min-h-11"
+							>
+								Tanya Ketersediaan {p.block.split("·")[0].trim()}
+							</a>
+						</div>
+					</div>
+				))
+			}
+		</div>
+
+		<div
+			class="pt-12 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-slate-300 font-normal"
+		>
+			<div>
+				Menampilkan Halaman <strong
+					id="current-page-display"
+					class="text-amber-300 font-bold">1</strong
+				> dari <strong id="total-pages-display" class="text-slate-200"
+					>3 Halaman</strong
+				>
+			</div>
+
+			<nav
+				aria-label="Navigasi Halaman Katalog Interaktif"
+				class="flex items-center gap-2 font-mono"
+			>
+				<button
+					type="button"
+					id="btn-prev-page"
+					disabled
+					class="px-4 py-2.5 rounded-sm border border-slate-800 bg-slate-900/50 text-slate-500 cursor-not-allowed transition-colors min-h-11"
+				>
+					&larr; Sebelumnya
+				</button>
+
+				<div id="page-numbers-container" class="flex items-center gap-2"></div>
+
+				<button
+					type="button"
+					id="btn-next-page"
+					class="px-4 py-2.5 rounded-sm border border-slate-700 bg-slate-900 text-slate-200 hover:border-amber-400/60 transition-colors min-h-11"
+				>
+					Selanjutnya &rarr;
+				</button>
+			</nav>
+		</div>
+	</div>
+
+	<div
+		id="catalog-floorplan-modal"
+		class="hidden fixed inset-0 z-50 overflow-y-auto bg-black/80 items-center justify-center p-4 sm:p-6"
+	>
+		<div
+			class="relative bg-canvas-raised border border-slate-700 rounded-md max-w-3xl w-full p-6 sm:p-8 space-y-6 shadow-2xl max-h-[90vh] overflow-y-auto"
+		>
+			<div
+				class="flex items-center justify-between border-b border-slate-800 pb-4"
+			>
+				<div>
+					<span
+						id="cat-modal-subtitle"
+						class="text-xs font-mono text-amber-300 uppercase tracking-widest"
+						>Spesifikasi Teknis Lengkap</span
+					>
+					<h3
+						id="cat-modal-title"
+						class="font-serif text-2xl text-slate-100 font-medium"
+					>
+						Denah Lantai Type 72 Deluxe
+					</h3>
+				</div>
+				<button
+					type="button"
+					id="cat-close-modal-btn"
+					aria-label="Tutup Modal Spesifikasi"
+					class="w-10 h-10 flex items-center justify-center text-slate-400 hover:text-white rounded-sm border border-slate-800 bg-slate-900"
+				>
+					✕
+				</button>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+				<div
+					class="bg-slate-950 border border-slate-800 p-6 rounded-sm flex flex-col items-center justify-center space-y-3 min-h-65"
+				>
+					<div class="text-xs text-amber-300 font-mono">
+						DENAH TATA RUANG VEKTOR
+					</div>
+					<svg
+						class="w-48 h-48 text-amber-400/80"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 200 200"
+					>
+						<rect
+							x="10"
+							y="10"
+							width="180"
+							height="180"
+							stroke-width="2"
+							stroke="currentColor"></rect>
+						<line
+							x1="10"
+							y1="100"
+							x2="190"
+							y2="100"
+							stroke-width="1.5"
+							stroke-dasharray="4 4"></line>
+						<line
+							x1="100"
+							y1="10"
+							x2="100"
+							y2="190"
+							stroke-width="1.5"
+							stroke-dasharray="4 4"></line>
+						<rect
+							x="20"
+							y="20"
+							width="70"
+							height="70"
+							stroke-width="1"
+							stroke="currentColor"></rect>
+						<text x="30" y="60" class="fill-amber-readable" font-size="10"
+							>K. Utama</text
+						>
+						<rect
+							x="110"
+							y="20"
+							width="70"
+							height="70"
+							stroke-width="1"
+							stroke="currentColor"></rect>
+						<text x="120" y="60" class="fill-amber-readable" font-size="10"
+							>R. Tamu</text
+						>
+						<rect
+							x="20"
+							y="110"
+							width="70"
+							height="70"
+							stroke-width="1"
+							stroke="currentColor"></rect>
+						<text x="30" y="150" class="fill-amber-readable" font-size="10"
+							>K. Anak</text
+						>
+						<rect
+							x="110"
+							y="110"
+							width="70"
+							height="70"
+							stroke-width="1"
+							stroke="currentColor"></rect>
+						<text x="120" y="150" class="fill-amber-readable" font-size="10"
+							>Taman Bkg</text
+						>
+					</svg>
+					<span class="text-[11px] text-slate-400 italic"
+						>Orientasi Bangunan: Utara - Selatan</span
+					>
+				</div>
+
+				<div class="space-y-4 text-xs text-slate-300">
+					<h4
+						class="font-serif text-base text-slate-100 font-medium border-b border-slate-800 pb-2"
+					>
+						Material Teknis Bangunan:
+					</h4>
+					<ul class="space-y-2 font-normal">
+						{
+							buildingMaterials.map((m) => (
+								<li class="flex justify-between border-b border-slate-900 pb-1">
+									<span class="text-slate-400">{m.label}</span>
+									<span class="text-slate-100 font-medium">{m.value}</span>
+								</li>
+							))
+						}
+					</ul>
+				</div>
+			</div>
+
+			<div
+				class="pt-4 border-t border-slate-800 flex flex-col sm:flex-row justify-between gap-4"
+			>
+				<a
+					href="https://wa.me/6281234567890?text=Saya%20ingin%20minta%20file%20PDF%20Brosur%20dan%20Denah%20Lengkap"
+					target="_blank"
+					class="py-3 px-6 text-xs font-semibold text-slate-950 bg-linear-to-r from-amber-300 to-amber-200 rounded-sm text-center"
+				>
+					Unduh File PDF Spesifikasi Lengkap via WhatsApp
+				</a>
+				<button
+					type="button"
+					id="cat-close-modal-bottom"
+					class="py-3 px-6 text-xs font-medium text-slate-300 border border-slate-700 hover:bg-slate-800 rounded-sm"
+				>
+					Tutup Modal
+				</button>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		const filterType = document.getElementById(
+			"filter-type",
+		) as HTMLSelectElement;
+		const filterZone = document.getElementById(
+			"filter-zone",
+		) as HTMLSelectElement;
+		const filterPrice = document.getElementById(
+			"filter-price",
+		) as HTMLSelectElement;
+		const visibleDisplay = document.getElementById("visible-count-display");
+		const totalDisplay = document.getElementById("total-count-display");
+		const currentPageDisplay = document.getElementById("current-page-display");
+		const totalPagesDisplay = document.getElementById("total-pages-display");
+
+		const prevBtn = document.getElementById(
+			"btn-prev-page",
+		) as HTMLButtonElement;
+		const nextBtn = document.getElementById(
+			"btn-next-page",
+		) as HTMLButtonElement;
+		const pageNumbersContainer = document.getElementById(
+			"page-numbers-container",
+		);
+		const propertyGrid = document.getElementById("property-grid");
+
+		const cardsArray = Array.from(
+			document.querySelectorAll<HTMLElement>(".property-card"),
+		);
+		const itemsPerPage = 3;
+		let currentPage = 1;
+		let filteredCards = [...cardsArray];
+
+		function renderPaginationControls() {
+			const totalPages = Math.max(
+				1,
+				Math.ceil(filteredCards.length / itemsPerPage),
+			);
+			if (totalPagesDisplay)
+				totalPagesDisplay.textContent = totalPages.toString();
+			if (currentPageDisplay)
+				currentPageDisplay.textContent = currentPage.toString();
+
+			if (prevBtn) {
+				prevBtn.disabled = currentPage === 1;
+				if (currentPage === 1) {
+					prevBtn.classList.add(
+						"cursor-not-allowed",
+						"opacity-50",
+						"text-slate-500",
+					);
+					prevBtn.classList.remove(
+						"hover:border-amber-400/60",
+						"text-slate-200",
+					);
+				} else {
+					prevBtn.classList.remove(
+						"cursor-not-allowed",
+						"opacity-50",
+						"text-slate-500",
+					);
+					prevBtn.classList.add("hover:border-amber-400/60", "text-slate-200");
+				}
+			}
+
+			if (nextBtn) {
+				nextBtn.disabled = currentPage === totalPages;
+				if (currentPage === totalPages) {
+					nextBtn.classList.add(
+						"cursor-not-allowed",
+						"opacity-50",
+						"text-slate-500",
+					);
+					nextBtn.classList.remove(
+						"hover:border-amber-400/60",
+						"text-slate-200",
+					);
+				} else {
+					nextBtn.classList.remove(
+						"cursor-not-allowed",
+						"opacity-50",
+						"text-slate-500",
+					);
+					nextBtn.classList.add("hover:border-amber-400/60", "text-slate-200");
+				}
+			}
+
+			if (pageNumbersContainer) {
+				pageNumbersContainer.replaceChildren();
+				for (let i = 1; i <= totalPages; i++) {
+					const numBtn = document.createElement("button");
+					numBtn.type = "button";
+					numBtn.textContent = i.toString();
+					numBtn.className =
+						"px-4 py-2.5 rounded-sm border text-xs font-mono transition-colors min-h-11";
+
+					if (i === currentPage) {
+						numBtn.className +=
+							" border-amber-400 bg-amber-500/10 text-amber-300 font-bold";
+						numBtn.setAttribute("aria-current", "page");
+					} else {
+						numBtn.className +=
+							" border-slate-700 bg-slate-900 text-slate-200 hover:border-amber-400/60";
+					}
+
+					numBtn.addEventListener("click", () => {
+						currentPage = i;
+						updateView();
+						propertyGrid?.scrollIntoView({ behavior: "smooth" });
+					});
+
+					pageNumbersContainer.appendChild(numBtn);
+				}
+			}
+		}
+
+		function updateView() {
+			cardsArray.forEach((card) => {
+				card.style.display = "none";
+			});
+
+			const totalPages = Math.max(
+				1,
+				Math.ceil(filteredCards.length / itemsPerPage),
+			);
+			if (currentPage > totalPages) currentPage = totalPages;
+
+			const startIndex = (currentPage - 1) * itemsPerPage;
+			const endIndex = startIndex + itemsPerPage;
+			const currentPageCards = filteredCards.slice(startIndex, endIndex);
+
+			currentPageCards.forEach((card) => {
+				card.style.display = "flex";
+			});
+
+			if (visibleDisplay)
+				visibleDisplay.textContent = currentPageCards.length.toString();
+			if (totalDisplay)
+				totalDisplay.textContent = filteredCards.length.toString();
+
+			renderPaginationControls();
+		}
+
+		function applyFilters() {
+			const typeVal = filterType?.value || "all";
+			const zoneVal = filterZone?.value || "all";
+			const priceVal = filterPrice?.value || "all";
+
+			filteredCards = cardsArray.filter((card) => {
+				const cardType = card.getAttribute("data-type");
+				const cardZone = card.getAttribute("data-zone");
+				const cardPrice = card.getAttribute("data-price");
+				const matchType = typeVal === "all" || cardType === typeVal;
+				const matchZone = zoneVal === "all" || cardZone === zoneVal;
+				const matchPrice = priceVal === "all" || cardPrice === priceVal;
+				return matchType && matchZone && matchPrice;
+			});
+
+			currentPage = 1;
+			updateView();
+		}
+
+		prevBtn?.addEventListener("click", () => {
+			if (currentPage > 1) {
+				currentPage--;
+				updateView();
+				propertyGrid?.scrollIntoView({ behavior: "smooth" });
+			}
+		});
+
+		nextBtn?.addEventListener("click", () => {
+			const totalPages = Math.ceil(filteredCards.length / itemsPerPage);
+			if (currentPage < totalPages) {
+				currentPage++;
+				updateView();
+				propertyGrid?.scrollIntoView({ behavior: "smooth" });
+			}
+		});
+
+		filterType?.addEventListener("change", applyFilters);
+		filterZone?.addEventListener("change", applyFilters);
+		filterPrice?.addEventListener("change", applyFilters);
+
+		updateView();
+
+		const modal = document.getElementById("catalog-floorplan-modal");
+		const closeBtn = document.getElementById("cat-close-modal-btn");
+		const closeBottomBtn = document.getElementById("cat-close-modal-bottom");
+		const triggers = document.querySelectorAll("[data-open-modal]");
+
+		triggers.forEach((btn) => {
+			btn.addEventListener("click", () => {
+				modal?.classList.remove("hidden");
+				modal?.classList.add("flex");
+				document.body.style.overflow = "hidden";
+			});
+		});
+
+		const closeModal = () => {
+			modal?.classList.remove("flex");
+			modal?.classList.add("hidden");
+			document.body.style.overflow = "auto";
+		};
+
+		closeBtn?.addEventListener("click", closeModal);
+		closeBottomBtn?.addEventListener("click", closeModal);
+		modal?.addEventListener("click", (e) => {
+			if (e.target === modal) closeModal();
+		});
+	});
+</script>

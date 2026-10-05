@@ -1,0 +1,60 @@
+---
+import Container from '../base/Container.astro';
+import SectionHeader from '../base/SectionHeader.astro';
+import BeforeAfterSlider from '../islands/BeforeAfterSlider.svelte';
+import dedImage from '../../assets/images/ded-blueprints.jpg';
+import resolvedImage from '../../assets/images/meru-ubud.jpg';
+import { homeTransformationData } from './HomeTransformation.data.js';
+---
+
+<section class="py-20 lg:py-28 border-b border-[var(--color-border-hairline)] bg-[var(--color-canvas-light)]">
+  <Container size="xl" as="div" class="flex flex-col gap-12 lg:gap-16">
+    <!-- Header -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end justify-between">
+      <div class="lg:col-span-8">
+        <SectionHeader
+          title={homeTransformationData.heading}
+          subtitle={homeTransformationData.description}
+          level="h2"
+        />
+      </div>
+      <div class="lg:col-span-4 flex flex-col items-start lg:items-end text-xs text-[var(--color-ink-muted)]">
+        <span class="font-semibold text-[var(--color-ink-primary)]">{homeTransformationData.project.name}</span>
+        <span>{homeTransformationData.project.location} &middot; {homeTransformationData.project.area}</span>
+      </div>
+    </div>
+
+    <!-- Interactive Transformation Stage -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+      <div class="lg:col-span-8">
+        <BeforeAfterSlider
+          client:visible
+          beforeSrc={dedImage.src}
+          beforeAlt="Dokumentasi Gambar Kerja DED dan Elevasi Arsitektur"
+          beforeLabel="1. Dokumen DED & Gambar Kerja"
+          afterSrc={resolvedImage.src}
+          afterAlt="Wujud Nyata Bangunan Selesai Meru Ubud"
+          afterLabel="2. Hunian Selesai Terwujud"
+        />
+      </div>
+
+      <!-- Right Column: Process Narrative -->
+      <div class="lg:col-span-4 flex flex-col gap-6 bg-[var(--color-canvas-surface)] p-6 sm:p-8 border border-[var(--color-border-hairline)]">
+        <h3 class="font-serif text-lg font-bold text-[var(--color-ink-primary)]">
+          Integritas Gambar & Lapangan
+        </h3>
+        <p class="text-xs sm:text-sm text-[var(--color-ink-muted)] leading-relaxed">
+          Kekhawatiran terbesar pemilik lahan adalah hilangnya detail konsep saat dieksekusi kontraktor. Kami menjaga agar setiap potongan gambar kerja menjadi tolok ukur pengawasan nyata di lokasi proyek.
+        </p>
+        <ul class="flex flex-col gap-2.5 pt-2 border-t border-[var(--color-border-hairline)] text-xs text-[var(--color-ink-primary)] font-medium">
+          {homeTransformationData.project.notes.map((note) => (
+            <li class="flex items-start gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-accent-terracotta)] mt-1 shrink-0" />
+              <span>{note}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </Container>
+</section>

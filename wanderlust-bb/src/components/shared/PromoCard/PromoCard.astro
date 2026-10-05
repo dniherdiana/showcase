@@ -1,0 +1,244 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import { siteConfig } from "../../layout/site.config.js";
+
+interface Props {
+	title: string;
+	title_id?: string;
+	tag: string;
+	tag_id?: string;
+	deal: string;
+	deal_id?: string;
+	description: string;
+	description_id?: string;
+	price: string;
+	discountPrice: string;
+	deadline: string;
+	deadline_id?: string;
+	image: ImageMetadata;
+	variant?: "default" | "large";
+}
+
+const {
+	title,
+	title_id = title,
+	tag,
+	tag_id = tag,
+	deal,
+	deal_id = deal,
+	description,
+	description_id = description,
+	price,
+	discountPrice,
+	deadline,
+	deadline_id = deadline,
+	image,
+	variant = "default",
+} = Astro.props;
+
+const waUrl = `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(
+	`Hello Wanderlust, I want to claim the ${deal} promo for the ${title} package.`,
+)}`;
+---
+
+{
+	variant === "large" ?
+		<article
+			class="story-scroll-item group hover:border-gold/50 relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-slate-900/50 backdrop-blur-sm transition-all duration-500 md:flex-row"
+			data-promo-tag={tag}
+		>
+			<div class="relative min-h-70 overflow-hidden md:min-h-100 md:w-[55%]">
+				<Image
+					src={image}
+					alt={title}
+					widths={[480, 800, 1200]}
+					sizes="(max-width: 768px) 100vw, 55vw"
+					quality={80}
+					format="webp"
+					class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+					loading="lazy"
+					decoding="async"
+				/>
+				<div class="absolute inset-0 bg-linear-to-r from-transparent via-slate-950/10 to-slate-900/60 md:bg-linear-to-r md:from-transparent md:to-slate-900/70" />
+
+				<span class="bg-gold absolute top-5 left-5 inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 font-mono text-[10px] font-bold tracking-[2px] text-slate-950 uppercase shadow-lg">
+					<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+						<path d="M23 12l-9-5.5v4.5h-2.5L12.5 3l-4.5-1.5-1.5 4-4 1.5L3.5 11 5 13.5v1.5H1.5V23H11v-7.5h3.5V23H22v-8h.5l.5-3z" />
+					</svg>
+					Promo
+				</span>
+				<span class="absolute bottom-5 left-5 inline-flex items-center gap-2 rounded-full border border-white/25 bg-slate-950/70 px-3.5 py-1.5 font-mono text-[10px] tracking-widest text-white/90 uppercase backdrop-blur-sm">
+					<svg
+						width="12"
+						height="12"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+					>
+						<>
+							<circle cx="12" cy="12" r="10" />
+							<polyline points="12 6 12 12 16 14" />
+						</>
+					</svg>
+					<span data-i18n-en={deadline} data-i18n-id={deadline_id}>
+						{deadline}
+					</span>
+				</span>
+			</div>
+
+			<div class="relative flex flex-1 flex-col justify-between p-7 md:p-9">
+				<div>
+					<div class="flex flex-wrap items-center gap-3">
+						<span
+							class="border-gold/40 text-gold rounded-full border px-3 py-1 font-mono text-[10px] font-bold tracking-widest uppercase"
+							data-i18n-en={tag}
+							data-i18n-id={tag_id}
+						>
+							— {tag}
+						</span>
+						<span
+							class="text-gold font-serif text-2xl font-bold italic"
+							data-i18n-en={deal}
+							data-i18n-id={deal_id}
+						>
+							{deal}
+						</span>
+					</div>
+
+					<h3
+						class="group-hover:text-gold mt-4 font-serif text-3xl leading-snug font-bold text-white transition-colors"
+						data-i18n-en={title}
+						data-i18n-id={title_id}
+					>
+						{title}
+					</h3>
+
+					<p
+						class="mt-4 max-w-prose text-sm leading-relaxed font-light text-slate-300"
+						data-i18n-en={description}
+						data-i18n-id={description_id}
+					>
+						{description}
+					</p>
+				</div>
+
+				<div class="mt-8 flex flex-wrap items-center gap-6 border-t border-white/10 pt-6">
+					<div>
+						<p class="font-mono text-[10px] tracking-widest text-white/50 uppercase">
+							Pricing
+						</p>
+						<div class="mt-1 flex items-baseline gap-2.5">
+							<span class="text-sm text-white/40 line-through">{price}</span>
+							<span class="text-gold font-serif text-3xl font-bold">
+								{discountPrice}
+							</span>
+						</div>
+					</div>
+					<a
+						href={waUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="from-gold to-gold-dark inline-flex items-center gap-2 rounded-full bg-linear-to-r px-7 py-3 font-mono text-[11px] font-bold tracking-widest text-slate-950 uppercase shadow-[0_8px_30px_-6px_rgba(212,168,83,0.5)] transition-all hover:scale-[1.02] hover:shadow-[0_8px_40px_-6px_rgba(212,168,83,0.7)]"
+					>
+						Claim Offer <span>→</span>
+					</a>
+				</div>
+			</div>
+		</article>
+	:	<article
+			class="story-scroll-item group hover:border-gold/50 relative flex flex-col overflow-hidden rounded-2xl border border-white/10 bg-slate-900/50 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_60px_-20px_rgba(212,168,83,0.25)]"
+			data-promo-tag={tag}
+		>
+			<div class="relative h-56 w-full overflow-hidden">
+				<Image
+					src={image}
+					alt={title}
+					widths={[360, 640, 800]}
+					sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+					quality={75}
+					format="webp"
+					class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+					loading="lazy"
+					decoding="async"
+				/>
+				<div class="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/10 to-transparent" />
+
+				<span class="bg-gold absolute top-4 right-4 rounded-full px-3 py-1.5 font-mono text-[10px] font-bold tracking-widest text-slate-950 uppercase shadow-lg">
+					{deal}
+				</span>
+				<span class="border-gold/50 text-gold absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full border bg-slate-950/70 px-3 py-1.5 font-mono text-[10px] font-bold tracking-widest uppercase backdrop-blur-sm">
+					<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+						<path d="M23 12l-9-5.5v4.5h-2.5L12.5 3l-4.5-1.5-1.5 4-4 1.5L3.5 11 5 13.5v1.5H1.5V23H11v-7.5h3.5V23H22v-8h.5l.5-3z" />
+					</svg>
+					Promo
+				</span>
+			</div>
+
+			<div class="flex flex-1 flex-col justify-between p-6">
+				<div>
+					<div class="flex items-center justify-between gap-3">
+						<span
+							class="border-gold/40 text-gold rounded-full border px-3 py-1 font-mono text-[10px] font-bold tracking-widest uppercase"
+							data-i18n-en={tag}
+							data-i18n-id={tag_id}
+						>
+							— {tag}
+						</span>
+						<span class="flex items-center gap-1.5 font-mono text-[10px] tracking-widest text-white/50 uppercase">
+							<svg
+								width="11"
+								height="11"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+							>
+								<>
+									<circle cx="12" cy="12" r="10" />
+									<polyline points="12 6 12 12 16 14" />
+								</>
+							</svg>
+							<span data-i18n-en={deadline} data-i18n-id={deadline_id}>
+								{deadline}
+							</span>
+						</span>
+					</div>
+
+					<h3
+						class="group-hover:text-gold mt-4 font-serif text-xl leading-snug font-bold text-white transition-colors"
+						data-i18n-en={title}
+						data-i18n-id={title_id}
+					>
+						{title}
+					</h3>
+
+					<p
+						class="mt-3 line-clamp-3 text-xs leading-relaxed font-light text-slate-300"
+						data-i18n-en={description}
+						data-i18n-id={description_id}
+					>
+						{description}
+					</p>
+				</div>
+
+				<div class="mt-6 flex items-center justify-between gap-4 border-t border-white/10 pt-5">
+					<div class="flex items-baseline gap-2">
+						<span class="text-xs text-white/40 line-through">{price}</span>
+						<span class="text-gold font-serif text-2xl font-bold">
+							{discountPrice}
+						</span>
+					</div>
+					<a
+						href={waUrl}
+						target="_blank"
+						rel="noopener noreferrer"
+						class="from-gold to-gold-dark inline-flex items-center gap-1.5 rounded-full bg-linear-to-r px-5 py-2.5 font-mono text-[10px] font-bold tracking-widest text-slate-950 uppercase shadow-[0_8px_30px_-8px_rgba(212,168,83,0.5)] transition-all hover:scale-[1.03]"
+					>
+						Claim <span>→</span>
+					</a>
+				</div>
+			</div>
+		</article>
+}

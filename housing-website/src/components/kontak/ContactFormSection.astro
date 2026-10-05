@@ -1,0 +1,374 @@
+---
+import { contactFormContent } from "../../data/kontak/contactFormSection.js";
+---
+
+<section
+	id="visit-form"
+	class="py-28 bg-canvas-default relative border-b border-slate-900"
+>
+	<div class="max-w-7xl mx-auto px-6 lg:px-12">
+		<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+			<div data-reveal="left" class="lg:col-span-5 space-y-8">
+				<div class="space-y-4">
+					<span
+						class="text-xs font-mono text-amber-300 uppercase tracking-widest block"
+					>
+						<span class="border h-3 border-l bg-amber-400 justify-center mr-2"
+						></span>
+						{contactFormContent.tag}
+					</span>
+					<h2
+						class="font-serif text-3xl sm:text-4xl text-slate-50 font-normal tracking-tight leading-[1.15]"
+					>
+						{contactFormContent.headline}
+					</h2>
+					<p
+						class="text-slate-300 text-sm sm:text-base leading-relaxed font-normal"
+					>
+						{contactFormContent.subtext}
+					</p>
+				</div>
+
+				<div class="space-y-6 pt-6 border-t border-slate-800">
+					<h3 class="text-xs font-mono text-amber-300 uppercase tracking-wider">
+						FASILITAS KHUSUS SURVEI PRIVATE:
+					</h3>
+					<div class="space-y-4 text-xs text-slate-300">
+						{
+							contactFormContent.facilities.map((f) => (
+								<div class="p-4 bg-canvas-raised rounded border border-slate-800 space-y-1">
+									<span class="text-amber-300 font-mono font-semibold block">
+										{f.title}
+									</span>
+									<p class="text-slate-400">{f.description}</p>
+								</div>
+							))
+						}
+					</div>
+				</div>
+
+				<div
+					class="p-5 bg-canvas-raised rounded-sm border border-slate-800 text-xs text-slate-400 space-y-1"
+				>
+					<span class="text-slate-200 font-medium block"
+						>Perlindungan Privasi 100%</span
+					>
+					<p>{contactFormContent.privacyNote}</p>
+				</div>
+			</div>
+
+			<div
+				data-reveal="right"
+				class="lg:col-span-7 bg-canvas-panel border border-slate-800 p-8 sm:p-10 rounded-sm shadow-2xl relative"
+			>
+				<div class="border-b border-slate-800 pb-6 space-y-3">
+					<div class="flex items-center justify-between text-xs font-mono">
+						<span class="text-amber-300">FORMULIR RESERVASI SURVEI KAWASAN</span
+						>
+						<span id="form-step-indicator" class="text-slate-400"
+							>LANGKAH 1 DARI 2</span
+						>
+					</div>
+					<h3
+						id="form-title-display"
+						class="font-serif text-2xl text-slate-100 font-normal"
+					>
+						Langkah 1: Identitas & Tipe Rumah Pilihan
+					</h3>
+				</div>
+
+				<form id="contact-booking-form" class="space-y-6 pt-6" novalidate>
+					<div id="wizard-step-1" class="wizard-step block space-y-6">
+						<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+							<div class="space-y-2">
+								<label
+									for="full-name"
+									class="block text-xs font-mono text-slate-300"
+									>NAMA LENGKAP *</label
+								>
+								<input
+									type="text"
+									id="full-name"
+									name="full-name"
+									required
+									placeholder="Contoh: Budi Santoso"
+									class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-sm text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-amber-400/80 transition-colors"
+								/>
+							</div>
+							<div class="space-y-2">
+								<label
+									for="whatsapp"
+									class="block text-xs font-mono text-slate-300"
+									>NOMOR WHATSAPP AKTIF *</label
+								>
+								<input
+									type="tel"
+									id="whatsapp"
+									name="whatsapp"
+									required
+									placeholder="Contoh: 081234567890"
+									class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-sm text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-amber-400/80 transition-colors"
+								/>
+							</div>
+						</div>
+
+						<div class="space-y-2">
+							<label
+								for="unit-type"
+								class="block text-xs font-mono text-slate-300"
+								>TIPE RUMAH DIMINATI *</label
+							>
+							<select
+								id="unit-type"
+								name="unit-type"
+								class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-sm text-sm text-slate-100 focus:outline-none focus:border-amber-400/80 transition-colors"
+							>
+								{
+									contactFormContent.unitOptions.map((opt) => (
+										<option value={opt.value}>{opt.label}</option>
+									))
+								}
+							</select>
+						</div>
+
+						<button
+							type="button"
+							id="next-step-btn"
+							class="w-full py-4 bg-amber-400 hover:bg-amber-300 text-slate-950 font-semibold text-sm tracking-wide rounded-sm shadow-xl transition-all min-h-11"
+						>
+							Lanjut ke Langkah 2: Pilih Jadwal Waktu & KPR →
+						</button>
+					</div>
+
+					<div id="wizard-step-2" class="wizard-step hidden space-y-6">
+						<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+							<div class="space-y-2">
+								<label
+									for="visit-date"
+									class="block text-xs font-mono text-slate-300"
+									>RENCANA TANGGAL *</label
+								>
+								<input
+									type="date"
+									id="visit-date"
+									name="visit-date"
+									required
+									class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-sm text-sm text-slate-100 focus:outline-none focus:border-amber-400/80 transition-colors"
+								/>
+							</div>
+							<div class="space-y-2">
+								<label
+									for="visit-time"
+									class="block text-xs font-mono text-slate-300"
+									>PILIHAN SESI WAKTU *</label
+								>
+								<select
+									id="visit-time"
+									name="visit-time"
+									class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-sm text-sm text-slate-100 focus:outline-none focus:border-amber-400/80 transition-colors"
+								>
+									{
+										contactFormContent.timeOptions.map((opt) => (
+											<option value={opt.value}>{opt.label}</option>
+										))
+									}
+								</select>
+							</div>
+						</div>
+
+						<div
+							class="space-y-3 p-4 bg-slate-950 rounded border border-slate-800/80"
+						>
+							<div class="flex items-start gap-3">
+								<input
+									type="checkbox"
+									id="kpr-assist"
+									name="kpr-assist"
+									checked
+									class="mt-1 w-4 h-4 rounded border-slate-700 bg-slate-900 text-amber-400 focus:ring-amber-400"
+								/>
+								<label
+									for="kpr-assist"
+									class="text-xs text-slate-300 cursor-pointer"
+									>Sertakan simulasi KPR & verifikasi BI Checking gratis saat
+									saya tiba di Marketing Gallery.</label
+								>
+							</div>
+							<div class="flex items-start gap-3">
+								<input
+									type="checkbox"
+									id="golf-cart"
+									name="golf-cart"
+									checked
+									class="mt-1 w-4 h-4 rounded border-slate-700 bg-slate-900 text-amber-400 focus:ring-amber-400"
+								/>
+								<label
+									for="golf-cart"
+									class="text-xs text-slate-300 cursor-pointer"
+									>Siapkan unit Golf Cart VIP untuk tur kawasan 12 hektar.</label
+								>
+							</div>
+						</div>
+
+						<div class="space-y-2">
+							<label for="notes" class="block text-xs font-mono text-slate-300"
+								>CATATAN KHUSUS (OPSIONAL)</label
+							>
+							<textarea
+								id="notes"
+								name="notes"
+								rows="2"
+								placeholder="Contoh: Mohon siapkan simulasi KPR Bank BCA untuk 15 tahun..."
+								class="w-full px-4 py-3 bg-slate-950 border border-slate-800 rounded-sm text-sm text-slate-100 placeholder-slate-600 focus:outline-none focus:border-amber-400/80 transition-colors"
+							></textarea>
+						</div>
+
+						<div class="flex items-center gap-4">
+							<button
+								type="button"
+								id="prev-step-btn"
+								class="w-1/3 py-4 bg-slate-900 border border-slate-700 text-slate-300 hover:text-white font-semibold text-xs rounded-sm transition-all min-h-11"
+							>
+								← Kembali
+							</button>
+							<button
+								type="submit"
+								class="w-2/3 py-4 bg-linear-to-r from-amber-300 via-amber-400 to-amber-200 hover:from-amber-200 hover:to-amber-300 text-slate-950 font-semibold text-sm tracking-wide rounded-sm shadow-xl transition-all min-h-11"
+							>
+								Kirim Reservasi Survei VIP
+							</button>
+						</div>
+					</div>
+				</form>
+
+				<div
+					id="contact-success-toast"
+					class="hidden absolute inset-0 bg-canvas-default/98 p-8 sm:p-12 rounded-sm flex-col items-center justify-center text-center space-y-6 z-20"
+				>
+					<div
+						class="w-14 h-14 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-400/40 flex items-center justify-center text-2xl"
+					>
+						✓
+					</div>
+					<div class="space-y-2">
+						<span class="text-xs font-mono text-amber-300 uppercase"
+							>RESERVASI SURVEI BERHASIL DITERIMA</span
+						>
+						<h3 class="font-serif text-3xl text-slate-100 font-normal">
+							Sampai Jumpa di Grand Samudra
+						</h3>
+						<p class="text-xs text-slate-300 max-w-md leading-relaxed">
+							{contactFormContent.successMessage}
+						</p>
+					</div>
+					<div class="flex flex-wrap items-center justify-center gap-4 pt-4">
+						<a
+							href="https://wa.me/6281234567890?text=Halo%20Tim%20Grand%20Samudra,%20saya%20sudah%20mengisi%20formulir%20reservasi%20survei"
+							target="_blank"
+							class="px-6 py-3 bg-amber-400 text-slate-950 font-semibold text-xs rounded-sm hover:bg-amber-300 transition-colors"
+						>
+							Konfirmasi via WhatsApp Directly
+						</a>
+						<button
+							type="button"
+							id="close-success-toast"
+							class="px-6 py-3 bg-slate-900 border border-slate-700 text-slate-300 hover:text-white text-xs font-semibold rounded-sm transition-colors"
+						>
+							Kembali ke Formulir
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		const nextBtn = document.getElementById("next-step-btn");
+		const prevBtn = document.getElementById("prev-step-btn");
+		const step1 = document.getElementById("wizard-step-1");
+		const step2 = document.getElementById("wizard-step-2");
+		const stepIndicator = document.getElementById("form-step-indicator");
+		const titleDisplay = document.getElementById("form-title-display");
+		const form = document.getElementById(
+			"contact-booking-form",
+		) as HTMLFormElement | null;
+		const toast = document.getElementById("contact-success-toast");
+		const closeBtn = document.getElementById("close-success-toast");
+		const dateInput = document.getElementById(
+			"visit-date",
+		) as HTMLInputElement | null;
+
+		if (dateInput) {
+			const today = new Date().toISOString().split("T")[0];
+			dateInput.setAttribute("min", today);
+			dateInput.value = today;
+		}
+
+		if (nextBtn && prevBtn && step1 && step2) {
+			nextBtn.addEventListener("click", () => {
+				const fullName = (
+					document.getElementById("full-name") as HTMLInputElement
+				)?.value.trim();
+				const whatsapp = (
+					document.getElementById("whatsapp") as HTMLInputElement
+				)?.value.trim();
+
+				if (!fullName || !whatsapp) {
+					alert(
+						"Mohon isi Nama Lengkap dan Nomor WhatsApp Anda terlebih dahulu.",
+					);
+					return;
+				}
+
+				step1.classList.remove("block");
+				step1.classList.add("hidden");
+				step2.classList.remove("hidden");
+				step2.classList.add("block");
+
+				if (stepIndicator) stepIndicator.textContent = "LANGKAH 2 DARI 2";
+				if (titleDisplay)
+					titleDisplay.textContent = "Langkah 2: Rencana Waktu & Layanan VIP";
+			});
+
+			prevBtn.addEventListener("click", () => {
+				step2.classList.remove("block");
+				step2.classList.add("hidden");
+				step1.classList.remove("hidden");
+				step1.classList.add("block");
+
+				if (stepIndicator) stepIndicator.textContent = "LANGKAH 1 DARI 2";
+				if (titleDisplay)
+					titleDisplay.textContent =
+						"Langkah 1: Identitas & Tipe Rumah Pilihan";
+			});
+		}
+
+		if (form && toast) {
+			form.addEventListener("submit", (e) => {
+				e.preventDefault();
+				toast.classList.remove("hidden");
+				toast.classList.add("flex");
+				form.reset();
+			});
+
+			if (closeBtn) {
+				closeBtn.addEventListener("click", () => {
+					toast.classList.remove("flex");
+					toast.classList.add("hidden");
+					if (step2 && step1) {
+						step2.classList.remove("block");
+						step2.classList.add("hidden");
+						step1.classList.remove("hidden");
+						step1.classList.add("block");
+						if (stepIndicator) stepIndicator.textContent = "LANGKAH 1 DARI 2";
+						if (titleDisplay)
+							titleDisplay.textContent =
+								"Langkah 1: Identitas & Tipe Rumah Pilihan";
+					}
+				});
+			}
+		}
+	});
+</script>

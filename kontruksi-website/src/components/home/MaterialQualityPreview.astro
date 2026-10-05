@@ -1,0 +1,54 @@
+---
+import { CheckCircle2, ShieldCheck } from 'lucide-astro';
+import { homeContent } from '../../data/home.js';
+
+const { materialsPreview } = homeContent;
+---
+
+<section class="py-24 lg:py-32 bg-theme-bg border-b border-theme-border">
+  <div class="editorial-container">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      
+      <!-- Left Info -->
+      <div class="lg:col-span-5 space-y-6 reveal-on-scroll">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-sm bg-theme-surface border border-theme-border text-theme-accent text-xs font-semibold tracking-wider">
+          <ShieldCheck class="w-4 h-4" />
+          <span>{materialsPreview.preheader}</span>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif text-theme-primary font-normal leading-tight">
+          {materialsPreview.title}
+        </h2>
+
+        <p class="text-theme-secondary text-base leading-relaxed">
+          {materialsPreview.subtitle}
+        </p>
+
+        <div class="p-4 rounded-sm bg-theme-surface border border-theme-border flex items-center gap-3">
+          <ShieldCheck class="w-8 h-8 text-theme-success shrink-0" />
+          <div class="text-xs text-theme-secondary">
+            <strong class="text-theme-primary">Uji Jangka Sorong & Sertifikat SNI:</strong> Setiap pengiriman baja ke lokasi didampingi dokumen Mill Test Certificate resmi dari pabrikan.
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Features Cards Grid -->
+      <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {materialsPreview.features.map((f, idx) => (
+          <div class={`surface-card p-6 rounded-sm space-y-3 reveal-on-scroll stagger-${idx + 1}`}>
+            <div class="flex items-center gap-2">
+              <CheckCircle2 class="w-5 h-5 text-theme-accent shrink-0" />
+              <h3 class="text-base font-serif text-theme-primary font-normal">{f.title}</h3>
+            </div>
+            <p class="text-xs text-theme-secondary leading-relaxed pl-7">
+              {f.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+
+    </div>
+
+  </div>
+</section>

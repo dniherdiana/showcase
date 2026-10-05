@@ -1,0 +1,36 @@
+---
+import { Info } from 'lucide-astro';
+import { kalkulatorContent } from '../../data/kalkulator.js';
+
+const { guide } = kalkulatorContent;
+---
+
+<section class="py-20 lg:py-28 bg-theme-bg border-b border-theme-border">
+  <div class="editorial-container">
+    <div class="max-w-4xl mx-auto space-y-8">
+      <div class="space-y-3">
+        <div class="inline-flex items-center gap-2 text-xs font-semibold text-theme-accent uppercase tracking-wider">
+          <Info class="w-4 h-4" />
+          <span>{guide.preheader}</span>
+        </div>
+        <h2 class="text-3xl font-serif text-theme-primary font-normal">
+          {guide.title}
+        </h2>
+        <p class="text-theme-secondary text-base leading-relaxed">
+          {guide.intro}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {guide.cards.map(card => (
+          <div class="surface-card p-6 rounded-sm space-y-2">
+            <h3 class="text-lg font-serif text-theme-accent font-normal">{card.title}</h3>
+            <p class="text-sm text-theme-secondary leading-relaxed">
+              {card.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

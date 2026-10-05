@@ -1,0 +1,453 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ClientDataTag from '../components/ClientDataTag.astro';
+import DonationCalculator from '../components/svelte/DonationCalculator.svelte';
+import BeforeAfterSlider from '../components/svelte/BeforeAfterSlider.svelte';
+import FaqAccordion from '../components/svelte/FaqAccordion.svelte';
+---
+
+<Layout 
+  title="Yayasan Bumi Bersama | Grassroots Environmental & Community Empowerment"
+  description="Yayasan Bumi Bersama empowers 145 rural villages through native reforestation, indigenous eco-education, and regenerative livelihoods since 2012."
+>
+
+  <!-- 1. CINEMATIC HERO SECTION (Asymmetric Storytelling Layout) -->
+  <section class="relative bg-paper pt-12 pb-20 overflow-hidden border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <!-- Text Column (7 cols) -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 bg-emerald-100/80 border border-emerald-300 text-emerald-900 px-3.5 py-1.5 rounded-full text-xs font-semibold">
+            <span class="w-2 h-2 rounded-full bg-emerald-700 animate-pulse"></span>
+            <span>Founded in 2012 • 145 Partner Villages</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-stone-900 leading-[1.1]">
+            Restoring Indigenous Forests, <span class="font-serif italic font-normal text-emerald-800">Empowering Rural Communities</span> Together.
+          </h1>
+
+          <p class="text-base sm:text-lg text-stone-600 leading-relaxed max-w-2xl">
+            We bridge environmental conservation and rural education by partnering directly with local villagers. 96% of all donated funds go directly to on-the-ground native tree nurseries, solar learning hubs, and sustainable farming cooperatives.
+          </p>
+
+          <!-- CTA Group -->
+          <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+            <a 
+              href="/donate" 
+              class="bg-terracotta hover:bg-terracotta-hover text-white font-bold px-8 py-4 rounded-xl text-center text-sm transition-all shadow-lg shadow-terracotta/25 flex items-center justify-center gap-2 group"
+            >
+              <span>Donate Now</span>
+              <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </a>
+            <a 
+              href="/impact-stories" 
+              class="bg-stone-200/80 hover:bg-stone-300 text-stone-900 font-bold px-8 py-4 rounded-xl text-center text-sm transition-all border border-stone-300 flex items-center justify-center gap-2"
+            >
+              <span>Explore Impact Stories</span>
+            </a>
+          </div>
+
+          <!-- Proof Badges -->
+          <div class="pt-6 border-t border-stone-200/80 grid grid-cols-3 gap-4 text-xs text-stone-600">
+            <div>
+              <span class="text-xl font-bold text-emerald-800 block">18,000+</span>
+              <span>Direct Beneficiaries</span>
+            </div>
+            <div>
+              <span class="text-xl font-bold text-emerald-800 block">96%</span>
+              <span>Direct Program Allocation</span>
+            </div>
+            <div>
+              <span class="text-xl font-bold text-emerald-800 block">80+</span>
+              <span>Local Community Partners</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visual Collage Column (5 cols) -->
+        <div class="lg:col-span-5 relative">
+          <div class="relative z-10 zoom-img-container rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-stone-200">
+            <img 
+              src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1200&auto=format&fit=crop" 
+              alt="Rural villagers and volunteers planting native trees in highland watershed" 
+              class="w-full h-[460px] object-cover"
+            />
+            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-stone-950/90 via-stone-950/40 to-transparent p-6 text-white">
+              <span class="text-xs font-mono text-amber-300 uppercase tracking-wider block mb-1">Documentary Field Log</span>
+              <p class="text-sm font-semibold leading-snug">
+                "Conservation succeeds only when local people lead the governance of their own ancestral lands."
+              </p>
+            </div>
+          </div>
+
+          <!-- Floating Overlaid Secondary Photo Card -->
+          <div class="absolute -bottom-6 -left-6 z-20 hidden sm:block w-48 bg-white p-2.5 rounded-2xl shadow-xl border border-stone-200 transform -rotate-3">
+            <div class="zoom-img-container rounded-xl overflow-hidden h-28">
+              <img 
+                src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?q=80&w=800&auto=format&fit=crop" 
+                alt="Local village leader smiling during community meeting"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <p class="text-[11px] text-stone-700 font-bold mt-2 text-center">Ibu Siti • Village Elder & Seedling Guild Leader</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 2. PROOF POINTS & STATISTICAL METRICS ROW -->
+  <section class="py-16 bg-forest text-stone-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs uppercase tracking-widest font-mono text-amber-400 font-semibold block mb-2">Empirical Proof Points</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-white">14 Years of Measured Community & Forest Impact</h2>
+        <p class="text-stone-300 text-sm mt-2">Every figure is independently verified and published in our open annual audit reports.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="bg-forest-medium/60 p-6 rounded-2xl border border-sage/30 text-center">
+          <span class="text-3xl sm:text-4xl font-extrabold text-amber-300 block mb-1">2012</span>
+          <span class="text-xs uppercase font-bold text-stone-300 tracking-wider">Established Year</span>
+          <p class="text-xs text-stone-400 mt-2">14+ years of unbroken grassroots presence</p>
+        </div>
+
+        <div class="bg-forest-medium/60 p-6 rounded-2xl border border-sage/30 text-center">
+          <span class="text-3xl sm:text-4xl font-extrabold text-amber-300 block mb-1">18,000+</span>
+          <span class="text-xs uppercase font-bold text-stone-300 tracking-wider">Beneficiaries</span>
+          <p class="text-xs text-stone-400 mt-2">Farmers, students & indigenous families</p>
+        </div>
+
+        <div class="bg-forest-medium/60 p-6 rounded-2xl border border-sage/30 text-center">
+          <span class="text-3xl sm:text-4xl font-extrabold text-amber-300 block mb-1">145</span>
+          <span class="text-xs uppercase font-bold text-stone-300 tracking-wider">Partner Villages</span>
+          <p class="text-xs text-stone-400 mt-2">Active community agroforestry councils</p>
+        </div>
+
+        <div class="bg-forest-medium/60 p-6 rounded-2xl border border-sage/30 text-center">
+          <span class="text-3xl sm:text-4xl font-extrabold text-amber-300 block mb-1">540</span>
+          <span class="text-xs uppercase font-bold text-stone-300 tracking-wider">Social Initiatives</span>
+          <p class="text-xs text-stone-400 mt-2">Tree plantings, school builds & springs</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. HUMAN STORY SPOTLIGHT (Documentary Narrative Flow) -->
+  <section class="py-20 bg-paper border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-6 zoom-img-container rounded-3xl overflow-hidden shadow-xl border border-stone-200">
+          <img 
+            src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=1000&auto=format&fit=crop" 
+            alt="Children in rural outdoor school learning environment"
+            class="w-full h-[480px] object-cover"
+          />
+        </div>
+
+        <div class="lg:col-span-6 space-y-6">
+          <span class="text-xs uppercase font-mono tracking-wider font-semibold text-terracotta bg-terracotta-light px-3 py-1 rounded-full border border-terracotta/30">
+            Documentary Spotlight
+          </span>
+
+          <h2 class="text-3xl sm:text-4xl font-bold text-stone-900 leading-tight">
+            "When the forest revives, our children no longer have to leave the village for education."
+          </h2>
+
+          <p class="text-base text-stone-600 leading-relaxed">
+            In 2018, landslide risk threatened the hillside hamlet of Desa Sambangan. Rather than relying on external aid handouts, village elders partnered with Yayasan Bumi Bersama to establish a community-managed bamboo nursery and off-grid eco-learning shelter.
+          </p>
+
+          <blockquote class="p-4 bg-stone-100 border-l-4 border-emerald-800 rounded-r-xl italic font-serif text-stone-800 text-lg">
+            "We didn't just plant 15,000 trees; we planted a permanent source of clean spring water and established our own village school fund."
+          </blockquote>
+
+          <div class="pt-2 flex items-center justify-between">
+            <div>
+              <strong class="block text-stone-900 text-sm font-bold">Pak Wayan Karta</strong>
+              <span class="text-xs text-stone-500">Community Representative, Sambangan Forest Guild</span>
+            </div>
+            <a href="/impact-stories" class="text-xs font-bold text-emerald-800 hover:text-emerald-950 underline">Read Full Story →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. FEATURED PROGRAMS (Bento Grid Composition) -->
+  <section class="py-20 bg-stone-100 border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div>
+          <span class="text-xs uppercase font-mono tracking-wider font-semibold text-emerald-800">Integrated Strategy</span>
+          <h2 class="text-3xl font-bold text-stone-900 mt-1">Our Core Action Programs</h2>
+        </div>
+        <a href="/programs" class="text-xs font-bold text-emerald-800 hover:underline flex items-center gap-1">
+          <span>View All 5 Specialized Programs</span>
+          <span>→</span>
+        </a>
+      </div>
+
+      <!-- Bento Layout Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Large Featured Card (Spans 2 cols) -->
+        <div class="md:col-span-2 bg-white rounded-3xl p-8 border border-stone-200 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="bg-emerald-100 text-emerald-900 text-xs font-bold px-3 py-1 rounded-full">Environment & Conservation</span>
+              <span class="text-xs text-stone-500 font-mono">120,000+ Native Saplings</span>
+            </div>
+            <h3 class="text-2xl font-bold text-stone-900 group-hover:text-emerald-800 transition-colors mb-3">
+              Watershed & High-Altitude Native Reforestation
+            </h3>
+            <p class="text-stone-600 text-sm leading-relaxed mb-6">
+              Restoring critical headwater forests through community seedling nurseries managed by local women cooperatives. Every tree species is selected based on indigenous flora records.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-stone-100 flex items-center justify-between">
+            <span class="text-xs font-bold text-stone-700">Covers 850 Hectares Across 45 Ridges</span>
+            <a href="/programs" class="text-xs font-bold text-emerald-800 group-hover:translate-x-1 transition-transform">Learn details →</a>
+          </div>
+        </div>
+
+        <!-- Regular Bento Card 1 -->
+        <div class="bg-white rounded-3xl p-8 border border-stone-200 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between group">
+          <div>
+            <span class="bg-amber-100 text-amber-900 text-xs font-bold px-3 py-1 rounded-full inline-block mb-4">Education</span>
+            <h3 class="text-xl font-bold text-stone-900 group-hover:text-emerald-800 transition-colors mb-2">
+              Rural Eco-Literacy & Mobile Solar Hubs
+            </h3>
+            <p class="text-stone-600 text-sm leading-relaxed mb-4">
+              Equipping 34 off-grid schools with solar laptops, environmental stewardship books, and hands-on farm labs.
+            </p>
+          </div>
+          <a href="/programs" class="text-xs font-bold text-emerald-800">3,800 Active Students →</a>
+        </div>
+
+        <!-- Regular Bento Card 2 -->
+        <div class="bg-white rounded-3xl p-8 border border-stone-200 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between group">
+          <div>
+            <span class="bg-stone-200 text-stone-800 text-xs font-bold px-3 py-1 rounded-full inline-block mb-4">Community Development</span>
+            <h3 class="text-xl font-bold text-stone-900 group-hover:text-emerald-800 transition-colors mb-2">
+              Regenerative Farming Guilds
+            </h3>
+            <p class="text-stone-600 text-sm leading-relaxed mb-4">
+              Training smallholder farmers in chemical-free soil restoration and direct fair-trade cooperative distribution.
+            </p>
+          </div>
+          <a href="/programs" class="text-xs font-bold text-emerald-800">80+ Local Cooperatives →</a>
+        </div>
+
+        <!-- Large Featured Card 2 (Spans 2 cols) -->
+        <div class="md:col-span-2 bg-stone-900 text-white rounded-3xl p-8 border border-stone-800 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="bg-amber-400 text-stone-950 text-xs font-bold px-3 py-1 rounded-full">Disaster Preparedness & Health</span>
+              <span class="text-xs text-stone-400 font-mono">24 Emergency Deployments</span>
+            </div>
+            <h3 class="text-2xl font-bold text-white group-hover:text-amber-300 transition-colors mb-3">
+              Clean Water Pipeline & Climate Emergency Network
+            </h3>
+            <p class="text-stone-300 text-sm leading-relaxed mb-6">
+              Constructing gravity-fed mountain spring pipelines to bring clean drinking water to dry coastal hamlets, paired with rapid disaster response units.
+            </p>
+          </div>
+          <div class="pt-4 border-t border-stone-800 flex items-center justify-between text-xs">
+            <span class="text-stone-400">98% Reduction in Waterborne Illnesses</span>
+            <a href="/programs" class="font-bold text-amber-400 group-hover:translate-x-1 transition-transform">Explore health campaigns →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. BEFORE & AFTER COMMUNITY TRANSFORMATION (Interactive Svelte Island) -->
+  <section class="py-20 bg-paper border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs uppercase font-mono tracking-wider font-semibold text-emerald-800 block mb-1">Visual Evidence</span>
+        <h2 class="text-3xl font-bold text-stone-900">Before & After Ecological Transformation</h2>
+        <p class="text-stone-600 text-sm mt-2">See how 7 years of community agroforestry transformed barren eroded land into thriving biodiversity sanctuaries.</p>
+      </div>
+
+      <div class="max-w-4xl mx-auto">
+        <BeforeAfterSlider 
+          client:visible 
+          beforeImage="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=800&auto=format&fit=crop"
+          afterImage="https://images.unsplash.com/photo-1592417817098-8f3d6eb1b7a5?q=80&w=800&auto=format&fit=crop"
+          beforeTitle="Eroded Degraded Slope (2018)"
+          afterTitle="Thriving Community Agroforest (2025)"
+          location="Desa Sambangan Watershed"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. VOLUNTEER & COMMUNITY JOURNEY (4-Step Sequential Process) -->
+  <section class="py-20 bg-stone-50 border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs uppercase font-mono tracking-wider font-semibold text-terracotta block mb-1">Action Pathway</span>
+        <h2 class="text-3xl font-bold text-stone-900">How You Can Walk Beside Us</h2>
+        <p class="text-stone-600 text-sm mt-2">Whether you are an individual donor, field volunteer, or corporate partner, here is how we work together.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        
+        <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm relative">
+          <span class="text-4xl font-serif italic text-emerald-800 font-bold block mb-3">01</span>
+          <h3 class="text-lg font-bold text-stone-900 mb-2">Connect & Choose Impact</h3>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            Select a specific field program—reforestation, solar literacy, or clean water spring construction.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm relative">
+          <span class="text-4xl font-serif italic text-emerald-800 font-bold block mb-3">02</span>
+          <h3 class="text-lg font-bold text-stone-900 mb-2">96% Direct Field Transfer</h3>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            Your contributions directly fund tree saplings, tools, and local stipends with complete transaction log auditability.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm relative">
+          <span class="text-4xl font-serif italic text-emerald-800 font-bold block mb-3">03</span>
+          <h3 class="text-lg font-bold text-stone-900 mb-2">Village Co-Creation</h3>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            Local elders and trained volunteers carry out field planting and shelter construction using traditional wisdom.
+          </p>
+        </div>
+
+        <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm relative">
+          <span class="text-4xl font-serif italic text-emerald-800 font-bold block mb-3">04</span>
+          <h3 class="text-lg font-bold text-stone-900 mb-2">Quarterly Progress Audit</h3>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            Receive detailed photo updates, GPS coordinates of planted zones, and annual audited financial statements.
+          </p>
+        </div>
+
+      </div>
+
+      <div class="mt-12 text-center">
+        <a href="/get-involved" class="inline-flex items-center gap-2 bg-stone-900 hover:bg-emerald-800 text-white font-bold px-8 py-3.5 rounded-xl text-xs transition-colors">
+          <span>Apply to Join as Field Volunteer</span>
+          <span>→</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 7. DONATION TRANSPARENCY & CALCULATOR (Interactive Svelte Component) -->
+  <section class="py-20 bg-paper border-b border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <div class="lg:col-span-5 space-y-6">
+          <span class="text-xs uppercase font-mono tracking-wider font-semibold text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full border border-emerald-300">
+            Complete Transparency
+          </span>
+
+          <h2 class="text-3xl sm:text-4xl font-bold text-stone-900 leading-tight">
+            Where Every Single Contribution Goes
+          </h2>
+
+          <p class="text-base text-stone-600 leading-relaxed">
+            We believe trust is built on radical openness. Unlike monolithic charities with high overhead costs, 96% of our revenue goes directly into hardware, seedlings, and village stipends.
+          </p>
+
+          <div class="space-y-4 pt-2">
+            <div class="flex items-center justify-between p-3 bg-white rounded-xl border border-stone-200">
+              <span class="text-sm font-bold text-stone-800">🌱 Direct Field Implementation</span>
+              <span class="font-mono font-bold text-emerald-800 text-lg">96%</span>
+            </div>
+            <div class="flex items-center justify-between p-3 bg-white rounded-xl border border-stone-200">
+              <span class="text-sm font-bold text-stone-800">📋 Independent Audit & Admin</span>
+              <span class="font-mono font-bold text-stone-600 text-lg">4%</span>
+            </div>
+          </div>
+
+          <div class="pt-4">
+            <span class="text-xs text-stone-500 block mb-1">Official Non-Profit Registration:</span>
+            <ClientDataTag text="SK Kemenkumham & Legal Charity Status" />
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <DonationCalculator client:visible />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. PARTNER & COLLABORATOR STRIP -->
+  <section class="py-12 bg-stone-100 border-b border-stone-200 text-stone-700">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-xs uppercase tracking-widest font-mono font-semibold text-stone-500 mb-6">
+        Trusted by 80+ Local Communities, Universities & Environmental Alliances
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-80">
+        <span class="font-bold text-sm text-stone-600 hover:text-emerald-800 transition-colors">Highland Farmer Guild</span>
+        <span class="font-bold text-sm text-stone-600 hover:text-emerald-800 transition-colors">National Eco-Literacy Alliance</span>
+        <span class="font-bold text-sm text-stone-600 hover:text-emerald-800 transition-colors">Indonesian Watershed Protection Forum</span>
+        <span class="font-bold text-sm text-stone-600 hover:text-emerald-800 transition-colors">Rural Solar Initiative</span>
+        <span class="font-bold text-sm text-stone-600 hover:text-emerald-800 transition-colors">Clean Water Alliance</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. FAQ ACCORDION -->
+  <section class="py-20 bg-paper border-b border-stone-200">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <span class="text-xs uppercase font-mono tracking-wider font-semibold text-emerald-800 block mb-1">Common Questions</span>
+        <h2 class="text-3xl font-bold text-stone-900">Frequently Asked Questions</h2>
+      </div>
+
+      <FaqAccordion client:visible />
+    </div>
+  </section>
+
+  <!-- 10. FINAL DONATION CTA BAND -->
+  <section class="py-20 bg-gradient-to-br from-forest to-stone-950 text-white relative overflow-hidden">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-6">
+      <span class="text-xs font-mono uppercase tracking-widest text-amber-400 bg-amber-950/60 px-3.5 py-1.5 rounded-full border border-amber-800/60">
+        Become a Sustainer Today
+      </span>
+
+      <h2 class="text-3xl sm:text-5xl font-bold leading-tight">
+        A Thriving Ecosystem Begins With a Single Village Commitment.
+      </h2>
+
+      <p class="text-stone-300 text-base max-w-2xl mx-auto leading-relaxed">
+        Join our community of over 320 active volunteers and monthly donors. Your gift directly funds native tree seedlings and rural school supplies today.
+      </p>
+
+      <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a 
+          href="/donate" 
+          class="w-full sm:w-auto bg-terracotta hover:bg-terracotta-hover text-white font-bold px-8 py-4 rounded-xl text-sm transition-all shadow-xl shadow-terracotta/30"
+        >
+          Donate Now (96% Direct Program Use)
+        </a>
+        <a 
+          href="/contact" 
+          class="w-full sm:w-auto bg-stone-800 hover:bg-stone-700 text-white font-bold px-8 py-4 rounded-xl text-sm border border-stone-700 transition-all"
+        >
+          Contact Our Team
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

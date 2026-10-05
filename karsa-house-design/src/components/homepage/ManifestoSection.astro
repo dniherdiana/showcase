@@ -1,0 +1,63 @@
+---
+import { Image } from 'astro:assets';
+import { homeData } from '../../data/home.data.js';
+import inspectionImg from '../../images/architect-inspection.jpg';
+
+const { manifesto } = homeData;
+---
+
+<section class="w-full py-16 lg:py-24 bg-surface-ground">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <!-- Left Column: Architect On-Site Photo (Col 1-6) -->
+      <div class="lg:col-span-6">
+        <div class="relative">
+          <div class="absolute -inset-2 bg-surface-panel sketch-border rotate-2 -z-10"></div>
+          <div class="sketch-border bg-surface-card p-3 shadow-floating -rotate-1 transition-transform hover:rotate-0 duration-300">
+            <div class="overflow-hidden rounded-sm aspect-[4/3] filter grayscale contrast-105">
+              <Image
+                src={inspectionImg}
+                alt="Lead Architect Atelier Karsa saat inspeksi fisik mingguan di proyek komersial"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+            <div class="mt-3 px-2 py-1 flex items-center justify-between font-mono text-xs text-ink-muted border-t border-border-sketch">
+              <span class="text-ink-primary font-semibold">Protokol Lapangan Atelier Karsa</span>
+              <span class="text-brand-accent">Supervisi Setiap Jumat</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Manifesto Copy & Founder Conviction (Col 7-12) -->
+      <div class="lg:col-span-6 space-y-6">
+        <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink-primary leading-tight">
+          {manifesto.headline}
+        </h2>
+
+        <div class="space-y-4 text-sm sm:text-base text-ink-muted leading-relaxed">
+          {manifesto.paragraphs.map((p) => (
+            <p>{p}</p>
+          ))}
+        </div>
+
+        <!-- Callout Note -->
+        <div class="p-4 bg-surface-panel border-l-4 border-brand-accent rounded-r-xl">
+          <p class="text-xs sm:text-sm font-medium text-ink-primary italic">
+            "{manifesto.supervisionQuote}"
+          </p>
+        </div>
+
+        <div class="pt-2">
+          <a
+            href="/standar-kerja"
+            class="inline-flex items-center gap-2 text-sm font-semibold text-brand-accent hover:text-brand-accent-hover transition-colors"
+          >
+            <span>Pelajari 5 Tahap Protokol Operasional Kami</span>
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

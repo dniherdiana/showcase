@@ -1,0 +1,60 @@
+export const contactInfoCardsContent = {
+  tag: 'Saluran Komunikasi Resmi',
+  headline: 'Hubungi kami melalui saluran yang paling nyaman untuk Anda.',
+  subtext: 'Seluruh pesan yang masuk akan langsung diterima oleh analis properti senior — bukan bot otomatis atau operator pihak ketiga.',
+  cards: [
+    {
+      id: 'gallery',
+      span: 7,
+      style: 'featured',
+      type: 'MARKETING GALLERY & SHOW UNIT',
+      label: 'KUNJUNGAN TANPA JANJI TEMU',
+      title: 'Jl. Boulevard Samudra Residence No. 1, Bandung Selatan',
+      description: 'Kawasan terpadu Grand Samudra terletak 10 menit dari gerbang tol Buah Batu dan 15 menit dari stasiun Kereta Cepat Whoosh Tegalluar. Tersedia area parkir kendaraan yang aman dan taman bermain ramah anak selama Anda berdiskusi.',
+      footerText: '✓ GPS Google Maps & Waze Terverifikasi Resmi',
+      footerCta: 'Buka di Google Maps',
+      mapEmbedSrc:
+        'https://www.google.com/maps?q=Jl.%20Boulevard%20Samudra%20Residence%20No.%201%2C%20Bandung%20Selatan&z=15&output=embed',
+      mapHref:
+        'https://www.google.com/maps/search/?api=1&query=Jl.%20Boulevard%20Samudra%20Residence%20No.%201%2C%20Bandung%20Selatan',
+    },
+    {
+      id: 'whatsapp',
+      span: 5,
+      style: 'standard',
+      type: 'TELEPON & WHATSAPP',
+      label: 'RESPON CEPAT',
+      title: 'Analis Properti & Legal',
+      contacts: [
+        { number: '+62 812-3456-7890', label: 'Konsultasi Blok & Simulasi KPR', status: 'ONLINE', statusStyle: 'online' },
+        { number: '+62 811-2233-4455', label: 'Pemberkasan SP3K & SHM', status: '08.00-17.00', statusStyle: 'offline' },
+      ],
+      waCta: 'Buka WhatsApp Chat',
+    },
+    {
+      id: 'email',
+      span: 5,
+      style: 'standard',
+      type: 'SUREL / EMAIL',
+      label: 'PERMOHONAN RESMI',
+      title: 'Korespondensi & Brosur PDF',
+      description: 'Kirimkan permintaan penawaran harga resmi perusahaan atau permohonan kunjungan instansi melalui surel terdaftar kami.',
+      emails: ['info@grandsamudrafamily.id', 'kpr-verification@grandsamudrafamily.id'],
+      footerNote: '*Brosur & e-Catalog PDF akan dikirim otomatis dalam 2 menit.',
+    },
+    {
+      id: 'hours',
+      span: 7,
+      style: 'standard',
+      type: 'JAM OPERASIONAL GALLERY',
+      label: 'BUKA AKHIR PEKAN',
+      title: 'Kami siap menyambut Anda setiap hari — termasuk Sabtu & Minggu.',
+      schedules: [
+        { days: 'SENIN – JUMAT', time: '08.00 – 17.30 WIB', note: 'Layanan administrasi KPR & survei show unit.' },
+        { days: 'SABTU – MINGGU / LIBUR', time: '08.00 – 18.00 WIB', note: 'Open house unit contoh & konsultasi arsitek gratis.' },
+      ],
+      footerText: '✓ Fasilitas Golf Cart untuk Kunjungan Kawasan 12 Ha',
+      footerTag: '100% BEBAS BIAYA',
+    },
+  ],
+}

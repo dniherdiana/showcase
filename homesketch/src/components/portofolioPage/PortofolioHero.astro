@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets';
+import Container from '../base/Container.astro';
+import HairlineDivider from '../base/HairlineDivider.astro';
+import imgUma from '../../assets/images/uma-sawah-bali.jpg';
+import { portofolioHeroData } from './PortofolioHero.data.js';
+---
+
+<section class="pt-12 pb-16 lg:pt-16 lg:pb-24 border-b border-[var(--color-border-hairline)] bg-[var(--color-canvas-light)]">
+  <Container size="xl" as="div" class="flex flex-col gap-12 lg:gap-16">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start">
+      <div class="lg:col-span-8 flex flex-col gap-6">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.14] tracking-tight text-[var(--color-ink-primary)]">
+          {portofolioHeroData.heading}
+        </h1>
+        <p class="text-base sm:text-lg text-[var(--color-ink-muted)] leading-relaxed max-w-[60ch]">
+          {portofolioHeroData.subheading}
+        </p>
+      </div>
+
+      <div class="lg:col-span-4 flex flex-col gap-4 border-t lg:border-t-0 lg:border-l border-[var(--color-border-hairline)] pt-6 lg:pt-0 lg:pl-8">
+        {portofolioHeroData.stats.map((item) => (
+          <div class="flex flex-col">
+            <span class="text-[11px] uppercase tracking-widest text-[var(--color-ink-muted)] font-semibold">
+              {item.label}
+            </span>
+            <span class="font-serif text-2xl font-bold text-[var(--color-ink-primary)] mt-0.5">
+              {item.value}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Monumental Image Stage -->
+    <figure class="w-full flex flex-col gap-2">
+      <div class="relative w-full aspect-[21/9] overflow-hidden border border-[var(--color-border-hairline)] bg-[var(--color-canvas-surface)] shadow-xs">
+        <Image
+          src={imgUma}
+          alt="Uma Sawah Estate di Canggu Bali oleh HomeSketch Studio"
+          class="w-full h-full object-cover object-center"
+          loading="eager"
+        />
+      </div>
+      <figcaption class="text-xs text-[var(--color-ink-muted)] flex justify-between items-center">
+        <span>Uma Sawah Villa Estate: Struktur Kantilever Kayu Jati Tua & Orientasi Sawah Abadi</span>
+        <span class="font-mono text-[11px]">Canggu, Bali &middot; 920 m²</span>
+      </figcaption>
+    </figure>
+  </Container>
+</section>

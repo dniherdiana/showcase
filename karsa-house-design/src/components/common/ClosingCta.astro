@@ -1,0 +1,45 @@
+---
+interface Props {
+  headline: string;
+  subhead: string;
+  buttonText: string;
+  href?: string;
+}
+
+const {
+  headline,
+  subhead,
+  buttonText,
+  href = '/kontak',
+} = Astro.props;
+---
+
+<section class="w-full py-20 lg:py-24 bg-surface-contrast text-surface-ground relative overflow-hidden">
+  <!-- Subtle decorative sketch background grid -->
+  <div class="absolute inset-0 opacity-5 pointer-events-none architect-grid-bg"></div>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+    <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-surface-ground max-w-3xl mx-auto leading-tight">
+      {headline}
+    </h2>
+    <p class="mt-6 text-base sm:text-lg text-surface-ground/80 max-w-2xl mx-auto leading-relaxed">
+      {subhead}
+    </p>
+    <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a
+        href={href}
+        class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-sm font-semibold uppercase tracking-wider text-white bg-brand-accent hover:bg-brand-accent-hover rounded-control transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0"
+      >
+        {buttonText}
+      </a>
+      <a
+        href="https://wa.me/6281234567890"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-sm font-semibold tracking-wider text-surface-ground border border-surface-ground/30 hover:bg-surface-ground/10 rounded-control transition-colors"
+      >
+        WhatsApp Arsitek Penanggung Jawab
+      </a>
+    </div>
+  </div>
+</section>

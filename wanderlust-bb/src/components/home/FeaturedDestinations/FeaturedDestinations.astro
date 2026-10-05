@@ -1,0 +1,50 @@
+---
+import DestinationCard from "../../shared/DestinationCard/DestinationCard.astro";
+
+import { destinationsData } from "./data.js";
+interface Props {
+	badge?: string;
+	title?: string;
+	actionText?: string;
+	actionHref?: string;
+}
+
+const {
+	badge = "Handpicked Escapes",
+	title = "Featured Destinations",
+	actionText = "Explore All Destinations",
+	actionHref = "/destinations",
+} = Astro.props;
+
+const featuredDestinations = destinationsData.filter((d) => d.featured).slice(0, 3);
+---
+
+<section class="py-20 px-[5%] max-w-7xl mx-auto space-y-12">
+	<div
+		class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/10 pb-6 story-scroll-item"
+	>
+		<div class="space-y-2">
+			<span
+				class="text-xs font-mono font-bold uppercase tracking-widest text-[#0D9488]"
+			>
+				✦ {badge}
+			</span>
+			<h2
+				class="font-serif text-3xl sm:text-5xl font-extrabold uppercase text-white tracking-tight"
+			>
+				{title}
+			</h2>
+		</div>
+		<a
+			href={actionHref}
+			class="inline-flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-widest text-gold hover:text-amber-200 transition-colors"
+		>
+			{actionText}
+			<span>→</span>
+		</a>
+	</div>
+
+	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+		{featuredDestinations.map((dest) => <DestinationCard {...dest} />)}
+	</div>
+</section>

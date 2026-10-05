@@ -1,0 +1,209 @@
+---
+import { filmChaptersData } from "./film-modal.data.js";
+
+interface Chapter {
+	id: string;
+	label: string;
+	title: string;
+	subtitle: string;
+	videoUrl: string;
+}
+
+interface Props {
+	modalId?: string;
+	chapters?: Chapter[];
+}
+
+const { modalId = "film-modal", chapters = filmChaptersData } = Astro.props;
+
+const initialChapter = chapters[0];
+---
+
+<!-- Cinematic Short Film Modal Component -->
+<div
+	id={modalId}
+	class="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 pt-16 sm:pt-24 pb-6 bg-slate-950/95 opacity-0 pointer-events-none transition-all duration-500 overflow-y-auto"
+	role="dialog"
+	aria-modal="true"
+	aria-label="Wanderlust Short Film Modal"
+>
+	<div
+		class="relative w-full max-w-4xl max-h-[calc(100vh-100px)] bg-slate-900/95 border border-white/20 rounded-2xl overflow-hidden shadow-2xl shadow-black/80 flex flex-col transform scale-95 transition-transform duration-500 my-auto"
+		id={`${modalId}-container`}
+	>
+		<!-- Modal Header -->
+		<div
+			class="flex-shrink-0 flex flex-col sm:flex-row items-start sm:items-center justify-between px-4 py-3 sm:px-6 sm:py-3.5 border-b border-white/10 bg-slate-950/80 gap-2"
+		>
+			<div class="flex items-center justify-between w-full sm:w-auto">
+				<div class="flex items-center gap-2.5">
+					<span class="w-2.5 h-2.5 rounded-full bg-gold animate-pulse"></span>
+					<span class="text-xs uppercase tracking-[2px] text-gold font-semibold"
+						>Wanderlust Short Film</span
+					>
+				</div>
+				<button
+					data-close-film-modal
+					type="button"
+					class="sm:hidden w-7 h-7 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors text-xs font-bold cursor-pointer"
+					aria-label="Close Film Modal"
+				>
+					✕
+				</button>
+			</div>
+
+			<!-- Film Chapters (Visible on Mobile & Desktop) -->
+			<div
+				class="flex items-center gap-1.5 overflow-x-auto max-w-full pb-1 sm:pb-0 scrollbar-none"
+			>
+				{
+					chapters.map((chap, idx) => (
+						<button
+							type="button"
+							class={`film-chapter-btn text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full transition-all cursor-pointer whitespace-nowrap ${
+								idx === 0 ?
+									"bg-gold text-slate-950 active"
+								:	"bg-white/10 hover:bg-white/20 text-white/80"
+							}`}
+							data-video={chap.videoUrl}
+							data-title={chap.title}
+							data-subtitle={chap.subtitle}
+						>
+							{chap.label}
+						</button>
+					))
+				}
+			</div>
+
+			<button
+				data-close-film-modal
+				type="button"
+				class="hidden sm:flex w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white items-center justify-center transition-colors text-sm font-bold cursor-pointer"
+				aria-label="Close Film Modal"
+			>
+				✕
+			</button>
+		</div>
+
+		<!-- Video Player Wrapper -->
+		<div
+			class="relative flex-1 min-h-0 aspect-video w-full bg-black max-h-[55vh] sm:max-h-[62vh]"
+		>
+			<video
+				id="film-video-player"
+				class="w-full h-full object-contain bg-black"
+				controls
+				playsinline
+				preload="metadata"
+				aria-label="Wanderlust Short Film Video Player"
+			>
+				<source
+					id="film-video-source"
+					src={initialChapter.videoUrl}
+					type="video/mp4"
+				/>
+				<track
+					kind="captions"
+					src="/captions/film-en.vtt"
+					srclang="en"
+					label="English Captions"
+					default
+				/>
+				Your browser does not support HTML5 video.
+			</video>
+		</div>
+
+		<!-- Modal Footer / Details -->
+		<div
+			class="flex-shrink-0 p-4 sm:p-5 bg-slate-950/90 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-t border-white/10"
+		>
+			<div>
+				<h2
+					id="film-title"
+					class="font-serif text-base sm:text-xl font-semibold text-white"
+				>
+					{initialChapter.title}
+				</h2>
+				<p id="film-subtitle" class="text-xs text-white/60 mt-0.5">
+					{initialChapter.subtitle}
+				</p>
+			</div>
+			<a
+				href="/destinations"
+				class="px-5 py-2.5 bg-gold hover:bg-gold-light text-slate-950 font-bold text-xs rounded-full uppercase tracking-wider transition-all whitespace-nowrap shadow-lg shadow-gold/20"
+			>
+				Explore Destinations
+			</a>
+		</div>
+	</div>
+</div>
+
+<script>
+	function initFilmModal() {
+		const modal = document.getElementById("film-modal");
+		const container = document.getElementById("film-modal-container");
+		const openBtn = document.getElementById("open-film-modal");
+		const closeBtns = document.querySelectorAll("[data-close-film-modal]");
+		const video = document.getElementById(
+			"film-video-player",
+		) as HTMLVideoElement | null;
+		const source = document.getElementById(
+			"film-video-source",
+		) as HTMLSourceElement | null;
+		const title = document.getElementById("film-title");
+		const subtitle = document.getElementById("film-subtitle");
+		const chapterBtns = document.querySelectorAll(".film-chapter-btn");
+
+		if (!modal || !container) return;
+
+		function open() {
+			modal?.classList.remove("opacity-0", "pointer-events-none");
+			container?.classList.remove("scale-95");
+			document.body.style.overflow = "hidden";
+			if (video) video.currentTime = 0;
+		}
+
+		function close() {
+			modal?.classList.add("opacity-0", "pointer-events-none");
+			container?.classList.add("scale-95");
+			document.body.style.overflow = "";
+			video?.pause();
+		}
+
+		function selectChapter(btn: Element) {
+			const videoUrl = btn.getAttribute("data-video");
+			const videoTitle = btn.getAttribute("data-title");
+			const videoSub = btn.getAttribute("data-subtitle");
+
+			if (!videoUrl || !video || !source) return;
+
+			chapterBtns.forEach((b) => {
+				b.classList.remove("bg-gold", "text-slate-950", "active");
+				b.classList.add("bg-white/10", "text-white/80");
+			});
+			btn.classList.remove("bg-white/10", "text-white/80");
+			btn.classList.add("bg-gold", "text-slate-950", "active");
+
+			source.src = videoUrl;
+			if (title && videoTitle) title.textContent = videoTitle;
+			if (subtitle && videoSub) subtitle.textContent = videoSub;
+
+			video.load();
+		}
+
+		openBtn?.addEventListener("click", open);
+		closeBtns.forEach((b) => b.addEventListener("click", close));
+		chapterBtns.forEach((b) => b.addEventListener("click", () => selectChapter(b)));
+
+		modal.addEventListener("click", (e) => {
+			if (e.target === modal) close();
+		});
+
+		window.addEventListener("keydown", (e) => {
+			if (e.key === "Escape" && !modal.classList.contains("opacity-0")) close();
+		});
+	}
+
+	document.addEventListener("DOMContentLoaded", initFilmModal);
+	document.addEventListener("astro:page-load", initFilmModal);
+</script>
